@@ -1,5 +1,5 @@
 ---
 layout: documentation
-title: Guides - Main branch (SNAPSHOT)
+title: Documentation - Main branch (SNAPSHOT)
 permalink: /version/main/guides/
 ---

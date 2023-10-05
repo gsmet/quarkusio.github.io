@@ -1,5 +1,5 @@
 ---
 layout: documentation
-title: Guides - Latest
+title: Documentation - Latest
 permalink: /guides/
 ---
