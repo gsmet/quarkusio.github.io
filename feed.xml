@@ -1,1 +1,2361 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="https://quarkus.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://quarkus.io//" rel="alternate" type="text/html" /><updated>2019-03-07T14:53:20+00:00</updated><id>https://quarkus.io//</id><title type="html">Quarkus</title><subtitle>Quarkus: Supersonic Subatomic Java</subtitle></feed>
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+    <channel>
+        <title>Quarkus</title>
+        <link>https://quarkus.io</link>
+        <description>Quarkus: Supersonic Subatomic Java</description>
+        <lastBuildDate>Thu, 18 Apr 2024 13:31:08 +0000</lastBuildDate>
+        
+        <item>
+            <title>Revolutionizing time tracking: how Quarkus transformed our backend development</title>
+            <link>
+                https://quarkus.io/blog/quarkus-saas-backend-time-tracking-app-case-study/
+            </link>
+            <description>
+                &lt;div class=&quot;imageblock customer-logo&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/quarkus-user-stories/gran/gran-logo.png&quot; alt=&quot;GRAN logo&quot; width=&quot;200&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph customer-quote&quot;&gt;
+&lt;p&gt;GRAN Software Solutions is a German company that designs and builds modern backend solutions.
+We work with large automotive clients and others to restructure and create new solutions.
+We also develop and offer SaaS tools to help us and others in our daily work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One such tool we built for ourselves and others is a time tracking application called &lt;a href=&quot;https://sheetty.com&quot;&gt;Sheetty&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;the-time-tracking-challenge&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-time-tracking-challenge&quot;&gt;&lt;/a&gt;The time tracking challenge&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/quarkus-user-stories/gran/frustrated-developer.png&quot; alt=&quot;Frustrated Developer&quot; width=&quot;640&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We needed to create a time tracking application because the existing solutions on the market did not meet our specific requirements.
+They were either not designed for developers, lacked the simplicity we needed, or were loaded with unnecessary features.
+We wanted to build a tool that was perfectly tailored to our needs, using the extensive experience we had gained from working on client projects over the years.
+We also wanted to create a more modern and user-friendly design, which would be fun to use and incorporate newer technologies such as Quarkus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The main issue we faced with existing time tracking solutions was the lack of an easy way to switch between clients.
+We also found that they did not support quick actions or shortcuts, which we were used to, and there was no visual way to see the time entries we made during the day.
+Additionally, we wanted to track time within the context of contracts signed with our clients in terms of daily rates and contract caps.
+That&amp;#8217;s why we decided to create a custom solution to address all of these specific needs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;discovering-quarkus&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#discovering-quarkus&quot;&gt;&lt;/a&gt;Discovering Quarkus&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When we were choosing the technology stack to use for our backend, our main goal was to use technologies that we were already familiar with, such as the Kotlin programming language, Spring Boot framework, and Postgres database.
+We also wanted to select an ecosystem that could provide us with libraries for database connectivity, web client, caching, and other similar features.
+Additionally, we wanted to use a high-performance solution to keep our hosting costs low and avoid high memory requirements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;After analyzing various solutions on the market, we decided to use the Quarkus framework as it met all of our requirements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;our-backend-development-experience-with-quarkus-the-key-features&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#our-backend-development-experience-with-quarkus-the-key-features&quot;&gt;&lt;/a&gt;Our backend development experience with Quarkus: the key features&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We have designed our application architecture to separate the frontend and backend parts.
+To secure our backend APIs in a modern and secure way, we opted to use JSON web tokens, and Quarkus has excellent support for them.
+We also use role-based security for our APIs, and Quarkus makes it easy for us to implement this.
+We have different roles in our application, such as regular users and admins, and this information is encoded in our JSON web tokens.
+Quarkus ensures that these tokens are not tampered with or manipulated when they reach our back-end systems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;&lt;code&gt;@RolesAllowed&lt;/code&gt; for authorization of our API endpoints&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-kotlin hljs&quot; data-lang=&quot;kotlin&quot;&gt;@Path(&quot;/clients&quot;)
+@RolesAllowed(&quot;User&quot;)
+@Produces(MediaType.APPLICATION_JSON)
+@ApplicationScoped
+class ClientResource(
+    private val getClientsHandler: GetClientsHandler,
+    private val newClientHandler: NewClientHandler,&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We relied heavily on rich JSON support to model our data flexibly and delegate much of the functionality to Postgres itself to manipulate the data.
+This way, we could pass the already-built JSON objects back to the API client, which significantly reduced the time it took to make design decisions in the application code.
+Quarkus provided fantastic support for JSON object APIs.
+We believe that Postgres is the right place to perform data manipulations and aggregations, not the application code, due to performance and code maintenance reasons.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Using &lt;code&gt;JsonObject&lt;/code&gt; to pass our data in and out&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-kotlin hljs&quot; data-lang=&quot;kotlin&quot;&gt;@GET
+@Produces(MediaType.APPLICATION_JSON)
+suspend fun getProfile() = db.preparedQuery(
+    &quot;&quot;&quot;select profile from &quot;user&quot; where email = $1&quot;&quot;&quot;.trimIndent()
+).execute().awaitSuspending().first().getJsonObject(&quot;profile&quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Although Quarkus primarily targets Java programming language, Kotlin support is also quite good.
+We used coroutines and suspending functions, which allowed for greater performance and much simpler code compared to some other asynchronous programming models that are available.
+Kotlin&amp;#8217;s structured concurrency enabled us to write seemingly sequential code but in reality, very performant asynchronous code.
+Quarkus provides excellent Kotlin extension methods built on top of existing asynchronous APIs such as Mutiny.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We executed the database migration on application startup, which was very important for us.
+Fortunately, Quarkus has excellent Flyway support, so all our database migrations were in one place and executed during our backend booting process.
+This kept our database schema and data transparent and reproducible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/quarkus-user-stories/gran/db-migrations.png&quot; alt=&quot;Database Migrations&quot; width=&quot;640&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 1. Using Flyway to execute database migrations&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For our deployments, we use Kubernetes.
+Before using Quarkus, we described our application requirements using helm packaging, but with Quarkus, we opted for another approach as Quarkus offers a great Kubernetes extension.
+Instead of writing any code, we described our Kubernetes resources using an &lt;code&gt;application.yaml&lt;/code&gt; file, keeping our complete application configuration in one place.
+This extension generated Kubernetes resource files behind the scenes, which we then applied to our Kubernetes cluster.
+This works well for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/quarkus-user-stories/gran/k8s-config.png&quot; alt=&quot;Kubernetes configuration&quot; width=&quot;640&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 2. Using the Kubernetes extension to generate Kubernetes resources&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For packaging our backend API, we used the Jib extension.
+To package our application in a container, all we had to do was use the &lt;code&gt;application.yaml&lt;/code&gt; file and set all the required parameters such as image name tags repository, and so on.
+We didn&amp;#8217;t have to maintain the Docker file on our own, which was very convenient.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Our time tracking application needs to send emails to our users and admins on various occasions.
+To keep things simpler, we decided not to go for any third-party API-driven email-sending approach.
+Instead, we send emails ourselves, and for that purpose, we use Qute email templates, which make composing and sending emails to our users very simple.
+This extension provides support for coding coroutines, allowing for non-blocking sending and higher throughput.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/quarkus-user-stories/gran/qute-templates.png&quot; alt=&quot;Qute Templates&quot; width=&quot;640&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 3. Using Qute email templates to send emails&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;development-journey&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#development-journey&quot;&gt;&lt;/a&gt;Development journey&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Quarkus development process has been excellent so far.
+Compared to other frameworks like Spring Boot, Quarkus has a faster startup time and a smaller memory footprint.
+It also provides profiles, which allows us to have slightly different configurations or behaviors between environments.
+We can easily substitute some hard-to-run third-party services with local mocks, leaving the application code unchanged.
+Quarkus is also great in terms of configuration and how easily we can overwrite values stored in the &lt;code&gt;application.yaml&lt;/code&gt; file with external environment variables.
+Although the hot reload mode didn&amp;#8217;t work well with Kotlin, I believe all the bugs related to it will be solved in upcoming releases.
+During development, we had to restart our running service most of the time for code changes to take effect.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Our backend API functionalities took approximately a month and a half to complete.
+Considering that only two developers worked on the backend, I think it was a good result.
+In this phase of our product lifecycle, we decided against writing automated tests due to constantly revisiting requirements and our needs.
+Instead, we went for manual testing for now.
+Once our time tracking application gets more active users, we plan to start writing automated tests using Quarkus test support, including Testcontainers and others.
+Developing a full-blown API, including API security with JSON web tokens and authorization in place, having database migration automatically applied during application boot time, having a flexible and maintainable code base revolving around JSON, with the ability to package and deploy our API to our Kubernetes cluster, is quite an achievement for just a month and a half of work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We are glad to share that using Quarkus, Kotlin, and Postgres as the foundation of our backend API has been a fun and productive experience for us.
+Quarkus&amp;#8217;s ability to experiment quickly and leverage ready-made components has made us confident that we made the right technological choice.
+Although there are some imperfections with hot reload and some quirks with Kotlin, we are waiting for the fixes to be made and have no doubt that Quarkus is the best solution for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We are working smart and hard to bring new features to our time tracking application.
+To achieve this, we will continue to use the great features provided by Quarkus, which dramatically reduce the time needed to roll out our features quickly.
+We invite you to try our time tracker at &lt;a href=&quot;https://sheetty.com&quot;&gt;sheetty.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-saas-backend-time-tracking-app-case-study/
+            </guid>
+            
+            
+            
+            <author>Dusan Odalovic (https://twitter.com/OdalovicDusan)</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus 3.8.4 released - Maintenance release</title>
+            <link>
+                https://quarkus.io/blog/quarkus-3-8-4-released/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Today, we released Quarkus 3.8.4, our second (we skipped 3.8.0) maintenance release for our 3.8 LTS release train.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This release contains bugfixes and documentation improvements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It should be a safe upgrade for anyone already using 3.8.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;update&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#update&quot;&gt;&lt;/a&gt;Update&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To update to Quarkus 3.8, we recommend updating to the latest version of the Quarkus CLI and run:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;quarkus update --stream=3.8&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that &lt;code&gt;quarkus update&lt;/code&gt; can update your applications from any version of Quarkus (including 2.x) to Quarkus 3.8.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are not already using 3.x, please refer to the &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-0-final-released/&quot;&gt;3.0 announcement&lt;/a&gt; for all the details.
+You can also refer to &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-upgrade/&quot;&gt;this blog post&lt;/a&gt; for additional details.
+Once you upgraded to 3.0, also have a look at the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.1&quot;&gt;3.1&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.2&quot;&gt;3.2&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.3&quot;&gt;3.3&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.4&quot;&gt;3.4&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.5&quot;&gt;3.5&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.6&quot;&gt;3.6&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.7&quot;&gt;3.7&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.8&quot;&gt;3.8&lt;/a&gt; migration guides.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;full-changelog&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#full-changelog&quot;&gt;&lt;/a&gt;Full changelog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can get &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.8.4&quot;&gt;the full changelog of 3.8.4 on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;come-join-us&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#come-join-us&quot;&gt;&lt;/a&gt;Come Join Us&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We value your feedback a lot so please report bugs, ask for improvements&amp;#8230;&amp;#8203; Let&amp;#8217;s build something great together!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are a Quarkus user or just curious, don&amp;#8217;t be shy and join our welcoming community:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provide feedback on &lt;a href=&quot;https://github.com/quarkusio/quarkus/issues&quot;&gt;GitHub&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;craft some code and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pulls&quot;&gt;push a PR&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;discuss with us on &lt;a href=&quot;https://quarkusio.zulipchat.com/&quot;&gt;Zulip&lt;/a&gt; and on the &lt;a href=&quot;https://groups.google.com/d/forum/quarkus-dev&quot;&gt;mailing list&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ask your questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/quarkus&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 17 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-3-8-4-released/
+            </guid>
+            
+            
+            
+            <author>Guillaume Smet (https://twitter.com/gsmet_)</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus 3.2.12.Final released - Maintenance LTS release</title>
+            <link>
+                https://quarkus.io/blog/quarkus-3-2-12-final-released/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus 3.2.12.Final, the eleventh maintenance release of the 3.2 LTS release train has been released.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This release includes the following security-related fixes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-2700&quot;&gt;CVE-2024-2700&lt;/a&gt; io.quarkus/quarkus-core: Leak of local configuration properties into Quarkus applications&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2024-29025&quot;&gt;CVE-2024-29025&lt;/a&gt; io.netty/netty-codec-http: Allocation of Resources Without Limits or Throttling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/b_c/jose4j/issues/212&quot;&gt;CVE-2023-51775&lt;/a&gt; org.bitbucket.b_c/jose4j: Dos Attack Via specifically crafted JWE&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And the following component upgrades:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Apache Mime4J 0.8.9 &amp;#8594; 0.8.11&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Jose4J 0.9.3 &amp;#8594; 0.9.6&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Netty 4.1.100.Final &amp;#8594; 4.1.108.Final&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Netty tcnative 2.0.61.Final &amp;#8594; 2.0.65.Final&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vert.x 4.4.8 &amp;#8594; 4.4.9&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;com.dajudge.kindcontainer:kindcontainer 1.3.0 &amp;#8594; 1.4.5&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are not already using a 3.2 release, please refer to &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.2&quot;&gt;our migration guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;known-issues-include&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#known-issues-include&quot;&gt;&lt;/a&gt;Known issues include:&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It should be a safe upgrade for anyone already using a 3.2.11.Final release. However, the fix for CVE-2024-2700 introduces a change in how configuration options are recoded at build time and should be taken into account.
+More specifically, properties from configuration sources that are considered local (those that are available at build time but not runtime, such as environment variables, system properties, Maven and Gradle project properties) will not override the default values of runtime configuration properties. This is done to avoid leaking local environment values into production builds.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;full-changelog&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#full-changelog&quot;&gt;&lt;/a&gt;Full changelog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can get &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.2.12.Final&quot;&gt;the full changelog of 3.2.12.Final on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;come-join-us&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#come-join-us&quot;&gt;&lt;/a&gt;Come Join Us&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We value your feedback a lot so please report bugs, ask for improvements&amp;#8230;&amp;#8203; Let&amp;#8217;s build something great together!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are a Quarkus user or just curious, don&amp;#8217;t be shy and join our welcoming community:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provide feedback on &lt;a href=&quot;https://github.com/quarkusio/quarkus/issues&quot;&gt;GitHub&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;craft some code and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pulls&quot;&gt;push a PR&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;discuss with us on &lt;a href=&quot;https://quarkusio.zulipchat.com/&quot;&gt;Zulip&lt;/a&gt; and on the &lt;a href=&quot;https://groups.google.com/d/forum/quarkus-dev&quot;&gt;mailing list&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ask your questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/quarkus&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 17 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-3-2-12-final-released/
+            </guid>
+            
+            
+            
+            <author>Alexey Loubyansky (https://twitter.com/aloubyansky)</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus Newsletter #43 - April</title>
+            <link>
+                https://quarkus.io/blog/quarkus-newsletter-43/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Check out these great articles in the April newsletter. &quot;The Power of LLMs in Java: Leveraging Quarkus and LangChain4j&quot; by Nicolas Duminil attempts to demystify the use of LLMs in Java, with Quarkus and LangChain4j, across a ludic and hopefully original project. Learn about some challenges running several simultaneous Quarkus app containers on your machine with the Quarkus’ remote development mode activated presents in &quot;Multiplying The Developer Joy: Multiple Quarkus Containers + Simultaneous Remote Development Sessions&quot; by Rustam Mehmandarov. See how to configure Quarkus OIDC with Google Cloud credentials in &quot;OIDC with Google &amp;amp; Quarkus&quot; by Prabodh Agarwal. &quot;An Open Plea to the Quarkus Team&quot; by Preslav Rachev asks us to rethink the way the Java community sees Quarkus the framework. &quot;Getting started with MongoDB and Quarkus: Beyond the basics&quot; by Hans-Peter Grahsl is Part 2 of is article on how to Connect your Quarkus application to a fully-managed MongoDB database instance. Learn how to lower the level of a logger in Quarkus to better understand when something goes wrong and how to fix it with Gwenneg Lepage&amp;#8217;s &quot;Changing the Quarkus loggers level from Unleash&quot; article.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You will also see the latest Quarkus Insights episodes, top tweets and upcoming Quarkus attended events.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Check out &lt;a href=&quot;https://quarkus.io/newsletter/43/&quot;&gt;Newsletter #43: April&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Want to get newsletters in your inbox? &lt;a href=&quot;https://quarkus.io/newsletter&quot;&gt;Sign up for the newsletter&lt;/a&gt; using the on page form.&lt;/p&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-newsletter-43/
+            </guid>
+            
+            
+            
+            <author>James Cobb (https://twitter.com/insectengine)</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus 3.9.3 released - Maintenance release</title>
+            <link>
+                https://quarkus.io/blog/quarkus-3-9-3-released/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Today, we released Quarkus 3.9.3, our second (we skipped 3.9.0) maintenance release for the 3.9 release train.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This release contains bugfixes and documentation improvements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It should be a safe upgrade for anyone already using 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;update&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#update&quot;&gt;&lt;/a&gt;Update&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To update to Quarkus 3.9, we recommend updating to the latest version of the Quarkus CLI and run:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;quarkus update&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that &lt;code&gt;quarkus update&lt;/code&gt; can update your applications from any version of Quarkus (including 2.x) to Quarkus 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are not already using 3.x, please refer to the &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-0-final-released/&quot;&gt;3.0 announcement&lt;/a&gt; for all the details.
+You can also refer to &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-upgrade/&quot;&gt;this blog post&lt;/a&gt; for additional details.
+Once you upgraded to 3.0, also have a look at the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.1&quot;&gt;3.1&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.2&quot;&gt;3.2&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.3&quot;&gt;3.3&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.4&quot;&gt;3.4&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.5&quot;&gt;3.5&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.6&quot;&gt;3.6&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.7&quot;&gt;3.7&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.8&quot;&gt;3.8&lt;/a&gt;, and &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;3.9&lt;/a&gt; migration guides.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;full-changelog&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#full-changelog&quot;&gt;&lt;/a&gt;Full changelog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can get &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.3&quot;&gt;the full changelog of 3.9.3 on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;come-join-us&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#come-join-us&quot;&gt;&lt;/a&gt;Come Join Us&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We value your feedback a lot so please report bugs, ask for improvements&amp;#8230;&amp;#8203; Let&amp;#8217;s build something great together!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are a Quarkus user or just curious, don&amp;#8217;t be shy and join our welcoming community:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provide feedback on &lt;a href=&quot;https://github.com/quarkusio/quarkus/issues&quot;&gt;GitHub&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;craft some code and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pulls&quot;&gt;push a PR&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;discuss with us on &lt;a href=&quot;https://quarkusio.zulipchat.com/&quot;&gt;Zulip&lt;/a&gt; and on the &lt;a href=&quot;https://groups.google.com/d/forum/quarkus-dev&quot;&gt;mailing list&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ask your questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/quarkus&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-3-9-3-released/
+            </guid>
+            
+            
+            
+            <author>Guillaume Smet (https://twitter.com/gsmet_)</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus 3.9.2 released - Maintenance release</title>
+            <link>
+                https://quarkus.io/blog/quarkus-3-9-2-released/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Today, we released Quarkus 3.9.2, our first (we skipped 3.9.0) maintenance release for the 3.9 release train.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This release contains bugfixes and documentation improvements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It should be a safe upgrade for anyone already using 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;update&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#update&quot;&gt;&lt;/a&gt;Update&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To update to Quarkus 3.9, we recommend updating to the latest version of the Quarkus CLI and run:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;quarkus update&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that &lt;code&gt;quarkus update&lt;/code&gt; can update your applications from any version of Quarkus (including 2.x) to Quarkus 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are not already using 3.x, please refer to the &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-0-final-released/&quot;&gt;3.0 announcement&lt;/a&gt; for all the details.
+You can also refer to &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-upgrade/&quot;&gt;this blog post&lt;/a&gt; for additional details.
+Once you upgraded to 3.0, also have a look at the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.1&quot;&gt;3.1&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.2&quot;&gt;3.2&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.3&quot;&gt;3.3&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.4&quot;&gt;3.4&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.5&quot;&gt;3.5&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.6&quot;&gt;3.6&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.7&quot;&gt;3.7&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.8&quot;&gt;3.8&lt;/a&gt;, and &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;3.9&lt;/a&gt; migration guides.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;full-changelog&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#full-changelog&quot;&gt;&lt;/a&gt;Full changelog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can get &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.2&quot;&gt;the full changelog of 3.9.2 on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;come-join-us&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#come-join-us&quot;&gt;&lt;/a&gt;Come Join Us&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We value your feedback a lot so please report bugs, ask for improvements&amp;#8230;&amp;#8203; Let&amp;#8217;s build something great together!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are a Quarkus user or just curious, don&amp;#8217;t be shy and join our welcoming community:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provide feedback on &lt;a href=&quot;https://github.com/quarkusio/quarkus/issues&quot;&gt;GitHub&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;craft some code and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pulls&quot;&gt;push a PR&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;discuss with us on &lt;a href=&quot;https://quarkusio.zulipchat.com/&quot;&gt;Zulip&lt;/a&gt; and on the &lt;a href=&quot;https://groups.google.com/d/forum/quarkus-dev&quot;&gt;mailing list&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ask your questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/quarkus&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-3-9-2-released/
+            </guid>
+            
+            
+            
+            <author>Guillaume Smet (https://twitter.com/gsmet_)</author>
+            
+        </item>
+        
+        <item>
+            <title>Changing the Quarkus loggers level from Unleash</title>
+            <link>
+                https://quarkus.io/blog/changing-loggers-level-from-unleash/
+            </link>
+            <description>
+                &lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I&amp;#8217;m part of a Red Hat team that is responsible for a dozen of Quarkus apps which run in Red Hat OpenShift, with multiple pods each.
+While these apps all have different purposes, they also share a common fate: something will go wrong eventually.
+When it does, we&amp;#8217;ll need to understand and fix the problem as fast as possible.
+Lowering the level of a logger is often helpful, but our apps are containerized and updating an environment variable to change the logger level isn&amp;#8217;t always as easy at it sounds.
+We also don&amp;#8217;t want to expose REST endpoints in most of our apps, so extensions such as &lt;a href=&quot;https://github.com/quarkiverse/quarkus-logging-manager&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-logging-manager&lt;/a&gt; are not an option.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Our apps have another thing in common: they depend on &lt;a href=&quot;https://docs.quarkiverse.io/quarkus-unleash/dev/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-unleash&lt;/a&gt; because we&amp;#8217;re fetching our feature toggles from &lt;a href=&quot;https://www.getunleash.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Unleash&lt;/a&gt;.
+When I read &lt;a href=&quot;https://medium.com/safe-engineering/how-unleash-enhanced-our-troubleshooting-experience-by-100x-e0c82b6df825&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Zero downtime log level changes using Unleash&lt;/a&gt; from Aman Jain, it made me want to try the same thing with Quarkus.
+I&amp;#8217;ll show you below how I successfully did that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This blog post contains incremental code snippets.
+Each one of them is an enhanced version of the previous one and addresses a specific technical challenge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;changing-a-logger-level-programmatically&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#changing-a-logger-level-programmatically&quot;&gt;&lt;/a&gt;Changing a logger level programmatically&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s start with the obvious requirement: how to change the level of a logger programmatically with Quarkus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As described in the &lt;a href=&quot;https://quarkus.io/guides/logging&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Logging configuration guide&lt;/a&gt;, Quarkus supports multiple logging APIs.
+I only tested the following code with the JBoss Logging API as well as the &lt;code&gt;io.quarkus.logging.Log&lt;/code&gt; API.
+I can&amp;#8217;t guarantee that everything will work out of the box with other logging APIs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The JBoss Logging API doesn&amp;#8217;t offer a way to change the level of a logger programmatically, so we need the help of the &lt;code&gt;java.util.logging&lt;/code&gt; API to do it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import java.util.logging.Level; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+import java.util.logging.Logger; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+public class LogLevelManager {
+
+    public void setLoggerLevel(String loggerName, String levelName) {
+        Logger logger = Logger.getLogger(loggerName); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+        Level level = Level.parse(levelName); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+        logger.setLevel(level);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Make sure you&amp;#8217;re importing classes from the &lt;code&gt;java.util.logging&lt;/code&gt; package.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Any category as described in the &lt;a href=&quot;https://quarkus.io/guides/logging#logging-categories&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Logging configuration guide&lt;/a&gt; will work as the logger name.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Level#parse&lt;/code&gt; will throw exceptions if the level name is not valid. Please handle them carefully.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;setting-a-logger-level-from-unleash&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#setting-a-logger-level-from-unleash&quot;&gt;&lt;/a&gt;Setting a logger level from Unleash&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So, we&amp;#8217;re able to set a logger level programmatically.
+Now, how do we feed the &lt;code&gt;LogLevelManager#setLoggerLevel&lt;/code&gt; method with data from Unleash?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;unleash-variants-to-the-rescue&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#unleash-variants-to-the-rescue&quot;&gt;&lt;/a&gt;Unleash variants to the rescue&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In Unleash, the feature toggles can be associated with &lt;a href=&quot;https://docs.getunleash.io/reference/feature-toggle-variants&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;variants&lt;/a&gt; which are meant to facilitate A/B testing and experimentation.
+Each variant is defined with a set of properties, including the optional &lt;code&gt;payload&lt;/code&gt; that can be used to pass JSON data from Unleash to our Quarkus app.
+That&amp;#8217;s how we&amp;#8217;ll set the level of our Quarkus app loggers:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/changing-loggers-level-from-unleash/payload.png&quot; alt=&quot;Unleash variant payload&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;retrieving-the-variant-payload&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#retrieving-the-variant-payload&quot;&gt;&lt;/a&gt;Retrieving the variant payload&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now, let&amp;#8217;s see how we&amp;#8217;ll retrieve from the Quarkus app the variant payload defined in Unleash.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/changing-loggers-level-from-unleash/connecting.png&quot; alt=&quot;Connecting Quarkus to Unleash&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First, the Quarkus app needs to depend on the &lt;a href=&quot;https://docs.quarkiverse.io/quarkus-unleash/dev/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-unleash&lt;/a&gt; extension.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We&amp;#8217;ll also use a very simple data structure to deserialize the payload with Jackson:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public class LogConfig {
+    public String category;
+    public String level;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then, here&amp;#8217;s an update of the &lt;code&gt;LogLevelManager&lt;/code&gt; class to make it get the variant from Unleash, deserialize the payload and change the level of a series of loggers:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.getunleash.Unleash;
+import io.getunleash.Variant;
+import io.getunleash.variant.Payload;
+import io.quarkus.logging.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@ApplicationScoped &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+public class LogLevelManager {
+
+    private static final String UNLEASH_TOGGLE_NAME = &quot;my-app.log-levels&quot;;
+
+    @Inject
+    Unleash unleash; &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+
+    @Inject
+    ObjectMapper objectMapper;
+
+    public void updateLoggersLevel() {
+        for (LogConfig logConfig : getLogConfigs()) {
+            try {
+                setLoggerLevel(logConfig.category, logConfig.level);
+            } catch (Exception e) {
+                Log.error(&quot;Could not the set level of a logger&quot;, e);
+            }
+        }
+    }
+
+    private LogConfig[] getLogConfigs() {
+        Variant variant = unleash.getVariant(UNLEASH_TOGGLE_NAME); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+        if (variant.isEnabled()) { &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+            Optional&amp;lt;Payload&amp;gt; payload = variant.getPayload();
+            if (payload.isPresent() &amp;amp;&amp;amp; payload.get().getType().equals(&quot;json&quot;) &amp;amp;&amp;amp; payload.get().getValue() != null) {
+                try {
+                    return objectMapper.readValue(payload.get().getValue(), LogConfig[].class);
+                } catch (JsonProcessingException e) {
+                    Log.error(&quot;Variant payload deserialization failed&quot;, e);
+                }
+            }
+        }
+        return new LogConfig[0]; &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+    }
+
+    private void setLoggerLevel(String loggerName, String levelName) {
+        Logger logger = Logger.getLogger(loggerName);
+        Level currentLevel = logger.getLevel();
+        Level newLevel = Level.parse(levelName);
+        if (!newLevel.equals(currentLevel)) {
+            logger.setLevel(newLevel);
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;From now on, &lt;code&gt;LogLevelManager&lt;/code&gt; is an &lt;code&gt;@ApplicationScoped&lt;/code&gt; bean.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Unleash&lt;/code&gt; is an &lt;code&gt;@ApplicationScoped&lt;/code&gt; bean produced by the &lt;a href=&quot;https://docs.quarkiverse.io/quarkus-unleash/dev/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-unleash&lt;/a&gt; extension.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Be careful about the argument passed to &lt;code&gt;Unleash#getVariant&lt;/code&gt;: it has to be the toggle name, not the variant name.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;variant.isEnabled()&lt;/code&gt; will return &lt;code&gt;false&lt;/code&gt; if the toggle is disabled in Unleash or if the toggle has no variants.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;If the method is unable to find a variant payload or if it fails to deserialize that payload for any reasons, an empty &lt;code&gt;LogConfig&lt;/code&gt; array will be returned.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We can now retrieve the loggers configuration from Unleash, that&amp;#8217;s great!
+But that new &lt;code&gt;LogLevelManager#updateLoggerslevel&lt;/code&gt; method isn&amp;#8217;t used yet.
+Where should it be used from, and when?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/changing-loggers-level-from-unleash/triggering.png&quot; alt=&quot;Triggering the loggers level update&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We need that method to be executed as soon as the loggers configuration is changed in Unleash.
+So, its execution has to be periodically scheduled somehow.
+We could make the method &lt;code&gt;@Scheduled&lt;/code&gt; with the &lt;a href=&quot;https://quarkus.io/guides/scheduler-reference&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-scheduler&lt;/a&gt; extension, but there is a better approach thanks to the Unleash SDK.
+Let&amp;#8217;s jump to the next section.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;the-subscriber-api-from-unleash&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-subscriber-api-from-unleash&quot;&gt;&lt;/a&gt;The Subscriber API from Unleash&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Unleash Client SDK for Java comes with a feature that will be very helpful here: the &lt;a href=&quot;https://docs.getunleash.io/reference/sdks/java#subscriber-api&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Subscriber API&lt;/a&gt;.
+The &lt;a href=&quot;https://github.com/Unleash/unleash-client-java/blob/main/src/main/java/io/getunleash/event/UnleashSubscriber.java&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;UnleashSubscriber&lt;/a&gt; interface can indeed be implemented to subscribe to various Unleash events, including &lt;code&gt;FeatureToggleResponse&lt;/code&gt; which is emitted when the Unleash client fetches toggles from the server.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Using the Subscriber API with the &lt;a href=&quot;https://docs.quarkiverse.io/quarkus-unleash/dev/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;quarkus-unleash&lt;/a&gt; extension is extremely simple.
+&lt;code&gt;UnleashSubscriber&lt;/code&gt; needs to be implemented in a CDI bean and that&amp;#8217;s it!
+The extension will pass the bean to the Unleash client builder automatically.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.getunleash.Unleash;
+import io.getunleash.Variant;
+import io.getunleash.event.UnleashSubscriber;
+import io.getunleash.repository.FeatureToggleResponse;
+import io.getunleash.variant.Payload;
+import io.quarkus.logging.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static io.getunleash.repository.FeatureToggleResponse.Status.CHANGED;
+
+@ApplicationScoped
+public class LogLevelManager implements UnleashSubscriber { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+    private static final String UNLEASH_TOGGLE_NAME = &quot;my-app.log-levels&quot;;
+
+    @Inject
+    Unleash unleash;
+
+    @Inject
+    ObjectMapper objectMapper;
+
+    @Override
+    public void togglesFetched(FeatureToggleResponse toggleResponse) { &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+        if (toggleResponse.getStatus() == CHANGED) { &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+            updateLoggersLevel();
+        }
+    }
+
+    // Unchanged, except for the access modifier.
+    private void updateLoggersLevel() {
+        for (LogConfig logConfig : getLogConfigs()) {
+            try {
+                setLoggerLevel(logConfig.category, logConfig.level);
+            } catch (Exception e) {
+                Log.error(&quot;Could not the set level of a logger&quot;, e);
+            }
+        }
+    }
+
+    // Unchanged.
+    private LogConfig[] getLogConfigs() {
+        Variant variant = unleash.getVariant(UNLEASH_TOGGLE_NAME);
+        if (variant.isEnabled()) {
+            Optional&amp;lt;Payload&amp;gt; payload = variant.getPayload();
+            if (payload.isPresent() &amp;amp;&amp;amp; payload.get().getType().equals(&quot;json&quot;) &amp;amp;&amp;amp; payload.get().getValue() != null) {
+                try {
+                    return objectMapper.readValue(payload.get().getValue(), LogConfig[].class);
+                } catch (JsonProcessingException e) {
+                    Log.error(&quot;Variant payload deserialization failed&quot;, e);
+                }
+            }
+        }
+        return new LogConfig[0];
+    }
+
+    // Unchanged.
+    private void setLoggerLevel(String loggerName, String levelName) {
+        Logger logger = Logger.getLogger(loggerName);
+        Level currentLevel = logger.getLevel();
+        Level newLevel = Level.parse(levelName);
+        if (!newLevel.equals(currentLevel)) {
+            logger.setLevel(newLevel);
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;We&amp;#8217;re still using the same &lt;code&gt;LogLevelManager&lt;/code&gt; class, but now it&amp;#8217;s implementing &lt;code&gt;UnleashSubscriber&lt;/code&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;This method is invoked every time the Unleash client fetches toggles from the server.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;We&amp;#8217;ll update the loggers level only if the toggles changed server-side.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Okay, the &lt;code&gt;LogLevelManager#updateLoggerslevel&lt;/code&gt; method is now automatically invoked whenever the client fetches new data from the server.
+But what about scheduling that periodically?
+Well, the Unleash client already relies on an internal scheduled executor to fetch the toggles.
+Therefore, we don&amp;#8217;t need to bother scheduling anything in our app.
+It will work automagically!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/changing-loggers-level-from-unleash/automagically.png&quot; alt=&quot;LogLevelManager with UnleashSubscriber&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;one-variant-to-rule-them-all&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#one-variant-to-rule-them-all&quot;&gt;&lt;/a&gt;One variant to rule them all&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;At the beginning of this post, I mentioned that my team is responsible for a dozen of Quarkus apps.
+Each app runs with a varying number of replicas.
+Let&amp;#8217;s simplify and consider all of them as hosts.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We have dozens of hosts and yet only one Unleash variant to manage the loggers level for all of them.
+Here&amp;#8217;s how I implemented that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First, the data structure of the variant payload needs a small addition:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public class LogConfig {
+    public String hostName; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    public String category;
+    public String level;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;That&amp;#8217;s new!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now, we can introduce a host filtering capability in &lt;code&gt;LogLevelManager&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.getunleash.Unleash;
+import io.getunleash.Variant;
+import io.getunleash.event.UnleashSubscriber;
+import io.getunleash.repository.FeatureToggleResponse;
+import io.getunleash.variant.Payload;
+import io.quarkus.logging.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static io.getunleash.repository.FeatureToggleResponse.Status.CHANGED;
+
+@ApplicationScoped
+public class LogLevelManager implements UnleashSubscriber {
+
+    private static final String UNLEASH_TOGGLE_NAME = &quot;my-app.log-levels&quot;;
+
+    @ConfigProperty(name = &quot;host-name&quot;, defaultValue = &quot;localhost&quot;) &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    String hostName;
+
+    @Inject
+    Unleash unleash;
+
+    @Inject
+    ObjectMapper objectMapper;
+
+    // Unchanged.
+    @Override
+    public void togglesFetched(FeatureToggleResponse toggleResponse) {
+        if (toggleResponse.getStatus() == CHANGED) {
+            updateLoggersLevel();
+        }
+    }
+
+    private void updateLoggersLevel() {
+        for (LogConfig logConfig : getLogConfigs()) {
+            try {
+                if (shouldThisHostBeUpdated(logConfig)) { &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+                    setLoggerLevel(logConfig.category, logConfig.level);
+                }
+            } catch (Exception e) {
+                Log.error(&quot;Could not the set level of a logger&quot;, e);
+            }
+        }
+    }
+
+    // Unchanged.
+    private LogConfig[] getLogConfigs() {
+        Variant variant = unleash.getVariant(UNLEASH_TOGGLE_NAME);
+        if (variant.isEnabled()) {
+            Optional&amp;lt;Payload&amp;gt; payload = variant.getPayload();
+            if (payload.isPresent() &amp;amp;&amp;amp; payload.get().getType().equals(&quot;json&quot;) &amp;amp;&amp;amp; payload.get().getValue() != null) {
+                try {
+                    return objectMapper.readValue(payload.get().getValue(), LogConfig[].class);
+                } catch (JsonProcessingException e) {
+                    Log.error(&quot;Variant payload deserialization failed&quot;, e);
+                }
+            }
+        }
+        return new LogConfig[0];
+    }
+
+    private boolean shouldThisHostBeUpdated(LogConfig logConfig) {
+        if (logConfig.hostName == null) {
+            return true;
+        }
+        if (logConfig.hostName.endsWith(&quot;*&quot;)) { &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+            return hostName.startsWith(logConfig.hostName.substring(0, logConfig.hostName.length() - 1));
+        } else {
+            return hostName.equals(logConfig.hostName);
+        }
+    }
+
+    // Unchanged.
+    private void setLoggerLevel(String loggerName, String levelName) {
+        Logger logger = Logger.getLogger(loggerName);
+        Level currentLevel = logger.getLevel();
+        Level newLevel = Level.parse(levelName);
+        if (!newLevel.equals(currentLevel)) {
+            logger.setLevel(newLevel);
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;In OpenShift, we&amp;#8217;re passing the generated pod name through the &lt;code&gt;HOST_NAME&lt;/code&gt; environment variable.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;That&amp;#8217;s new!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;This block is used to filter hosts based on a host name prefix. That&amp;#8217;s enough for our use case, but a regular expression could be used for finer filtering.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here&amp;#8217;s how the variant payload may look like after these changes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-json hljs&quot; data-lang=&quot;json&quot;&gt;[
+  {
+    &quot;hostName&quot;: &quot;unstable-service-7dbbcb4cc-9d9hl&quot;,
+    &quot;category&quot;: &quot;io.quarkus.arc&quot;,
+    &quot;level&quot;: &quot;FINE&quot;
+  },
+  {
+    &quot;hostName&quot;: &quot;awesome-app*&quot;,
+    &quot;category&quot;: &quot;org.acme.SomeService&quot;,
+    &quot;level&quot;: &quot;WARNING&quot;
+  },
+  {
+    &quot;category&quot;: &quot;org.apache.kafka.clients&quot;,
+    &quot;level&quot;: &quot;FINER&quot;
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In that payload:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the first entry will affect a specific host: &lt;code&gt;unstable-service-7dbbcb4cc-9d9hl&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the second entry will affect all hosts whose name starts with &lt;code&gt;awesome-app&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the third entry will affect all hosts regardless of their names&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;reverting-changes-automatically&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#reverting-changes-automatically&quot;&gt;&lt;/a&gt;Reverting changes automatically&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Changing the level of loggers through an Unleash variant should be a temporary action, mostly for troubleshooting purposes.
+This means we need to revert the level of the loggers eventually when the troubleshooting is over.
+Doing so by hand would be painful, so let&amp;#8217;s see how we can automate that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.getunleash.Unleash;
+import io.getunleash.Variant;
+import io.getunleash.event.UnleashSubscriber;
+import io.getunleash.repository.FeatureToggleResponse;
+import io.getunleash.variant.Payload;
+import io.quarkus.logging.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static io.getunleash.repository.FeatureToggleResponse.Status.CHANGED;
+import static java.util.stream.Collectors.toSet;
+
+@ApplicationScoped
+public class LogLevelManager implements UnleashSubscriber {
+
+    private static final String UNLEASH_TOGGLE_NAME = &quot;my-app.log-levels&quot;;
+
+    @ConfigProperty(name = &quot;host-name&quot;, defaultValue = &quot;localhost&quot;)
+    String hostName;
+
+    @Inject
+    Unleash unleash;
+
+    @Inject
+    ObjectMapper objectMapper;
+
+    private final Map&amp;lt;String, Level&amp;gt; originalLoggerLevels = new ConcurrentHashMap&amp;lt;&amp;gt;();
+
+    // Unchanged.
+    @Override
+    public void togglesFetched(FeatureToggleResponse toggleResponse) {
+        if (toggleResponse.getStatus() == CHANGED) {
+            updateLoggersLevel();
+        }
+    }
+
+    public void updateLoggersLevel() {
+        LogConfig[] logConfigs = getLogConfigs();
+        for (LogConfig logConfig : logConfigs) {
+            try {
+                if (shouldThisHostBeUpdated(logConfig)) {
+                    setLoggerLevel(logConfig.category, logConfig.level);
+                }
+            } catch (Exception e) {
+                Log.error(&quot;Could not the set level of a logger&quot;, e);
+            }
+        }
+        revertLoggersLevel(logConfigs); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    }
+
+    // Unchanged.
+    private LogConfig[] getLogConfigs() {
+        Variant variant = unleash.getVariant(UNLEASH_TOGGLE_NAME);
+        if (variant.isEnabled()) {
+            Optional&amp;lt;Payload&amp;gt; payload = variant.getPayload();
+            if (payload.isPresent() &amp;amp;&amp;amp; payload.get().getType().equals(&quot;json&quot;) &amp;amp;&amp;amp; payload.get().getValue() != null) {
+                try {
+                    return objectMapper.readValue(payload.get().getValue(), LogConfig[].class);
+                } catch (JsonProcessingException e) {
+                    Log.error(&quot;Variant payload deserialization failed&quot;, e);
+                }
+            }
+        }
+        return new LogConfig[0];
+    }
+
+    // Unchanged.
+    private boolean shouldThisHostBeUpdated(LogConfig logConfig) {
+        if (logConfig.hostName == null) {
+            return true;
+        }
+        if (logConfig.hostName.endsWith(&quot;*&quot;)) {
+            return hostName.startsWith(logConfig.hostName.substring(0, logConfig.hostName.length() - 1));
+        } else {
+            return hostName.equals(logConfig.hostName);
+        }
+    }
+
+    private void setLoggerLevel(String loggerName, String levelName) {
+        Logger logger = Logger.getLogger(loggerName);
+        Level currentLevel = logger.getLevel();
+        Level newLevel = Level.parse(levelName);
+        if (!newLevel.equals(currentLevel)) {
+            originalLoggerLevels.putIfAbsent(loggerName, currentLevel); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+            logger.setLevel(newLevel);
+        }
+    }
+
+    private void revertLoggersLevel(LogConfig[] logConfigs) {
+        if (logConfigs.length == 0) {
+            originalLoggerLevels.forEach(this::revertLoggerLevel);
+            originalLoggerLevels.clear();
+        } else {
+            Set&amp;lt;String&amp;gt; knownLoggers = Arrays.stream(logConfigs)
+                    .filter(this::shouldThisHostBeUpdated)
+                    .map(logConfig -&amp;gt; logConfig.category)
+                    .collect(toSet());
+            originalLoggerLevels.entrySet().removeIf(entry -&amp;gt; {
+                boolean remove = !knownLoggers.contains(entry.getKey());
+                if (remove) {
+                    revertLoggerLevel(entry.getKey(), entry.getValue()); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+                }
+                return remove;
+            });
+        }
+    }
+
+    private void revertLoggerLevel(String loggerName, Level originalLevel) {
+        Logger logger = Logger.getLogger(loggerName);
+        logger.setLevel(originalLevel); &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;That&amp;#8217;s new!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;The original logger level is now stored in memory and will be used when the changes are eventually reverted.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;If the level of a logger was previously modified from Unleash and that logger is no longer part of the latest Unleash variant payload, its level will be reverted to the original value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;If the original level is &lt;code&gt;null&lt;/code&gt;, then the logger will inherit the level from its parent logger.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The &lt;code&gt;LogLevelManager&lt;/code&gt; class is still far from perfect, but it finally meets the requirements of this blog post:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;it changes the level of Quarkus loggers automatically and immediately, based on a variant payload from Unleash&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;it automatically reverts all changes to the previous loggers configuration when needed&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Thanks for reading this post! I hope it will help you troubleshoot your applications faster.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;special-thanks&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#special-thanks&quot;&gt;&lt;/a&gt;Special thanks&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Thanks to Mikel Alejo Barcina for helping me fix a bug in the code above!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/changing-loggers-level-from-unleash/
+            </guid>
+            
+            
+            
+            <author>Gwenneg Lepage</author>
+            
+        </item>
+        
+        <item>
+            <title>Quarkus 3.9 - Big Reactive Rename</title>
+            <link>
+                https://quarkus.io/blog/quarkus-3-9-1-released/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It is with great pleasure that we are announcing the release of Quarkus 3.9.1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This development cycle for this release was a bit longer than usual
+as it contains all the new features since we branched Quarkus 3.7.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus 3.9 is for developers who want the latest features,
+if you are looking for an extended support cycle, you are encouraged to stay on 3.8 LTS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here are the main changes for 3.9:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/39159&quot;&gt;#39159&lt;/a&gt; and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/39301&quot;&gt;#39301&lt;/a&gt; - Big Reactive Rename&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/39142&quot;&gt;#39142&lt;/a&gt; - Initial version of the new declarative WebSocket server API&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/34493&quot;&gt;#34493&lt;/a&gt; - Add CLI command for Config&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/39389&quot;&gt;#39389&lt;/a&gt; - Update to Infinispan 15&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/37680&quot;&gt;#37680&lt;/a&gt; - Welcome page now dynamic&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38541&quot;&gt;#38541&lt;/a&gt; - Support OIDC Client JWT Bearer authentication&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38603&quot;&gt;#38603&lt;/a&gt; - Introduce &lt;code&gt;@ClientBasicAuth`&lt;/code&gt; annotation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38608&quot;&gt;#38608&lt;/a&gt; - Allow TLS certificate reloading for the HTTP server&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/39206&quot;&gt;#39206&lt;/a&gt; - Improve graceful shutdown&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;update&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#update&quot;&gt;&lt;/a&gt;Update&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To update to Quarkus 3.9, we recommend updating to the latest version of the Quarkus CLI and run:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;quarkus update&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that &lt;code&gt;quarkus update&lt;/code&gt; can update your applications from any version of Quarkus (including 2.x) to Quarkus 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For more information about the adjustments you need to make to your applications, please refer to the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;Quarkus 3.9 migration guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are not already using 3.x, please refer to the &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-0-final-released/&quot;&gt;3.0 announcement&lt;/a&gt; for all the details.
+You can also refer to &lt;a href=&quot;https://quarkus.io/blog/quarkus-3-upgrade/&quot;&gt;this blog post&lt;/a&gt; for additional details.
+Once you upgraded to 3.0, also have a look at the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.1&quot;&gt;3.1&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.2&quot;&gt;3.2&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.3&quot;&gt;3.3&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.4&quot;&gt;3.4&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.5&quot;&gt;3.5&lt;/a&gt;, and &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.6&quot;&gt;3.6&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.7&quot;&gt;3.7&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.8&quot;&gt;3.8&lt;/a&gt;, and &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;3.9&lt;/a&gt; migration guides.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;whats-new&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#whats-new&quot;&gt;&lt;/a&gt;What&amp;#8217;s new?&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;the-big-reactive-rename&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-big-reactive-rename&quot;&gt;&lt;/a&gt;The Big Reactive Rename&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Max Andersen already presented this initiative in &lt;a href=&quot;https://quarkus.io/blog/the-big-rename/&quot;&gt;this blog post&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The idea behind this substantive change is to clarify which extensions are reactive only and which extensions are actually handling both blocking and reactive workloads equally well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;That&amp;#8217;s why we renamed several extensions, and why RESTEasy Reactive is now branded as Quarkus REST and SmallRye Reactive Messaging as Messaging.
+Note that this change also concerns the related extension so there are quite a lot of changes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We didn&amp;#8217;t do it lightly:
+the old names were generating a lot of confusion for our users.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The good news is that, in most cases, it should be transparent for you as we put relocations in place, both for artifacts and configuration properties.
+However we encourage you to move to the new names as soon as you can.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When using &lt;code&gt;quarkus update&lt;/code&gt;, the update should be transparent for you.
+If you are not using &lt;code&gt;quarkus update&lt;/code&gt;, we recommend to follow the dedicated section of &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;our migration guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We have a known issue for this change:
+if you are using &lt;code&gt;quarkus.resteasy-reactive.path&lt;/code&gt;/&lt;code&gt;quarkus.rest.path&lt;/code&gt;, you will get a warning saying the property is not recognized.
+Don&amp;#8217;t panic, it is actually recognized, the warning is a mistake.
+This problem will be solved in 3.9.2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One common issue you might have when updating manually can come from the fact that we reused the &lt;code&gt;quarkus-rest-client&lt;/code&gt; name for the Quarkus REST implementation,
+whereas in pre-3.7, it was used for the RESTEasy Classic implementation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A bit of history might help:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In Quarkus 3.7, we renamed &lt;code&gt;quarkus-rest-client&lt;/code&gt;, based on the RESTEasy Classic to &lt;code&gt;quarkus-resteasy-client&lt;/code&gt; to make it consistent with &lt;code&gt;quarkus-resteasy&lt;/code&gt; and pave the way for our future changes. We put a relocation in place so that it wouldn&amp;#8217;t break your applications. You can refer to the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.7#rest-client&quot;&gt;Quarkus 3.7 migration guide for more information&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In Quarkus 3.9, we renamed &lt;code&gt;quarkus-rest-client-reactive&lt;/code&gt; to &lt;code&gt;quarkus-rest-client&lt;/code&gt; as part of our move to the Quarkus REST branding.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So if your application can&amp;#8217;t start with an error saying there are duplicate implementations related to REST, just check that you are using consistently either the &lt;code&gt;quarkus-rest*&lt;/code&gt; extensions or the &lt;code&gt;quarkus-resteasy*&lt;/code&gt; extensions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;welcome-page&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#welcome-page&quot;&gt;&lt;/a&gt;Welcome page&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The default welcome page you get when starting a Quarkus application in dev mode is now dynamic (and prettier!).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;websocket-next&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#websocket-next&quot;&gt;&lt;/a&gt;WebSocket Next&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus 3.9 comes with a next generation WebSocket extension, called &lt;code&gt;quarkus-websockets-next&lt;/code&gt; (the name is temporary as you can imagine).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are using WebSockets in your applications, we recommend that you give it a try as it is the future of WebSockets support in Quarkus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can find more information about it in the &lt;a href=&quot;https://quarkus.io/guides/websockets-next-tutorial&quot;&gt;tutorial&lt;/a&gt; and the &lt;a href=&quot;https://quarkus.io/guides/websockets-next-reference&quot;&gt;reference guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;cli-command-for-config&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#cli-command-for-config&quot;&gt;&lt;/a&gt;CLI command for config&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Commands were added to the Quarkus CLI to help managing configuration:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;quarkus config set&lt;/code&gt; allows to update configuration properties&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;quarkus config encrypt&lt;/code&gt; allows to encrypt values that you want to keep encrypted in your configuration files&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;security-enhancements&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#security-enhancements&quot;&gt;&lt;/a&gt;Security enhancements&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This new version comes with several improvements related to security:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38541&quot;&gt;#38541&lt;/a&gt; - Support OIDC Client JWT Bearer authentication&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38603&quot;&gt;#38603&lt;/a&gt; - Introduce &lt;code&gt;@ClientBasicAuth`&lt;/code&gt; annotation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkusio/quarkus/pull/38608&quot;&gt;#38608&lt;/a&gt; - Allow TLS certificate reloading for the HTTP server (see the &lt;a href=&quot;https://quarkus.io/guides/http-reference#reloading-the-certificates&quot;&gt;documentation&lt;/a&gt; for more details)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;infinispan-15&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#infinispan-15&quot;&gt;&lt;/a&gt;Infinispan 15&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We updated to the latest and greatest Infinispan 15.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You might have to apply some changes to your applications,
+so, if you are using the Infinispan extension, have a look at the &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9#update-to-infinispan-15&quot;&gt;dedicated section of the migration guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;graceful-shutdown&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#graceful-shutdown&quot;&gt;&lt;/a&gt;Graceful shutdown&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Some improvements were made to our graceful shutdown support.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;full-changelog&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#full-changelog&quot;&gt;&lt;/a&gt;Full changelog&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can get the full changelog of &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.0.CR1&quot;&gt;3.9.0.CR1&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.0.CR2&quot;&gt;3.9.0.CR2&lt;/a&gt;, &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.0&quot;&gt;3.9.0&lt;/a&gt;, and &lt;a href=&quot;https://github.com/quarkusio/quarkus/releases/tag/3.9.1&quot;&gt;3.9.1&lt;/a&gt; on GitHub.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;contributors&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#contributors&quot;&gt;&lt;/a&gt;Contributors&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Quarkus community is growing and has now &lt;a href=&quot;https://github.com/quarkusio/quarkus/graphs/contributors&quot;&gt;925 contributors&lt;/a&gt;.
+Many many thanks to each and everyone of them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In particular for the 3.9 release, thanks to Ales Justin, Alex Katlein, Alex Martel, Alexander Schwartz, Alexey Loubyansky, Andy Damevin, Anton-Vasilev, arvind-vignesh, Auri Munoz, avivmu, barreiro, Bas Passon, Benedikt Werner, Brahim Raddahi, Bruno Baptista, Bruno Leonardo, Chris Laprun, Christian Thiel, cknoblauch, Clement Escoffier, Daniel Bobbert, David M. Lloyd, Davide D&amp;#8217;Alto, Diego Ramp (u804103), Dimitris Kontokostas, dliubars, ennishol, Erin Schnabel, Falko Modler, fdlane, Foivos Zakkak, Francesco Nigro, Galder Zamarreño, Gasper Kojek, George Gastaldi, Georgios Andrianakis, glefloch, Gonçalo Montalvão Marques, Guillaume Smet, Hendrik Schmitz, Holly Cummins, humberto, Idryss Bourdier, Ioannis Canellos, Jakub Jedlicka, James Netherton, Jan Martiska, Jiří Locker, Julien Ponge, Katia Aresti, Ladislav Thon, Leandro Quiroga, Loïc Mathieu, Luke Morfill, luneo7, Maciej Lisowski, Marcel Stör, Marco Bungart, Marco Sappé Griot, Marek Skacelik, mariofusco, marko-bekhta, martin, Martin Kouba, Matej Novotny, Matheus Cruz, Max Rydahl Andersen, Michael Edgar, Michal Vavřík, Michiel Thomassen, nimo23, ObserverOfTime, Oliver Wiebeck, Ozan Gunalp, Paulo Casaes, Peter Palaga, Phillip Krüger, Pierre Adam, Robert Stupp, Roberto Cortez, Rolfe Dlugy-Hegwer, Romain BADINO, Rostislav Svoboda, Sanne Grinovero, Sebastian Schuster, Selim, Sergey Beryozkin, Severin Gehwolf, SpaceFox, Steve Hawkins, stianst, Stuart Douglas, Stéphane Épardaud, Sébastien ALLEMAND, The-Huginn, Thomas Darimont, troosan, ub003, Vitaliy Baschlykoff, w0pp, Waldemar Reusch, Wesley Salimans, Wladimir Hofmann, xstefank, Yassin Hajaj, Yoann Rodière, and Yoshikazu Nojima.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;come-join-us&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#come-join-us&quot;&gt;&lt;/a&gt;Come Join Us&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We value your feedback a lot so please report bugs, ask for improvements&amp;#8230;&amp;#8203; Let&amp;#8217;s build something great together!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you are a Quarkus user or just curious, don&amp;#8217;t be shy and join our welcoming community:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;provide feedback on &lt;a href=&quot;https://github.com/quarkusio/quarkus/issues&quot;&gt;GitHub&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;craft some code and &lt;a href=&quot;https://github.com/quarkusio/quarkus/pulls&quot;&gt;push a PR&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;discuss with us on &lt;a href=&quot;https://quarkusio.zulipchat.com/&quot;&gt;Zulip&lt;/a&gt; and on the &lt;a href=&quot;https://groups.google.com/d/forum/quarkus-dev&quot;&gt;mailing list&lt;/a&gt;;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ask your questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/quarkus&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-3-9-1-released/
+            </guid>
+            
+            
+            
+            <author>Guillaume Smet (https://twitter.com/gsmet_)</author>
+            
+        </item>
+        
+        <item>
+            <title>Use OIDC Proxy to integrate OIDC service endpoints with custom GPT</title>
+            <link>
+                https://quarkus.io/blog/oidc-proxy/
+            </link>
+            <description>
+                &lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;Quarkus OIDC Proxy&lt;/a&gt; is a new &lt;a href=&quot;https://github.com/quarkiverse&quot;&gt;Quarkiverse&lt;/a&gt; extension which can help to integrate &lt;a href=&quot;https://quarkus.io/guides/security-oidc-bearer-token-authentication&quot;&gt;OIDC service endpoints&lt;/a&gt; with external Single-page applications (SPA).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;SPA runs in the browser and uses the &lt;a href=&quot;https://quarkus.io/guides/security-oidc-code-flow-authentication#overview-of-the-oidc-authorization-code-flow-mechanism&quot;&gt;OIDC authorization code flow&lt;/a&gt;, but without relying on Quarkus, to authenticate the current user and accesses the Quarkus OIDC service endpoint with the access token on behalf of the authenticated user. Here is a simple diagram showing how this process works, copied to this post from the &lt;a href=&quot;https://quarkus.io/guides/security-oidc-bearer-token-authentication&quot;&gt;OIDC Bearer token guide&lt;/a&gt; for your convenience:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/security-bearer-token-spa.png&quot; alt=&quot;SPA and Quarkus Service&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As illustrated in the picture above, the OIDC provider authenticates the current user. The SPA receives the ID, access, and, possibly, refresh tokens as the outcome of the authorization code flow and uses the access token to access the Quarkus OIDC service endpoint.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The SPA interacts with the OIDC provider.
+Thus, it must know the provider connection details, including the registered OIDC application&amp;#8217;s client ID and other OIDC-specific details required to complete the authorization code flow successfully.
+You must also provide a &lt;em&gt;callback&lt;/em&gt; URL in your registered OIDC application, which may not always be acceptable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;Quarkus OIDC Proxy&lt;/a&gt; extension simplifieds this whole setup.
+It acts as a proxy between the SPA and Quarkus OIDC service endpoints and delegates to the real OIDC provider to support an authorization code flow.
+It allows integrating OIDC service endpoints with SPAs without having to expose the internal OIDC connection details to this SPA, and thus, sends all the required details to the user browser.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Another use case for the OIDC Proxy is to support several &lt;a href=&quot;https://quarkus.io/guides/security-oidc-code-flow-authentication&quot;&gt;Quarkus OIDC web-app&lt;/a&gt; endpoints to authenticate users using the same OIDC proxy configuration before accessing the OIDC service endpoint.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;How does this OIDC proxy actually work? We are coming to that, but first, let&amp;#8217;s talk about custom GPT actions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;gpt_actions&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#gpt_actions&quot;&gt;&lt;/a&gt;Custom GPT Actions&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://chat.openai.com&quot;&gt;ChatGPT&lt;/a&gt; has introduced &lt;a href=&quot;https://platform.openai.com/docs/actions/introduction&quot;&gt;Actions&lt;/a&gt;, which can be used to create custom GPTs. For example, you can create a custom GPT which can enhance your ChatGPT conversation experience by connecting it to your API endpoints.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One of the challenges when connecting a custom GPTs with your API is the authentication, how your custom GPT can be &lt;a href=&quot;https://platform.openai.com/docs/actions/authentication&quot;&gt;authenticated&lt;/a&gt; to be allowed to access the API.
+The &lt;a href=&quot;https://platform.openai.com/docs/actions/authentication/oauth&quot;&gt;OAuth&lt;/a&gt; option is the best option when you need a user-specific permission to access the API, and this is what &lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;Quarkus OIDC Proxy&lt;/a&gt; will help you to achieve without exposing all the OIDC/OAuth2 connection details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Be aware that at the moment, custom GPT actions can only be created with ChatGPT Plus and Enterprise subscriptions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;fitness_adviser&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#fitness_adviser&quot;&gt;&lt;/a&gt;Quarkus Fitness Adviser&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ok, let&amp;#8217;s see how it works more precisely.
+To illustrate this, we are going to create the &lt;code&gt;Quarkus Fitness Adviser,&lt;/code&gt; a custom GPT that analyzes activities recorded in Strava and other social providers which track physical exercise.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We will do it by registering a &lt;a href=&quot;https://www.strava.com/&quot;&gt;Strava&lt;/a&gt; API Application, creating a &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#strava&quot;&gt;Strava OAuth2&lt;/a&gt; service endpoint, proxying it with &lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;OIDC Proxy&lt;/a&gt;, providing an HTTPS tunnel with &lt;a href=&quot;#ngrok&quot;&gt;NGrok&lt;/a&gt; and finally, creating a custom GPT which uses &lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;OIDC Proxy&lt;/a&gt; to authenticate the GPT users to Strava and use access tokens to access the Quarkus Strava OIDC service endpoint to analyze the recorded activities.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;strava_application_registration&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#strava_application_registration&quot;&gt;&lt;/a&gt;Step 1 - Strava Application Registration&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We will start by registering a new &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; application in Strava:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/strava-application-registration.png&quot; alt=&quot;Strava Application Registration&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that the &lt;code&gt;Authorization Callback Domain&lt;/code&gt; points to your free &lt;a href=&quot;#ngrok&quot;&gt;NGrok&lt;/a&gt; (or in production, the real) domain representing the domain where OIDC Proxy is available, likely to be the same domain where your Quarkus micro-services are hosted as well. It is an important feature of Quarkus OIDC Proxy as it lets OIDC provider administrators to point to the trusted domain as opposed to a 3rd party domain.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Also, note that the fact that only a domain is accepted as a callback option is specific to the &lt;a href=&quot;https://www.strava.com/&quot;&gt;Strava&lt;/a&gt; application registration process. Allowing only specific absolute callback URLs is recommended in general, and the Quarkus &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#strava&quot;&gt;Strava OAuth2&lt;/a&gt; integration enforces that only a single callback URL is allowed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;After completing the application registration, write down the generated client id and secret. We will need them later.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;strava_service&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#strava_service&quot;&gt;&lt;/a&gt;Step 2 - Quarkus Strava Service&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus OIDC integrates the &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#strava&quot;&gt;Strava OAuth2 provider&lt;/a&gt; and encapsulates all the Strava OAuth2 specific details. You just need one line in your configuration file: &lt;code&gt;quarkus.oidc.provider=strava&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Strava provider is &lt;em&gt;mostly&lt;/em&gt; OAuth2-compliant.
+But, it uses HTTP query parameters to complete the authorization code flow POST token request, while using the form parameters is a usual option.
+It also uses a comma &lt;code&gt;,&lt;/code&gt; separator when multiple scopes are requested during the initial redirect to Strava, while space &apos; &apos; is the typical separator character.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The Quarkus OIDC proxy can handle it because it relies on the Quarkus OIDC knowledge. It should be noted that custom GPT does not support these options with its built-in OAuth authentication option.
+Fortunately, the proxy is going to handle that for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Alright, it&amp;#8217;s time to write that application.
+First, you need to add a few Maven dependencies to your project:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-xml hljs&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;io.quarkus&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;quarkus-oidc&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;io.quarkus&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;quarkus-rest-client-oidc-token-propagation&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;io.quarkus&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;quarkus-rest&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;io.quarkus&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;quarkus-smallrye-openapi&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You need Quarkus &lt;code&gt;3.9.0+&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next we create the OIDC configuration:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-properties hljs&quot; data-lang=&quot;properties&quot;&gt;quarkus.oidc.provider=strava
+quarkus.oidc.application-type=service
+
+quarkus.oidc.client-id=${strava-client-id}
+quarkus.oidc.credentials.secret=${strava-client-secret}
+quarkus.oidc.authentication.extra-params.scope=profile:read_all,activity:read_all&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;By default, &lt;code&gt;quarkus.oidc.provider=strava&lt;/code&gt; enables a Quarkus OIDC &lt;code&gt;web-app&lt;/code&gt; application type that can support an authorization code flow.
+But our endpoint acts as a Quarkus OIDC &lt;code&gt;service&lt;/code&gt; that accepts the bearer access tokens from the custom  GPT.
+Thus, we override the application type to &lt;code&gt;service&lt;/code&gt;.
+Instead, the OIDC Proxy will manage the authorization code flow.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note how the extra &lt;a href=&quot;https://developers.strava.com/docs/reference/&quot;&gt;Strava API&lt;/a&gt; scopes are added to the scopes which are already enabled by &lt;code&gt;quarkus.oidc.provider=strava&lt;/code&gt;, instead of overriding them. See &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#provider-scope&quot;&gt;Provider scopes&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The client id, secret and the extra scopes are not really required by the OIDC service endpoint. These properties are set to support OIDC Proxy which needs to know how to correctly handle the OIDC authorization code flow requests from the external SPA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We also add the following properties:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-properties hljs&quot; data-lang=&quot;properties&quot;&gt;quarkus.rest-client.strava-client.url=https://www.strava.com/api/v3
+
+quarkus.smallrye-openapi.operation-id-strategy=method
+quarkus.smallrye-openapi.auto-add-security=false
+quarkus.smallrye-openapi.servers=https://&amp;lt;your-free-ngrok-domain&amp;gt;.app&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First, we configure the REST client to point to the base Strava API endpoint.
+We then tune a little bit the way &lt;a href=&quot;https://quarkus.io/guides/openapi-swaggerui&quot;&gt;Quarkus generates OpenAPI document&lt;/a&gt; to make it acceptable by a custom GPT configuration process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now that we have tied up the configuration, we need to define the REST client interface calling the Strava API.
+It automatically &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#access-provider-services-with-token-propagation&quot;&gt;propagates&lt;/a&gt; the Strava access tokens to access the user-specific Strava data:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;package org.acme.security.openid.connect.plugin;
+
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+import io.quarkus.oidc.token.propagation.AccessToken;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@RegisterRestClient(configKey=&quot;strava-client&quot;)
+@AccessToken
+@Path(&quot;/&quot;)
+public interface StravaClient {
+
+	@GET
+	@Path(&quot;athlete/activities&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	String athleteActivities();
+
+	@GET
+	@Path(&quot;activities/{id}&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	String athleteActivity(@PathParam(&quot;id&quot;) long activityId);
+
+	@GET
+	@Path(&quot;athletes/{id}/stats&quot;)
+	@Produces(MediaType.APPLICATION_JSON)
+	String athleteStats(@PathParam(&quot;id&quot;) long athleteId);
+
+	// Etc for other Strava API
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now, let&amp;#8217;s implement the primary endpoint of our application, which exposes the same API as Strava. It accepts the access tokens from a custom GPT and uses the REST client to forward them to Strava:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;package org.acme.security.openid.connect.plugin;
+
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import io.quarkus.logging.Log;
+import io.quarkus.oidc.UserInfo;
+import io.quarkus.security.Authenticated;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+
+@Path(&quot;/athlete&quot;)
+@Authenticated &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+public class FitnessAdviserService {
+
+    @Inject
+    UserInfo athlete;
+
+    @Inject
+    @RestClient
+    StravaClient stravaClient;
+
+    @GET
+    @Produces(&quot;application/json&quot;)
+    public String athlete() {
+        Log.info(&quot;Fitness adviser: athlete&quot;);
+        return athlete.getJsonObject().toString();
+    }
+
+    @GET
+    @Produces(&quot;application/json&quot;)
+    @Path(&quot;/activities&quot;)
+    public String activities() {
+        Log.info(&quot;Fitness adviser: activities&quot;);
+        return stravaClient.athleteActivities();
+    }
+
+    @GET
+    @Produces(&quot;application/json&quot;)
+    @Path(&quot;/activity/{id}&quot;)
+    public String activity(@PathParam(&quot;id&quot;) long activityId) {
+        Log.infof(&quot;Fitness adviser: activity %d&quot;, activityId);
+        return stravaClient.athleteActivity(activityId);
+    }
+
+    @GET
+    @Produces(&quot;application/json&quot;)
+    @Path(&quot;/stats&quot;)
+    public String stats() {
+        Log.info(&quot;Fitness adviser: stats&quot;);
+        return stravaClient.athleteStats(athlete.getLong(&quot;id&quot;));
+    }
+
+    // Etc for other Strava API
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Access to the &lt;code&gt;FitnessAdviserService&lt;/code&gt; endpoint requires a verified access token.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note, to accept binary Strava access tokens, this endpoint verifies them indirectly by requesting &lt;code&gt;UserInfo&lt;/code&gt; from Strava during the token authentication process, which is enabled by the &lt;code&gt;quarkus.oidc.provider=strava&lt;/code&gt; declaration.
+In this case, &lt;code&gt;UserInfo&lt;/code&gt; represents a Strava athlete profile, which is already available to the endpoint by the time it makes an outbound  REST client call. For example, the &lt;code&gt;FitnessAdviserService&lt;/code&gt; endpoint passes a &lt;code&gt;UserInfo&lt;/code&gt; athlete &lt;code&gt;id&lt;/code&gt; attribute to &lt;code&gt;StravaClient&lt;/code&gt; to request the current authenticated athlete&amp;#8217;s stats.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If it were an access token issued by a provider such as Keycloak or Auth0, then it would be verified locally with the Keycloak or Auth0 public verification keys and &lt;a href=&quot;https://quarkus.io/guides/security-oidc-bearer-token-authentication#accessing-jwt-claims&quot;&gt;injected directly as JsonWebToken&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;oidc_proxy&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#oidc_proxy&quot;&gt;&lt;/a&gt;Step 3 - OIDC Proxy&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Finally, let&amp;#8217;s talk about the OIDC Proxy.
+We have our OIDC Strava service endpoint calling the Stava API.
+It is time to make it accessible to the external SPA using the OIDC Proxy and an authorization code flow authentication process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;All we need to do is adding the following dependency:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-xml hljs&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;io.quarkiverse.oidc-proxy&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;quarkus-oidc-proxy&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;0.1.1&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It exposes the OIDC &lt;code&gt;/q/oidc/authorize&lt;/code&gt; endpoint to accept custom GPT authentication redirects and the &lt;code&gt;/q/oidc/token&lt;/code&gt; endpoint to exchange the authorization code and tokens.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s now update the application configuration to setup our proxy:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-properties hljs&quot; data-lang=&quot;properties&quot;&gt;quarkus.oidc.authentication.redirect-path=/callback &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+quarkus.oidc-proxy.external-redirect-uri=https://chat.openai.com/aip/g-2faf163d359505ecb63596f17baa3dfe53ea3cb9/oauth/callback &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+quarkus.oidc.authentication.force-redirect-https-scheme=true &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+quarkus.oidc-proxy.root-path=/oidc
+quarkus.oidc-proxy.external-client-id=external-client-id &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+quarkus.oidc-proxy.external-client-secret=external-client-secret &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Request OIDC Proxy to create an endpoint that will support redirects from the actual OIDC provider. As explained in the &lt;a href=&quot;#strava_application_registration&quot;&gt;Step 1 - Strava Application Registration&lt;/a&gt; section, it can be helpful to register the known, trusted domain URL in the OIDC provider&amp;#8217;s dashboard. This property is already set to &lt;code&gt;/strava&lt;/code&gt; with the Strava provider by default to restrict the possible callback URLs, as explained in the &lt;a href=&quot;#strava_application_registration&quot;&gt;Step 1 - Strava Application Registration&lt;/a&gt; section; this example shows how it can be customized. You do not have to use &lt;code&gt;quarkus.oidc.authentication.redirect-path&lt;/code&gt;, but please be aware of this property.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;The external callback URL where OIDC Proxy will redirect the user to after accepting the &lt;code&gt;quarkus.oidc.authentication.redirect-path&lt;/code&gt; callback.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;#ngrok&quot;&gt;NGrok&lt;/a&gt; will terminate the HTTPS connection before calling an &lt;code&gt;HTTP&lt;/code&gt; based endpoint, so the original &lt;code&gt;HTTPS&lt;/code&gt; scheme must be used for building an external redirect URL.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Set the external client id and secret that will be used during the integration with the 3rd party SPA. Use these properties if you do not want to expose
+the real client id and secret to the SPA.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We&amp;#8217;re done! Let&amp;#8217;s run it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;mvn clean install
+java target/quarkus-app/quarkus-run.jar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you prefer to use the Quarkus &lt;em&gt;dev&lt;/em&gt; mode, then, to allow the redirects from the external SPA to the OIDC Proxy authorization endpoint, you have to disable the DevUI CORS control:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-properties hljs&quot; data-lang=&quot;properties&quot;&gt;%dev.quarkus.dev-ui.cors.enabled=false&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;ngrok&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#ngrok&quot;&gt;&lt;/a&gt;Step 4 - NGrok&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;3rd party SPA will most likely require that the OIDC provider endpoints are HTTPS-based, therefore, to make OIDC Proxy endpoints use the HTTPS scheme on the localhost, using &lt;a href=&quot;https://ngrok.com/&quot;&gt;NGrok&lt;/a&gt; is the simplest way to do it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note that:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;ngrok http --domain &amp;lt;your-free-ngrok-domain&amp;gt; 8080&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;does not prevent the NGrok warning that the website is served for free from NGrok, which confuses the custom GPT&amp;#8217;s OAuth authorization code flow support.
+In this case you should enable an HTTP tunnel as described in this &lt;a href=&quot;https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning&quot;&gt;Stack Overflow post&lt;/a&gt;, for example:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;ngrok tunnel --label edge=&amp;lt;ngrok-tunnel-id&amp;gt; http://localhost:8080&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;step-5-create-the-custom-gpt&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#step-5-create-the-custom-gpt&quot;&gt;&lt;/a&gt;Step 5 - Create the custom GPT&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As noted in the &lt;a href=&quot;#gpt_actions&quot;&gt;Custom GPT Actions&lt;/a&gt; section, custom GPT actions can only be created with ChatGPT Plus and Enterprise subscriptions. Please see the &lt;a href=&quot;#next-steps&quot;&gt;Next Steps&lt;/a&gt; section below for other suggestions to experiment with OIDC Proxy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Login to your ChatGPT account, and choose &lt;code&gt;Create&lt;/code&gt; in &lt;code&gt;My GPTs&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/create-custom-gpt.png&quot; alt=&quot;Create custom GPT&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Name it as &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; and provide its description:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-description.png&quot; alt=&quot;Custom GPT description&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next, choose an &lt;code&gt;OAuth&lt;/code&gt; authentication option:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-select-oauth.png&quot; alt=&quot;Custom GPT OAuth option&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;and set the OAuth2 authorize and token endpoint addresses, keeping in mind your free &lt;a href=&quot;#ngrok&quot;&gt;Step 4 - NGrok&lt;/a&gt; domain name and that you have set the OIDC Proxy root address to &lt;code&gt;/oidc&lt;/code&gt; in the &lt;a href=&quot;#oidc_proxy&quot;&gt;Step 3 - OIDC Proxy&lt;/a&gt; section:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-configure-oauth.png&quot; alt=&quot;custom GPT OAuth configuration&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Set the client id and secret to the external client id and external client secret properties which you configured in the &lt;a href=&quot;#oidc_proxy&quot;&gt;Step 3 - OIDC Proxy&lt;/a&gt; section.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now you can see that this custom GPT&amp;#8217;s OAuth setup has been completed without sharing a single detail related to the Strava provider configuration in the Quarkus OIDC service endpoint.
+You also do not need to set the scopes, OIDC Proxy knows about them from the Quarkus OIDC endpoint configuration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next, import an OpenAPI schema by choosing an &lt;code&gt;Import from URL&lt;/code&gt; option and entering &lt;code&gt;&lt;a href=&quot;http://&amp;lt;your-free-ngrok-domain&amp;gt;/q/openapi&quot; class=&quot;bare&quot;&gt;http://&amp;lt;your-free-ngrok-domain&amp;gt;/q/openapi&lt;/a&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-import-openapi.png&quot; alt=&quot;Custom GPT Import OpenAPI&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;At this point you are ready to save this GPT and start using it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Note this GPT&amp;#8217;s callback, this is the external callback URI value you configured in the &lt;a href=&quot;#oidc_proxy&quot;&gt;Step 3 - OIDC Proxy&lt;/a&gt; section:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-callback.png&quot; alt=&quot;Custom GPT callback&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You have to decide if you would like to share this GPT. Most likely, after testing it, you will prefer to share it with your team to test it, and eventually, with your customers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this case, the first thing you have to do is to ask ChatGPT for a typical privacy policy text, if you do not already have it, and after modifying it as necessary, save it, for example, in a &lt;code&gt;privacy.txt&lt;/code&gt; document in the &lt;code&gt;src/main/resources/META-INF/resources/&lt;/code&gt; of your &lt;a href=&quot;#strava_service&quot;&gt;Step 2 - Quarkus Strava Service&lt;/a&gt; application and link to it in the &lt;code&gt;Privacy Policy&lt;/code&gt; configuration field as &lt;code&gt;&lt;a href=&quot;http://&amp;lt;your-free-ngrok-domain&amp;gt;/privacy.txt&quot; class=&quot;bare&quot;&gt;http://&amp;lt;your-free-ngrok-domain&amp;gt;/privacy.txt&lt;/a&gt;&lt;/code&gt;. Finally, publish it using the &lt;code&gt;Anyone with a link&lt;/code&gt; option.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; is now ready:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-is-ready.png&quot; alt=&quot;Custom GPT is ready&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;use_custom_gpt&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#use_custom_gpt&quot;&gt;&lt;/a&gt;Step 6 - Use the custom GPT&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s start with asking &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; to check the athlete profile:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-sign-in.png&quot; alt=&quot;Custom GPT Sign In&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When you ask the GPT the first question, it will attempt to sign you in using the OAuth authentication option. Select the &lt;code&gt;Sign in&lt;/code&gt; option and you will be redirected to OIDC Proxy which will in turn redirect to Strava to authenticate:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/oidc-proxy-strava-login.png&quot; alt=&quot;Strava Login&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Enter your Strava name and password and continue. You will be asked to authenticate again only when the access token acquired with the authorization code flow has expired.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;After the successful authentication you will be asked to authorize the &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; applicaton which you registered in the &lt;a href=&quot;#strava_application_registration&quot;&gt;Step 1 - Strava Application Registration&lt;/a&gt; section:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/strava-application-authorization.png&quot; alt=&quot;Strava Authorization&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The &lt;a href=&quot;https://developers.strava.com/docs/authentication/#detailsaboutrequestingaccess&quot;&gt;Strava API scopes&lt;/a&gt; which have been configured for the &lt;a href=&quot;#strava_service&quot;&gt;Step 2 - Quarkus Strava Service&lt;/a&gt; affect what you will be asked to authorize.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You will now be redirected to the custom GPT with the authorization code which will be exchanged for the access and refresh tokens using OIDC Proxy.
+The GPT will now want to talk to the Quarkus API and ask you to approve it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-approve-action.png&quot; alt=&quot;Custom GPT Approve Action&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Approve it and &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; will provide the first answer:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-profile-overview.png&quot; alt=&quot;Custom GPT Profile Overview&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It also provides information about your bike, running shoes, and gives some initial recommendations. You can now ask for some advice on balancing cycling and swimming, running, etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Next, let&amp;#8217;s ask about the the latest activity:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-latest-activity.png&quot; alt=&quot;Custom GPT Latest Activity&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ask it to be more specific about the latest activity and provide some advice. Quarkus Fitness Adviser responds:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-activity-recommendation.png&quot; alt=&quot;Custom GPT Activity Recommendation&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;and concludes with a sound advice to have good rest and recovery.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Finally, let&amp;#8217;s ask it to check the profile again and provide more recommendations. &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; is happy to help and provides, in my case, eight personalized recommendations, I will only show the start of the response:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-profile-recommendations.png&quot; alt=&quot;Custom GPT More Profile Recommendations&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;and the end of it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-enjoy-the-ride.png&quot; alt=&quot;Custom GPT Enjoy the Ride&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We will return to this advice later in this post.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s finish by saying &lt;code&gt;Thank you&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;/assets/images/posts/oidc-proxy/custom-gpt-final-message.png&quot; alt=&quot;Custom GPT Final Message&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;next-steps&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#next-steps&quot;&gt;&lt;/a&gt;Next Steps&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So far, &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; has helped to analyze the authenticated athlete&amp;#8217;s profile and activities.
+Please experiment further by creating a more advanced version of &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; by checking the routes, zones, and other fitness data supported by the &lt;a href=&quot;https://developers.strava.com/docs/reference/&quot;&gt;Strava API&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Create a new custom GPT with the help of &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers&quot;&gt;any other well-known social provider supported in Quarkus&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Also note, your Quarkus OIDC service endpoint does not have to propagate the access token. For example, if you use Keycloak or Auth0, then the access tokens in JWT formats issued by these OIDC compliant providers can be verified by Quarkus OIDC to provide a role-based or permission-based access control for custom GPT&amp;#8217;s requests, with the service endpoint returning data from the database, etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You are also encouraged to look closely at the &lt;a href=&quot;https://github.com/quarkiverse/quarkus-langchain4j&quot;&gt;Quarkus LangChain4j&lt;/a&gt; project which provides a top class integration between Quarkus and the &lt;a href=&quot;https://github.com/langchain4j/langchain4j&quot;&gt;LangChain4j&lt;/a&gt; library.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;How about creating a custom GPT which will use OIDC Proxy to authenticate custom GPT users to Keycloak or Auth0 or Azure and access Quarkus OIDC service endpoint powered by &lt;a href=&quot;https://github.com/quarkiverse/quarkus-langchain4j&quot;&gt;Quarkus LangChain4j&lt;/a&gt; ? Give it a try please !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;What if you do not have ChatGPT Plus or Enterprise subscriptions ?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Not a problem, OIDC Proxy will work with any SPA which implements an authorization code flow and prefers to have an OIDC provider neutral integration, please test OIDC Proxy with such SPAs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Alternatively, experiment with configuring Quarkus OIDC &lt;code&gt;web-app&lt;/code&gt; applications using OIDC Proxy to authenticate users before calling OIDC service endpoints. For example, imagine three different Quarkus OIDC &lt;code&gt;web-app&lt;/code&gt; applications using the same Keycloak realm to authenticate the users with an authorization code flow and propagating the access tokens to the same OIDC &lt;code&gt;service&lt;/code&gt; application. Now, instead of setting the Keycloak specific details in all of the OIDC &lt;code&gt;web-app&lt;/code&gt; applications, you can try to add OIDC Proxy to the OIDC Service endpoint and configure the OIDC &lt;code&gt;web-app&lt;/code&gt; applications to use OIDC Proxy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;security-considerations&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#security-considerations&quot;&gt;&lt;/a&gt;Security Considerations&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You have already seen several OIDC Proxy security features in the &lt;a href=&quot;#oidc_proxy&quot;&gt;Step 3 - OIDC Proxy&lt;/a&gt; section.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;General OIDC Proxy feature is about hiding all the real OIDC provider specific details from the SPA, including all the OAuth2 or OIDC provider specific details, as well as the extra scopes which are requested during the authentication redirect to the provider.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;OIDC Proxy allows you to set the trusted domain in the allowed callback URI which is registered in the OIDC provider and enables a callback bridge between the real OIDC provider and the external SPA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can hide the real client id and client secret which OIDC Proxy must use from the external SPA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can request that OIDC Proxy does not return a refresh and/or ID token from the authorization code token exchange to the SPA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Refresh token is the most powerful token, usually with a long life-span. If an SPA leaks it, alongside the client id and secret, the attacker can
+refresh and use access tokens to access the API for a long time. Therefore, if you are concerned about SPA, such as a custom GPT, possibly leaking this information, add &lt;code&gt;quarkus.oidc-proxy.allow-refresh-token=false&lt;/code&gt; to the configuration to request OIDC Proxy to remove the refresh token value from the authorization code flow response which it is about to return to the GPT. It will not block a given custom GPT from using the Quarkus API, it will only require this GPT to re-authenticate the user when the access token has expired, as opposed to refreshing it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;ID token contains information about the currently authenticated user. If you know that the SPA does not need an ID token, such as a custom GPT which only works with the access and refresh tokens, then it is recommended to block returning it with &lt;code&gt;quarkus.oidc-proxy.allow-id-token=false&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this post, we looked at how &lt;a href=&quot;https://github.com/quarkiverse/quarkus-oidc-proxy&quot;&gt;Quarkus OIDC Proxy&lt;/a&gt; can help to integrate OIDC service endpoints with SPA without having to expose the internal OIDC connection details. We have built &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt;, a &lt;a href=&quot;https://platform.openai.com/docs/actions/introduction&quot;&gt;custom GPT&lt;/a&gt;, which uses OIDC Proxy to authenticate users with &lt;a href=&quot;https://quarkus.io/guides/security-openid-connect-providers#strava&quot;&gt;Strava&lt;/a&gt; and provides fitness advice by reading the authenticated user-specific data from the Quarkus OIDC Strava service.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Enjoy Quarkus, and, as the &lt;code&gt;Quarkus Fitness Adviser&lt;/code&gt; recommended, enjoy the ride!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/oidc-proxy/
+            </guid>
+            
+            
+            
+            <author>Sergey Beryozkin (https://twitter.com/sberyozkin)</author>
+            
+        </item>
+        
+        <item>
+            <title>Evolving Quarkus extension naming for clarity</title>
+            <link>
+                https://quarkus.io/blog/the-big-rename/
+            </link>
+            <description>
+                &lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus is about providing a modern, efficient, and productive development experience for developers leveraging the JVM. We&amp;#8217;re committed to making it easier for you to build cloud-native applications, whether you&amp;#8217;re using traditional blocking, reactive, or virtual thread-based programming models.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Historically, Quarkus has used the term &quot;reactive&quot; in the names of several extensions to indicate their &lt;strong&gt;additional&lt;/strong&gt; support for non-blocking, event-driven programming.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;However, we&amp;#8217;ve found that this terminology has led to lots of confusion and misunderstanding among our users.
+Many users mistakenly believe that using these &quot;reactive&quot; extensions forces them into reactive programming, even though Quarkus, by default, recommends the traditional blocking programming model for your application and only use the reactive programming model if you have needs for it (like high concurrency requirement, or the need to orchestrate many asynchronous tasks).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;With the recent production release of Virtual Threads in Java 21, the distinction between traditional, reactive, and now, virtual thread-based programming has become even more critical.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;our-solution-a-new-naming-strategy&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#our-solution-a-new-naming-strategy&quot;&gt;&lt;/a&gt;Our solution: a new naming strategy&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To address this and guide our users more effectively, we&amp;#8217;ve decided to revise the naming convention for certain extensions. This change aims to clarify the capabilities and flexibility of these Quarkus extensions, making it easier for you to choose the right extension for your project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It will take effect with the release of Quarkus 3.9.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here&amp;#8217;s a summary of the changes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quarkus RESTEasy Reactive&lt;/strong&gt; becomes &lt;strong&gt;Quarkus REST&lt;/strong&gt;, emphasizing its general-purpose applicability beyond just reactive programming.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quarkus SmallRye Reactive Messaging&lt;/strong&gt; is now &lt;strong&gt;Quarkus Messaging&lt;/strong&gt;, indicating its broader use cases.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Extensions that inherently push for a reactive programming model, like &lt;strong&gt;Quarkus Hibernate Reactive&lt;/strong&gt;, will retain the &quot;reactive&quot; terminology.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quarkus REST Client Reactive&lt;/strong&gt; is simplified to &lt;strong&gt;Quarkus REST Client&lt;/strong&gt;, unifying the naming under a more general &quot;REST&quot; umbrella.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Several other extensions have been renamed for consistency.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Quarkus REST, Quarkus Messaging and Quarkus REST Client are still leveraging the reactive engine underneath for efficiency and performances.
+At the user level, this is an implementation detail.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The configuration properties of these extensions have also been renamed to refer to the new names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;impact-on-users&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#impact-on-users&quot;&gt;&lt;/a&gt;Impact on users&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;These changes are designed to clarify that you are not constrained to reactive programming when using these extensions. Whether you prefer a traditional blocking approach, reactive programming, or virtual threads, Quarkus has you covered.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For most projects, this renaming should not require changes, except for those having used &lt;code&gt;quarkus-rest-client&lt;/code&gt; it may require some adjustments in your dependencies. We&amp;#8217;re committed to making this transition as smooth as possible. Here are a few key points to help you adapt:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Maven relocations:&lt;/strong&gt; We have introduced Maven relocations for the renamed extensions, guiding you toward the new names when you update your dependencies.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Config fallback:&lt;/strong&gt; The old configuration properties will continue to work. It is recommended to move to the new ones though.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tooling updates:&lt;/strong&gt; The Quarkus CLI will default to use the new names for new projects but continue to work with old names.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quarkus update:&lt;/strong&gt; &lt;code&gt;quarkus update&lt;/code&gt; provides recipes to help perform the update/renames if/when relevant, including configuration properties.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Documentation:&lt;/strong&gt; Our documentation was updated to reflect the new extension names, making finding the right extension for your project easier.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Migration guide:&lt;/strong&gt; As usual, our migration guide contains &lt;a href=&quot;https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.9&quot;&gt;all the gory details&lt;/a&gt;. However, we highly recommend the use of &lt;code&gt;quarkus update&lt;/code&gt; to migrate to the new names.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For current projects, we recommend continuing to use the old names if you want to remain buildable against an older version of Quarkus — otherwise, upgrade at your own pace for new names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For new projects we will default to and recommend the new names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;what-this-means-for-you-as-an-extension-author&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-this-means-for-you-as-an-extension-author&quot;&gt;&lt;/a&gt;What this means for you as an extension author&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you&amp;#8217;ve developed a Quarkus extension and want to stay compatible with Quarkus LTS releases while supporting the newer versions, we recommend keeping the old names as aliases for the new ones. This will ensure that your extension remains compatible with older Quarkus versions. Relocations solve this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For extensions targeting 3.9+, you should use the new names. Possibly make a separate branch for 3.8 and older to keep the old names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </description>
+            <pubDate>Thu, 21 Mar 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/the-big-rename/
+            </guid>
+            
+            
+            
+            <author>Max Rydahl Andersen (https://twitter.com/maxandersen)</author>
+            
+        </item>
+        
+    </channel>
+</rss>
