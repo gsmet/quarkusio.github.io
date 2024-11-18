@@ -11,8 +11,33 @@
   <title>Protect a service application by using OpenID Connect (OIDC) Bearer token authentication - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -171,9 +202,6 @@
         
         
         <option value="3.2" >3.2</option>
-        
-        
-        
         
         
         
@@ -322,7 +350,7 @@ cd security-openid-connect-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.5:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.6:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=security-openid-connect-quickstart \
     -Dextensions='oidc,resteasy-reactive-jackson' \
@@ -526,7 +554,7 @@ quarkus.keycloak.devservices.realm-path=quarkus-realm.json</code></pre>
 <li>
 <p><code>%prod.quarkus.oidc.auth-server-url</code> sets the base URL of the OpenID Connect (OIDC) server.
 The <code>%prod.</code> profile prefix ensures that <code>Dev Services for Keycloak</code> launches a container when you run the application in development (dev) mode.
-For more information, see the <a href="#keycloak-dev-mode">Run the application in dev mode</a> section.</p>
+For more information, see the <a href="#bearer-token-tutorial-keycloak-dev-mode">Run the application in dev mode</a> section.</p>
 </li>
 <li>
 <p><code>quarkus.oidc.client-id</code> sets a client id that identifies the application.</p>
@@ -558,7 +586,7 @@ You do not need to do this if you have already built a <a href="https://github.c
 <td class="content">
 <div class="paragraph">
 <p>Do not start the Keycloak server when you run the application in dev mode; <code>Dev Services for Keycloak</code> will start a container.
-For more information, see the <a href="#keycloak-dev-mode">Run the application in dev mode</a> section.</p>
+For more information, see the <a href="#bearer-token-tutorial-keycloak-dev-mode">Run the application in dev mode</a> section.</p>
 </div>
 </td>
 </tr>
@@ -579,7 +607,7 @@ For more information, see the <a href="#keycloak-dev-mode">Run the application i
 <div class="ulist">
 <ul>
 <li>
-<p>Where the <code>keycloak.version</code> is set to version <code>23.0.0</code> or later.</p>
+<p>Where the <code>keycloak.version</code> is set to version <code>24.0.0</code> or later.</p>
 </li>
 </ul>
 </div>
@@ -626,7 +654,7 @@ For more information, see the <a href="security-keycloak-admin-client">Quarkus K
 </div>
 </div>
 <div class="sect1">
-<h2 id="keycloak-dev-mode"><a class="anchor" href="#keycloak-dev-mode"></a>Run the application in dev mode</h2>
+<h2 id="bearer-token-tutorial-keycloak-dev-mode"><a class="anchor" href="#bearer-token-tutorial-keycloak-dev-mode"></a>Run the application in dev mode</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -810,7 +838,7 @@ The runtime technology is included in the produced binary and optimized to run w
 <h2 id="test-the-application"><a class="anchor" href="#test-the-application"></a>Test the application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For information about testing your application in dev mode, see the preceding <a href="#keycloak-dev-mode">Run the application in dev mode</a> section.</p>
+<p>For information about testing your application in dev mode, see the preceding <a href="#bearer-token-tutorial-keycloak-dev-mode">Run the application in dev mode</a> section.</p>
 </div>
 <div class="paragraph">
 <p>You can test the application launched in JVM or native modes with <code>curl</code>.</p>
@@ -886,7 +914,7 @@ If you try to access this endpoint with the previously-issued access token, you 
 </div>
 </div>
 <div class="paragraph">
-<p>For information about writing integration tests that depend on <code>Dev Services for Keycloak</code>, see the <a href="security-oidc-bearer-token-authentication#integration-testing-keycloak-devservices">Dev Services for Keycloak</a> section of the "OpenID Connect (OIDC) Bearer token authentication" guide.</p>
+<p>For information about writing integration tests that depend on <code>Dev Services for Keycloak</code>, see the <a href="security-oidc-bearer-token-authentication#bearer-token-integration-testing-keycloak-devservices">Dev Services for Keycloak</a> section of the "OpenID Connect (OIDC) Bearer token authentication" guide.</p>
 </div>
 </div>
 </div>
@@ -942,7 +970,7 @@ If you try to access this endpoint with the previously-issued access token, you 
 <li><a href="#write-the-application">Write the application</a></li>
 <li><a href="#configure-the-application">Configure the application</a></li>
 <li><a href="#start-and-configure-the-keycloak-server">Start and configure the Keycloak server</a></li>
-<li><a href="#keycloak-dev-mode">Run the application in dev mode</a></li>
+<li><a href="#bearer-token-tutorial-keycloak-dev-mode">Run the application in dev mode</a></li>
 <li><a href="#run-the-application-in-jvm-mode">Run the Application in JVM mode</a></li>
 <li><a href="#run-the-application-in-native-mode">Run the application in native mode</a></li>
 <li><a href="#test-the-application">Test the application</a></li>
@@ -1118,6 +1146,10 @@ If you try to access this endpoint with the previously-issued access token, you 
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

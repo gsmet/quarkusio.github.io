@@ -11,8 +11,33 @@
   <title>Configuring Well-Known OpenID Connect Providers - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,9 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
         </select>
     </div>
   </div>
@@ -217,7 +245,7 @@
 <p><code>quarkus.oidc.provider</code> configuration property has been introduced to refer to well-known OpenID Connect and OAuth2 providers. This property can be used to refer to a provider such as <code>github</code> with only a minimum number of customizations required, typically, an account specific <code>client id</code>, <code>client secret</code> and some properties have to be set to complete the configuration.</p>
 </div>
 <div class="paragraph">
-<p>This property can be used in <code>application.properties</code>, in <a href="security-openid-connect-multitenancy">multi-tenant</a> set-ups if more than one provider has to be configured (for example, see <a href="https://quarkiverse.github.io/quarkiverse-docs/quarkus-renarde/dev/security.html#_using_oidc_for_login">Quarkus Renarde security documentation</a>), in custom <a href="security-openid-connect-multitenancy#tenant-config-resolver">TenantConfigResolvers</a> if the tenant configurations are created dynamically.</p>
+<p>This property can be used in <code>application.properties</code>, in <a href="security-openid-connect-multitenancy">multi-tenant</a> set-ups if more than one provider has to be configured (for example, see <a href="https://docs.quarkiverse.io/quarkus-renarde/dev/security.html#_using_oidc_for_login">Quarkus Renarde security documentation</a>), in custom <a href="security-openid-connect-multitenancy#tenant-config-resolver">TenantConfigResolvers</a> if the tenant configurations are created dynamically.</p>
 </div>
 </div>
 </div>
@@ -461,7 +489,7 @@ you will need to run it over HTTPS and make it publicly accessible, so for devel
 you may want to use a service such as <a href="https://ngrok.com" class="bare">https://ngrok.com</a>.</p>
 </div>
 <div class="paragraph">
-<p>In order to set up OIDC for Facebook start by <a href="https://developers.facebook.com/apps/create/">Creating an application</a>, select <code>None</code> as an app type, and press <code>Next</code>:</p>
+<p>In order to set up OIDC for Facebook start by <a href="https://developers.facebook.com/apps/create/">Creating an application</a>, select <code>Other</code> as an app type, and click <code>Next</code>.</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -469,7 +497,7 @@ you may want to use a service such as <a href="https://ngrok.com" class="bare">h
 </div>
 </div>
 <div class="paragraph">
-<p>Now enter an application name, and contact email, and press <code>Create app</code>:</p>
+<p>Now choose your application type. For this guide choose <code>Consumer</code> and click <code>Next</code> until you reach the screen below. Now enter an application name, and contact email, and press <code>Create app</code>:</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -485,7 +513,7 @@ you may want to use a service such as <a href="https://ngrok.com" class="bare">h
 </div>
 </div>
 <div class="paragraph">
-<p>Quick the <code>Quickstarts</code> page and click on <code>Facebook login &gt; Settings</code> on the left menu:</p>
+<p>On the <code>Quickstart</code> page click on <code>Facebook login &gt; Settings</code> on the left menu:</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -493,7 +521,8 @@ you may want to use a service such as <a href="https://ngrok.com" class="bare">h
 </div>
 </div>
 <div class="paragraph">
-<p>Enter your <code>Redirect URIs</code> (set to <code>&lt;host&gt;/_renarde/security/oidc-success</code>) and press <code>Save changes</code>:</p>
+<p>First click on <code>Get Advanced Access</code> to switch <code>public_profile</code> to advanced access.
+Then enter your <code>Redirect URIs</code> (set to <code>&lt;host&gt;/facebook</code>) and press <code>Save changes</code>:</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -533,7 +562,7 @@ quarkus.oidc.credentials.secret=&lt;App secret&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Make sure to fill in the appropriate details, but more importantly the Authorization Callback URL, set to <code><a href="http://localhost:8080/_renarde/security/github-success" class="bare">http://localhost:8080/_renarde/security/github-success</a></code>
+<p>Make sure to fill in the appropriate details, but more importantly the Authorization Callback URL, set to <code><a href="http://localhost:8080/github" class="bare">http://localhost:8080/github</a></code>
 (if you intend to test this using the Quarkus dev mode).</p>
 </div>
 <div class="paragraph">
@@ -642,7 +671,7 @@ You can also send access tokens issued by GitHub to <code>quarkus.oidc.applicati
 </div>
 </div>
 <div class="paragraph">
-<p>Select <code>Web application</code> as <code>Application type</code>, and add <code><a href="http://localhost:8080/_renarde/security/oidc-success" class="bare">http://localhost:8080/_renarde/security/oidc-success</a></code> in
+<p>Select <code>Web application</code> as <code>Application type</code>, and add <code><a href="http://localhost:8080/google" class="bare">http://localhost:8080/google</a></code> in
 the <code>Authorised redirect URIs</code> list, then press <code>CREATE</code>:</p>
 </div>
 <div class="imageblock thumb">
@@ -769,7 +798,7 @@ quarkus.oidc.credentials.client-secret.value=&lt;Client Secret&gt;</code></pre>
 <h3 id="microsoft"><a class="anchor" href="#microsoft"></a>Microsoft</h3>
 <div class="paragraph">
 <p>In order to set up OIDC for Microsoft you need to go to your <a href="https://portal.azure.com">Microsoft Azure Portal</a>,
-and search for <code>Azure Active Directory</code>, then click on it:</p>
+and search for <code>Microsoft Entra ID</code> formerly known as <code>Azure Active Directory</code> , then click on it:</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -785,7 +814,7 @@ and search for <code>Azure Active Directory</code>, then click on it:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Fill in your application name, select <code>Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)</code> to allow anyone to log in, and add a <code>Web</code> Redirect URI as <code><a href="http://localhost:8080/_renarde/security/oidc-success" class="bare">http://localhost:8080/_renarde/security/oidc-success</a></code>,
+<p>Fill in your application name, select <code>Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)</code> to allow anyone to log in, and add a <code>Web</code> Redirect URI as <code><a href="http://localhost:8080/microsoft" class="bare">http://localhost:8080/microsoft</a></code>,
 then click on <code>Register</code>:</p>
 </div>
 <div class="imageblock thumb">
@@ -935,8 +964,8 @@ quarkus.oidc.authentication.redirect-path=/fitness/welcome <i class="conum" data
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Strava does not enforce that the redirect (callback) URI which is provided as an authorization code flow parameter is equal to the URI registered in the Strava application because it only requires configuring <code>ApplicationCallbackDomain</code>. For example, if <code>ApplicationCallbackDomain</code> is set to <code>www.my-strava-example.com</code>, Strava will accept redirect URIs such as <code>www.my-strava-example.com/a</code>, <code>www.my-strava-example.com/path/a</code>, which is not recommended by OAuth2 best security practices, see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#name-insufficient-redirect-uri-v">Insufficent redirect_uri validation</a> for more information.
-Therefore you must configure a redirect path when working with the Strava provider and Quarkus will enforce that the current request path matches the configured <code>quarkus.oidc.authentication.redirect-path</code> value before completing the authotization code flow. See the <a href="#exact_redirect_uri_match">Exact redirect URI match</a> for more information.</td>
+<td>Strava does not enforce that the redirect (callback) URI which is provided as an authorization code flow parameter is equal to the URI registered in the Strava application because it only requires configuring <code>ApplicationCallbackDomain</code>. For example, if <code>ApplicationCallbackDomain</code> is set to <code>www.my-strava-example.com</code>, Strava will accept redirect URIs such as <code>www.my-strava-example.com/a</code>, <code>www.my-strava-example.com/path/a</code>, which is not recommended by OAuth2 best security practices, see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#name-insufficient-redirect-uri-v">Insufficient redirect_uri validation</a> for more information.
+Therefore you must configure a redirect path when working with the Strava provider and Quarkus will enforce that the current request path matches the configured <code>quarkus.oidc.authentication.redirect-path</code> value before completing the authorization code flow. See the <a href="#exact_redirect_uri_match">Exact redirect URI match</a> for more information.</td>
 </tr>
 </table>
 </div>
@@ -1166,7 +1195,7 @@ It is this access token that has to be propagated to services such as <code>Goog
 </div>
 <div class="paragraph">
 <p>You do not have to bring provider-specific libraries in order to achieve this, but instead you can use a reactive <code>Token Propagation</code> filter, which can be bound to a given REST client with a simple annotation.
-For more information, see the Quarkus <a href="security-openid-connect-client-reference#token-propagation-reactive">Access token propagation</a> guide.</p>
+For more information, see the Quarkus <a href="security-openid-connect-client-reference#token-propagation-rest">Access token propagation</a> guide.</p>
 </div>
 <div class="paragraph">
 <p>For example, after you have configured the <a href="#google">Google</a> provider, you can have events added to the user&#8217;s Google Calendar by using a REST client as shown in the following example:</p>
@@ -1453,6 +1482,9 @@ quarkus.oidc.authentication.restore-path-after-redirect=true <i class="conum" da
         <li class="reference"><a href="/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
       
         
+        <li class="reference"><a href="/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
+      
+        
         <li class="concepts"><a href="/guides/security-oidc-bearer-token-authentication">OpenID Connect (OIDC) Bearer token authentication</a></li>
       
         
@@ -1502,9 +1534,6 @@ quarkus.oidc.authentication.restore-path-after-redirect=true <i class="conum" da
       
         
         <li class="guide"><a href="/guides/funqy-gcp-functions-http">Funqy HTTP Binding with Google Cloud Functions</a></li>
-      
-        
-        <li class="tutorial"><a href="/guides/security-getting-started-tutorial">Getting started with Security by using Basic authentication and Jakarta Persistence</a></li>
       </ul>
     </div>
     </div>
@@ -1579,6 +1608,10 @@ quarkus.oidc.authentication.restore-path-after-redirect=true <i class="conum" da
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

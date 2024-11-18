@@ -11,8 +11,33 @@
   <title>Quarkus and Maven - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -224,7 +251,7 @@
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.5:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.6:create \
     -DprojectGroupId=my-groupId \
     -DprojectArtifactId=my-artifactId</code></pre>
 </div>
@@ -327,7 +354,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>By default, the command will target the <code>io.quarkus.platform:quarkus-bom:3.8.5</code> platform release (unless the coordinates of the desired platform release have been specified).</p>
+<p>By default, the command will target the <code>io.quarkus.platform:quarkus-bom:3.8.6</code> platform release (unless the coordinates of the desired platform release have been specified).</p>
 </div>
 <div class="paragraph">
 <p>The project is generated in a directory named after the passed artifactId.
@@ -678,7 +705,7 @@ rsync to sync to the remote application.</p>
 <p>Whether Quarkus should enable its ability to not do a full restart when changes to classes are compatible with JVM instrumentation. If this is set to true, Quarkus will perform class redefinition when possible.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37844">QUARKUS_LIVE_RELOAD_INSTRUMENTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37844" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46317">QUARKUS_LIVE_RELOAD_INSTRUMENTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46317" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -698,7 +725,7 @@ rsync to sync to the remote application.</p>
 <p>The names of additional resource files to watch for changes, triggering a reload on change. Directories are <em>not</em> supported.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37845">QUARKUS_LIVE_RELOAD_WATCHED_RESOURCES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37845" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46318">QUARKUS_LIVE_RELOAD_WATCHED_RESOURCES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46318" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -718,7 +745,7 @@ rsync to sync to the remote application.</p>
 <p>Password used to use to connect to the remote dev-mode application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37846">QUARKUS_LIVE_RELOAD_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37846" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46319">QUARKUS_LIVE_RELOAD_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46319" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -738,7 +765,7 @@ rsync to sync to the remote application.</p>
 <p>URL used to use to connect to the remote dev-mode application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37847">QUARKUS_LIVE_RELOAD_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37847" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46320">QUARKUS_LIVE_RELOAD_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46320" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -758,7 +785,7 @@ rsync to sync to the remote application.</p>
 <p>The amount of time to wait for a remote dev connect or reconnect</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37848">QUARKUS_LIVE_RELOAD_CONNECT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37848" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46321">QUARKUS_LIVE_RELOAD_CONNECT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46321" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -779,7 +806,7 @@ rsync to sync to the remote application.</p>
 <p>The amount of time to wait between attempts when connecting to the server side of remote dev</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37849">QUARKUS_LIVE_RELOAD_RETRY_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37849" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46322">QUARKUS_LIVE_RELOAD_RETRY_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46322" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -800,7 +827,7 @@ rsync to sync to the remote application.</p>
 <p>The maximum number of attempts when connecting to the server side of remote dev</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37850">QUARKUS_LIVE_RELOAD_RETRY_MAX_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37850" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46323">QUARKUS_LIVE_RELOAD_RETRY_MAX_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46323" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1076,11 +1103,11 @@ Luckily, the <code>quarkus</code> Maven plugin includes the <code>dependency-tre
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] --- quarkus-maven-plugin:3.8.5:dependency-tree (default-cli) @ getting-started ---
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] --- quarkus-maven-plugin:3.8.6:dependency-tree (default-cli) @ getting-started ---
 [INFO] org.acme:getting-started:jar:1.0.0-SNAPSHOT
-[INFO] └─ io.quarkus:quarkus-resteasy-deployment:jar:3.8.5 (compile)
-[INFO]    ├─ io.quarkus:quarkus-resteasy-server-common-deployment:jar:3.8.5 (compile)
-[INFO]    │  ├─ io.quarkus:quarkus-core-deployment:jar:3.8.5 (compile)
+[INFO] └─ io.quarkus:quarkus-resteasy-deployment:jar:3.8.6 (compile)
+[INFO]    ├─ io.quarkus:quarkus-resteasy-server-common-deployment:jar:3.8.6 (compile)
+[INFO]    │  ├─ io.quarkus:quarkus-core-deployment:jar:3.8.6 (compile)
 [INFO]    │  │  ├─ commons-beanutils:commons-beanutils:jar:1.9.3 (compile)
 [INFO]    │  │  │  ├─ commons-logging:commons-logging:jar:1.2 (compile)
 [INFO]    │  │  │  └─ commons-collections:commons-collections:jar:3.2.2 (compile)
@@ -1886,7 +1913,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>The default built in types are 'jar' (which will use 'fast-jar'), 'legacy-jar' for the pre-1.12 default jar packaging, 'uber-jar', 'mutable-jar' (for remote development mode), 'native' and 'native-sources'.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37851">QUARKUS_PACKAGE_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37851" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46324">QUARKUS_PACKAGE_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46324" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1906,7 +1933,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Whether the created jar will be compressed. This setting is not used when building a native image</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37852">QUARKUS_PACKAGE_COMPRESS_JAR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37852" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46325">QUARKUS_PACKAGE_COMPRESS_JAR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46325" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1926,7 +1953,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>If the Implementation information should be included in the runner jar&#8217;s MANIFEST.MF.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37853">QUARKUS_PACKAGE_MANIFEST_ADD_IMPLEMENTATION_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37853" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46326">QUARKUS_PACKAGE_MANIFEST_ADD_IMPLEMENTATION_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46326" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1949,7 +1976,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>If your application has main classes annotated with <code>io.quarkus.runtime.annotations.QuarkusMain</code> then this can also reference the name given in the annotation, to avoid the need to specify fully qualified names in the config.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37854">QUARKUS_PACKAGE_MAIN_CLASS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37854" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46327">QUARKUS_PACKAGE_MAIN_CLASS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46327" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1969,7 +1996,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Files that should not be copied to the output artifact</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37855">QUARKUS_PACKAGE_USER_CONFIGURED_IGNORED_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37855" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46328">QUARKUS_PACKAGE_USER_CONFIGURED_IGNORED_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46328" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2007,7 +2034,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>This parameter is meant to be used in modules where multi-builds have been configured to avoid getting a final package with unused dependencies.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37856">QUARKUS_PACKAGE_INCLUDED_OPTIONAL_DEPENDENCIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37856" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46329">QUARKUS_PACKAGE_INCLUDED_OPTIONAL_DEPENDENCIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46329" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2030,7 +2057,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>This parameter is meant to be used in modules where multi-builds have been configured to avoid getting a final package with unused dependencies.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37857">QUARKUS_PACKAGE_FILTER_OPTIONAL_DEPENDENCIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37857" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46330">QUARKUS_PACKAGE_FILTER_OPTIONAL_DEPENDENCIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46330" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2050,7 +2077,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>The suffix that is applied to the runner jar and native images</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37858">QUARKUS_PACKAGE_RUNNER_SUFFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37858" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46331">QUARKUS_PACKAGE_RUNNER_SUFFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46331" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2070,7 +2097,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Indicates whether the generated binary file (uber-jar or native image) should have the runner suffix appended. Turning off the runner suffix in case of the uber-jar package type, the original build system (Maven, Gradle, etc) built JAR will be replaced with the Quarkus built uber JAR.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37859">QUARKUS_PACKAGE_ADD_RUNNER_SUFFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37859" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46332">QUARKUS_PACKAGE_ADD_RUNNER_SUFFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46332" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2090,7 +2117,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>The output folder in which to place the output, this is resolved relative to the build systems target directory.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37860">QUARKUS_PACKAGE_OUTPUT_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37860" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46333">QUARKUS_PACKAGE_OUTPUT_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46333" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2110,7 +2137,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>The name of the final artifact</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37861">QUARKUS_PACKAGE_OUTPUT_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37861" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46334">QUARKUS_PACKAGE_OUTPUT_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46334" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2130,7 +2157,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Whether to automate the creation of AppCDS. This has no effect when a native binary is needed and will be ignored in that case. Furthermore, this option only works for Java 11&#43; and is considered experimental for the time being. Finally, care must be taken to use the same exact JVM version when building and running the application.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37862">QUARKUS_PACKAGE_CREATE_APPCDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37862" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46335">QUARKUS_PACKAGE_CREATE_APPCDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46335" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2150,7 +2177,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>When AppCDS generation is enabled, if this property is set, then the JVM used to generate the AppCDS file will be the JVM present in the container image. The builder image is expected to have the 'java' binary on its PATH. This flag is useful when the JVM to be used at runtime is not the same exact JVM version as the one used to build the jar. Note that this property is consulted only when <code>quarkus.package.create-appcds=true</code> and it requires having docker available during the build.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37863">QUARKUS_PACKAGE_APPCDS_BUILDER_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37863" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46336">QUARKUS_PACKAGE_APPCDS_BUILDER_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46336" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2179,7 +2206,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Ignored if <code>quarkus.package.create-appcds</code> is set to <code>false</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37864">QUARKUS_PACKAGE_APPCDS_USE_CONTAINER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37864" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46337">QUARKUS_PACKAGE_APPCDS_USE_CONTAINER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46337" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2205,7 +2232,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Note that before reaugmentation has been performed these jars will be ignored, and if they are updated the app should be reaugmented again.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37865">QUARKUS_PACKAGE_USER_PROVIDERS_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37865" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46338">QUARKUS_PACKAGE_USER_PROVIDERS_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46338" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2225,7 +2252,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>This option only applies when using fast-jar or mutable-jar. If this option is true then a list of all the coordinates of the artifacts that made up this image will be included in the quarkus-app directory. This list can be used by vulnerability scanners to determine if your application has any vulnerable dependencies.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37866">QUARKUS_PACKAGE_INCLUDE_DEPENDENCY_LIST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37866" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46339">QUARKUS_PACKAGE_INCLUDE_DEPENDENCY_LIST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46339" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2245,7 +2272,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>An advanced option that will decompile generated and transformed bytecode into the 'decompiled' directory. This is only taken into account when fast-jar is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37867">QUARKUS_PACKAGE_DECOMPILER_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37867" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46340">QUARKUS_PACKAGE_DECOMPILER_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46340" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2265,7 +2292,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>The directory into which to save the Vineflower tool if it doesn&#8217;t exist</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37868">QUARKUS_PACKAGE_DECOMPILER_JAR_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37868" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46341">QUARKUS_PACKAGE_DECOMPILER_JAR_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46341" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2285,7 +2312,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>If set to <code>true</code>, it will result in the Quarkus writing the transformed application bytecode to the build tool&#8217;s output directory. This is useful for post-build tools that need to scan the application bytecode - for example for offline code-coverage tools. For example, if using Maven, enabling this feature will result in the classes in <code>target/classes</code> being updated with the versions that result after Quarkus has applied its transformations. Setting this to <code>true</code> however, should be done with a lot of caution and only if subsequent builds are done in a clean environment (i.e. the build tool&#8217;s output directory has been completely cleaned).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37869">QUARKUS_PACKAGE_WRITE_TRANSFORMED_BYTECODE_TO_BUILD_OUTPUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37869" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46342">QUARKUS_PACKAGE_WRITE_TRANSFORMED_BYTECODE_TO_BUILD_OUTPUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46342" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2305,7 +2332,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Custom manifest attributes to be added to the main section of the MANIFEST.MF file. An example of the user defined property: quarkus.package.manifest.attributes."Entry-key1"=Value1 quarkus.package.manifest.attributes."Entry-key2"=Value2</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37870">QUARKUS_PACKAGE_MANIFEST_ATTRIBUTES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37870" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46343">QUARKUS_PACKAGE_MANIFEST_ATTRIBUTES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46343" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2325,7 +2352,7 @@ These are provided in <code>application.properties</code> the same as any other 
 <p>Custom manifest sections to be added to the MANIFEST.MF file. An example of the user defined property: quarkus.package.manifest.manifest-sections."Section-Name"."Entry-Key1"=Value1 quarkus.package.manifest.manifest-sections."Section-Name"."Entry-Key2"=Value2</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-37871">QUARKUS_PACKAGE_MANIFEST_MANIFEST_SECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37871" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46344">QUARKUS_PACKAGE_MANIFEST_MANIFEST_SECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46344" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2588,11 +2615,11 @@ The report generated by <code>quarkus:info</code> is not currently including the
 [INFO] Building code-with-quarkus 1.0.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO]
-[INFO] --- quarkus-maven-plugin:3.8.5:info (default-cli) @ code-with-quarkus ---
+[INFO] --- quarkus-maven-plugin:3.8.6:info (default-cli) @ code-with-quarkus ---
 [WARNING] quarkus:info goal is experimental, its options and output may change in future versions
 [INFO] Quarkus platform BOMs: <i class="conum" data-value="1"></i><b>(1)</b>
-[INFO]   io.quarkus.platform:quarkus-bom:pom:3.8.5
-[INFO]   io.quarkus.platform:quarkus-camel-bom:pom:3.8.5
+[INFO]   io.quarkus.platform:quarkus-bom:pom:3.8.6
+[INFO]   io.quarkus.platform:quarkus-camel-bom:pom:3.8.6
 [INFO]
 [INFO] Extensions from io.quarkus.platform:quarkus-bom: <i class="conum" data-value="2"></i><b>(2)</b>
 [INFO]   io.quarkus:quarkus-resteasy-reactive
@@ -2643,11 +2670,11 @@ The report generated by <code>quarkus:info</code> is not currently including the
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] --- quarkus-maven-plugin:3.8.5:info (default-cli) @ code-with-quarkus ---
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] --- quarkus-maven-plugin:3.8.6:info (default-cli) @ code-with-quarkus ---
 [WARNING] quarkus:info goal is experimental, its options and output may change in future versions
 [INFO] Quarkus platform BOMs:
-[INFO]   io.quarkus.platform:quarkus-bom:pom:3.8.5
-[INFO]   io.quarkus.platform:quarkus-camel-bom:pom:3.8.5 | unnecessary <i class="conum" data-value="1"></i><b>(1)</b>
+[INFO]   io.quarkus.platform:quarkus-bom:pom:3.8.6
+[INFO]   io.quarkus.platform:quarkus-camel-bom:pom:3.8.6 | unnecessary <i class="conum" data-value="1"></i><b>(1)</b>
 [INFO]
 [INFO] Extensions from io.quarkus.platform:quarkus-bom:
 [INFO]   io.quarkus:quarkus-resteasy-reactive:2.6.3.Final | misaligned <i class="conum" data-value="2"></i><b>(2)</b>
@@ -2669,7 +2696,7 @@ The report generated by <code>quarkus:info</code> is not currently including the
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The version <code>2.6.3.Final</code> of the <code>quarkus-resteasy-reactive</code> is now reported as being misaligned with the version managed by the Quarkus platform BOM imported in the project, which is 3.8.5</td>
+<td>The version <code>2.6.3.Final</code> of the <code>quarkus-resteasy-reactive</code> is now reported as being misaligned with the version managed by the Quarkus platform BOM imported in the project, which is 3.8.6</td>
 </tr>
 </table>
 </div>
@@ -2733,12 +2760,12 @@ The Quarkus Maven plugin version isn&#8217;t currently included in the update re
 [INFO] Building code-with-quarkus 1.0.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO]
-[INFO] --- quarkus-maven-plugin:3.8.5:update (default-cli) @ code-with-quarkus ---
+[INFO] --- quarkus-maven-plugin:3.8.6:update (default-cli) @ code-with-quarkus ---
 [WARNING] quarkus:update goal is experimental, its options and output might change in future versions
 [INFO]
 [INFO] Recommended Quarkus platform BOM updates: <i class="conum" data-value="1"></i><b>(1)</b>
-[INFO] Update: io.quarkus.platform:quarkus-bom:pom:2.7.1.Final -&gt; 3.8.5
-[INFO] Update: io.quarkus.platform:quarkus-camel-bom:pom:2.7.1.Final -&gt; 3.8.5</code></pre>
+[INFO] Update: io.quarkus.platform:quarkus-bom:pom:2.7.1.Final -&gt; 3.8.6
+[INFO] Update: io.quarkus.platform:quarkus-camel-bom:pom:2.7.1.Final -&gt; 3.8.6</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2767,7 +2794,7 @@ Typically, a single project property will be used to manage all the Quarkus plat
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] Recommended Quarkus platform BOM updates: <i class="conum" data-value="1"></i><b>(1)</b>
-[INFO] Update: io.quarkus.platform:quarkus-bom:pom:2.7.1.Final -&gt; 3.8.5
+[INFO] Update: io.quarkus.platform:quarkus-bom:pom:2.7.1.Final -&gt; 3.8.6
 [INFO] Remove: io.quarkus.platform:quarkus-camel-bom:pom:2.7.1.Final <i class="conum" data-value="2"></i><b>(2)</b>
 [INFO]
 [INFO] Extensions from io.quarkus.platform:quarkus-bom:
@@ -2980,6 +3007,10 @@ Typically, a single project property will be used to manage all the Quarkus plat
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,8 +11,33 @@
   <title>Mailer Reference Guide - 2.16 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -917,7 +944,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Caches data from attachment&#8217;s Stream to a temporary file. It tries to delete it after sending email.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21356">QUARKUS_MAILER_CACHE_ATTACHMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21356" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21214">QUARKUS_MAILER_CACHE_ATTACHMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21214" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -937,7 +964,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the default <code>from</code> attribute when not specified in the <code>io.quarkus.mailer.Mail</code> instance. It&#8217;s the sender email address.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21357">QUARKUS_MAILER_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21357" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21215">QUARKUS_MAILER_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21215" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -958,7 +985,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21358">QUARKUS_MAILER_MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21358" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21216">QUARKUS_MAILER_MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21216" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -978,7 +1005,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the default bounce email address. A bounced email, or bounce, is an email message that gets rejected by a mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21359">QUARKUS_MAILER_BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21359" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21217">QUARKUS_MAILER_BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21217" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -998,7 +1025,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the SMTP host name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21360">QUARKUS_MAILER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21360" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21218">QUARKUS_MAILER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21218" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1018,7 +1045,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>The SMTP port. The default value depends on the configuration. The port 25 is used as default when <code>ssl</code> is disabled. This port continues to be used primarily for SMTP relaying. SMTP relaying is the transmission of email from email server to email server. The port 587 is the default port when <code>ssl</code> is enabled. It ensures that email is submitted securely. Note that the port 465 may be used by SMTP servers, however, IANA has reassigned a new service to this port, and it should no longer be used for SMTP communications.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21361">QUARKUS_MAILER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21361" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21219">QUARKUS_MAILER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21219" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1038,7 +1065,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the username to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21362">QUARKUS_MAILER_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21362" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21220">QUARKUS_MAILER_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21220" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1058,7 +1085,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the password to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21363">QUARKUS_MAILER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21363" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21221">QUARKUS_MAILER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21221" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1078,7 +1105,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Enables or disables the TLS/SSL.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21364">QUARKUS_MAILER_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21364" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21222">QUARKUS_MAILER_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21222" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1098,7 +1125,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Set whether all server certificates should be trusted. This option is only used when <code>ssl</code> is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21365">QUARKUS_MAILER_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21365" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21223">QUARKUS_MAILER_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21223" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1118,7 +1145,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the max number of open connections to the mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21366">QUARKUS_MAILER_MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21366" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21224">QUARKUS_MAILER_MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21224" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1138,7 +1165,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the hostname to be used for HELO/EHLO and the Message-ID.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21367">QUARKUS_MAILER_OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21367" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21225">QUARKUS_MAILER_OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21225" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1158,7 +1185,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets if connection pool is enabled. If the connection pooling is disabled, the max number of sockets is enforced nevertheless.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21368">QUARKUS_MAILER_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21368" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21226">QUARKUS_MAILER_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21226" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1178,7 +1205,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Disable ESMTP. The RFC-1869 states that clients should always attempt <code>EHLO</code> as first command to determine if ESMTP is supported, if this returns an error code, <code>HELO</code> is tried to use the <em>regular</em> SMTP command.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21369">QUARKUS_MAILER_DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21369" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21227">QUARKUS_MAILER_DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21227" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1198,7 +1225,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the TLS security mode for the connection. Either <code>DISABLED</code>, <code>OPTIONAL</code> or <code>REQUIRED</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21370">QUARKUS_MAILER_START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21370" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21228">QUARKUS_MAILER_START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21228" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1218,7 +1245,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Enables DKIM signing.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21371">QUARKUS_MAILER_DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21371" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21229">QUARKUS_MAILER_DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21229" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1238,7 +1265,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the PKCS#8 format private key used to sign the email.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21372">QUARKUS_MAILER_DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21372" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21230">QUARKUS_MAILER_DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21230" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1258,7 +1285,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the PKCS#8 format private key file path.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21373">QUARKUS_MAILER_DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21373" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21231">QUARKUS_MAILER_DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21231" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1278,7 +1305,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the Agent or User Identifier (AUID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21374">QUARKUS_MAILER_DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21374" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21232">QUARKUS_MAILER_DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21232" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1298,7 +1325,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the selector used to query the public key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21375">QUARKUS_MAILER_DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21375" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21233">QUARKUS_MAILER_DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21233" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1318,7 +1345,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the Signing Domain Identifier (SDID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21376">QUARKUS_MAILER_DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21376" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21234">QUARKUS_MAILER_DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21234" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1338,7 +1365,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the canonicalization algorithm for signed headers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21377">QUARKUS_MAILER_DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21377" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21235">QUARKUS_MAILER_DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21235" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1360,7 +1387,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the canonicalization algorithm for mail body.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21378">QUARKUS_MAILER_DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21378" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21236">QUARKUS_MAILER_DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21236" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1382,7 +1409,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the body limit to sign. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21379">QUARKUS_MAILER_DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21379" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21237">QUARKUS_MAILER_DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21237" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1402,7 +1429,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures to enable or disable signature sign timestamp.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21380">QUARKUS_MAILER_DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21380" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21238">QUARKUS_MAILER_DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21238" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1422,7 +1449,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the expire time in seconds when the signature sign will be expired. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21381">QUARKUS_MAILER_DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21381" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21239">QUARKUS_MAILER_DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21239" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1442,7 +1469,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Configures the signed headers in DKIM, separated by commas. The order in the list matters.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21382">QUARKUS_MAILER_DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21382" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21240">QUARKUS_MAILER_DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21240" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1466,7 +1493,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
  - XOAUTH2 means that a login will be attempted using Google Gmail Oauth2 tokens</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21383">QUARKUS_MAILER_LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21383" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21241">QUARKUS_MAILER_LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21241" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1486,7 +1513,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the allowed authentication methods. These methods will be used only if the server supports them. If not set, all supported methods may be used. The list is given as a space separated list, such as <code>DIGEST-MD5 CRAM-SHA256 CRAM-SHA1 CRAM-MD5 PLAIN LOGIN</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21384">QUARKUS_MAILER_AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21384" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21242">QUARKUS_MAILER_AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21242" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1506,7 +1533,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 <p>Sets the trust store password if any. Note that the password is only used for JKS and PCK#12 trust stores.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21385">QUARKUS_MAILER_TRUSTSTORE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21385" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21243">QUARKUS_MAILER_TRUSTSTORE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21243" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1527,7 +1554,7 @@ Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 The relative paths are relative to the application working directly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21386">QUARKUS_MAILER_TRUSTSTORE_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21386" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21244">QUARKUS_MAILER_TRUSTSTORE_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21244" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1547,7 +1574,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Sets the trust store type. By default, it guesses the type from the file name extension. For instance, <code>truststore.pem</code> will be seen as a PEM file, while <code>truststore.jks</code> will be seen as a JKS file. <code>truststore.p12</code> and <code>truststore.pfx</code> will both be seen as PKCS#12 files. Accepted values are: <code>JKS</code>, <code>PEM</code>, <code>PKCS</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21387">QUARKUS_MAILER_TRUSTSTORE_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21387" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21245">QUARKUS_MAILER_TRUSTSTORE_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21245" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1567,7 +1594,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Whether the mail should always been sent as multipart even if they don&#8217;t have attachments. When sets to true, the mail message will be encoded as multipart even for simple mails without attachments.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21388">QUARKUS_MAILER_MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21388" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21246">QUARKUS_MAILER_MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21246" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1587,7 +1614,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Sets if sending allows recipients errors. If set to true, the mail will be sent to the recipients that the server accepted, if any.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21389">QUARKUS_MAILER_ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21389" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21247">QUARKUS_MAILER_ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21247" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1607,7 +1634,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Enables or disables the pipelining capability if the SMTP server supports it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21390">QUARKUS_MAILER_PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21390" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21248">QUARKUS_MAILER_PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21248" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1627,7 +1654,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Sets the connection pool cleaner period. Zero disables expiration checks and connections will remain in the pool until they are closed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21391">QUARKUS_MAILER_POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21391" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21249">QUARKUS_MAILER_POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21249" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1648,7 +1675,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Set the keep alive timeout for the SMTP connection. This value determines how long a connection remains unused in the pool before being evicted and closed. A timeout of 0 means there is no timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21392">QUARKUS_MAILER_KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21392" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21250">QUARKUS_MAILER_KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21250" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1669,7 +1696,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Sets the workstation used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21393">QUARKUS_MAILER_NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21393" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21251">QUARKUS_MAILER_NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21251" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1689,7 +1716,7 @@ The relative paths are relative to the application working directly.</p>
 <p>Sets the domain used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21394">QUARKUS_MAILER_NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21394" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21252">QUARKUS_MAILER_NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21252" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1822,6 +1849,10 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

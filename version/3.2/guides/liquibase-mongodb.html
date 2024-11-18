@@ -11,8 +11,33 @@
   <title>Using Liquibase MongoDB - 3.2 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -456,7 +483,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The change log file</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29600">QUARKUS_LIQUIBASE_MONGODB_CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29600" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38073">QUARKUS_LIQUIBASE_MONGODB_CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38073" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -476,7 +503,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Flag to enable / disable Liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29601">QUARKUS_LIQUIBASE_MONGODB_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29601" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38074">QUARKUS_LIQUIBASE_MONGODB_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38074" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -496,7 +523,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The migrate at start flag</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29602">QUARKUS_LIQUIBASE_MONGODB_MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29602" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38075">QUARKUS_LIQUIBASE_MONGODB_MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38075" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -516,7 +543,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The validate on update flag</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29603">QUARKUS_LIQUIBASE_MONGODB_VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29603" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38076">QUARKUS_LIQUIBASE_MONGODB_VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38076" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -536,7 +563,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The clean at start flag</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29604">QUARKUS_LIQUIBASE_MONGODB_CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29604" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38077">QUARKUS_LIQUIBASE_MONGODB_CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38077" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -556,7 +583,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The list of contexts</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29605">QUARKUS_LIQUIBASE_MONGODB_CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29605" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38078">QUARKUS_LIQUIBASE_MONGODB_CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38078" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -576,7 +603,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The list of labels</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29606">QUARKUS_LIQUIBASE_MONGODB_LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29606" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38079">QUARKUS_LIQUIBASE_MONGODB_LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38079" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -596,7 +623,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The default catalog name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29607">QUARKUS_LIQUIBASE_MONGODB_DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29607" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38080">QUARKUS_LIQUIBASE_MONGODB_DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38080" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -616,7 +643,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The default schema name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29608">QUARKUS_LIQUIBASE_MONGODB_DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29608" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38081">QUARKUS_LIQUIBASE_MONGODB_DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38081" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -636,7 +663,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase tables catalog name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29609">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29609" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38082">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38082" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -656,7 +683,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase tables schema name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29610">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29610" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38083">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38083" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -676,7 +703,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase tables tablespace name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29611">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29611" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38084">QUARKUS_LIQUIBASE_MONGODB_LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38084" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -696,7 +723,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The parameters to be passed to the changelog. Defined as key value pairs.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-29612">QUARKUS_LIQUIBASE_MONGODB_CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-29612" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38085">QUARKUS_LIQUIBASE_MONGODB_CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38085" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -792,6 +819,10 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

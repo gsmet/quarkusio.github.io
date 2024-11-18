@@ -11,8 +11,33 @@
   <title>Redis Extension Reference Guide - 2.16 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -1473,7 +1500,7 @@ redis_pool_queue_delay_seconds_max{pool_name="&lt;default&gt;",pool_type="redis"
  - Parameters including double-quotes must be wrapped into single-quotes</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21829">QUARKUS_REDIS_LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21829" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21687">QUARKUS_REDIS_LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21687" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1493,7 +1520,7 @@ redis_pool_queue_delay_seconds_max{pool_name="&lt;default&gt;",pool_type="redis"
 <p>When using <code>redisLoadScript</code>, indicates if the Redis database must be flushed (erased) before importing.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21830">QUARKUS_REDIS_FLUSH_BEFORE_LOAD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21830" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21688">QUARKUS_REDIS_FLUSH_BEFORE_LOAD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21688" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1513,7 +1540,7 @@ redis_pool_queue_delay_seconds_max{pool_name="&lt;default&gt;",pool_type="redis"
 <p>When using <code>redisLoadScript</code>, indicates if the import should only happen if the database is empty (no keys).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21831">QUARKUS_REDIS_LOAD_ONLY_IF_EMPTY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21831" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21689">QUARKUS_REDIS_LOAD_ONLY_IF_EMPTY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21689" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1533,7 +1560,7 @@ redis_pool_queue_delay_seconds_max{pool_name="&lt;default&gt;",pool_type="redis"
 <p>Whether a health check is published in case the smallrye-health extension is present.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21832">QUARKUS_REDIS_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21832" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21690">QUARKUS_REDIS_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21690" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1554,7 +1581,7 @@ redis_pool_queue_delay_seconds_max{pool_name="&lt;default&gt;",pool_type="redis"
 When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode and when Docker is running.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21833">QUARKUS_REDIS_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21833" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21691">QUARKUS_REDIS_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21691" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1574,7 +1601,7 @@ When DevServices is enabled Quarkus will attempt to automatically configure and 
 <p>The container image name to use, for container based DevServices providers. If you want to use Redis Stack modules (bloom, graph, search&#8230;&#8203;), use: <code>redis/redis-stack-server:latest</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21834">QUARKUS_REDIS_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21834" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21692">QUARKUS_REDIS_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21692" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1595,7 +1622,7 @@ When DevServices is enabled Quarkus will attempt to automatically configure and 
 If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21835">QUARKUS_REDIS_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21835" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21693">QUARKUS_REDIS_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21693" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1617,7 +1644,7 @@ The discovery uses the <code>quarkus-dev-service-redis</code> label. The value i
 Container sharing is only used in dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21836">QUARKUS_REDIS_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21836" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21694">QUARKUS_REDIS_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21694" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1638,7 +1665,7 @@ Container sharing is only used in dev mode.</p>
 This property is used when you need multiple shared Redis servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21837">QUARKUS_REDIS_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21837" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21695">QUARKUS_REDIS_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21695" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1663,7 +1690,7 @@ This property is used when you need multiple shared Redis servers.</p>
  - Parameters including double-quotes must be wrapped into single-quotes</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21838">QUARKUS_REDIS__REDIS_CLIENT_NAME__LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21838" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21696">QUARKUS_REDIS__REDIS_CLIENT_NAME__LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21696" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1683,7 +1710,7 @@ This property is used when you need multiple shared Redis servers.</p>
 <p>When using <code>redisLoadScript</code>, indicates if the Redis database must be flushed (erased) before importing.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21839">QUARKUS_REDIS__REDIS_CLIENT_NAME__FLUSH_BEFORE_LOAD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21839" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21697">QUARKUS_REDIS__REDIS_CLIENT_NAME__FLUSH_BEFORE_LOAD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21697" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1703,7 +1730,7 @@ This property is used when you need multiple shared Redis servers.</p>
 <p>When using <code>redisLoadScript</code>, indicates if the import should only happen if the database is empty (no keys).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21840">QUARKUS_REDIS__REDIS_CLIENT_NAME__LOAD_ONLY_IF_EMPTY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21840" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21698">QUARKUS_REDIS__REDIS_CLIENT_NAME__LOAD_ONLY_IF_EMPTY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21698" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1724,7 +1751,7 @@ This property is used when you need multiple shared Redis servers.</p>
 When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode and when Docker is running.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21841">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21841" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21699">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21699" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1744,7 +1771,7 @@ When DevServices is enabled Quarkus will attempt to automatically configure and 
 <p>The container image name to use, for container based DevServices providers. If you want to use Redis Stack modules (bloom, graph, search&#8230;&#8203;), use: <code>redis/redis-stack-server:latest</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21842">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21842" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21700">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21700" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1765,7 +1792,7 @@ When DevServices is enabled Quarkus will attempt to automatically configure and 
 If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21843">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21843" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21701">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21701" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1787,7 +1814,7 @@ The discovery uses the <code>quarkus-dev-service-redis</code> label. The value i
 Container sharing is only used in dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21844">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21844" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21702">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21702" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1808,7 +1835,7 @@ Container sharing is only used in dev mode.</p>
 This property is used when you need multiple shared Redis servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21845">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21845" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21703">QUARKUS_REDIS__ADDITIONAL_REDIS_CLIENTS__DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21703" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1942,6 +1969,10 @@ This property is used when you need multiple shared Redis servers.</p>
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

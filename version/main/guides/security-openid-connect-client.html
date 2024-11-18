@@ -11,8 +11,33 @@
   <title>OpenID Connect client and token propagation quickstart - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -524,7 +551,6 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
-import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import io.quarkus.oidc.client.filter.OidcClientFilter;
@@ -605,7 +631,6 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
-import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import io.quarkus.oidc.token.propagation.AccessToken;
@@ -860,7 +885,7 @@ public class FrontendExceptionMapper implements ExceptionMapper&lt;ClientWebAppl
 </div>
 <div class="paragraph">
 <p>This exception mapper is only added to verify during the tests that <code>ProtectedResource</code> returns <code>403</code> when the token has no expected role.
-Without this mapper, <code>Quarkus REST (formerly RESTEasy Reactive)</code> would correctly convert the exceptions that escape from REST client calls to <code>500</code> to avoid leaking the information from the downstream resources such as <code>ProtectedResource</code>.
+Without this mapper, Quarkus REST (formerly RESTEasy Reactive) would correctly convert the exceptions that escape from REST client calls to <code>500</code> to avoid leaking the information from the downstream resources such as <code>ProtectedResource</code>.
 However, in the tests, it would not be possible to assert that <code>500</code> is caused by an authorization exception instead of some internal error.</p>
 </div>
 </div>
@@ -906,7 +931,7 @@ org.acme.security.openid.connect.client.RestClientWithTokenPropagationFilter/mp-
 </div>
 <div class="paragraph">
 <p>The preceding configuration references Keycloak, which is used by <code>ProtectedResource</code> to verify the incoming access tokens and by <code>OidcClient</code> to get the tokens for a user <code>alice</code> by using a <code>password</code> grant.
-Both REST clients point to `ProtectedResource&#8217;s HTTP address.</p>
+Both REST clients point to <code>ProtectedResource</code>'s HTTP address.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -951,7 +976,7 @@ However, if you have already built a <a href="https://github.com/quarkusio/quark
 </div>
 </div>
 <div class="paragraph">
-<p>Set <code>{keycloak.version}</code> to <code>25.0.2</code> or later.</p>
+<p>Set <code>{keycloak.version}</code> to <code>25.0.6</code> or later.</p>
 </div>
 <div class="paragraph">
 <p>You can access your Keycloak Server at <a href="http://localhost:8180">localhost:8180</a>.</p>
@@ -999,7 +1024,7 @@ For more details, see the Keycloak documentation about how to <a href="https://w
 <p><a href="security-openid-connect-dev-services">Dev Services for Keycloak</a> launches a Keycloak container and imports <code>quarkus-realm.json</code>.</p>
 </div>
 <div class="paragraph">
-<p>Open a <a href="dev-ui">Dev UI</a> available at <a href="http://localhost:8080/q/dev-ui">/q/dev-ui</a> and click a <code>Provider: Keycloak</code> link in the <strong>OpenID Connect Dev UI</strong> card.</p>
+<p>Open a <a href="dev-ui">Dev UI</a> available at <a href="http://localhost:8080/q/dev-ui">/q/dev-ui</a> and click a <code>Keycloak provider</code> link in the <strong>OpenID Connect Dev UI</strong> card.</p>
 </div>
 <div class="paragraph">
 <p>When asked, log in to a <code>Single Page Application</code> provided by the OpenID Connect Dev UI:</p>
@@ -1008,20 +1033,6 @@ For more details, see the Keycloak documentation about how to <a href="https://w
 <ul>
 <li>
 <p>Log in as <code>alice</code>, with the password, <code>alice</code>.
-This user has a <code>user</code> role.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Access <code>/frontend/user-name-with-propagated-token</code>, which returns <code>200</code>.</p>
-</li>
-<li>
-<p>Access <code>/frontend/admin-name-with-propagated-token</code>, which returns <code>403</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Log out and back in as <code>admin</code> with the password, <code>admin</code>.
 This user has both <code>admin</code> and <code>user</code> roles.</p>
 <div class="ulist">
 <ul>
@@ -1030,6 +1041,20 @@ This user has both <code>admin</code> and <code>user</code> roles.</p>
 </li>
 <li>
 <p>Access <code>/frontend/admin-name-with-propagated-token</code>, which returns <code>200</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Log out and back in as <code>bob</code> with the password, <code>bob</code>.
+This user has a <code>user</code> role.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Access <code>/frontend/user-name-with-propagated-token</code>, which returns <code>200</code>.</p>
+</li>
+<li>
+<p>Access <code>/frontend/admin-name-with-propagated-token</code>, which returns <code>403</code>.</p>
 </li>
 </ul>
 </div>
@@ -1122,7 +1147,7 @@ To build again, enable the <code>native</code> profile:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing-the-application"><a class="anchor" href="#testing-the-application"></a>Testing the application</h2>
+<h2 id="testing"><a class="anchor" href="#testing"></a>Testing the application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For more information about testing your application in dev mode, see the preceding <a href="#oidc-client-keycloak-dev-mode">Running the application in dev mode</a> section.</p>
@@ -1236,7 +1261,7 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -i -X GET \
-  http://localhost:8080/frontend/admin-name-with-oidc-client-token-param</code></pre>
+  http://localhost:8080/frontend/admin-name-with-oidc-client-token-header-param</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1257,7 +1282,7 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -i -X GET \
-  http://localhost:8080/frontend/admin-name-with-oidc-client-token-param-blocking</code></pre>
+  http://localhost:8080/frontend/admin-name-with-oidc-client-token-header-param-blocking</code></pre>
 </div>
 </div>
 </div>
@@ -1293,7 +1318,7 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
 <li><a href="#oidc-client-keycloak-dev-mode">Running the application in dev mode</a></li>
 <li><a href="#running-the-application-in-jvm-mode">Running the application in JVM mode</a></li>
 <li><a href="#running-the-application-in-native-mode">Running the application in native mode</a></li>
-<li><a href="#testing-the-application">Testing the application</a></li>
+<li><a href="#testing">Testing the application</a></li>
 <li><a href="#references">References</a></li>
 </ul></div>
     </div>
@@ -1314,6 +1339,9 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
       
         
         <li class="reference"><a href="/version/main/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
+      
+        
+        <li class="reference"><a href="/version/main/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
       
         
         <li class="concepts"><a href="/version/main/guides/security-openid-connect-providers">Configuring Well-Known OpenID Connect Providers</a></li>
@@ -1368,9 +1396,6 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
       
         
         <li class="concepts"><a href="/version/main/guides/security-proactive-authentication">Proactive authentication</a></li>
-      
-        
-        <li class="concepts"><a href="/version/main/guides/security-architecture">Quarkus Security architecture</a></li>
       </ul>
     </div>
     </div>
@@ -1445,6 +1470,10 @@ As already shown, <code>OidcClient</code> is configured to get the tokens for th
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

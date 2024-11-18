@@ -11,8 +11,33 @@
   <title>Using OpenID Connect (OIDC) multitenancy - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -234,7 +261,7 @@ By enabling multitenancy support to your applications, you can support distinct 
 <p>JDK 17+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.9.8</p>
+<p>Apache Maven 3.9.9</p>
 </li>
 <li>
 <p>A working container runtime (Docker or <a href="podman">Podman</a>)</p>
@@ -325,7 +352,7 @@ cd security-openid-connect-multi-tenancy-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.13.3:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.16.3:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=security-openid-connect-multi-tenancy-quickstart \
     -Dextensions='oidc,rest-jackson' \
@@ -483,6 +510,7 @@ import io.quarkus.oidc.OidcRequestContext;
 import io.quarkus.oidc.OidcTenantConfig;
 import io.quarkus.oidc.OidcTenantConfig.ApplicationType;
 import io.quarkus.oidc.TenantConfigResolver;
+import io.quarkus.oidc.runtime.OidcUtils;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
 
@@ -529,6 +557,7 @@ Otherwise, it initiates an authorization code flow when authentication is requir
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default tenant configuration
 %prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
 quarkus.oidc.client-id=multi-tenant-client
+quarkus.oidc.credentials.secret=secret
 quarkus.oidc.application-type=web-app
 
 # Tenant A configuration is created dynamically in CustomTenantConfigResolver
@@ -557,11 +586,13 @@ This configuration uses a Keycloak instance to authenticate users.</p>
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default tenant configuration
 %prod.quarkus.oidc.auth-server-url=http://localhost:8180/realms/quarkus
 quarkus.oidc.client-id=multi-tenant-client
+quarkus.oidc.credentials.secret=secret
 quarkus.oidc.application-type=web-app
 
 # Tenant A configuration
 quarkus.oidc.tenant-a.auth-server-url=http://localhost:8180/realms/tenant-a
 quarkus.oidc.tenant-a.client-id=multi-tenant-client
+quarkus.oidc.tenant-a.credentials.secret=secret
 quarkus.oidc.tenant-a.application-type=web-app
 
 # HTTP security configuration
@@ -702,7 +733,7 @@ as a <code>RoutingContext</code> attribute, for example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>keycloak.version</code> is set to <code>25.0.0</code> or higher.</p>
+<p>where <code>keycloak.version</code> is set to <code>25.0.6</code> or higher.</p>
 </div>
 <div class="paragraph">
 <p>Access your Keycloak server at <a href="http://localhost:8180">localhost:8180</a>.</p>
@@ -1073,7 +1104,7 @@ Although <code>alice</code> exists in both tenants, the application treats them 
 </ol>
 </div>
 <div class="paragraph">
-<p>Finally, the default OIDC tenant is selected if a tenant id has not been resolved after the preceeding steps.</p>
+<p>Finally, the default OIDC tenant is selected if a tenant id has not been resolved after the preceding steps.</p>
 </div>
 <div class="paragraph">
 <p>See the following sections for more information:</p>
@@ -1150,10 +1181,19 @@ public class HelloResource {
 </tr>
 </table>
 </div>
-<div id="TIP" class="paragraph">
-<p>In the example above, authentication of the <code>sayHello</code> endpoint is enforced with the <code>@Authenticated</code> annotation.
-Alternatively, if you use an the <a href="security-authorize-web-endpoints-reference#authorization-using-configuration">HTTP Security policy</a>
-to secure the endpoint, then, for the <code>@Tenant</code> annotation be effective, you must delay this policy&#8217;s permission check as shown in the example below:</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In the example above, authentication of the <code>sayHello</code> endpoint is enforced with the <code>@Authenticated</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, if you use an the <a href="security-authorize-web-endpoints-reference#authorization-using-configuration">HTTP Security policy</a>
+to secure the endpoint, then, for the <code>@Tenant</code> annotation be effective, you must delay this policy&#8217;s permission check as shown in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1168,6 +1208,10 @@ quarkus.http.auth.permission.authenticated.applies-to=JAXRS <i class="conum" dat
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Tell Quarkus to run the HTTP permission check after the tenant has been selected with the <code>@Tenant</code> annotation.</td>
+</tr>
+</table>
+</div>
+</td>
 </tr>
 </table>
 </div>
@@ -1210,7 +1254,7 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
         if ("tenant-c".equals(parts[1])) {
             // Do 'return requestContext.runBlocking(createTenantConfig());'
             // if a blocking call is required to create a tenant config,
-            return Uni.createFromItem(createTenantConfig());
+            return Uni.createFrom().item(createTenantConfig());
         }
 
         //Resolve to default tenant configuration
@@ -1289,11 +1333,12 @@ quarkus.oidc.b.credentials.secret=client-b-secret</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can return the tenant id of either <code>a</code> or <code>b</code> from <code>quarkus.oidc.TenantResolver</code>:</p>
+<p>You can return the tenant id of either <code>a</code> or <code>b</code> from <code>io.quarkus.oidc.TenantResolver</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import quarkus.oidc.TenantResolver;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.oidc.TenantResolver;
+import io.vertx.ext.web.RoutingContext;
 
 public class CustomTenantResolver implements TenantResolver {
 
@@ -1375,7 +1420,7 @@ quarkus.oidc.google.credentials.secret=${google-client-secret}
 quarkus.oidc.google.authentication.redirect-path=/signed-in
 
 # Tenant 'github' configuration
-quarkus.oidc.github.provider=google
+quarkus.oidc.github.provider=github
 quarkus.oidc.github.client-id=${github-client-id}
 quarkus.oidc.github.credentials.secret=${github-client-secret}
 quarkus.oidc.github.authentication.redirect-path=/signed-in</code></pre>
@@ -1463,26 +1508,24 @@ quarkus.oidc.tenant-b.credentials.secret=${tenant-b-client-secret}</code></pre>
 <div class="paragraph">
 <p>Tenant resolution for the OIDC <code>web-app</code> applications must be done at least 3 times during an authorization code flow, when the OIDC tenant-specific configuration affects how each of the following steps is run.</p>
 </div>
-<div class="sect3">
-<h4 id="step-1-unauthenticated-user-accesses-an-endpoint-and-is-redirected-to-oidc-provider"><a class="anchor" href="#step-1-unauthenticated-user-accesses-an-endpoint-and-is-redirected-to-oidc-provider"></a>Step 1: Unauthenticated user accesses an endpoint and is redirected to OIDC provider</h4>
 <div class="paragraph">
+<div class="title">Step 1: Unauthenticated user accesses an endpoint and is redirected to OIDC provider</div>
 <p>When an unauthenticated user accesses a secured path, the user is redirected to the OIDC provider to authenticate and the tenant configuration is used to build the redirect URI.</p>
 </div>
 <div class="paragraph">
 <p>All the static and dynamic tenant resolution options listed in the <a href="#static-tenant-resolution">Static tenant configuration resolution</a> and <a href="#tenant-config-resolver">Dynamic tenant configuration resolution</a> sections can be used to resolve a tenant.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="step-2-the-user-is-redirected-back-to-the-endpoint"><a class="anchor" href="#step-2-the-user-is-redirected-back-to-the-endpoint"></a>Step 2: The user is redirected back to the endpoint</h4>
 <div class="paragraph">
+<div class="title">Step 2: The user is redirected back to the endpoint</div>
 <p>After the provider authentication, the user is redirected back to the Quarkus endpoint and the tenant configuration is used to complete the authorization code flow.</p>
 </div>
 <div class="paragraph">
 <p>All the static and dynamic tenant resolution options listed in the <a href="#static-tenant-resolution">Static tenant configuration resolution</a> and <a href="#tenant-config-resolver">Dynamic tenant configuration resolution</a> sections can be used to resolve a tenant. Before the tenant resolution begins, the authorization code flow <code>state cookie</code> is used to set the already resolved tenant configuration id as a RoutingContext <code>tenant-id</code> attribute: both custom dynamic <code>TenantConfigResolver</code> and static <code>TenantResolver</code> tenant resolvers can check it.</p>
 </div>
+<div class="paragraph">
+<div class="title">Step 3: Authenticated user accesses the secured path using the session cookie</div>
+<p>The tenant configuration determines how the session cookie is verified and refreshed. Before the tenant resolution begins, the authorization code flow <code>session cookie</code> is used to set the already resolved tenant configuration id as a RoutingContext <code>tenant-id</code> attribute: both custom dynamic <code>TenantConfigResolver</code> and static <code>TenantResolver</code> tenant resolvers can check it.</p>
 </div>
-<div class="sect3">
-<h4 id="step-3-authenticated-user-accesses-the-secured-path-using-the-session-cookie-the-tenant-configuration-determines-how-the-session-cookie-is-verified-and-refreshed-before-the-tenant-resolution-begins-the-authorization-code-flow-session-cookie-is-used-to-set-the-already-resolved-tenant-configuration-id-as-a-routingcontext-tenant-id-attribute-both-custom-dynamic-tenantconfigresolver-and-static-tenantresolver-tenant-resolvers-can-check-it"><a class="anchor" href="#step-3-authenticated-user-accesses-the-secured-path-using-the-session-cookie-the-tenant-configuration-determines-how-the-session-cookie-is-verified-and-refreshed-before-the-tenant-resolution-begins-the-authorization-code-flow-session-cookie-is-used-to-set-the-already-resolved-tenant-configuration-id-as-a-routingcontext-tenant-id-attribute-both-custom-dynamic-tenantconfigresolver-and-static-tenantresolver-tenant-resolvers-can-check-it"></a>Step 3: Authenticated user accesses the secured path using the session cookie: the tenant configuration determines how the session cookie is verified and refreshed. Before the tenant resolution begins, the authorization code flow <code>session cookie</code> is used to set the already resolved tenant configuration id as a RoutingContext <code>tenant-id</code> attribute: both custom dynamic <code>TenantConfigResolver</code> and static <code>TenantResolver</code> tenant resolvers can check it.</h4>
 <div class="paragraph">
 <p>For example, here is how a custom <code>TenantConfigResolver</code> can avoid creating the already resolved tenant configuration, that may otherwise require blocking reads from the database or other remote sources:</p>
 </div>
@@ -1511,9 +1554,9 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 
         String path = context.request().path(); <i class="conum" data-value="2"></i><b>(2)</b>
         if (path.endsWith("tenant-a")) {
-            return Uni.createFromItem(createTenantConfig("tenant-a", "client-a", "secret-a"));
+            return Uni.createFrom().item(createTenantConfig("tenant-a", "client-a", "secret-a"));
         } else if (path.endsWith("tenant-b")) {
-            return Uni.createFromItem(createTenantConfig("tenant-b", "client-b", "secret-b"));
+            return Uni.createFrom().item(createTenantConfig("tenant-b", "client-b", "secret-b"));
         }
 
         // Default tenant id
@@ -1556,10 +1599,10 @@ quarkus.oidc.application-type=web-app</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The preceeding example assumes that the <code>tenant-a</code>, <code>tenant-b</code> and default tenants are all used to protect the same endpoint paths. In other words, after the user has authenticated with the <code>tenant-a</code> configuration, this user will not be able to choose to authenticate with the <code>tenant-b</code> or default configuration before this user logs out and has a session cookie cleared or expired.</p>
+<p>The preceding example assumes that the <code>tenant-a</code>, <code>tenant-b</code> and default tenants are all used to protect the same endpoint paths. In other words, after the user has authenticated with the <code>tenant-a</code> configuration, this user will not be able to choose to authenticate with the <code>tenant-b</code> or default configuration before this user logs out and has a session cookie cleared or expired.</p>
 </div>
 <div class="paragraph">
-<p>The situtaion where multiple OIDC <code>web-app</code> tenants protect the tenant-specific paths is less typical and also requires an extra care.
+<p>The situation where multiple OIDC <code>web-app</code> tenants protect the tenant-specific paths is less typical and also requires an extra care.
 When multiple OIDC <code>web-app</code> tenants such as <code>tenant-a</code>, <code>tenant-b</code> and default tenants are used to control access to the tenant specific paths, the users authenticated with one OIDC provider must not be able to access the paths requiring an authentication with another provider, otherwise the results can be unpredictable, most likely causing unexpected authentication failures.
 For example, if the <code>tenant-a</code> authentication requires a Keycloak authentication and the <code>tenant-b</code> authentication requires an Auth0 authentication, then, if the <code>tenant-a</code> authenticated user attempts to access a path secured by the <code>tenant-b</code> configuration, then the session cookie will not be verified, since the Auth0 public verification keys can not be used to verify the tokens signed by Keycloak.
 An easy, recommended way to avoid multiple <code>web-app</code> tenants conflicting with each other is to set the tenant specific session path as shown in the following example:</p>
@@ -1589,9 +1632,9 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 
         String path = context.request().path(); <i class="conum" data-value="2"></i><b>(2)</b>
         if (path.endsWith("tenant-a")) {
-            return Uni.createFromItem(createTenantConfig("tenant-a", "/tenant-a", "client-a", "secret-a"));
+            return Uni.createFrom().item(createTenantConfig("tenant-a", "/tenant-a", "client-a", "secret-a"));
         } else if (path.endsWith("tenant-b")) {
-            return Uni.createFromItem(createTenantConfig("tenant-b", "/tenant-b", "client-b", "secret-b"));
+            return Uni.createFrom().item(createTenantConfig("tenant-b", "/tenant-b", "client-b", "secret-b"));
         }
 
         // Default tenant id
@@ -1673,7 +1716,7 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
                    context.remove(OidcUtils.TENANT_ID_ATTRIBUTE); <i class="conum" data-value="3"></i><b>(3)</b>
 	        }
             }
-            return Uni.createFromItem(createTenantConfig("tenant-a", "client-a", "secret-a"));
+            return Uni.createFrom().item(createTenantConfig("tenant-a", "client-a", "secret-a"));
         } else if (path.endsWith("tenant-b")) {
             String resolvedTenantId = context.get(OidcUtils.TENANT_ID_ATTRIBUTE);
 	    if (resolvedTenantId != null) {
@@ -1684,7 +1727,7 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
                    context.remove(OidcUtils.TENANT_ID_ATTRIBUTE); <i class="conum" data-value="3"></i><b>(3)</b>
 	        }
             }
-            return Uni.createFromItem(createTenantConfig("tenant-b", "client-b", "secret-b"));
+            return Uni.createFrom().item(createTenantConfig("tenant-b", "client-b", "secret-b"));
         }
 
         // Set default tenant id
@@ -1723,7 +1766,6 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 <td>Use the default tenant for all other paths. It is equivalent to removing the <code>tenant-id</code> attribute.</td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
@@ -1872,6 +1914,9 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
         <li class="reference"><a href="/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
       
         
+        <li class="reference"><a href="/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
+      
+        
         <li class="concepts"><a href="/guides/security-oidc-bearer-token-authentication">OpenID Connect (OIDC) Bearer token authentication</a></li>
       
         
@@ -1918,9 +1963,6 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
       
         
         <li class="concepts"><a href="/guides/security-proactive-authentication">Proactive authentication</a></li>
-      
-        
-        <li class="concepts"><a href="/guides/security-architecture">Quarkus Security architecture</a></li>
       </ul>
     </div>
     </div>
@@ -1995,6 +2037,10 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,8 +11,33 @@
   <title>Vert.x Reference Guide - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -293,7 +320,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-caching"></a> <span class="property-path"><code>quarkus.vertx.caching</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-caching"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-caching"><code>quarkus.vertx.caching</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.caching' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -301,7 +329,7 @@ The following table lists the supported properties:</p>
 <p>Enables or disables the Vert.x cache.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47455">QUARKUS_VERTX_CACHING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47455" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56026">QUARKUS_VERTX_CACHING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56026" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -313,7 +341,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cache-directory"></a> <span class="property-path"><code>quarkus.vertx.cache-directory</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cache-directory"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cache-directory"><code>quarkus.vertx.cache-directory</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cache-directory' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -324,7 +353,7 @@ The following table lists the supported properties:</p>
 <p>Note that this property is ignored if the <code>vertx.cacheDirBase</code> system property is set.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47456">QUARKUS_VERTX_CACHE_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47456" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56027">QUARKUS_VERTX_CACHE_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56027" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -336,7 +365,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-classpath-resolving"></a> <span class="property-path"><code>quarkus.vertx.classpath-resolving</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-classpath-resolving"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-classpath-resolving"><code>quarkus.vertx.classpath-resolving</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.classpath-resolving' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -344,7 +374,7 @@ The following table lists the supported properties:</p>
 <p>Enables or disabled the Vert.x classpath resource resolver.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47457">QUARKUS_VERTX_CLASSPATH_RESOLVING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47457" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56028">QUARKUS_VERTX_CLASSPATH_RESOLVING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56028" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -356,7 +386,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-event-loops-pool-size"></a> <span class="property-path"><code>quarkus.vertx.event-loops-pool-size</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-event-loops-pool-size"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-event-loops-pool-size"><code>quarkus.vertx.event-loops-pool-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.event-loops-pool-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -364,7 +395,7 @@ The following table lists the supported properties:</p>
 <p>The number of event loops. By default, it matches the number of CPUs detected on the system.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47458">QUARKUS_VERTX_EVENT_LOOPS_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47458" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56029">QUARKUS_VERTX_EVENT_LOOPS_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56029" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -376,7 +407,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-max-event-loop-execute-time"></a> <span class="property-path"><code>quarkus.vertx.max-event-loop-execute-time</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-max-event-loop-execute-time"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-max-event-loop-execute-time"><code>quarkus.vertx.max-event-loop-execute-time</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.max-event-loop-execute-time' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -384,19 +416,20 @@ The following table lists the supported properties:</p>
 <p>The maximum amount of time the event loop can be blocked.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47459">QUARKUS_VERTX_MAX_EVENT_LOOP_EXECUTE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47459" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56030">QUARKUS_VERTX_MAX_EVENT_LOOP_EXECUTE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56030" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-warning-exception-time"></a> <span class="property-path"><code>quarkus.vertx.warning-exception-time</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-warning-exception-time"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-warning-exception-time"><code>quarkus.vertx.warning-exception-time</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.warning-exception-time' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -404,19 +437,20 @@ The following table lists the supported properties:</p>
 <p>The amount of time before a warning is displayed if the event loop is blocked.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47460">QUARKUS_VERTX_WARNING_EXCEPTION_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47460" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56031">QUARKUS_VERTX_WARNING_EXCEPTION_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56031" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-max-worker-execute-time"></a> <span class="property-path"><code>quarkus.vertx.max-worker-execute-time</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-max-worker-execute-time"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-max-worker-execute-time"><code>quarkus.vertx.max-worker-execute-time</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.max-worker-execute-time' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -424,19 +458,20 @@ The following table lists the supported properties:</p>
 <p>The maximum amount of time the worker thread can be blocked.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47461">QUARKUS_VERTX_MAX_WORKER_EXECUTE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47461" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56032">QUARKUS_VERTX_MAX_WORKER_EXECUTE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56032" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>60S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-internal-blocking-pool-size"></a> <span class="property-path"><code>quarkus.vertx.internal-blocking-pool-size</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-internal-blocking-pool-size"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-internal-blocking-pool-size"><code>quarkus.vertx.internal-blocking-pool-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.internal-blocking-pool-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -444,7 +479,7 @@ The following table lists the supported properties:</p>
 <p>The size of the internal thread pool (used for the file system).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47462">QUARKUS_VERTX_INTERNAL_BLOCKING_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47462" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56033">QUARKUS_VERTX_INTERNAL_BLOCKING_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56033" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -456,7 +491,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-queue-size"></a> <span class="property-path"><code>quarkus.vertx.queue-size</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-queue-size"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-queue-size"><code>quarkus.vertx.queue-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.queue-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -464,7 +500,7 @@ The following table lists the supported properties:</p>
 <p>The queue size. For most applications this should be unbounded</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47463">QUARKUS_VERTX_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47463" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56034">QUARKUS_VERTX_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56034" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -476,7 +512,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-growth-resistance"></a> <span class="property-path"><code>quarkus.vertx.growth-resistance</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-growth-resistance"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-growth-resistance"><code>quarkus.vertx.growth-resistance</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.growth-resistance' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -487,7 +524,7 @@ The following table lists the supported properties:</p>
 <p>A resistance factor applied after the core pool is full; values applied here will cause that fraction of submissions to create new threads when no idle thread is available. A value of <code>0.0f</code> implies that threads beyond the core size should be created as aggressively as threads within it; a value of <code>1.0f</code> implies that threads beyond the core size should never be created.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47464">QUARKUS_VERTX_GROWTH_RESISTANCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47464" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56035">QUARKUS_VERTX_GROWTH_RESISTANCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56035" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -499,7 +536,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-keep-alive-time"></a> <span class="property-path"><code>quarkus.vertx.keep-alive-time</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-keep-alive-time"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-keep-alive-time"><code>quarkus.vertx.keep-alive-time</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.keep-alive-time' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -507,19 +545,20 @@ The following table lists the supported properties:</p>
 <p>The amount of time a thread will stay alive with no work.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47465">QUARKUS_VERTX_KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47465" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56036">QUARKUS_VERTX_KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56036" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>30S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-prefill"></a> <span class="property-path"><code>quarkus.vertx.prefill</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-prefill"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-prefill"><code>quarkus.vertx.prefill</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.prefill' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -527,7 +566,7 @@ The following table lists the supported properties:</p>
 <p>Prefill thread pool when creating a new Executor. When <code>io.vertx.core.spi.ExecutorServiceFactory#createExecutor</code> is called, initialise with the number of defined threads at startup</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47466">QUARKUS_VERTX_PREFILL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47466" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56037">QUARKUS_VERTX_PREFILL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56037" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -539,7 +578,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-use-async-dns"></a> <span class="property-path"><code>quarkus.vertx.use-async-dns</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-use-async-dns"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-use-async-dns"><code>quarkus.vertx.use-async-dns</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.use-async-dns' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -547,7 +587,7 @@ The following table lists the supported properties:</p>
 <p>Enables the async DNS resolver.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47467">QUARKUS_VERTX_USE_ASYNC_DNS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47467" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56038">QUARKUS_VERTX_USE_ASYNC_DNS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56038" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -559,7 +599,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pem</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem"><code>quarkus.vertx.eventbus.key-certificate-pem</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pem' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -567,7 +608,7 @@ The following table lists the supported properties:</p>
 <p>PEM Key/cert config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47468">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47468" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56039">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56039" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -579,7 +620,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-keys"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pem.keys</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-keys"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-keys"><code>quarkus.vertx.eventbus.key-certificate-pem.keys</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pem.keys' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -587,7 +629,7 @@ The following table lists the supported properties:</p>
 <p>Comma-separated list of the path to the key files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47469">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47469" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56040">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56040" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -599,7 +641,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-certs"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pem.certs</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-certs"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pem-certs"><code>quarkus.vertx.eventbus.key-certificate-pem.certs</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pem.certs' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -607,7 +650,7 @@ The following table lists the supported properties:</p>
 <p>Comma-separated list of the path to the certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47470">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47470" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56041">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56041" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -619,7 +662,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-jks</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks"><code>quarkus.vertx.eventbus.key-certificate-jks</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-jks' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -627,7 +671,7 @@ The following table lists the supported properties:</p>
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47471">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47471" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56042">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56042" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -639,7 +683,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-path"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-jks.path</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-path"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-path"><code>quarkus.vertx.eventbus.key-certificate-jks.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-jks.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -647,7 +692,7 @@ The following table lists the supported properties:</p>
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47472">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47472" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56043">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56043" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -659,7 +704,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-password"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-jks.password</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-password"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-jks-password"><code>quarkus.vertx.eventbus.key-certificate-jks.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-jks.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -667,7 +713,7 @@ The following table lists the supported properties:</p>
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47473">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47473" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56044">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56044" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -679,7 +725,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pfx</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx"><code>quarkus.vertx.eventbus.key-certificate-pfx</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pfx' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
@@ -687,7 +734,7 @@ The following table lists the supported properties:</p>
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47474">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47474" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56045">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56045" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -699,7 +746,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-path"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pfx.path</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-path"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-path"><code>quarkus.vertx.eventbus.key-certificate-pfx.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pfx.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
@@ -707,7 +755,7 @@ The following table lists the supported properties:</p>
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47475">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47475" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56046">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56046" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -719,7 +767,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-password"></a> <span class="property-path"><code>quarkus.vertx.eventbus.key-certificate-pfx.password</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-password"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-key-certificate-pfx-password"><code>quarkus.vertx.eventbus.key-certificate-pfx.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.key-certificate-pfx.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
 <div class="content">
@@ -727,7 +776,7 @@ The following table lists the supported properties:</p>
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47476">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47476" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56047">QUARKUS_VERTX_EVENTBUS_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56047" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -739,7 +788,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-pem</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem"><code>quarkus.vertx.eventbus.trust-certificate-pem</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-pem' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
 <div class="content">
@@ -747,7 +797,7 @@ The following table lists the supported properties:</p>
 <p>PEM Trust config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47477">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47477" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56048">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56048" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -759,7 +809,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem-certs"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-pem.certs</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem-certs"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pem-certs"><code>quarkus.vertx.eventbus.trust-certificate-pem.certs</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-pem.certs' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
 <div class="content">
@@ -767,7 +818,7 @@ The following table lists the supported properties:</p>
 <p>Comma-separated list of the trust certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47478">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47478" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56049">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56049" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -779,7 +830,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-jks</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks"><code>quarkus.vertx.eventbus.trust-certificate-jks</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-jks' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
 <div class="content">
@@ -787,7 +839,7 @@ The following table lists the supported properties:</p>
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47479">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47479" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56050">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56050" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -799,7 +851,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-path"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-jks.path</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-path"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-path"><code>quarkus.vertx.eventbus.trust-certificate-jks.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-jks.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
 <div class="content">
@@ -807,7 +860,7 @@ The following table lists the supported properties:</p>
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47480">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47480" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56051">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56051" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -819,7 +872,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-password"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-jks.password</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-password"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-jks-password"><code>quarkus.vertx.eventbus.trust-certificate-jks.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-jks.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
 <div class="content">
@@ -827,7 +881,7 @@ The following table lists the supported properties:</p>
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47481">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47481" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56052">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56052" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -839,7 +893,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-pfx</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx"><code>quarkus.vertx.eventbus.trust-certificate-pfx</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-pfx' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
 <div class="content">
@@ -847,7 +902,7 @@ The following table lists the supported properties:</p>
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47482">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47482" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56053">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56053" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -859,7 +914,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-path"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-pfx.path</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-path"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-path"><code>quarkus.vertx.eventbus.trust-certificate-pfx.path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-pfx.path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
 <div class="content">
@@ -867,7 +923,7 @@ The following table lists the supported properties:</p>
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47483">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47483" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56054">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56054" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -879,7 +935,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-password"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-certificate-pfx.password</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-password"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-certificate-pfx-password"><code>quarkus.vertx.eventbus.trust-certificate-pfx.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-certificate-pfx.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
 <div class="content">
@@ -887,7 +944,7 @@ The following table lists the supported properties:</p>
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47484">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47484" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56055">QUARKUS_VERTX_EVENTBUS_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56055" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -899,7 +956,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-accept-backlog"></a> <span class="property-path"><code>quarkus.vertx.eventbus.accept-backlog</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-accept-backlog"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-accept-backlog"><code>quarkus.vertx.eventbus.accept-backlog</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.accept-backlog' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
 <div class="content">
@@ -907,7 +965,7 @@ The following table lists the supported properties:</p>
 <p>The accept backlog.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47485">QUARKUS_VERTX_EVENTBUS_ACCEPT_BACKLOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47485" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56056">QUARKUS_VERTX_EVENTBUS_ACCEPT_BACKLOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56056" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -919,7 +977,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-client-auth"></a> <span class="property-path"><code>quarkus.vertx.eventbus.client-auth</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-client-auth"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-client-auth"><code>quarkus.vertx.eventbus.client-auth</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.client-auth' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
 <div class="content">
@@ -927,7 +986,7 @@ The following table lists the supported properties:</p>
 <p>The client authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47486">QUARKUS_VERTX_EVENTBUS_CLIENT_AUTH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47486" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56057">QUARKUS_VERTX_EVENTBUS_CLIENT_AUTH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56057" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -939,7 +998,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-connect-timeout"></a> <span class="property-path"><code>quarkus.vertx.eventbus.connect-timeout</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-connect-timeout"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-connect-timeout"><code>quarkus.vertx.eventbus.connect-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.connect-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
 <div class="content">
@@ -947,19 +1007,20 @@ The following table lists the supported properties:</p>
 <p>The connect timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47487">QUARKUS_VERTX_EVENTBUS_CONNECT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47487" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56058">QUARKUS_VERTX_EVENTBUS_CONNECT_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56058" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>60S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-idle-timeout"></a> <span class="property-path"><code>quarkus.vertx.eventbus.idle-timeout</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-idle-timeout"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-idle-timeout"><code>quarkus.vertx.eventbus.idle-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.idle-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
@@ -967,19 +1028,20 @@ The following table lists the supported properties:</p>
 <p>The idle timeout in milliseconds.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47488">QUARKUS_VERTX_EVENTBUS_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47488" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56059">QUARKUS_VERTX_EVENTBUS_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56059" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-receive-buffer-size"></a> <span class="property-path"><code>quarkus.vertx.eventbus.receive-buffer-size</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-receive-buffer-size"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-receive-buffer-size"><code>quarkus.vertx.eventbus.receive-buffer-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.receive-buffer-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
@@ -987,7 +1049,7 @@ The following table lists the supported properties:</p>
 <p>The receive buffer size.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47489">QUARKUS_VERTX_EVENTBUS_RECEIVE_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47489" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56060">QUARKUS_VERTX_EVENTBUS_RECEIVE_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56060" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -999,7 +1061,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reconnect-attempts"></a> <span class="property-path"><code>quarkus.vertx.eventbus.reconnect-attempts</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reconnect-attempts"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-reconnect-attempts"><code>quarkus.vertx.eventbus.reconnect-attempts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.reconnect-attempts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
@@ -1007,7 +1070,7 @@ The following table lists the supported properties:</p>
 <p>The number of reconnection attempts.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47490">QUARKUS_VERTX_EVENTBUS_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47490" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56061">QUARKUS_VERTX_EVENTBUS_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56061" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1019,7 +1082,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reconnect-interval"></a> <span class="property-path"><code>quarkus.vertx.eventbus.reconnect-interval</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reconnect-interval"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-reconnect-interval"><code>quarkus.vertx.eventbus.reconnect-interval</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.reconnect-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
@@ -1027,19 +1091,20 @@ The following table lists the supported properties:</p>
 <p>The reconnection interval in milliseconds.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47491">QUARKUS_VERTX_EVENTBUS_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47491" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56062">QUARKUS_VERTX_EVENTBUS_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56062" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reuse-address"></a> <span class="property-path"><code>quarkus.vertx.eventbus.reuse-address</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reuse-address"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-reuse-address"><code>quarkus.vertx.eventbus.reuse-address</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.reuse-address' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
@@ -1047,7 +1112,7 @@ The following table lists the supported properties:</p>
 <p>Whether to reuse the address.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47492">QUARKUS_VERTX_EVENTBUS_REUSE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47492" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56063">QUARKUS_VERTX_EVENTBUS_REUSE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56063" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1059,7 +1124,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reuse-port"></a> <span class="property-path"><code>quarkus.vertx.eventbus.reuse-port</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-reuse-port"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-reuse-port"><code>quarkus.vertx.eventbus.reuse-port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.reuse-port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
@@ -1067,7 +1133,7 @@ The following table lists the supported properties:</p>
 <p>Whether to reuse the port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47493">QUARKUS_VERTX_EVENTBUS_REUSE_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47493" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56064">QUARKUS_VERTX_EVENTBUS_REUSE_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56064" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1079,7 +1145,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-send-buffer-size"></a> <span class="property-path"><code>quarkus.vertx.eventbus.send-buffer-size</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-send-buffer-size"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-send-buffer-size"><code>quarkus.vertx.eventbus.send-buffer-size</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.send-buffer-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
 <div class="content">
@@ -1087,7 +1154,7 @@ The following table lists the supported properties:</p>
 <p>The send buffer size.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47494">QUARKUS_VERTX_EVENTBUS_SEND_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47494" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56065">QUARKUS_VERTX_EVENTBUS_SEND_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56065" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1099,7 +1166,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-so-linger"></a> <span class="property-path"><code>quarkus.vertx.eventbus.so-linger</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-so-linger"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-so-linger"><code>quarkus.vertx.eventbus.so-linger</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.so-linger' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
 <div class="content">
@@ -1107,7 +1175,7 @@ The following table lists the supported properties:</p>
 <p>The so linger.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47495">QUARKUS_VERTX_EVENTBUS_SO_LINGER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47495" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56066">QUARKUS_VERTX_EVENTBUS_SO_LINGER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56066" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1119,7 +1187,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-ssl"></a> <span class="property-path"><code>quarkus.vertx.eventbus.ssl</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-ssl"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-ssl"><code>quarkus.vertx.eventbus.ssl</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.ssl' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
 <div class="content">
@@ -1127,7 +1196,7 @@ The following table lists the supported properties:</p>
 <p>Enables or Disabled SSL.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47496">QUARKUS_VERTX_EVENTBUS_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47496" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56067">QUARKUS_VERTX_EVENTBUS_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56067" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1139,7 +1208,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-tcp-keep-alive"></a> <span class="property-path"><code>quarkus.vertx.eventbus.tcp-keep-alive</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-tcp-keep-alive"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-tcp-keep-alive"><code>quarkus.vertx.eventbus.tcp-keep-alive</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.tcp-keep-alive' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
 <div class="content">
@@ -1147,7 +1217,7 @@ The following table lists the supported properties:</p>
 <p>Whether to keep the TCP connection opened (keep-alive).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47497">QUARKUS_VERTX_EVENTBUS_TCP_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47497" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56068">QUARKUS_VERTX_EVENTBUS_TCP_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56068" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1159,7 +1229,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-tcp-no-delay"></a> <span class="property-path"><code>quarkus.vertx.eventbus.tcp-no-delay</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-tcp-no-delay"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-tcp-no-delay"><code>quarkus.vertx.eventbus.tcp-no-delay</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.tcp-no-delay' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
 <div class="content">
@@ -1167,7 +1238,7 @@ The following table lists the supported properties:</p>
 <p>Configure the TCP no delay.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47498">QUARKUS_VERTX_EVENTBUS_TCP_NO_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47498" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56069">QUARKUS_VERTX_EVENTBUS_TCP_NO_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56069" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1179,7 +1250,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-traffic-class"></a> <span class="property-path"><code>quarkus.vertx.eventbus.traffic-class</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-traffic-class"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-traffic-class"><code>quarkus.vertx.eventbus.traffic-class</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.traffic-class' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
 <div class="content">
@@ -1187,7 +1259,7 @@ The following table lists the supported properties:</p>
 <p>Configure the traffic class.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47499">QUARKUS_VERTX_EVENTBUS_TRAFFIC_CLASS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47499" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56070">QUARKUS_VERTX_EVENTBUS_TRAFFIC_CLASS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56070" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1199,7 +1271,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-all"></a> <span class="property-path"><code>quarkus.vertx.eventbus.trust-all</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-eventbus-trust-all"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-eventbus-trust-all"><code>quarkus.vertx.eventbus.trust-all</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.eventbus.trust-all' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
 <div class="content">
@@ -1207,7 +1280,7 @@ The following table lists the supported properties:</p>
 <p>Enables or disables the trust all parameter.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47500">QUARKUS_VERTX_EVENTBUS_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47500" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56071">QUARKUS_VERTX_EVENTBUS_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56071" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1219,7 +1292,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-host"></a> <span class="property-path"><code>quarkus.vertx.cluster.host</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-host"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-host"><code>quarkus.vertx.cluster.host</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.host' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
 <div class="content">
@@ -1227,7 +1301,7 @@ The following table lists the supported properties:</p>
 <p>The host name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47501">QUARKUS_VERTX_CLUSTER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47501" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56072">QUARKUS_VERTX_CLUSTER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56072" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1239,7 +1313,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-port"></a> <span class="property-path"><code>quarkus.vertx.cluster.port</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-port"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-port"><code>quarkus.vertx.cluster.port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
 <div class="content">
@@ -1247,7 +1322,7 @@ The following table lists the supported properties:</p>
 <p>The port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47502">QUARKUS_VERTX_CLUSTER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47502" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56073">QUARKUS_VERTX_CLUSTER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56073" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1259,7 +1334,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-public-host"></a> <span class="property-path"><code>quarkus.vertx.cluster.public-host</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-public-host"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-public-host"><code>quarkus.vertx.cluster.public-host</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.public-host' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
 <div class="content">
@@ -1267,7 +1343,7 @@ The following table lists the supported properties:</p>
 <p>The public host name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47503">QUARKUS_VERTX_CLUSTER_PUBLIC_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47503" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56074">QUARKUS_VERTX_CLUSTER_PUBLIC_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56074" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1279,7 +1355,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-public-port"></a> <span class="property-path"><code>quarkus.vertx.cluster.public-port</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-public-port"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-public-port"><code>quarkus.vertx.cluster.public-port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.public-port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
 <div class="content">
@@ -1287,7 +1364,7 @@ The following table lists the supported properties:</p>
 <p>The public port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47504">QUARKUS_VERTX_CLUSTER_PUBLIC_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47504" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56075">QUARKUS_VERTX_CLUSTER_PUBLIC_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56075" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1299,7 +1376,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-clustered"></a> <span class="property-path"><code>quarkus.vertx.cluster.clustered</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-clustered"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-clustered"><code>quarkus.vertx.cluster.clustered</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.clustered' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
 <div class="content">
@@ -1307,7 +1385,7 @@ The following table lists the supported properties:</p>
 <p>Enables or disables the clustering.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47505">QUARKUS_VERTX_CLUSTER_CLUSTERED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47505" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56076">QUARKUS_VERTX_CLUSTER_CLUSTERED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56076" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1319,7 +1397,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-ping-interval"></a> <span class="property-path"><code>quarkus.vertx.cluster.ping-interval</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-ping-interval"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-ping-interval"><code>quarkus.vertx.cluster.ping-interval</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.ping-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
 <div class="content">
@@ -1327,19 +1406,20 @@ The following table lists the supported properties:</p>
 <p>The ping interval.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47506">QUARKUS_VERTX_CLUSTER_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47506" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56077">QUARKUS_VERTX_CLUSTER_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56077" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-cluster-ping-reply-interval"></a> <span class="property-path"><code>quarkus.vertx.cluster.ping-reply-interval</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-cluster-ping-reply-interval"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-cluster-ping-reply-interval"><code>quarkus.vertx.cluster.ping-reply-interval</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.cluster.ping-reply-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-53" class="openblock description description-collapsed">
 <div class="content">
@@ -1347,19 +1427,20 @@ The following table lists the supported properties:</p>
 <p>The ping reply interval.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47507">QUARKUS_VERTX_CLUSTER_PING_REPLY_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47507" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56078">QUARKUS_VERTX_CLUSTER_PING_REPLY_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56078" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-max-time-to-live"></a> <span class="property-path"><code>quarkus.vertx.resolver.cache-max-time-to-live</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-max-time-to-live"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-cache-max-time-to-live"><code>quarkus.vertx.resolver.cache-max-time-to-live</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.cache-max-time-to-live' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-54" class="openblock description description-collapsed">
 <div class="content">
@@ -1370,7 +1451,7 @@ The following table lists the supported properties:</p>
 <p>If not set explicitly, resolved addresses may be cached forever.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47508">QUARKUS_VERTX_RESOLVER_CACHE_MAX_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47508" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56079">QUARKUS_VERTX_RESOLVER_CACHE_MAX_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56079" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1382,7 +1463,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-min-time-to-live"></a> <span class="property-path"><code>quarkus.vertx.resolver.cache-min-time-to-live</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-min-time-to-live"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-cache-min-time-to-live"><code>quarkus.vertx.resolver.cache-min-time-to-live</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.cache-min-time-to-live' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-55" class="openblock description description-collapsed">
 <div class="content">
@@ -1390,7 +1472,7 @@ The following table lists the supported properties:</p>
 <p>The minimum amount of time in seconds that a successfully resolved address will be cached.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47509">QUARKUS_VERTX_RESOLVER_CACHE_MIN_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47509" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56080">QUARKUS_VERTX_RESOLVER_CACHE_MIN_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56080" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1402,7 +1484,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-negative-time-to-live"></a> <span class="property-path"><code>quarkus.vertx.resolver.cache-negative-time-to-live</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-cache-negative-time-to-live"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-cache-negative-time-to-live"><code>quarkus.vertx.resolver.cache-negative-time-to-live</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.cache-negative-time-to-live' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-56" class="openblock description description-collapsed">
 <div class="content">
@@ -1410,7 +1493,7 @@ The following table lists the supported properties:</p>
 <p>The amount of time in seconds that an unsuccessful attempt to resolve an address will be cached.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47510">QUARKUS_VERTX_RESOLVER_CACHE_NEGATIVE_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47510" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56081">QUARKUS_VERTX_RESOLVER_CACHE_NEGATIVE_TIME_TO_LIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56081" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1422,7 +1505,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-max-queries"></a> <span class="property-path"><code>quarkus.vertx.resolver.max-queries</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-max-queries"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-max-queries"><code>quarkus.vertx.resolver.max-queries</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.max-queries' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-57" class="openblock description description-collapsed">
 <div class="content">
@@ -1430,7 +1514,7 @@ The following table lists the supported properties:</p>
 <p>The maximum number of queries to be sent during a resolution.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47511">QUARKUS_VERTX_RESOLVER_MAX_QUERIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47511" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56082">QUARKUS_VERTX_RESOLVER_MAX_QUERIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56082" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1442,7 +1526,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-query-timeout"></a> <span class="property-path"><code>quarkus.vertx.resolver.query-timeout</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-query-timeout"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-query-timeout"><code>quarkus.vertx.resolver.query-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.query-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-58" class="openblock description description-collapsed">
 <div class="content">
@@ -1450,19 +1535,20 @@ The following table lists the supported properties:</p>
 <p>The duration after which a DNS query is considered to be failed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47512">QUARKUS_VERTX_RESOLVER_QUERY_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47512" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56083">QUARKUS_VERTX_RESOLVER_QUERY_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56083" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-vertx_quarkus-vertx"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-hosts-path"></a> <span class="property-path"><code>quarkus.vertx.resolver.hosts-path</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-hosts-path"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-hosts-path"><code>quarkus.vertx.resolver.hosts-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.hosts-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-59" class="openblock description description-collapsed">
 <div class="content">
@@ -1473,7 +1559,7 @@ The following table lists the supported properties:</p>
 <p>The default value is <code>null</code>, so the operating system hosts config (e.g. <code>/etc/hosts</code>) is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47513">QUARKUS_VERTX_RESOLVER_HOSTS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47513" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56084">QUARKUS_VERTX_RESOLVER_HOSTS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56084" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1485,7 +1571,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-host-refresh-period"></a> <span class="property-path"><code>quarkus.vertx.resolver.host-refresh-period</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-host-refresh-period"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-host-refresh-period"><code>quarkus.vertx.resolver.host-refresh-period</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.host-refresh-period' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-60" class="openblock description description-collapsed">
 <div class="content">
@@ -1496,7 +1583,7 @@ The following table lists the supported properties:</p>
 <p>The resolver caches the hosts configuration (configured using <code>quarkus.vertx.resolver.hosts-path</code> after it has read it. When the content of this file can change, setting a positive refresh period will load the configuration file again when necessary.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47514">QUARKUS_VERTX_RESOLVER_HOST_REFRESH_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47514" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56085">QUARKUS_VERTX_RESOLVER_HOST_REFRESH_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56085" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1508,7 +1595,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-servers"></a> <span class="property-path"><code>quarkus.vertx.resolver.servers</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-servers"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-servers"><code>quarkus.vertx.resolver.servers</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.servers' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-61" class="openblock description description-collapsed">
 <div class="content">
@@ -1516,7 +1604,7 @@ The following table lists the supported properties:</p>
 <p>Set the list of DNS server addresses, an address is the IP of the dns server, followed by an optional colon and a port, e.g <code>8.8.8.8</code> or {code 192.168.0.1:40000}. When the list is empty, the resolver will use the list of the system DNS server addresses from the environment, if that list cannot be retrieved it will use Google&#8217;s public DNS servers <code>"8.8.8.8"</code> and <code>"8.8.4.4"</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47515">QUARKUS_VERTX_RESOLVER_SERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47515" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56086">QUARKUS_VERTX_RESOLVER_SERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56086" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1528,7 +1616,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-opt-resource-enabled"></a> <span class="property-path"><code>quarkus.vertx.resolver.opt-resource-enabled</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-opt-resource-enabled"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-opt-resource-enabled"><code>quarkus.vertx.resolver.opt-resource-enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.opt-resource-enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-62" class="openblock description description-collapsed">
 <div class="content">
@@ -1536,7 +1625,7 @@ The following table lists the supported properties:</p>
 <p>Set to true to enable the automatic inclusion in DNS queries of an optional record that hints the remote DNS server about how much data the resolver can read per response.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47516">QUARKUS_VERTX_RESOLVER_OPT_RESOURCE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47516" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56087">QUARKUS_VERTX_RESOLVER_OPT_RESOURCE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56087" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1548,7 +1637,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-rd-flag"></a> <span class="property-path"><code>quarkus.vertx.resolver.rd-flag</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-rd-flag"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-rd-flag"><code>quarkus.vertx.resolver.rd-flag</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.rd-flag' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-63" class="openblock description description-collapsed">
 <div class="content">
@@ -1556,7 +1646,7 @@ The following table lists the supported properties:</p>
 <p>Set the DNS queries <em>Recursion Desired</em> flag value.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47517">QUARKUS_VERTX_RESOLVER_RD_FLAG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47517" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56088">QUARKUS_VERTX_RESOLVER_RD_FLAG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56088" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1568,7 +1658,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-search-domains"></a> <span class="property-path"><code>quarkus.vertx.resolver.search-domains</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-search-domains"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-search-domains"><code>quarkus.vertx.resolver.search-domains</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.search-domains' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-64" class="openblock description description-collapsed">
 <div class="content">
@@ -1579,7 +1670,7 @@ The following table lists the supported properties:</p>
 <p>When the search domain list is null, the effective search domain list will be populated using the system DNS search domains.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47518">QUARKUS_VERTX_RESOLVER_SEARCH_DOMAINS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47518" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56089">QUARKUS_VERTX_RESOLVER_SEARCH_DOMAINS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56089" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1591,7 +1682,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-ndots"></a> <span class="property-path"><code>quarkus.vertx.resolver.ndots</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-ndots"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-ndots"><code>quarkus.vertx.resolver.ndots</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.ndots' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-65" class="openblock description description-collapsed">
 <div class="content">
@@ -1599,7 +1691,7 @@ The following table lists the supported properties:</p>
 <p>Set the ndots value used when resolving using search domains, the default value is <code>-1</code> which determines the value from the OS on Linux or uses the value <code>1</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47519">QUARKUS_VERTX_RESOLVER_NDOTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47519" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56090">QUARKUS_VERTX_RESOLVER_NDOTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56090" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1611,7 +1703,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-rotate-servers"></a> <span class="property-path"><code>quarkus.vertx.resolver.rotate-servers</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-rotate-servers"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-rotate-servers"><code>quarkus.vertx.resolver.rotate-servers</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.rotate-servers' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-66" class="openblock description description-collapsed">
 <div class="content">
@@ -1619,7 +1712,7 @@ The following table lists the supported properties:</p>
 <p>Set to <code>true</code> to enable round-robin selection of the dns server to use. It spreads the query load among the servers and avoids all lookup to hit the first server of the list.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47520">QUARKUS_VERTX_RESOLVER_ROTATE_SERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47520" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56091">QUARKUS_VERTX_RESOLVER_ROTATE_SERVERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56091" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1631,7 +1724,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-resolver-round-robin-inet-address"></a> <span class="property-path"><code>quarkus.vertx.resolver.round-robin-inet-address</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-resolver-round-robin-inet-address"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-resolver-round-robin-inet-address"><code>quarkus.vertx.resolver.round-robin-inet-address</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.resolver.round-robin-inet-address' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-67" class="openblock description description-collapsed">
 <div class="content">
@@ -1639,7 +1733,7 @@ The following table lists the supported properties:</p>
 <p>Set to <code>true</code> to enable round-robin inet address selection of the ip address to use.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47521">QUARKUS_VERTX_RESOLVER_ROUND_ROBIN_INET_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47521" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56092">QUARKUS_VERTX_RESOLVER_ROUND_ROBIN_INET_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56092" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1651,7 +1745,8 @@ The following table lists the supported properties:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-vertx_quarkus-vertx-prefer-native-transport"></a> <span class="property-path"><code>quarkus.vertx.prefer-native-transport</code></span></p>
+<p><a id="quarkus-vertx_quarkus-vertx-prefer-native-transport"></a> <span class="property-path"><a href="#quarkus-vertx_quarkus-vertx-prefer-native-transport"><code>quarkus.vertx.prefer-native-transport</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.vertx.prefer-native-transport' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-68" class="openblock description description-collapsed">
 <div class="content">
@@ -1659,7 +1754,7 @@ The following table lists the supported properties:</p>
 <p>Enable or disable native transport</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-47522">QUARKUS_VERTX_PREFER_NATIVE_TRANSPORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47522" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-56093">QUARKUS_VERTX_PREFER_NATIVE_TRANSPORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-56093" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2602,7 +2697,7 @@ Methods returning a <code>Uni</code> or a <code>CompletionStage</code> <strong>c
 <div class="paragraph">
 <p>The <a href="https://vertx.io/docs/vertx-core/java/" class="bare">https://vertx.io/docs/vertx-core/java/</a><mark>event_bus[Vert.x Event Bus] uses <a href="https://vertx.io/docs/vertx-core/java/" class="bare">https://vertx.io/docs/vertx-core/java/</a></mark><em>message_codecs[codecs] to _serialize</em> and <em>deserialize</em> message objects.
 Quarkus provides a default codec for local delivery.
-This codec is automatically used for return types and message body parameters of local consumers, i.e. methods annotated with <code>@ConsumeEvent</code> whete <code>ConsumeEvent#local() == true</code> (which is the default).</p>
+This codec is automatically used for return types and message body parameters of local consumers, i.e. methods annotated with <code>@ConsumeEvent</code> where <code>ConsumeEvent#local() == true</code> (which is the default).</p>
 </div>
 <div class="paragraph">
 <p>So that you can exchange the message objects as follows:</p>
@@ -3389,6 +3484,68 @@ public class MyCustomizer implements VertxOptionsCustomizer {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="brotli4j-and-cross-platform-support"><a class="anchor" href="#brotli4j-and-cross-platform-support"></a>Brotli4J and cross-platform support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Brotli4J is a native library that provides support for the Brotli compression algorithm.
+By default, Quarkus includes the Brotli native library matching the platform you are running on.
+But sometimes, you need to include the native library for a different platform.</p>
+</div>
+<div class="paragraph">
+<p>In this case, you need to explicitly add a dependency to your project.
+For example, if you need to include the native library for <code>linux-aarch64</code>, you can add the following dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.aayushatharva.brotli4j&lt;/groupId&gt;
+    &lt;artifactId&gt;native-linux-aarch64&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will include the native library for <code>linux-aarch64</code> in your project, in addition to the one matching your machine.</p>
+</div>
+<div class="paragraph">
+<p>Here is the list of available brotli4j artifacts for the different platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>native-linux-x86_64</code></p>
+</li>
+<li>
+<p><code>native-linux-s390x</code></p>
+</li>
+<li>
+<p><code>native-linux-ppc64le</code></p>
+</li>
+<li>
+<p><code>native-linux-aarch64</code></p>
+</li>
+<li>
+<p><code>native-linux-armv7</code></p>
+</li>
+<li>
+<p><code>native-linux-riscv64</code></p>
+</li>
+<li>
+<p><code>native-windows-x86_64</code></p>
+</li>
+<li>
+<p><code>native-windows-aarch64</code></p>
+</li>
+<li>
+<p><code>native-macos-x86_64</code></p>
+</li>
+<li>
+<p><code>native-macos-aarch64</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
     </div>
     <div class="grid__item width-4-12 width-12-12-m tocwrapper">
       <div class="hide-mobile toc"><ul class="sectlevel1">
@@ -3436,6 +3593,7 @@ public class MyCustomizer implements VertxOptionsCustomizer {
 <li><a href="#use-io_uring">Use io_uring</a></li>
 <li><a href="#deploy-on-read-only-environments">Deploy on read-only environments</a></li>
 <li><a href="#customizing-the-vert-x-configuration">Customize the Vert.x configuration</a></li>
+<li><a href="#brotli4j-and-cross-platform-support">Brotli4J and cross-platform support</a></li>
 </ul></div>
     </div>
   </div>
@@ -3510,6 +3668,10 @@ public class MyCustomizer implements VertxOptionsCustomizer {
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,8 +11,33 @@
   <title>Reactive SQL Clients - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -343,7 +370,7 @@ cd reactive-pg-client-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.5:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.6:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=reactive-pg-client-quickstart \
     -Dextensions='resteasy-reactive,reactive-pg-client' \
@@ -1518,7 +1545,7 @@ quarkus.datasource.reactive.mysql.pipelining-limit=256</code></pre>
 <p>This is a global setting and is not specific to a datasource.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38150">QUARKUS_DATASOURCE_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38150" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46623">QUARKUS_DATASOURCE_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46623" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1553,7 +1580,7 @@ This is different from the "jdbc.enable-metrics" property that needs to be set o
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38151">QUARKUS_DATASOURCE_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38151" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46624">QUARKUS_DATASOURCE_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46624" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1581,7 +1608,7 @@ This is different from the "jdbc.enable-metrics" property that needs to be set o
 <p>The kind of database we will connect to (e.g. h2, postgresql&#8230;&#8203;).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38152">QUARKUS_DATASOURCE_DB_KIND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38152" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46625">QUARKUS_DATASOURCE_DB_KIND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46625" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1642,7 +1669,7 @@ or simply a warning in case the database cannot be reached.</p>
 the Hibernate ORM extension will default to the oldest version it supports.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38153">QUARKUS_DATASOURCE_DB_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38153" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46626">QUARKUS_DATASOURCE_DB_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46626" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1669,7 +1696,7 @@ the Hibernate ORM extension will default to the oldest version it supports.</p>
 unless connection configuration (e.g. the JDBC URL or reactive client URL) is set explicitly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38154">QUARKUS_DATASOURCE_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38154" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46627">QUARKUS_DATASOURCE_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46627" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1695,7 +1722,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>This has no effect if the provider is not a container-based database, such as H2 or Derby.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38155">QUARKUS_DATASOURCE_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38155" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46628">QUARKUS_DATASOURCE_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46628" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1718,7 +1745,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>Environment variables that are passed to the container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38156">QUARKUS_DATASOURCE_DEVSERVICES_CONTAINER_ENV</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38156" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46629">QUARKUS_DATASOURCE_DEVSERVICES_CONTAINER_ENV</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46629" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1744,7 +1771,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>Properties defined here are database-specific and are interpreted specifically in each database dev service implementation.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38157">QUARKUS_DATASOURCE_DEVSERVICES_CONTAINER_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38157" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46630">QUARKUS_DATASOURCE_DEVSERVICES_CONTAINER_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46630" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1767,7 +1794,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>Generic properties that are added to the database connection URL.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38158">QUARKUS_DATASOURCE_DEVSERVICES_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38158" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46631">QUARKUS_DATASOURCE_DEVSERVICES_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46631" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1793,7 +1820,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38159">QUARKUS_DATASOURCE_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38159" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46632">QUARKUS_DATASOURCE_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46632" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1819,7 +1846,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>This has no effect if the provider is not a container-based database, such as H2 or Derby.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38160">QUARKUS_DATASOURCE_DEVSERVICES_COMMAND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38160" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46633">QUARKUS_DATASOURCE_DEVSERVICES_COMMAND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46633" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1842,7 +1869,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>The database name to use if this Dev Service supports overriding it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38161">QUARKUS_DATASOURCE_DEVSERVICES_DB_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38161" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46634">QUARKUS_DATASOURCE_DEVSERVICES_DB_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46634" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1865,7 +1892,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>The username to use if this Dev Service supports overriding it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38162">QUARKUS_DATASOURCE_DEVSERVICES_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38162" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46635">QUARKUS_DATASOURCE_DEVSERVICES_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46635" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1888,7 +1915,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>The password to use if this Dev Service supports overriding it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38163">QUARKUS_DATASOURCE_DEVSERVICES_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38163" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46636">QUARKUS_DATASOURCE_DEVSERVICES_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46636" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1914,7 +1941,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>This has no effect if the provider is not a container-based database, such as H2 or Derby.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38164">QUARKUS_DATASOURCE_DEVSERVICES_INIT_SCRIPT_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38164" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46637">QUARKUS_DATASOURCE_DEVSERVICES_INIT_SCRIPT_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46637" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1946,7 +1973,7 @@ unless connection configuration (e.g. the JDBC URL or reactive client URL) is se
 <p>This has no effect if the provider is not a container-based database, such as H2 or Derby.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38165">QUARKUS_DATASOURCE_DEVSERVICES_VOLUMES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38165" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46638">QUARKUS_DATASOURCE_DEVSERVICES_VOLUMES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46638" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1998,7 +2025,7 @@ if you enabled it in <code>testcontainers.properties</code>
 but only want to use it for some of your Quarkus applications or datasources.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38166">QUARKUS_DATASOURCE_DEVSERVICES_REUSE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38166" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46639">QUARKUS_DATASOURCE_DEVSERVICES_REUSE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46639" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2024,7 +2051,7 @@ but only want to use it for some of your Quarkus applications or datasources.</p
 <p>By default, the health check includes all configured data sources (if it is enabled).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38167">QUARKUS_DATASOURCE_HEALTH_EXCLUDE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38167" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46640">QUARKUS_DATASOURCE_HEALTH_EXCLUDE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46640" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2056,7 +2083,7 @@ meaning in particular that consumers of this datasource
 (e.g. Hibernate ORM persistence units) will fail to start unless they are inactive too.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38168">QUARKUS_DATASOURCE_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38168" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46641">QUARKUS_DATASOURCE_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46641" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2079,7 +2106,7 @@ meaning in particular that consumers of this datasource
 <p>The datasource username</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38169">QUARKUS_DATASOURCE_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38169" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46642">QUARKUS_DATASOURCE_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46642" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2102,7 +2129,7 @@ meaning in particular that consumers of this datasource
 <p>The datasource password</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38170">QUARKUS_DATASOURCE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38170" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46643">QUARKUS_DATASOURCE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46643" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2125,7 +2152,7 @@ meaning in particular that consumers of this datasource
 <p>The credentials provider name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38171">QUARKUS_DATASOURCE_CREDENTIALS_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38171" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46644">QUARKUS_DATASOURCE_CREDENTIALS_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46644" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2154,7 +2181,7 @@ meaning in particular that consumers of this datasource
 <p>For Vault, the credentials provider bean name is <code>vault-credentials-provider</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38172">QUARKUS_DATASOURCE_CREDENTIALS_PROVIDER_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38172" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46645">QUARKUS_DATASOURCE_CREDENTIALS_PROVIDER_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46645" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2194,7 +2221,7 @@ meaning in particular that consumers of this datasource
 <p>If we create a Reactive datasource for this datasource.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38173">QUARKUS_DATASOURCE_REACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38173" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46646">QUARKUS_DATASOURCE_REACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46646" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2214,7 +2241,7 @@ meaning in particular that consumers of this datasource
 <p>Whether prepared statements should be cached on the client side.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38174">QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38174" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46647">QUARKUS_DATASOURCE_REACTIVE_CACHE_PREPARED_STATEMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46647" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2237,7 +2264,7 @@ meaning in particular that consumers of this datasource
 <p>If multiple values are set, this datasource will create a pool with a list of servers instead of a single server. The pool uses round-robin load balancing for server selection during connection establishment. Note that certain drivers might not accommodate multiple values in this context.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38175">QUARKUS_DATASOURCE_REACTIVE_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38175" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46648">QUARKUS_DATASOURCE_REACTIVE_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46648" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2257,7 +2284,7 @@ meaning in particular that consumers of this datasource
 <p>The datasource pool maximum size.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38176">QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38176" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46649">QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46649" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2280,7 +2307,7 @@ meaning in particular that consumers of this datasource
 <p>When <code>#event-loop-size</code> is set to a strictly positive value, the pool assigns as many event loops as specified, in a round-robin fashion. By default, the number of event loops configured or calculated by Quarkus is used. If <code>#event-loop-size</code> is set to zero or a negative value, the pool assigns the current event loop to the new connection.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38177">QUARKUS_DATASOURCE_REACTIVE_EVENT_LOOP_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38177" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46650">QUARKUS_DATASOURCE_REACTIVE_EVENT_LOOP_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46650" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2300,7 +2327,7 @@ meaning in particular that consumers of this datasource
 <p>Whether all server certificates should be trusted.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38178">QUARKUS_DATASOURCE_REACTIVE_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38178" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46651">QUARKUS_DATASOURCE_REACTIVE_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46651" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2320,7 +2347,7 @@ meaning in particular that consumers of this datasource
 <p>PEM Trust config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38179">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38179" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46652">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46652" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2340,7 +2367,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the trust certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38180">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38180" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46653">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46653" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2360,7 +2387,7 @@ meaning in particular that consumers of this datasource
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38181">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38181" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46654">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46654" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2380,7 +2407,7 @@ meaning in particular that consumers of this datasource
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38182">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38182" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46655">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46655" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2400,7 +2427,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38183">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38183" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46656">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46656" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2420,7 +2447,7 @@ meaning in particular that consumers of this datasource
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38184">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38184" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46657">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46657" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2440,7 +2467,7 @@ meaning in particular that consumers of this datasource
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38185">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38185" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46658">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46658" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2460,7 +2487,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38186">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38186" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46659">QUARKUS_DATASOURCE_REACTIVE_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46659" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2480,7 +2507,7 @@ meaning in particular that consumers of this datasource
 <p>PEM Key/cert config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38187">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38187" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46660">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46660" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2500,7 +2527,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the path to the key files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38188">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38188" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46661">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46661" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2520,7 +2547,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the path to the certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38189">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38189" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46662">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46662" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2540,7 +2567,7 @@ meaning in particular that consumers of this datasource
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38190">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38190" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46663">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46663" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2560,7 +2587,7 @@ meaning in particular that consumers of this datasource
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38191">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38191" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46664">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46664" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2580,7 +2607,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38192">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38192" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46665">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46665" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2600,7 +2627,7 @@ meaning in particular that consumers of this datasource
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38193">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38193" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46666">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46666" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2620,7 +2647,7 @@ meaning in particular that consumers of this datasource
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38194">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38194" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46667">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46667" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2640,7 +2667,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38195">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38195" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46668">QUARKUS_DATASOURCE_REACTIVE_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46668" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2660,7 +2687,7 @@ meaning in particular that consumers of this datasource
 <p>The number of reconnection attempts when a pooled connection cannot be established on first try.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38196">QUARKUS_DATASOURCE_REACTIVE_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38196" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46669">QUARKUS_DATASOURCE_REACTIVE_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46669" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2680,7 +2707,7 @@ meaning in particular that consumers of this datasource
 <p>The interval between reconnection attempts when a pooled connection cannot be established on first try.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38197">QUARKUS_DATASOURCE_REACTIVE_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38197" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46670">QUARKUS_DATASOURCE_REACTIVE_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46670" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2701,7 +2728,7 @@ meaning in particular that consumers of this datasource
 <p>The hostname verification algorithm to use in case the server&#8217;s identity should be checked. Should be <code>HTTPS</code>, <code>LDAPS</code> or <code>NONE</code>. <code>NONE</code> is the default value and disables the verification.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38198">QUARKUS_DATASOURCE_REACTIVE_HOSTNAME_VERIFICATION_ALGORITHM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38198" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46671">QUARKUS_DATASOURCE_REACTIVE_HOSTNAME_VERIFICATION_ALGORITHM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46671" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2721,7 +2748,7 @@ meaning in particular that consumers of this datasource
 <p>The maximum time a connection remains unused in the pool before it is closed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38199">QUARKUS_DATASOURCE_REACTIVE_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38199" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46672">QUARKUS_DATASOURCE_REACTIVE_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46672" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2742,7 +2769,7 @@ meaning in particular that consumers of this datasource
 <p>The maximum time a connection remains in the pool, after which it will be closed upon return and replaced as necessary.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38200">QUARKUS_DATASOURCE_REACTIVE_MAX_LIFETIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38200" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46673">QUARKUS_DATASOURCE_REACTIVE_MAX_LIFETIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46673" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2763,7 +2790,7 @@ meaning in particular that consumers of this datasource
 <p>Set to true to share the pool among datasources. There can be multiple shared pools distinguished by name, when no specific name is set, the <code>__vertx.DEFAULT</code> name is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38201">QUARKUS_DATASOURCE_REACTIVE_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38201" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46674">QUARKUS_DATASOURCE_REACTIVE_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46674" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2783,7 +2810,7 @@ meaning in particular that consumers of this datasource
 <p>Set the pool name, used when the pool is shared among datasources, otherwise ignored.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38202">QUARKUS_DATASOURCE_REACTIVE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38202" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46675">QUARKUS_DATASOURCE_REACTIVE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46675" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2803,7 +2830,7 @@ meaning in particular that consumers of this datasource
 <p>Other unspecified properties to be passed through the Reactive SQL Client directly to the database when new connections are initiated.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38203">QUARKUS_DATASOURCE_REACTIVE_ADDITIONAL_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38203" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46676">QUARKUS_DATASOURCE_REACTIVE_ADDITIONAL_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46676" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2828,7 +2855,7 @@ meaning in particular that consumers of this datasource
 <p>If we create a Reactive datasource for this datasource.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38204">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38204" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46677">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46677" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2848,7 +2875,7 @@ meaning in particular that consumers of this datasource
 <p>Whether prepared statements should be cached on the client side.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38205">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_CACHE_PREPARED_STATEMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38205" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46678">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_CACHE_PREPARED_STATEMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46678" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2871,7 +2898,7 @@ meaning in particular that consumers of this datasource
 <p>If multiple values are set, this datasource will create a pool with a list of servers instead of a single server. The pool uses round-robin load balancing for server selection during connection establishment. Note that certain drivers might not accommodate multiple values in this context.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38206">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38206" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46679">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46679" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2891,7 +2918,7 @@ meaning in particular that consumers of this datasource
 <p>The datasource pool maximum size.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38207">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38207" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46680">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46680" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2914,7 +2941,7 @@ meaning in particular that consumers of this datasource
 <p>When <code>#event-loop-size</code> is set to a strictly positive value, the pool assigns as many event loops as specified, in a round-robin fashion. By default, the number of event loops configured or calculated by Quarkus is used. If <code>#event-loop-size</code> is set to zero or a negative value, the pool assigns the current event loop to the new connection.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38208">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_EVENT_LOOP_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38208" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46681">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_EVENT_LOOP_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46681" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2934,7 +2961,7 @@ meaning in particular that consumers of this datasource
 <p>Whether all server certificates should be trusted.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38209">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38209" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46682">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_ALL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46682" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2954,7 +2981,7 @@ meaning in particular that consumers of this datasource
 <p>PEM Trust config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38210">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38210" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46683">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46683" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2974,7 +3001,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the trust certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38211">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38211" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46684">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46684" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2994,7 +3021,7 @@ meaning in particular that consumers of this datasource
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38212">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38212" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46685">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46685" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3014,7 +3041,7 @@ meaning in particular that consumers of this datasource
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38213">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38213" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46686">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46686" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3034,7 +3061,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38214">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38214" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46687">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46687" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3054,7 +3081,7 @@ meaning in particular that consumers of this datasource
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38215">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38215" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46688">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46688" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3074,7 +3101,7 @@ meaning in particular that consumers of this datasource
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38216">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38216" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46689">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46689" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3094,7 +3121,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38217">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38217" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46690">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_TRUST_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46690" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3114,7 +3141,7 @@ meaning in particular that consumers of this datasource
 <p>PEM Key/cert config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38218">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38218" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46691">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46691" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3134,7 +3161,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the path to the key files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38219">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38219" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46692">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM_KEYS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46692" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3154,7 +3181,7 @@ meaning in particular that consumers of this datasource
 <p>Comma-separated list of the path to the certificate files (Pem format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38220">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38220" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46693">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PEM_CERTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46693" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3174,7 +3201,7 @@ meaning in particular that consumers of this datasource
 <p>JKS config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38221">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38221" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46694">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46694" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3194,7 +3221,7 @@ meaning in particular that consumers of this datasource
 <p>Path of the key file (JKS format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38222">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38222" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46695">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46695" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3214,7 +3241,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38223">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38223" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46696">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_JKS_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46696" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3234,7 +3261,7 @@ meaning in particular that consumers of this datasource
 <p>PFX config is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38224">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38224" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46697">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46697" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3254,7 +3281,7 @@ meaning in particular that consumers of this datasource
 <p>Path to the key file (PFX format).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38225">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38225" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46698">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46698" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3274,7 +3301,7 @@ meaning in particular that consumers of this datasource
 <p>Password of the key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38226">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38226" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46699">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_KEY_CERTIFICATE_PFX_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46699" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3294,7 +3321,7 @@ meaning in particular that consumers of this datasource
 <p>The number of reconnection attempts when a pooled connection cannot be established on first try.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38227">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38227" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46700">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_RECONNECT_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46700" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3314,7 +3341,7 @@ meaning in particular that consumers of this datasource
 <p>The interval between reconnection attempts when a pooled connection cannot be established on first try.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38228">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38228" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46701">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_RECONNECT_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46701" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3335,7 +3362,7 @@ meaning in particular that consumers of this datasource
 <p>The hostname verification algorithm to use in case the server&#8217;s identity should be checked. Should be <code>HTTPS</code>, <code>LDAPS</code> or <code>NONE</code>. <code>NONE</code> is the default value and disables the verification.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38229">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_HOSTNAME_VERIFICATION_ALGORITHM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38229" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46702">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_HOSTNAME_VERIFICATION_ALGORITHM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46702" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3355,7 +3382,7 @@ meaning in particular that consumers of this datasource
 <p>The maximum time a connection remains unused in the pool before it is closed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38230">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38230" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46703">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46703" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3376,7 +3403,7 @@ meaning in particular that consumers of this datasource
 <p>The maximum time a connection remains in the pool, after which it will be closed upon return and replaced as necessary.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38231">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_MAX_LIFETIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38231" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46704">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_MAX_LIFETIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46704" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3397,7 +3424,7 @@ meaning in particular that consumers of this datasource
 <p>Set to true to share the pool among datasources. There can be multiple shared pools distinguished by name, when no specific name is set, the <code>__vertx.DEFAULT</code> name is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38232">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38232" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46705">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46705" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3417,7 +3444,7 @@ meaning in particular that consumers of this datasource
 <p>Set the pool name, used when the pool is shared among datasources, otherwise ignored.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38233">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38233" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46706">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46706" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3437,7 +3464,7 @@ meaning in particular that consumers of this datasource
 <p>Other unspecified properties to be passed through the Reactive SQL Client directly to the database when new connections are initiated.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38234">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_ADDITIONAL_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38234" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46707">QUARKUS_DATASOURCE__DATASOURCE_NAME__REACTIVE_ADDITIONAL_PROPERTIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46707" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3522,7 +3549,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Whether SSL/TLS is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38235">QUARKUS_DATASOURCE_REACTIVE_DB2_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38235" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46708">QUARKUS_DATASOURCE_REACTIVE_DB2_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46708" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3565,7 +3592,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Charset for connections.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38236">QUARKUS_DATASOURCE_REACTIVE_MYSQL_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38236" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46709">QUARKUS_DATASOURCE_REACTIVE_MYSQL_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46709" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3588,7 +3615,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Collation for connections.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38237">QUARKUS_DATASOURCE_REACTIVE_MYSQL_COLLATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38237" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46710">QUARKUS_DATASOURCE_REACTIVE_MYSQL_COLLATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46710" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3614,7 +3641,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>See <a href="https://dev.mysql.com/doc/refman/8.0/en/connection-options.html#option_general_ssl-mode">MySQL Reference Manual</a>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38238">QUARKUS_DATASOURCE_REACTIVE_MYSQL_SSL_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38238" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46711">QUARKUS_DATASOURCE_REACTIVE_MYSQL_SSL_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46711" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3639,7 +3666,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Connection timeout in seconds</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38239">QUARKUS_DATASOURCE_REACTIVE_MYSQL_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38239" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46712">QUARKUS_DATASOURCE_REACTIVE_MYSQL_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46712" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3662,7 +3689,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>The authentication plugin the client should use. By default, it uses the plugin name specified by the server in the initial handshake packet.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38240">QUARKUS_DATASOURCE_REACTIVE_MYSQL_AUTHENTICATION_PLUGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38240" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46713">QUARKUS_DATASOURCE_REACTIVE_MYSQL_AUTHENTICATION_PLUGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46713" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3687,7 +3714,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>The maximum number of inflight database commands that can be pipelined. By default, pipelining is disabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38241">QUARKUS_DATASOURCE_REACTIVE_MYSQL_PIPELINING_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38241" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46714">QUARKUS_DATASOURCE_REACTIVE_MYSQL_PIPELINING_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46714" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3710,7 +3737,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Whether to return the number of rows matched by the <em>WHERE</em> clause in <em>UPDATE</em> statements, instead of the number of rows actually changed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38242">QUARKUS_DATASOURCE_REACTIVE_MYSQL_USE_AFFECTED_ROWS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38242" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46715">QUARKUS_DATASOURCE_REACTIVE_MYSQL_USE_AFFECTED_ROWS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46715" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3753,7 +3780,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>The desired size (in bytes) for TDS packets.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38243">QUARKUS_DATASOURCE_REACTIVE_MSSQL_PACKET_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38243" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46716">QUARKUS_DATASOURCE_REACTIVE_MSSQL_PACKET_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46716" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3776,7 +3803,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Whether SSL/TLS is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38244">QUARKUS_DATASOURCE_REACTIVE_MSSQL_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38244" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46717">QUARKUS_DATASOURCE_REACTIVE_MSSQL_SSL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46717" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3839,7 +3866,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>The maximum number of inflight database commands that can be pipelined.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38245">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_PIPELINING_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38245" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46718">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_PIPELINING_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46718" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3865,7 +3892,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>See <a href="https://www.postgresql.org/docs/current/libpq-ssl.html#LIBPQ-SSL-PROTECTION">Protection Provided in Different Modes</a>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38246">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_SSL_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38246" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46719">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_SSL_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46719" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -3890,7 +3917,7 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <p>Level 7 proxies can load balance queries on several connections to the actual database. When it happens, the client can be confused by the lack of session affinity and unwanted errors can happen like ERROR: unnamed prepared statement does not exist (26000). See <a href="https://vertx.io/docs/vertx-pg-client/java/#_using_a_level_7_proxy">Using a level 7 proxy</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38247">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_USE_LAYER7_PROXY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38247" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-46720">QUARKUS_DATASOURCE_REACTIVE_POSTGRESQL_USE_LAYER7_PROXY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46720" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -4103,6 +4130,10 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

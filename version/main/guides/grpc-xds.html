@@ -11,8 +11,33 @@
   <title>Using xDS gRPC - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -175,9 +206,6 @@
         
         
         <option value="2.16" >2.16</option>
-        
-        
-        
         
         
         
@@ -268,7 +296,8 @@ This transitively adds <code>io.quarkus:quarkus-grpc</code> extension dependency
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-enabled"></a> <span class="property-path"><code>quarkus.grpc.server.xds.enabled</code></span></p>
+<p><a id="quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-enabled"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-enabled"><code>quarkus.grpc.server.xds.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.server.xds.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -276,7 +305,7 @@ This transitively adds <code>io.quarkus:quarkus-grpc</code> extension dependency
 <p>Explicitly enable use of XDS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45277">QUARKUS_GRPC_SERVER_XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45277" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53696">QUARKUS_GRPC_SERVER_XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53696" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -288,7 +317,8 @@ This transitively adds <code>io.quarkus:quarkus-grpc</code> extension dependency
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-secure"></a> <span class="property-path"><code>quarkus.grpc.server.xds.secure</code></span></p>
+<p><a id="quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-secure"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-server-xds_quarkus-grpc-server-xds-secure"><code>quarkus.grpc.server.xds.secure</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.server.xds.secure' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -296,7 +326,7 @@ This transitively adds <code>io.quarkus:quarkus-grpc</code> extension dependency
 <p>Use secure credentials.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45278">QUARKUS_GRPC_SERVER_XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45278" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53697">QUARKUS_GRPC_SERVER_XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53697" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -361,7 +391,8 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-enabled"></a> <span class="property-path"><code>quarkus.grpc.clients."client-name".xds.enabled</code></span></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-enabled"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-enabled"><code>quarkus.grpc.clients."client-name".xds.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -369,7 +400,7 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 <p>Explicitly enable use of XDS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45279">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45279" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53698">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53698" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -381,7 +412,8 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-secure"></a> <span class="property-path"><code>quarkus.grpc.clients."client-name".xds.secure</code></span></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-secure"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-secure"><code>quarkus.grpc.clients."client-name".xds.secure</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.secure' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -389,7 +421,7 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 <p>Use secure credentials.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45280">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45280" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53699">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53699" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -401,7 +433,8 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-target"></a> <span class="property-path"><code>quarkus.grpc.clients."client-name".xds.target</code></span></p>
+<p><a id="quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-target"></a> <span class="property-path"><a href="#quarkus-grpc_quarkus-grpc-clients-client-name-xds_quarkus-grpc-clients-client-name-xds-target"><code>quarkus.grpc.clients."client-name".xds.target</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.grpc.clients."client-name".xds.target' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -409,7 +442,7 @@ When xDS is configured, <code>plain-text</code> is automatically disabled.
 <p>Optional explicit target.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45281">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45281" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53700">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53700" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -609,6 +642,10 @@ quarkus.kubernetes.annotations."proxy.istio.io/config"={"holdApplicationUntilPro
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

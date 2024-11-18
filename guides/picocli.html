@@ -11,8 +11,33 @@
   <title>Command Mode with Picocli - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -598,7 +625,22 @@ annotationProcessor 'info.picocli:picocli-codegen'</code></pre>
 <h2 id="development-mode"><a class="anchor" href="#development-mode"></a>Development Mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the development mode, i.e. when running <code>mvn quarkus:dev</code>, the application is executed and restarted every time the <code>Space bar</code> key is pressed. You can also pass arguments to your command line app via the <code>quarkus.args</code> system property, e.g. <code>mvn quarkus:dev -Dquarkus.args='--help'</code> and <code>mvn quarkus:dev -Dquarkus.args='-c -w --val 1'</code>.</p>
+<p>In the development mode, i.e. when running <code>mvn quarkus:dev</code>, the application is executed and restarted every time the <code>Space bar</code> key is pressed. You can also pass arguments to your command line app via the <code>quarkus.args</code> system property, e.g. <code>mvn quarkus:dev -Dquarkus.args='--help'</code> and <code>mvn quarkus:dev -Dquarkus.args='-c -w --val 1'</code>.
+For Gradle projects, arguments can be passed using <code>--quarkus-args</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you&#8217;re creating a typical Quarkus application (e.g., HTTP-based services) that includes command-line functionality, you&#8217;ll need to handle the application&#8217;s lifecycle differently. In the <code>Runnable.run()</code> method of your command, make sure to use <code>Quarkus.waitForExit()</code> or <code>Quarkus.asyncExit()</code>. This will prevent the application from shutting down prematurely and ensure a proper shutdown process.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -733,13 +775,13 @@ spec:
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-picocli_configuration"></a><a href="#quarkus-picocli_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-picocli_quarkus-picocli-native-image-processing-enable"></a><code><a href="#quarkus-picocli_quarkus-picocli-native-image-processing-enable">quarkus.picocli.native-image.processing.enable</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-picocli_quarkus-picocli-native-image-processing-enable"></a> <span class="property-path"><a href="#quarkus-picocli_quarkus-picocli-native-image-processing-enable"><code>quarkus.picocli.native-image.processing.enable</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -765,7 +807,7 @@ this will have serious build-time performance impact since this is run on every 
 <p>In such cases this property allows users to make the trade-off between fast build cycles with the older version of picocli, and temporarily accept slower build cycles with the latest version of picocli until the updated extension is available.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7563">QUARKUS_PICOCLI_NATIVE_IMAGE_PROCESSING_ENABLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7563" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7306">QUARKUS_PICOCLI_NATIVE_IMAGE_PROCESSING_ENABLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7306" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -777,7 +819,7 @@ this will have serious build-time performance impact since this is run on every 
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-picocli_quarkus-picocli-top-command"></a><code><a href="#quarkus-picocli_quarkus-picocli-top-command">quarkus.picocli.top-command</a></code></p>
+<p><a id="quarkus-picocli_quarkus-picocli-top-command"></a> <span class="property-path"><a href="#quarkus-picocli_quarkus-picocli-top-command"><code>quarkus.picocli.top-command</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -785,7 +827,7 @@ this will have serious build-time performance impact since this is run on every 
 <p>Name of bean annotated with <code>io.quarkus.picocli.runtime.annotations.TopCommand</code> or FQCN of class which will be used as entry point for Picocli CommandLine instance. This class needs to be annotated with <code>picocli.CommandLine.Command</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7564">QUARKUS_PICOCLI_TOP_COMMAND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7564" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7307">QUARKUS_PICOCLI_TOP_COMMAND</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7307" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -827,6 +869,9 @@ this will have serious build-time performance impact since this is run on every 
       
         
         <li class="guide"><a href="/guides/cli-tooling">Building Quarkus apps with Quarkus Command Line Interface (CLI)</a></li>
+      
+        
+        <li class="guide"><a href="/guides/grpc-cli">Using gRPC CLI</a></li>
       </ul>
     </div>
     </div>
@@ -901,6 +946,10 @@ this will have serious build-time performance impact since this is run on every 
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

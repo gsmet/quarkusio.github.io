@@ -11,8 +11,33 @@
   <title>Connecting to an Elasticsearch cluster - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -438,10 +465,13 @@ follow the instructions in the <a href="#using-the-elasticsearch-java-client">Us
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
@@ -463,13 +493,49 @@ public class FruitService {
         restClient.performRequest(request); <i class="conum" data-value="4"></i><b>(4)</b>
     }
 
+    public void index(List&lt;Fruit&gt; list) throws IOException {
+
+        var entityList = new ArrayList&lt;JsonObject&gt;();
+
+        for (var fruit : list) {
+
+            entityList.add(new JsonObject().put("index", new JsonObject()<i class="conum" data-value="5"></i><b>(5)</b>
+                    .put("_index", "fruits").put("_id", fruit.id)));
+            entityList.add(JsonObject.mapFrom(fruit));
+        }
+
+        Request request = new Request(
+                "POST", "fruits/_bulk?pretty");
+        request.setEntity(new StringEntity(
+                toNdJsonString(entityList),<i class="conum" data-value="6"></i><b>(6)</b>
+                ContentType.create("application/x-ndjson")));<i class="conum" data-value="7"></i><b>(7)</b>
+        restClient.performRequest(request);
+    }
+
+    public void delete(List&lt;String&gt; identityList) throws IOException {
+
+        var entityList = new ArrayList&lt;JsonObject&gt;();
+
+        for (var id : identityList) {
+            entityList.add(new JsonObject().put("delete",
+                    new JsonObject().put("_index", "fruits").put("_id", id)));<i class="conum" data-value="8"></i><b>(8)</b>
+        }
+
+        Request request = new Request(
+                "POST", "fruits/_bulk?pretty");
+        request.setEntity(new StringEntity(
+                toNdJsonString(entityList),
+                ContentType.create("application/x-ndjson")));
+        restClient.performRequest(request);
+    }
+
     public Fruit get(String id) throws IOException {
         Request request = new Request(
                 "GET",
                 "/fruits/_doc/" + id);
         Response response = restClient.performRequest(request);
         String responseBody = EntityUtils.toString(response.getEntity());
-        JsonObject json = new JsonObject(responseBody); <i class="conum" data-value="5"></i><b>(5)</b>
+        JsonObject json = new JsonObject(responseBody); <i class="conum" data-value="9"></i><b>(9)</b>
         return json.getJsonObject("_source").mapTo(Fruit.class);
     }
 
@@ -503,6 +569,12 @@ public class FruitService {
         }
         return results;
     }
+
+    private static String toNdJsonString(List&lt;JsonObject&gt; objects) {
+        return objects.stream()
+                .map(JsonObject::encode)
+                .collect(Collectors.joining("\n", "", "\n"));
+    }
 }</code></pre>
 </div>
 </div>
@@ -526,7 +598,40 @@ public class FruitService {
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>In order to deserialize the object from Elasticsearch, we again use Vert.x <code>JsonObject</code>.</td>
+<td>As we <code>index</code> collection of objects we should use <code>index</code>, <code>create</code> or <code>update</code> action.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>We use <code>toNdJsonString(entityList)</code> call to produce output like below
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"index", {"_index" : "fruits", "_id", "1"}}
+{"id": "1", "name": "apple", "color": "red"}
+...           ...             ...        ...
+{"create", {"_index" : "fruits", "_id", "N"}}
+{"id": "N", "name": "dragonfruit", "color": "pink"}</code></pre>
+</div>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Pass the content type that is expected by the search backend for bulk requests.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>The bulk API&#8217;s delete operation JSON already contains all the required information; hence, there is no request body following this operation in the Bulk API request body.
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"delete", {"_index" : "fruits", "_id", "1"}}
+{"delete", {"_index" : "fruits", "_id", "2"}}
+...           ...             ...        ...
+{"delete", {"_index" : "fruits", "_id", "N"}}</code></pre>
+</div>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>In order to deserialize the object from Elasticsearch, we again use Vert.x JsonObject.</td>
 </tr>
 </table>
 </div>
@@ -537,18 +642,20 @@ public class FruitService {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.elasticsearch;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.core.Response;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-import org.jboss.resteasy.reactive.RestQuery;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.BadRequestException;
 
 @Path("/fruits")
 public class FruitResource {
@@ -563,6 +670,20 @@ public class FruitResource {
         }
         fruitService.index(fruit);
         return Response.created(URI.create("/fruits/" + fruit.id)).build();
+    }
+
+    @Path("bulk")
+    @DELETE
+    public Response delete(List&lt;String&gt; identityList) throws IOException {
+        fruitService.delete(identityList);
+        return Response.ok().build();
+    }
+
+    @Path("bulk")
+    @POST
+    public Response index(List&lt;Fruit&gt; list) throws IOException {
+        fruitService.index(list);
+        return Response.ok().build();
     }
 
     @GET
@@ -772,18 +893,26 @@ if you have a local running instance on this port, there is nothing more to do b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._types.FieldValue;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
-import co.elastic.clients.elasticsearch.core.*;
-import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import org.acme.elasticsearch.Fruit;
-
-import java.io.IOException;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.IndexRequest;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
+import co.elastic.clients.elasticsearch.core.GetRequest;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
 
 @ApplicationScoped
 public class FruitService {
@@ -796,6 +925,37 @@ public class FruitService {
                 .id(fruit.id)
                 .document(fruit)); <i class="conum" data-value="3"></i><b>(3)</b>
         client.index(request);  <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+
+    public void index(List&lt;Fruit&gt; list) throws IOException {
+
+        BulkRequest.Builder br = new BulkRequest.Builder();
+
+        for (var fruit : list) {
+            br.operations(op -&gt; op
+                    .index(idx -&gt; idx.index("fruits").id(fruit.id).document(fruit)));
+        }
+
+        BulkResponse result = client.bulk(br.build());
+
+        if (result.errors()) {
+            throw new RuntimeException("The indexing operation encountered errors.");
+        }
+    }
+
+    public void delete(List&lt;String&gt; list) throws IOException {
+
+        BulkRequest.Builder br = new BulkRequest.Builder();
+
+        for (var id : list) {
+            br.operations(op -&gt; op.delete(idx -&gt; idx.index("fruits").id(id)));
+        }
+
+        BulkResponse result = client.bulk(br.build());
+
+        if (result.errors()) {
+            throw new RuntimeException("The indexing operation encountered errors.");
+        }
     }
 
     public Fruit get(String id) throws IOException {
@@ -944,7 +1104,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-health-enabled"></a> <span class="property-path"><code>quarkus.elasticsearch.health.enabled</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-health-enabled"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-health-enabled"><code>quarkus.elasticsearch.health.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.health.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -952,7 +1113,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>Whether a health check is published in case the smallrye-health extension is present.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45135">QUARKUS_ELASTICSEARCH_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45135" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53554">QUARKUS_ELASTICSEARCH_HEALTH_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53554" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -964,7 +1125,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-hosts"></a> <span class="property-path"><code>quarkus.elasticsearch.hosts</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-hosts"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-hosts"><code>quarkus.elasticsearch.hosts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.hosts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -972,7 +1134,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The list of hosts of the Elasticsearch servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45136">QUARKUS_ELASTICSEARCH_HOSTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45136" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53555">QUARKUS_ELASTICSEARCH_HOSTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53555" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -984,7 +1146,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-protocol"></a> <span class="property-path"><code>quarkus.elasticsearch.protocol</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-protocol"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-protocol"><code>quarkus.elasticsearch.protocol</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.protocol' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -992,7 +1155,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The protocol to use when contacting Elasticsearch servers. Set to "https" to enable SSL/TLS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45137">QUARKUS_ELASTICSEARCH_PROTOCOL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45137" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53556">QUARKUS_ELASTICSEARCH_PROTOCOL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53556" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1004,7 +1167,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-username"></a> <span class="property-path"><code>quarkus.elasticsearch.username</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-username"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-username"><code>quarkus.elasticsearch.username</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.username' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1012,7 +1176,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The username for basic HTTP authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45138">QUARKUS_ELASTICSEARCH_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45138" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53557">QUARKUS_ELASTICSEARCH_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53557" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1024,7 +1188,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-password"></a> <span class="property-path"><code>quarkus.elasticsearch.password</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-password"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-password"><code>quarkus.elasticsearch.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -1032,7 +1197,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The password for basic HTTP authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45139">QUARKUS_ELASTICSEARCH_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45139" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53558">QUARKUS_ELASTICSEARCH_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53558" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1044,7 +1209,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-connection-timeout"></a> <span class="property-path"><code>quarkus.elasticsearch.connection-timeout</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-connection-timeout"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-connection-timeout"><code>quarkus.elasticsearch.connection-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.connection-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -1052,19 +1218,20 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The connection timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45140">QUARKUS_ELASTICSEARCH_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45140" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53559">QUARKUS_ELASTICSEARCH_CONNECTION_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53559" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-elasticsearch-rest-client_quarkus-elasticsearch"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-socket-timeout"></a> <span class="property-path"><code>quarkus.elasticsearch.socket-timeout</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-socket-timeout"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-socket-timeout"><code>quarkus.elasticsearch.socket-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.socket-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -1072,19 +1239,20 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The socket timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45141">QUARKUS_ELASTICSEARCH_SOCKET_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45141" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53560">QUARKUS_ELASTICSEARCH_SOCKET_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53560" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-elasticsearch-rest-client_quarkus-elasticsearch"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>30S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections"></a> <span class="property-path"><code>quarkus.elasticsearch.max-connections</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections"><code>quarkus.elasticsearch.max-connections</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.max-connections' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -1092,7 +1260,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The maximum number of connections to all the Elasticsearch servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45142">QUARKUS_ELASTICSEARCH_MAX_CONNECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45142" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53561">QUARKUS_ELASTICSEARCH_MAX_CONNECTIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53561" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1104,7 +1272,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections-per-route"></a> <span class="property-path"><code>quarkus.elasticsearch.max-connections-per-route</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections-per-route"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-max-connections-per-route"><code>quarkus.elasticsearch.max-connections-per-route</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.max-connections-per-route' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -1112,7 +1281,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>The maximum number of connections per Elasticsearch server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45143">QUARKUS_ELASTICSEARCH_MAX_CONNECTIONS_PER_ROUTE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45143" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53562">QUARKUS_ELASTICSEARCH_MAX_CONNECTIONS_PER_ROUTE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53562" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1124,7 +1293,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-io-thread-counts"></a> <span class="property-path"><code>quarkus.elasticsearch.io-thread-counts</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-io-thread-counts"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-io-thread-counts"><code>quarkus.elasticsearch.io-thread-counts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.io-thread-counts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -1135,7 +1305,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>Thread counts higher than the number of processors should not be necessary because the I/O threads rely on non-blocking operations, but you may want to use a thread count lower than the number of processors.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45144">QUARKUS_ELASTICSEARCH_IO_THREAD_COUNTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45144" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53563">QUARKUS_ELASTICSEARCH_IO_THREAD_COUNTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53563" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1147,7 +1317,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-enabled"></a> <span class="property-path"><code>quarkus.elasticsearch.discovery.enabled</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-enabled"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-enabled"><code>quarkus.elasticsearch.discovery.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.discovery.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -1155,7 +1326,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>Defines if automatic discovery is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45145">QUARKUS_ELASTICSEARCH_DISCOVERY_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45145" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53564">QUARKUS_ELASTICSEARCH_DISCOVERY_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53564" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1167,7 +1338,8 @@ It uses the cluster health endpoint, the check will be down if the status of the
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-refresh-interval"></a> <span class="property-path"><code>quarkus.elasticsearch.discovery.refresh-interval</code></span></p>
+<p><a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-refresh-interval"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-discovery-refresh-interval"><code>quarkus.elasticsearch.discovery.refresh-interval</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.discovery.refresh-interval' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -1175,24 +1347,25 @@ It uses the cluster health endpoint, the check will be down if the status of the
 <p>Refresh interval of the node list.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45146">QUARKUS_ELASTICSEARCH_DISCOVERY_REFRESH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45146" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53565">QUARKUS_ELASTICSEARCH_DISCOVERY_REFRESH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53565" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-elasticsearch-rest-client_quarkus-elasticsearch"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5M</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-elasticsearch-rest-client_section_quarkus-elasticsearch-devservices"></a> <span class="section-name section-level0">Dev Services</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-elasticsearch-rest-client_section_quarkus-elasticsearch-devservices"></a> <span class="section-name section-level0"><a href="#quarkus-elasticsearch-rest-client_section_quarkus-elasticsearch-devservices">Dev Services</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-enabled"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.enabled</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-enabled"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-enabled"><code>quarkus.elasticsearch.devservices.enabled</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -1204,7 +1377,7 @@ It uses the cluster health endpoint, the check will be down if the status of the
 unless connection configuration (e.g. <code>quarkus.elasticsearch.hosts</code>) is set explicitly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45147">QUARKUS_ELASTICSEARCH_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45147" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53566">QUARKUS_ELASTICSEARCH_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53566" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1216,7 +1389,8 @@ unless connection configuration (e.g. <code>quarkus.elasticsearch.hosts</code>) 
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-port"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.port</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-port"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-port"><code>quarkus.elasticsearch.devservices.port</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.port' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -1227,7 +1401,7 @@ unless connection configuration (e.g. <code>quarkus.elasticsearch.hosts</code>) 
 <p>If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45148">QUARKUS_ELASTICSEARCH_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45148" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53567">QUARKUS_ELASTICSEARCH_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53567" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1239,7 +1413,8 @@ unless connection configuration (e.g. <code>quarkus.elasticsearch.hosts</code>) 
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-distribution"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.distribution</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-distribution"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-distribution"><code>quarkus.elasticsearch.devservices.distribution</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.distribution' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -1252,7 +1427,7 @@ or by default to the distribution configured in depending extensions (e.g. Hiber
 or by default to <code>elastic</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45149">QUARKUS_ELASTICSEARCH_DEVSERVICES_DISTRIBUTION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45149" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53568">QUARKUS_ELASTICSEARCH_DEVSERVICES_DISTRIBUTION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53568" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1266,7 +1441,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-image-name"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.image-name</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-image-name"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-image-name"><code>quarkus.elasticsearch.devservices.image-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.image-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -1287,7 +1463,7 @@ or by default to <code>elastic</code>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45150">QUARKUS_ELASTICSEARCH_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45150" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53569">QUARKUS_ELASTICSEARCH_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53569" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1299,7 +1475,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-java-opts"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.java-opts</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-java-opts"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-java-opts"><code>quarkus.elasticsearch.devservices.java-opts</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.java-opts' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -1307,7 +1484,7 @@ or by default to <code>elastic</code>.</p>
 <p>The value for the ES_JAVA_OPTS env variable.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45151">QUARKUS_ELASTICSEARCH_DEVSERVICES_JAVA_OPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45151" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53570">QUARKUS_ELASTICSEARCH_DEVSERVICES_JAVA_OPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53570" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1319,7 +1496,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-shared"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.shared</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-shared"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-shared"><code>quarkus.elasticsearch.devservices.shared</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.shared' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -1336,7 +1514,7 @@ or by default to <code>elastic</code>.</p>
 <p>Container sharing is only used in dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45152">QUARKUS_ELASTICSEARCH_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45152" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53571">QUARKUS_ELASTICSEARCH_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53571" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1348,7 +1526,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-service-name"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.service-name</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-service-name"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-service-name"><code>quarkus.elasticsearch.devservices.service-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.service-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -1362,7 +1541,7 @@ or by default to <code>elastic</code>.</p>
 <p>This property is used when you need multiple shared Elasticsearch servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45153">QUARKUS_ELASTICSEARCH_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45153" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53572">QUARKUS_ELASTICSEARCH_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53572" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1374,7 +1553,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-container-env-environment-variable-name"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.container-env."environment-variable-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-container-env-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-container-env-environment-variable-name"><code>quarkus.elasticsearch.devservices.container-env."environment-variable-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.container-env."environment-variable-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
@@ -1382,7 +1562,7 @@ or by default to <code>elastic</code>.</p>
 <p>Environment variables that are passed to the container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45154">QUARKUS_ELASTICSEARCH_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45154" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53573">QUARKUS_ELASTICSEARCH_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53573" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1394,7 +1574,8 @@ or by default to <code>elastic</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-reuse"></a> <span class="property-path"><code>quarkus.elasticsearch.devservices.reuse</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-reuse"></a> <span class="property-path"><a href="#quarkus-elasticsearch-rest-client_quarkus-elasticsearch-devservices-reuse"><code>quarkus.elasticsearch.devservices.reuse</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.elasticsearch.devservices.reuse' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
@@ -1431,7 +1612,7 @@ if you enabled it in <code>testcontainers.properties</code>
 but only want to use it for some of your Quarkus applications.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45155">QUARKUS_ELASTICSEARCH_DEVSERVICES_REUSE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45155" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-53574">QUARKUS_ELASTICSEARCH_DEVSERVICES_REUSE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-53574" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1658,6 +1839,10 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

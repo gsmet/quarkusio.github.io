@@ -11,8 +11,33 @@
   <title>OpenID Connect (OIDC) Bearer token authentication - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -171,9 +202,6 @@
         
         
         <option value="3.2" >3.2</option>
-        
-        
-        
         
         
         
@@ -272,8 +300,14 @@ The verification keys are used to verify the bearer access token signatures.</p>
 Also, if you use Keycloak and bearer tokens, see the Quarkus <a href="security-keycloak-authorization">Using Keycloak to centralize authorization</a> guide.</p>
 </div>
 <div class="paragraph">
-<p>To learn about how you can protect service applications by using OIDC Bearer token authentication, see the following tutorial:
-* <a href="security-oidc-bearer-token-authentication-tutorial">Protect a web application by using OpenID Connect (OIDC) authorization code flow</a>.</p>
+<p>To learn about how you can protect service applications by using OIDC Bearer token authentication, see the following tutorial:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="security-oidc-bearer-token-authentication-tutorial">Protect a service application by using OpenID Connect (OIDC) Bearer token authentication</a>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>For information about how to support multiple tenants, see the Quarkus <a href="security-openid-connect-multitenancy">Using OpenID Connect Multi-Tenancy</a> guide.</p>
@@ -437,7 +471,7 @@ public class ProtectedResource {
     @GET
     @Path("/order")
     public List&lt;Order&gt; listOrders() {
-        return List.of(new Order(1));
+        return List.of(new Order("1"));
     }
 
     public static class Order {
@@ -810,7 +844,7 @@ quarkus.oidc.introspection-path=/protocol/openid-connect/tokens/introspect</code
 <div class="sect2">
 <h3 id="token-propagation"><a class="anchor" href="#token-propagation"></a>Token propagation</h3>
 <div class="paragraph">
-<p>For information about bearer access token propagation to the downstream services, see the <a href="security-openid-connect-client-reference#token-propagation">Token propagation</a> section of the Quarkus "OpenID Connect (OIDC) and OAuth2 client and filters reference" guide.</p>
+<p>For information about bearer access token propagation to the downstream services, see the <a href="security-openid-connect-client-reference#token-propagation-rest">Token propagation</a> section of the Quarkus "OpenID Connect (OIDC) and OAuth2 client and filters reference" guide.</p>
 </div>
 </div>
 <div class="sect2">
@@ -995,14 +1029,14 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import io.quarkus.test.common.WithTestResource;
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.oidc.server.OidcWiremockTestResource;
 import io.restassured.RestAssured;
 import io.smallrye.jwt.build.Jwt;
 
 @QuarkusTest
-@WithTestResource(OidcWiremockTestResource.class)
+@QuarkusTestResource(OidcWiremockTestResource.class)
 public class BearerTokenAuthorizationTest {
 
     @Test
@@ -1339,13 +1373,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.jupiter.api.Test;
 
-import io.quarkus.test.common.WithTestResource;
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.keycloak.server.KeycloakTestResourceLifecycleManager;
 import io.restassured.RestAssured;
 
 @QuarkusTest
-@WithTestResource(KeycloakTestResourceLifecycleManager.class)
+@QuarkusTestResource(KeycloakTestResourceLifecycleManager.class)
 public class BearerTokenAuthorizationTest {
 
     @Test
@@ -1446,7 +1480,6 @@ import io.quarkus.test.security.TestSecurity;
 import io.quarkus.test.security.oidc.Claim;
 import io.quarkus.test.security.oidc.ConfigMetadata;
 import io.quarkus.test.security.oidc.OidcSecurity;
-import io.quarkus.test.security.oidc.OidcConfigurationMetadata;
 import io.quarkus.test.security.oidc.UserInfo;
 import io.restassured.RestAssured;
 
@@ -1553,8 +1586,8 @@ public class TestSecurityAuthTest {
         }
     )
     public void testOidcWithClaimsUserInfoAndMetadata() {
-        RestAssured.when().get("test-security-oidc-claims-userinfo-metadata").then()
-                .body(is("userOidc:viewer:userOidc:viewer"));
+        RestAssured.when().get("test-security-oidc-opaque-token").then()
+                .body(is("userOidc:viewer:userOidc:viewer:user@gmail.com"));
     }
 
 }</code></pre>
@@ -1791,7 +1824,7 @@ public class OrderService {
 
     @Blocking
     @ConsumeEvent("product-order")
-    void processOrder(Product product) {
+    void processOrder(OrderResource.Product product) {
         AccessTokenCredential tokenCredential = new AccessTokenCredential(product.customerAccessToken);
         SecurityIdentity securityIdentity = identityProvider.authenticate(tokenCredential).await().indefinitely(); <i class="conum" data-value="2"></i><b>(2)</b>
         ...
@@ -2007,6 +2040,9 @@ For more information, see <a href="security-oidc-code-flow-authentication#code-f
         <li class="reference"><a href="/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
       
         
+        <li class="reference"><a href="/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
+      
+        
         <li class="reference"><a href="/guides/security-oidc-configuration-properties-reference">OpenID Connect (OIDC) configuration properties</a></li>
       
         
@@ -2026,9 +2062,6 @@ For more information, see <a href="security-oidc-code-flow-authentication#code-f
       
         
         <li class="guide"><a href="/guides/security-csrf-prevention">Cross-Site Request Forgery Prevention</a></li>
-      
-        
-        <li class="concepts"><a href="/guides/security-identity-providers">Identity providers</a></li>
       </ul>
     </div>
     </div>
@@ -2103,6 +2136,10 @@ For more information, see <a href="security-oidc-code-flow-authentication#code-f
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

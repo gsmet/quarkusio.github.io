@@ -11,8 +11,33 @@
   <title>Using Hibernate Reactive - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -517,13 +544,13 @@ contain <code>jdbc</code> in the name but there is no JDBC in Hibernate Reactive
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_configuration"></a><a href="#quarkus-hibernate-orm_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-enabled"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-enabled">quarkus.hibernate-orm.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-enabled"><code>quarkus.hibernate-orm.enabled</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -536,7 +563,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <code>quarkus.hibernate-orm.active</code> will default to <code>false</code> and setting it to <code>true</code> will lead to an error.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6468">QUARKUS_HIBERNATE_ORM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6468" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6253">QUARKUS_HIBERNATE_ORM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6253" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -548,7 +575,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-persistence-xml-ignore"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-persistence-xml-ignore">quarkus.hibernate-orm.persistence-xml.ignore</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-persistence-xml-ignore"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-persistence-xml-ignore"><code>quarkus.hibernate-orm.persistence-xml.ignore</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -556,7 +583,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>If <code>true</code>, Quarkus will ignore any <code>persistence.xml</code> file in the classpath and rely exclusively on the Quarkus configuration.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6469">QUARKUS_HIBERNATE_ORM_PERSISTENCE_XML_IGNORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6469" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6254">QUARKUS_HIBERNATE_ORM_PERSISTENCE_XML_IGNORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6254" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -568,7 +595,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-statistics"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-statistics">quarkus.hibernate-orm.statistics</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-statistics"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-statistics"><code>quarkus.hibernate-orm.statistics</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -576,7 +603,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>Whether statistics collection is enabled. If 'metrics.enabled' is true, then the default here is considered true, otherwise the default is false.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6470">QUARKUS_HIBERNATE_ORM_STATISTICS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6470" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6255">QUARKUS_HIBERNATE_ORM_STATISTICS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6255" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -588,7 +615,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-session-metrics"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-session-metrics">quarkus.hibernate-orm.log-session-metrics</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-session-metrics"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-session-metrics"><code>quarkus.hibernate-orm.log-session-metrics</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -596,7 +623,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>Whether session metrics should be appended into the server log for each Hibernate session. This only has effect if statistics are enabled (<code>quarkus.hibernate-orm.statistics</code>). The default is false (which means both <code>statistics</code> and <code>log-session-metrics</code> need to be enabled for the session metrics to appear in the log).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6471">QUARKUS_HIBERNATE_ORM_LOG_SESSION_METRICS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6471" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6256">QUARKUS_HIBERNATE_ORM_LOG_SESSION_METRICS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6256" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -608,7 +635,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-metrics-enabled"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-metrics-enabled">quarkus.hibernate-orm.metrics.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-metrics-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-metrics-enabled"><code>quarkus.hibernate-orm.metrics.enabled</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -616,7 +643,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>Whether metrics are published if a metrics extension is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6472">QUARKUS_HIBERNATE_ORM_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6472" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6257">QUARKUS_HIBERNATE_ORM_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6257" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -628,10 +655,10 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-datasource"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-datasource">quarkus.hibernate-orm.datasource</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-datasource"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-datasource"><code>quarkus.hibernate-orm.datasource</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-datasource">quarkus.hibernate-orm."persistence-unit-name".datasource</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".datasource</code></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -642,7 +669,7 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>If undefined, it will use the default datasource.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6473">QUARKUS_HIBERNATE_ORM_DATASOURCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6473" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6258">QUARKUS_HIBERNATE_ORM_DATASOURCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6258" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -654,10 +681,10 @@ but it will not be possible to activate Hibernate ORM at runtime:
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-packages"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-packages">quarkus.hibernate-orm.packages</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-packages"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-packages"><code>quarkus.hibernate-orm.packages</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-packages">quarkus.hibernate-orm."persistence-unit-name".packages</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".packages</code></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -665,22 +692,22 @@ but it will not be possible to activate Hibernate ORM at runtime:
 <p>The packages in which the entities affected to this persistence unit are located.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6474">QUARKUS_HIBERNATE_ORM_PACKAGES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6474" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6259">QUARKUS_HIBERNATE_ORM_PACKAGES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6259" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-sql-load-script"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-sql-load-script">quarkus.hibernate-orm.sql-load-script</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-sql-load-script"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-sql-load-script"><code>quarkus.hibernate-orm.sql-load-script</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-sql-load-script">quarkus.hibernate-orm."persistence-unit-name".sql-load-script</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".sql-load-script</code></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -737,22 +764,22 @@ Each SQL statement must be terminated by a semicolon.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6475">QUARKUS_HIBERNATE_ORM_SQL_LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6475" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6260">QUARKUS_HIBERNATE_ORM_SQL_LOAD_SCRIPT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6260" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>import.sql in dev and test modes ; no-file otherwise</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-physical-naming-strategy"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-physical-naming-strategy">quarkus.hibernate-orm.physical-naming-strategy</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-physical-naming-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-physical-naming-strategy"><code>quarkus.hibernate-orm.physical-naming-strategy</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-physical-naming-strategy">quarkus.hibernate-orm."persistence-unit-name".physical-naming-strategy</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".physical-naming-strategy</code></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -760,7 +787,7 @@ Each SQL statement must be terminated by a semicolon.</p>
 <p>Pluggable strategy contract for applying physical naming rules for database object names. Class name of the Hibernate PhysicalNamingStrategy implementation</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6476">QUARKUS_HIBERNATE_ORM_PHYSICAL_NAMING_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6476" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6261">QUARKUS_HIBERNATE_ORM_PHYSICAL_NAMING_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6261" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -772,10 +799,10 @@ Each SQL statement must be terminated by a semicolon.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-implicit-naming-strategy"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-implicit-naming-strategy">quarkus.hibernate-orm.implicit-naming-strategy</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-implicit-naming-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-implicit-naming-strategy"><code>quarkus.hibernate-orm.implicit-naming-strategy</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-implicit-naming-strategy">quarkus.hibernate-orm."persistence-unit-name".implicit-naming-strategy</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".implicit-naming-strategy</code></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -783,7 +810,7 @@ Each SQL statement must be terminated by a semicolon.</p>
 <p>Pluggable strategy for applying implicit naming rules when an explicit name is not given. Class name of the Hibernate ImplicitNamingStrategy implementation</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6477">QUARKUS_HIBERNATE_ORM_IMPLICIT_NAMING_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6477" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6262">QUARKUS_HIBERNATE_ORM_IMPLICIT_NAMING_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6262" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -795,10 +822,10 @@ Each SQL statement must be terminated by a semicolon.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-metadata-builder-contributor"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-metadata-builder-contributor">quarkus.hibernate-orm.metadata-builder-contributor</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-metadata-builder-contributor"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-metadata-builder-contributor"><code>quarkus.hibernate-orm.metadata-builder-contributor</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-metadata-builder-contributor">quarkus.hibernate-orm."persistence-unit-name".metadata-builder-contributor</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".metadata-builder-contributor</code></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -827,7 +854,7 @@ will work correctly. Stay clear of options related to classpath scanning in part
 </table>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6478">QUARKUS_HIBERNATE_ORM_METADATA_BUILDER_CONTRIBUTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6478" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6263">QUARKUS_HIBERNATE_ORM_METADATA_BUILDER_CONTRIBUTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6263" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -839,10 +866,10 @@ will work correctly. Stay clear of options related to classpath scanning in part
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-files"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-files">quarkus.hibernate-orm.mapping-files</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-files"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-files"><code>quarkus.hibernate-orm.mapping-files</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-files">quarkus.hibernate-orm."persistence-unit-name".mapping-files</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".mapping-files</code></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -853,22 +880,22 @@ will work correctly. Stay clear of options related to classpath scanning in part
 <p>Defaults to <code>META-INF/orm.xml</code> if it exists. Pass <code>no-file</code> to force Hibernate ORM to ignore <code>META-INF/orm.xml</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6479">QUARKUS_HIBERNATE_ORM_MAPPING_FILES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6479" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6264">QUARKUS_HIBERNATE_ORM_MAPPING_FILES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6264" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>META-INF/orm.xml if it exists; no-file otherwise</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-quote-identifiers-strategy"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-quote-identifiers-strategy">quarkus.hibernate-orm.quote-identifiers.strategy</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-quote-identifiers-strategy"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-quote-identifiers-strategy"><code>quarkus.hibernate-orm.quote-identifiers.strategy</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-quote-identifiers-strategy">quarkus.hibernate-orm."persistence-unit-name".quote-identifiers.strategy</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".quote-identifiers.strategy</code></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -879,7 +906,7 @@ will work correctly. Stay clear of options related to classpath scanning in part
 <p>Set to <code>none</code> by default, meaning no identifiers will be quoted. If set to <code>all</code>, all identifiers and column definitions will be quoted. Additionally, setting it to <code>all-except-column-definitions</code> will skip the column definitions, which can usually be required when they exist, or else use the option <code>only-keywords</code> to quote only identifiers deemed SQL keywords by the Hibernate ORM dialect.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6480">QUARKUS_HIBERNATE_ORM_QUOTE_IDENTIFIERS_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6480" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6265">QUARKUS_HIBERNATE_ORM_QUOTE_IDENTIFIERS_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6265" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -893,10 +920,10 @@ will work correctly. Stay clear of options related to classpath scanning in part
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-second-level-caching-enabled"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-second-level-caching-enabled">quarkus.hibernate-orm.second-level-caching-enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-second-level-caching-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-second-level-caching-enabled"><code>quarkus.hibernate-orm.second-level-caching-enabled</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-second-level-caching-enabled">quarkus.hibernate-orm."persistence-unit-name".second-level-caching-enabled</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".second-level-caching-enabled</code></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -910,7 +937,7 @@ will work correctly. Stay clear of options related to classpath scanning in part
 <p>Set this to false to disable all 2nd level caches.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6481">QUARKUS_HIBERNATE_ORM_SECOND_LEVEL_CACHING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6481" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6266">QUARKUS_HIBERNATE_ORM_SECOND_LEVEL_CACHING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6266" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -922,10 +949,10 @@ will work correctly. Stay clear of options related to classpath scanning in part
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-validation-enabled"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validation-enabled">quarkus.hibernate-orm.validation.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-validation-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validation-enabled"><code>quarkus.hibernate-orm.validation.enabled</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validation-enabled">quarkus.hibernate-orm."persistence-unit-name".validation.enabled</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".validation.enabled</code></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -933,7 +960,7 @@ will work correctly. Stay clear of options related to classpath scanning in part
 <p>Enables the Bean Validation integration.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6482">QUARKUS_HIBERNATE_ORM_VALIDATION_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6482" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6267">QUARKUS_HIBERNATE_ORM_VALIDATION_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6267" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -945,10 +972,10 @@ will work correctly. Stay clear of options related to classpath scanning in part
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-multitenant"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-multitenant">quarkus.hibernate-orm.multitenant</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-multitenant"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-multitenant"><code>quarkus.hibernate-orm.multitenant</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-multitenant">quarkus.hibernate-orm."persistence-unit-name".multitenant</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".multitenant</code></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -959,7 +986,7 @@ JavaDoc</a>.
 The type DISCRIMINATOR is currently not supported. The default value is NONE (no multi-tenancy).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6483">QUARKUS_HIBERNATE_ORM_MULTITENANT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6483" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6268">QUARKUS_HIBERNATE_ORM_MULTITENANT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6268" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -971,10 +998,10 @@ The type DISCRIMINATOR is currently not supported. The default value is NONE (no
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-validate-in-dev-mode"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validate-in-dev-mode">quarkus.hibernate-orm.validate-in-dev-mode</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-validate-in-dev-mode"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validate-in-dev-mode"><code>quarkus.hibernate-orm.validate-in-dev-mode</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-validate-in-dev-mode">quarkus.hibernate-orm."persistence-unit-name".validate-in-dev-mode</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".validate-in-dev-mode</code></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -982,7 +1009,7 @@ The type DISCRIMINATOR is currently not supported. The default value is NONE (no
 <p>If hibernate is not auto generating the schema, and Quarkus is running in development mode then Quarkus will attempt to validate the database after startup and print a log message if there are any problems.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6484">QUARKUS_HIBERNATE_ORM_VALIDATE_IN_DEV_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6484" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6269">QUARKUS_HIBERNATE_ORM_VALIDATE_IN_DEV_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6269" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -994,10 +1021,10 @@ The type DISCRIMINATOR is currently not supported. The default value is NONE (no
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-active"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-active">quarkus.hibernate-orm.active</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-active"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-active"><code>quarkus.hibernate-orm.active</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-active">quarkus.hibernate-orm."persistence-unit-name".active</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".active</code></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -1017,7 +1044,7 @@ will not be possible.</p>
 all persistence units are deactivated, and setting this property to <code>true</code> will fail.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6485">QUARKUS_HIBERNATE_ORM_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6485" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6270">QUARKUS_HIBERNATE_ORM_ACTIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6270" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1029,10 +1056,10 @@ all persistence units are deactivated, and setting this property to <code>true</
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-unsupported-properties-full-property-key"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-unsupported-properties-full-property-key">quarkus.hibernate-orm.unsupported-properties."full-property-key"</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-unsupported-properties-full-property-key"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-unsupported-properties-full-property-key"><code>quarkus.hibernate-orm.unsupported-properties."full-property-key"</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-unsupported-properties-full-property-key">quarkus.hibernate-orm."persistence-unit-name".unsupported-properties."full-property-key"</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".unsupported-properties."full-property-key"</code></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -1065,29 +1092,255 @@ If none exists, make sure to file a feature request so that a supported configur
 and more importantly so that the configuration property is tested regularly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6486">QUARKUS_HIBERNATE_ORM_UNSUPPORTED_PROPERTIES__FULL_PROPERTY_KEY_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6486" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6271">QUARKUS_HIBERNATE_ORM_UNSUPPORTED_PROPERTIES__FULL_PROPERTY_KEY_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6271" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-dialect-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-dialect-related-configuration">Dialect related configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-database"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-database">Database related configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-dialect"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect">quarkus.hibernate-orm.dialect</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect">quarkus.hibernate-orm."persistence-unit-name".dialect</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-orm-compatibility-version"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-orm-compatibility-version"><code>quarkus.hibernate-orm.database.orm-compatibility.version</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>When set, attempts to exchange data with the database
+as the given version of Hibernate ORM would have,
+<strong>on a best-effort basis</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Please note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>schema validation may still fail in some cases:
+this attempts to make Hibernate ORM 6+ behave correctly at runtime,
+but it may still expect a different (but runtime-compatible) schema.</p>
+</li>
+<li>
+<p>robust test suites are still useful and recommended:
+you should still check that your application behaves as intended with your legacy schema.</p>
+</li>
+<li>
+<p>this feature is inherently unstable:
+some aspects of it may stop working in future versions of Quarkus,
+and older versions will be dropped as Hibernate ORM changes pile up
+and support for those older versions becomes too unreliable.</p>
+</li>
+<li>
+<p>you should still plan a migration of your schema to a newer version of Hibernate ORM.
+For help with migration, refer to
+<a href="https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.0:-Hibernate-ORM-5-to-6-migration">the Quarkus 3
+migration guide from Hibernate ORM 5 to 6</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6272">QUARKUS_HIBERNATE_ORM_DATABASE_ORM_COMPATIBILITY_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6272" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>5.6</code>, <code>latest</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>latest</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-charset"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-charset"><code>quarkus.hibernate-orm.database.charset</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.charset</code></p>
+</div>
+<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The charset of the database.</p>
+</div>
+<div class="paragraph">
+<p>Used for DDL generation and also for the SQL import scripts.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6273">QUARKUS_HIBERNATE_ORM_DATABASE_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6273" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>UTF-8</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation"><code>quarkus.hibernate-orm.database.generation</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.generation</code></p>
+</div>
+<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. This defaults to 'none', however if Dev Services is in use and no other extensions that manage the schema are present this will default to 'drop-and-create'. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6274">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6274" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-create-schemas"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-create-schemas"><code>quarkus.hibernate-orm.database.generation.create-schemas</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.generation.create-schemas</code></p>
+</div>
+<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If Hibernate ORM should create the schemas automatically (for databases supporting them).</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6275">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION_CREATE_SCHEMAS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6275" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-halt-on-error"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-halt-on-error"><code>quarkus.hibernate-orm.database.generation.halt-on-error</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.generation.halt-on-error</code></p>
+</div>
+<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Whether we should stop on the first error when applying the schema.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6276">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION_HALT_ON_ERROR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6276" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-catalog"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-catalog"><code>quarkus.hibernate-orm.database.default-catalog</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.default-catalog</code></p>
+</div>
+<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The default catalog to use for the database objects.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6277">QUARKUS_HIBERNATE_ORM_DATABASE_DEFAULT_CATALOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6277" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-schema"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-schema"><code>quarkus.hibernate-orm.database.default-schema</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.default-schema</code></p>
+</div>
+<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The default schema to use for the database objects.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6278">QUARKUS_HIBERNATE_ORM_DATABASE_DEFAULT_SCHEMA</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6278" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-version-check-enabled"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-version-check-enabled"><code>quarkus.hibernate-orm.database.version-check.enabled</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".database.version-check.enabled</code></p>
+</div>
+<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Whether Hibernate ORM should check on startup
+that the version of the database matches the version configured on the dialect
+(either the default version, or the one set through <code>quarkus.datasource.db-version</code>).</p>
+</div>
+<div class="paragraph">
+<p>This should be set to <code>false</code> if the database is not available on startup.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6279">QUARKUS_HIBERNATE_ORM_DATABASE_VERSION_CHECK_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6279" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>`true</code> if the dialect was set automatically by Quarkus, <code>false</code> if it was set explicitly`</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-dialect"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-dialect">Dialect related configuration</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-dialect"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect"><code>quarkus.hibernate-orm.dialect</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".dialect</code></p>
+</div>
+<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Name of the Hibernate ORM dialect.</p>
@@ -1108,7 +1361,7 @@ may not work properly in GraalVM native executables.</p>
 </div>
 <div class="paragraph">
 <p>For built-in dialects, the expected value is one of the names
-in the <a href="https://docs.jboss.org/hibernate/orm/6.5/dialect/dialect.html">official list of dialects</a>,
+in the <a href="https://docs.jboss.org/hibernate/orm/6.6/dialect/dialect.html">official list of dialects</a>,
 <strong>without</strong> the <code>Dialect</code> suffix,
 for example <code>Cockroach</code> for <code>CockroachDialect</code>.</p>
 </div>
@@ -1117,7 +1370,7 @@ for example <code>Cockroach</code> for <code>CockroachDialect</code>.</p>
 for example <code>com.acme.hibernate.AcmeDbDialect</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6487">QUARKUS_HIBERNATE_ORM_DIALECT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6487" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6280">QUARKUS_HIBERNATE_ORM_DIALECT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6280" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1129,12 +1382,12 @@ for example <code>com.acme.hibernate.AcmeDbDialect</code>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-storage-engine"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-storage-engine">quarkus.hibernate-orm.dialect.storage-engine</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-storage-engine"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-storage-engine"><code>quarkus.hibernate-orm.dialect.storage-engine</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-dialect-storage-engine">quarkus.hibernate-orm."persistence-unit-name".dialect.storage-engine</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".dialect.storage-engine</code></p>
 </div>
-<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The storage engine to use when the dialect supports multiple storage engines.</p>
@@ -1143,7 +1396,7 @@ for example <code>com.acme.hibernate.AcmeDbDialect</code>.</p>
 <p>E.g. <code>MyISAM</code> or <code>InnoDB</code> for MySQL.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6488">QUARKUS_HIBERNATE_ORM_DIALECT_STORAGE_ENGINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6488" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6281">QUARKUS_HIBERNATE_ORM_DIALECT_STORAGE_ENGINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6281" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1154,18 +1407,18 @@ for example <code>com.acme.hibernate.AcmeDbDialect</code>.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-mapping-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-mapping-configuration">Mapping configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-mapping"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-mapping">Mapping configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-timezone-default-storage"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-timezone-default-storage">quarkus.hibernate-orm.mapping.timezone.default-storage</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-timezone-default-storage"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-timezone-default-storage"><code>quarkus.hibernate-orm.mapping.timezone.default-storage</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-timezone-default-storage">quarkus.hibernate-orm."persistence-unit-name".mapping.timezone.default-storage</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".mapping.timezone.default-storage</code></p>
 </div>
-<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>How to store timezones in the database by default
@@ -1237,7 +1490,7 @@ Use this to get the legacy behavior of Quarkus 2 / Hibernate ORM 5 or older.</p>
 </dl>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6489">QUARKUS_HIBERNATE_ORM_MAPPING_TIMEZONE_DEFAULT_STORAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6489" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6282">QUARKUS_HIBERNATE_ORM_MAPPING_TIMEZONE_DEFAULT_STORAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6282" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1249,14 +1502,14 @@ Use this to get the legacy behavior of Quarkus 2 / Hibernate ORM 5 or older.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>default</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-id-optimizer-default"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-id-optimizer-default">quarkus.hibernate-orm.mapping.id.optimizer.default</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-id-optimizer-default"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-id-optimizer-default"><code>quarkus.hibernate-orm.mapping.id.optimizer.default</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-mapping-id-optimizer-default">quarkus.hibernate-orm."persistence-unit-name".mapping.id.optimizer.default</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".mapping.id.optimizer.default</code></p>
 </div>
-<div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The optimizer to apply to identifier generators
@@ -1272,7 +1525,7 @@ in order to reduce the frequency of database calls to retrieve those values
 and thereby improve performance.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6490">QUARKUS_HIBERNATE_ORM_MAPPING_ID_OPTIMIZER_DEFAULT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6490" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6283">QUARKUS_HIBERNATE_ORM_MAPPING_ID_OPTIMIZER_DEFAULT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6283" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1280,29 +1533,29 @@ and thereby improve performance.</p>
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>pooled-lo</code>, <code>pooled</code>, <code>none</code></p>
+<p><span class="asciidoc-tooltip-wrapper"><code>pooled-lo</code><span class="asciidoc-tooltip">Assumes the value retrieved from the table/sequence is the lower end of the pool.  Upon retrieving value <code>N</code>, the new pool of identifiers will go from <code>N</code> to <code>N + &lt;allocation size&gt; - 1</code>, inclusive.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>pooled</code><span class="asciidoc-tooltip">Assumes the value retrieved from the table/sequence is the higher end of the pool.  Upon retrieving value <code>N</code>, the new pool of identifiers will go from <code>N - &lt;allocation size&gt;</code> to <code>N + &lt;allocation size&gt; - 1</code>, inclusive.  The first value, <code>1</code>, is handled differently to avoid negative identifiers.  Use this to get the legacy behavior of Quarkus 2 / Hibernate ORM 5 or older.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>none</code><span class="asciidoc-tooltip">No optimizer, resulting in a database call each and every time an identifier value is needed from the generator.  Not recommended in production environments\: may result in degraded performance and/or frequent gaps in identifier values.</span></span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>pooled-lo</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="asciidoc-tooltip-wrapper"><code>pooled-lo</code><span class="asciidoc-tooltip">Assumes the value retrieved from the table/sequence is the lower end of the pool.  Upon retrieving value <code>N</code>, the new pool of identifiers will go from <code>N</code> to <code>N + &lt;allocation size&gt; - 1</code>, inclusive.</span></span></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-related-configuration">Query related configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-query"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-query">Query related configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-plan-cache-max-size"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-plan-cache-max-size">quarkus.hibernate-orm.query.query-plan-cache-max-size</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-plan-cache-max-size"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-plan-cache-max-size"><code>quarkus.hibernate-orm.query.query-plan-cache-max-size</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-query-plan-cache-max-size">quarkus.hibernate-orm."persistence-unit-name".query.query-plan-cache-max-size</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".query.query-plan-cache-max-size</code></p>
 </div>
-<div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of the query plan cache. see #<code>org.hibernate.cfg.AvailableSettings#QUERY_PLAN_CACHE_MAX_SIZE</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6491">QUARKUS_HIBERNATE_ORM_QUERY_QUERY_PLAN_CACHE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6491" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6284">QUARKUS_HIBERNATE_ORM_QUERY_QUERY_PLAN_CACHE_MAX_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6284" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1312,14 +1565,14 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2048</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-default-null-ordering"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-default-null-ordering">quarkus.hibernate-orm.query.default-null-ordering</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-default-null-ordering"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-default-null-ordering"><code>quarkus.hibernate-orm.query.default-null-ordering</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-default-null-ordering">quarkus.hibernate-orm."persistence-unit-name".query.default-null-ordering</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".query.default-null-ordering</code></p>
 </div>
-<div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Default precedence of null values in <code>ORDER BY</code> clauses.</p>
@@ -1328,7 +1581,7 @@ and thereby improve performance.</p>
 <p>Valid values are: <code>none</code>, <code>first</code>, <code>last</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6492">QUARKUS_HIBERNATE_ORM_QUERY_DEFAULT_NULL_ORDERING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6492" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6285">QUARKUS_HIBERNATE_ORM_QUERY_DEFAULT_NULL_ORDERING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6285" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1340,20 +1593,20 @@ and thereby improve performance.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-in-clause-parameter-padding"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-in-clause-parameter-padding">quarkus.hibernate-orm.query.in-clause-parameter-padding</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-query-in-clause-parameter-padding"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-in-clause-parameter-padding"><code>quarkus.hibernate-orm.query.in-clause-parameter-padding</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-query-in-clause-parameter-padding">quarkus.hibernate-orm."persistence-unit-name".query.in-clause-parameter-padding</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".query.in-clause-parameter-padding</code></p>
 </div>
-<div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Enables IN clause parameter padding which improves statement caching.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6493">QUARKUS_HIBERNATE_ORM_QUERY_IN_CLAUSE_PARAMETER_PADDING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6493" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6286">QUARKUS_HIBERNATE_ORM_QUERY_IN_CLAUSE_PARAMETER_PADDING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6286" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1364,24 +1617,24 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-jdbc-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-jdbc-related-configuration">JDBC related configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-jdbc"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-jdbc">JDBC related configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-timezone"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-timezone">quarkus.hibernate-orm.jdbc.timezone</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-timezone"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-timezone"><code>quarkus.hibernate-orm.jdbc.timezone</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-timezone">quarkus.hibernate-orm."persistence-unit-name".jdbc.timezone</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".jdbc.timezone</code></p>
 </div>
-<div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The time zone pushed to the JDBC driver. See <code>quarkus.hibernate-orm.mapping.timezone.default-storage</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6494">QUARKUS_HIBERNATE_ORM_JDBC_TIMEZONE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6494" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6287">QUARKUS_HIBERNATE_ORM_JDBC_TIMEZONE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6287" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1391,20 +1644,20 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-fetch-size"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-fetch-size">quarkus.hibernate-orm.jdbc.statement-fetch-size</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-fetch-size"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-fetch-size"><code>quarkus.hibernate-orm.jdbc.statement-fetch-size</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-fetch-size">quarkus.hibernate-orm."persistence-unit-name".jdbc.statement-fetch-size</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".jdbc.statement-fetch-size</code></p>
 </div>
-<div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>How many rows are fetched at a time by the JDBC driver.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6495">QUARKUS_HIBERNATE_ORM_JDBC_STATEMENT_FETCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6495" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6288">QUARKUS_HIBERNATE_ORM_JDBC_STATEMENT_FETCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6288" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1414,20 +1667,20 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-batch-size"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-batch-size">quarkus.hibernate-orm.jdbc.statement-batch-size</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-batch-size"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-batch-size"><code>quarkus.hibernate-orm.jdbc.statement-batch-size</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-jdbc-statement-batch-size">quarkus.hibernate-orm."persistence-unit-name".jdbc.statement-batch-size</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".jdbc.statement-batch-size</code></p>
 </div>
-<div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The number of updates (inserts, updates and deletes) that are sent by the JDBC driver at one time for execution.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6496">QUARKUS_HIBERNATE_ORM_JDBC_STATEMENT_BATCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6496" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6289">QUARKUS_HIBERNATE_ORM_JDBC_STATEMENT_BATCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6289" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1438,18 +1691,18 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-fetching-logic-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-fetching-logic-configuration">Fetching logic configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-fetch"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-fetch">Fetching logic configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-batch-size"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-batch-size">quarkus.hibernate-orm.fetch.batch-size</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-batch-size"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-batch-size"><code>quarkus.hibernate-orm.fetch.batch-size</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-batch-size">quarkus.hibernate-orm."persistence-unit-name".fetch.batch-size</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".fetch.batch-size</code></p>
 </div>
-<div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The size of the batches used when loading entities and collections.</p>
@@ -1458,7 +1711,7 @@ and thereby improve performance.</p>
 <p><code>-1</code> means batch loading is disabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6497">QUARKUS_HIBERNATE_ORM_FETCH_BATCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6497" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6290">QUARKUS_HIBERNATE_ORM_FETCH_BATCH_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6290" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1470,12 +1723,12 @@ and thereby improve performance.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-max-depth"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-max-depth">quarkus.hibernate-orm.fetch.max-depth</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-max-depth"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-max-depth"><code>quarkus.hibernate-orm.fetch.max-depth</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-fetch-max-depth">quarkus.hibernate-orm."persistence-unit-name".fetch.max-depth</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".fetch.max-depth</code></p>
 </div>
-<div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum depth of outer join fetch tree for single-ended associations (one-to-one, many-to-one).</p>
@@ -1484,7 +1737,7 @@ and thereby improve performance.</p>
 <p>A <code>0</code> disables default outer join fetching.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6498">QUARKUS_HIBERNATE_ORM_FETCH_MAX_DEPTH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6498" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6291">QUARKUS_HIBERNATE_ORM_FETCH_MAX_DEPTH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6291" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1495,48 +1748,47 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-cache-caching-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-caching-configuration">Caching configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-cache"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-cache">Caching configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-expiration-max-idle"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-expiration-max-idle">quarkus.hibernate-orm.cache."cache".expiration.max-idle</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-expiration-max-idle"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-expiration-max-idle"><code>quarkus.hibernate-orm.cache."cache".expiration.max-idle</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-expiration-max-idle">quarkus.hibernate-orm."persistence-unit-name".cache."cache".expiration.max-idle</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".cache."cache".expiration.max-idle</code></p>
 </div>
-<div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum time before an object of the cache is considered expired.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6499">QUARKUS_HIBERNATE_ORM_CACHE__CACHE__EXPIRATION_MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6499" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6292">QUARKUS_HIBERNATE_ORM_CACHE__CACHE__EXPIRATION_MAX_IDLE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6292" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
-  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-hibernate-orm_quarkus-hibernate-orm"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count">quarkus.hibernate-orm.cache."cache".memory.object-count</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count"><code>quarkus.hibernate-orm.cache."cache".memory.object-count</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count">quarkus.hibernate-orm."persistence-unit-name".cache."cache".memory.object-count</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".cache."cache".memory.object-count</code></p>
 </div>
-<div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The maximum number of objects kept in memory in the cache.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6500">QUARKUS_HIBERNATE_ORM_CACHE__CACHE__MEMORY_OBJECT_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6500" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6293">QUARKUS_HIBERNATE_ORM_CACHE__CACHE__MEMORY_OBJECT_COUNT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6293" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1547,24 +1799,24 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-discriminator-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-discriminator-related-configuration">Discriminator related configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-discriminator"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-discriminator">Discriminator related configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-ignore-explicit-for-joined"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-ignore-explicit-for-joined">quarkus.hibernate-orm.discriminator.ignore-explicit-for-joined</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-ignore-explicit-for-joined"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-ignore-explicit-for-joined"><code>quarkus.hibernate-orm.discriminator.ignore-explicit-for-joined</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-discriminator-ignore-explicit-for-joined">quarkus.hibernate-orm."persistence-unit-name".discriminator.ignore-explicit-for-joined</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".discriminator.ignore-explicit-for-joined</code></p>
 </div>
-<div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Existing applications rely (implicitly or explicitly) on Hibernate ignoring any DiscriminatorColumn declarations on joined inheritance hierarchies. This setting allows these applications to maintain the legacy behavior of DiscriminatorColumn annotations being ignored when paired with joined inheritance.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6501">QUARKUS_HIBERNATE_ORM_DISCRIMINATOR_IGNORE_EXPLICIT_FOR_JOINED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6501" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6294">QUARKUS_HIBERNATE_ORM_DISCRIMINATOR_IGNORE_EXPLICIT_FOR_JOINED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6294" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1575,287 +1827,15 @@ and thereby improve performance.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-database-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-database-related-configuration">Database related configuration</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-log"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-log">Logging configuration</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-orm-compatibility-version"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-orm-compatibility-version">quarkus.hibernate-orm.database.orm-compatibility.version</a></code></p>
-</div>
-<div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>When set, attempts to exchange data with the database
-as the given version of Hibernate ORM would have,
-<strong>on a best-effort basis</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Please note:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>schema validation may still fail in some cases:
-this attempts to make Hibernate ORM 6+ behave correctly at runtime,
-but it may still expect a different (but runtime-compatible) schema.</p>
-</li>
-<li>
-<p>robust test suites are still useful and recommended:
-you should still check that your application behaves as intended with your legacy schema.</p>
-</li>
-<li>
-<p>this feature is inherently unstable:
-some aspects of it may stop working in future versions of Quarkus,
-and older versions will be dropped as Hibernate ORM changes pile up
-and support for those older versions becomes too unreliable.</p>
-</li>
-<li>
-<p>you should still plan a migration of your schema to a newer version of Hibernate ORM.
-For help with migration, refer to
-<a href="https://github.com/quarkusio/quarkus/wiki/Migration-Guide-3.0:-Hibernate-ORM-5-to-6-migration">the Quarkus 3
-migration guide from Hibernate ORM 5 to 6</a>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6502">QUARKUS_HIBERNATE_ORM_DATABASE_ORM_COMPATIBILITY_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6502" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>5.6</code>, <code>latest</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>latest</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-charset"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-charset">quarkus.hibernate-orm.database.charset</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-charset">quarkus.hibernate-orm."persistence-unit-name".database.charset</a></code></p>
-</div>
-<div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The charset of the database.</p>
-</div>
-<div class="paragraph">
-<p>Used for DDL generation and also for the SQL import scripts.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6503">QUARKUS_HIBERNATE_ORM_DATABASE_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6503" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html">Charset</a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>UTF-8</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation">quarkus.hibernate-orm.database.generation</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation">quarkus.hibernate-orm."persistence-unit-name".database.generation</a></code></p>
-</div>
-<div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. This defaults to 'none', however if Dev Services is in use and no other extensions that manage the schema are present this will default to 'drop-and-create'. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6504">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6504" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-create-schemas"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-create-schemas">quarkus.hibernate-orm.database.generation.create-schemas</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-create-schemas">quarkus.hibernate-orm."persistence-unit-name".database.generation.create-schemas</a></code></p>
-</div>
-<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>If Hibernate ORM should create the schemas automatically (for databases supporting them).</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6505">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION_CREATE_SCHEMAS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6505" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-halt-on-error"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-halt-on-error">quarkus.hibernate-orm.database.generation.halt-on-error</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-generation-halt-on-error">quarkus.hibernate-orm."persistence-unit-name".database.generation.halt-on-error</a></code></p>
-</div>
-<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Whether we should stop on the first error when applying the schema.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6506">QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION_HALT_ON_ERROR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6506" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-catalog"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-catalog">quarkus.hibernate-orm.database.default-catalog</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-catalog">quarkus.hibernate-orm."persistence-unit-name".database.default-catalog</a></code></p>
-</div>
-<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The default catalog to use for the database objects.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6507">QUARKUS_HIBERNATE_ORM_DATABASE_DEFAULT_CATALOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6507" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-schema"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-schema">quarkus.hibernate-orm.database.default-schema</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-database-default-schema">quarkus.hibernate-orm."persistence-unit-name".database.default-schema</a></code></p>
-</div>
-<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The default schema to use for the database objects.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6508">QUARKUS_HIBERNATE_ORM_DATABASE_DEFAULT_SCHEMA</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6508" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-database-scripts-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-database-scripts-related-configuration">Database scripts related configuration</a></p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation">quarkus.hibernate-orm.scripts.generation</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation">quarkus.hibernate-orm."persistence-unit-name".scripts.generation</a></code></p>
-</div>
-<div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Select whether the database schema DDL files are generated or not. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6509">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6509" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-create-target"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-create-target">quarkus.hibernate-orm.scripts.generation.create-target</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-create-target">quarkus.hibernate-orm."persistence-unit-name".scripts.generation.create-target</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-bind-parameters"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-bind-parameters"><code>quarkus.hibernate-orm.log.bind-parameters</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Filename or URL where the database create DDL file should be generated.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6510">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION_CREATE_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6510" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-drop-target"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-drop-target">quarkus.hibernate-orm.scripts.generation.drop-target</a></code></p>
-</div>
-<div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-drop-target">quarkus.hibernate-orm."persistence-unit-name".scripts.generation.drop-target</a></code></p>
-</div>
-<div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Filename or URL where the database drop DDL file should be generated.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-6511">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION_DROP_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6511" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-logging-configuration"></a><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-logging-configuration">Logging configuration</a></p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-bind-parameters"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-bind-parameters">quarkus.hibernate-orm.log.bind-parameters</a></code></p>
-</div>
-<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Logs SQL bind parameters.</p>
@@ -1864,7 +1844,7 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 <p>Setting it to true is obviously not recommended in production.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6512">QUARKUS_HIBERNATE_ORM_LOG_BIND_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6512" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6295">QUARKUS_HIBERNATE_ORM_LOG_BIND_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6295" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1876,12 +1856,12 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-sql"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-sql">quarkus.hibernate-orm.log.sql</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-sql"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-sql"><code>quarkus.hibernate-orm.log.sql</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-sql">quarkus.hibernate-orm."persistence-unit-name".log.sql</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".log.sql</code></p>
 </div>
-<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Show SQL logs and format them nicely.</p>
@@ -1890,7 +1870,7 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 <p>Setting it to true is obviously not recommended in production.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6513">QUARKUS_HIBERNATE_ORM_LOG_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6513" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6296">QUARKUS_HIBERNATE_ORM_LOG_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6296" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1902,18 +1882,18 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-format-sql"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-format-sql">quarkus.hibernate-orm.log.format-sql</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-format-sql"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-format-sql"><code>quarkus.hibernate-orm.log.format-sql</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-format-sql">quarkus.hibernate-orm."persistence-unit-name".log.format-sql</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".log.format-sql</code></p>
 </div>
-<div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Format the SQL logs if SQL log is enabled</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6514">QUARKUS_HIBERNATE_ORM_LOG_FORMAT_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6514" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6297">QUARKUS_HIBERNATE_ORM_LOG_FORMAT_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6297" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1925,18 +1905,18 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-highlight-sql"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-highlight-sql">quarkus.hibernate-orm.log.highlight-sql</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-highlight-sql"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-highlight-sql"><code>quarkus.hibernate-orm.log.highlight-sql</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-highlight-sql">quarkus.hibernate-orm."persistence-unit-name".log.highlight-sql</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".log.highlight-sql</code></p>
 </div>
-<div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Highlight the SQL logs if SQL log is enabled</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6515">QUARKUS_HIBERNATE_ORM_LOG_HIGHLIGHT_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6515" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6298">QUARKUS_HIBERNATE_ORM_LOG_HIGHLIGHT_SQL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6298" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1948,18 +1928,18 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-jdbc-warnings"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-jdbc-warnings">quarkus.hibernate-orm.log.jdbc-warnings</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-jdbc-warnings"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-jdbc-warnings"><code>quarkus.hibernate-orm.log.jdbc-warnings</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-jdbc-warnings">quarkus.hibernate-orm."persistence-unit-name".log.jdbc-warnings</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".log.jdbc-warnings</code></p>
 </div>
-<div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether JDBC warnings should be collected and logged.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6516">QUARKUS_HIBERNATE_ORM_LOG_JDBC_WARNINGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6516" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6299">QUARKUS_HIBERNATE_ORM_LOG_JDBC_WARNINGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6299" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1971,18 +1951,18 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-queries-slower-than-ms"></a><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-queries-slower-than-ms">quarkus.hibernate-orm.log.queries-slower-than-ms</a></code></p>
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-log-queries-slower-than-ms"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-queries-slower-than-ms"><code>quarkus.hibernate-orm.log.queries-slower-than-ms</code></a></span></p>
 </div>
 <div class="paragraph">
-<p><code><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-log-queries-slower-than-ms">quarkus.hibernate-orm."persistence-unit-name".log.queries-slower-than-ms</a></code></p>
+<p><code>quarkus.hibernate-orm."persistence-unit-name".log.queries-slower-than-ms</code></p>
 </div>
-<div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>If set, Hibernate will log queries that took more than specified number of milliseconds to execute.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6517">QUARKUS_HIBERNATE_ORM_LOG_QUERIES_SLOWER_THAN_MS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6517" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6300">QUARKUS_HIBERNATE_ORM_LOG_QUERIES_SLOWER_THAN_MS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6300" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1992,9 +1972,121 @@ migration guide from Hibernate ORM 5 to 6</a>.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-scripts"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-scripts">Database scripts related configuration</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation"><code>quarkus.hibernate-orm.scripts.generation</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".scripts.generation</code></p>
+</div>
+<div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Select whether the database schema DDL files are generated or not. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6301">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6301" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-create-target"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-create-target"><code>quarkus.hibernate-orm.scripts.generation.create-target</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".scripts.generation.create-target</code></p>
+</div>
+<div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database create DDL file should be generated.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6302">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION_CREATE_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6302" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-drop-target"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-scripts-generation-drop-target"><code>quarkus.hibernate-orm.scripts.generation.drop-target</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".scripts.generation.drop-target</code></p>
+</div>
+<div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database drop DDL file should be generated.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6303">QUARKUS_HIBERNATE_ORM_SCRIPTS_GENERATION_DROP_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6303" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_section_quarkus-hibernate-orm-flush"></a> <span class="section-name section-level0"><a href="#quarkus-hibernate-orm_section_quarkus-hibernate-orm-flush">Flush configuration</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus-hibernate-orm-flush-mode"></a> <span class="property-path"><a href="#quarkus-hibernate-orm_quarkus-hibernate-orm-flush-mode"><code>quarkus.hibernate-orm.flush.mode</code></a></span></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.hibernate-orm."persistence-unit-name".flush.mode</code></p>
+</div>
+<div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The default flushing strategy, or when to flush entities to the database in a Hibernate session:
+before every query, on commit, &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>This default can be overridden on a per-session basis with <code>Session#setHibernateFlushMode()</code>
+or on a per-query basis with the hint <code>HibernateHints#HINT_FLUSH_MODE</code>.</p>
+</div>
+<div class="paragraph">
+<p>See the javadoc of <code>org.hibernate.FlushMode</code> for details.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6304">QUARKUS_HIBERNATE_ORM_FLUSH_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6304" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>manual</code>, <code>commit</code>, <code>auto</code>, <code>always</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>auto</code></p></td>
+</tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-hibernate-orm" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-hibernate-orm_quarkus-hibernate-orm" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -2435,6 +2527,10 @@ by providing active record style entities (and repositories) and focuses on maki
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

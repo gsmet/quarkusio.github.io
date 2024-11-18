@@ -11,8 +11,33 @@
   <title>Using OpenTracing - 2.16 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -167,6 +194,9 @@
         
         
         
+        
+        
+        
         <option value="3.2" >3.2</option>
         
         
@@ -176,10 +206,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -808,7 +834,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Defines if the Jaeger extension is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21632">QUARKUS_JAEGER_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21632" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21490">QUARKUS_JAEGER_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21490" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -828,7 +854,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Whether metrics are published in case a metrics extension is present.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21633">QUARKUS_JAEGER_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21633" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21491">QUARKUS_JAEGER_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21491" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -848,7 +874,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The traces endpoint, in case the client should connect directly to the Collector, like <a href="http://jaeger-collector:14268/api/traces" class="bare">http://jaeger-collector:14268/api/traces</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21634">QUARKUS_JAEGER_ENDPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21634" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21492">QUARKUS_JAEGER_ENDPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21492" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -868,7 +894,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Authentication Token to send as "Bearer" to the endpoint</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21635">QUARKUS_JAEGER_AUTH_TOKEN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21635" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21493">QUARKUS_JAEGER_AUTH_TOKEN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21493" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -888,7 +914,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Username to send as part of "Basic" authentication to the endpoint</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21636">QUARKUS_JAEGER_USER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21636" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21494">QUARKUS_JAEGER_USER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21494" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -908,7 +934,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Password to send as part of "Basic" authentication to the endpoint</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21637">QUARKUS_JAEGER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21637" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21495">QUARKUS_JAEGER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21495" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -928,7 +954,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The hostname and port for communicating with agent via UDP</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21638">QUARKUS_JAEGER_AGENT_HOST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21638" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21496">QUARKUS_JAEGER_AGENT_HOST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21496" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -948,7 +974,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Whether the reporter should also log the spans</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21639">QUARKUS_JAEGER_REPORTER_LOG_SPANS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21639" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21497">QUARKUS_JAEGER_REPORTER_LOG_SPANS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21497" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -968,7 +994,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The reporter&#8217;s maximum queue size</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21640">QUARKUS_JAEGER_REPORTER_MAX_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21640" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21498">QUARKUS_JAEGER_REPORTER_MAX_QUEUE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21498" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -988,7 +1014,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The reporter&#8217;s flush interval</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21641">QUARKUS_JAEGER_REPORTER_FLUSH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21641" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21499">QUARKUS_JAEGER_REPORTER_FLUSH_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21499" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1009,7 +1035,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The sampler type (const, probabilistic, ratelimiting or remote)</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21642">QUARKUS_JAEGER_SAMPLER_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21642" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21500">QUARKUS_JAEGER_SAMPLER_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21500" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1029,7 +1055,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The sampler parameter (number)</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21643">QUARKUS_JAEGER_SAMPLER_PARAM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21643" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21501">QUARKUS_JAEGER_SAMPLER_PARAM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21501" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1049,7 +1075,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The host name and port when using the remote controlled sampler</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21644">QUARKUS_JAEGER_SAMPLER_MANAGER_HOST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21644" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21502">QUARKUS_JAEGER_SAMPLER_MANAGER_HOST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21502" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1069,7 +1095,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The service name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21645">QUARKUS_JAEGER_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21645" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21503">QUARKUS_JAEGER_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21503" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1089,7 +1115,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>A comma separated list of name = value tracer level tags, which get added to all reported spans. The value can also refer to an environment variable using the format ${envVarName:default}, where the :default is optional, and identifies a value to be used if the environment variable cannot be found</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21646">QUARKUS_JAEGER_TAGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21646" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21504">QUARKUS_JAEGER_TAGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21504" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1109,7 +1135,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Comma separated list of formats to use for propagating the trace context. Defaults to the standard Jaeger format. Valid values are jaeger and b3</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21647">QUARKUS_JAEGER_PROPAGATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21647" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21505">QUARKUS_JAEGER_PROPAGATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21505" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1129,7 +1155,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>The sender factory class name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21648">QUARKUS_JAEGER_SENDER_FACTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21648" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21506">QUARKUS_JAEGER_SENDER_FACTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21506" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1149,7 +1175,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Whether the trace context should be logged.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21649">QUARKUS_JAEGER_LOG_TRACE_CONTEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21649" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21507">QUARKUS_JAEGER_LOG_TRACE_CONTEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21507" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1169,7 +1195,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Whether the registration of tracer as the global tracer should be disabled. This setting should only be turned on in tests that need to install a mock tracer.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21650">QUARKUS_JAEGER_DISABLE_TRACER_REGISTRATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21650" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21508">QUARKUS_JAEGER_DISABLE_TRACER_REGISTRATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21508" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1189,7 +1215,7 @@ quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
 <p>Whether jaeger should run in zipkin compatibility mode</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-21651">QUARKUS_JAEGER_ZIPKIN_COMPATIBILITY_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21651" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-21509">QUARKUS_JAEGER_ZIPKIN_COMPATIBILITY_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-21509" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1321,6 +1347,10 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

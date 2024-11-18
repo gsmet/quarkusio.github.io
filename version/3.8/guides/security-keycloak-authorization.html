@@ -11,8 +11,33 @@
   <title>Using OpenID Connect (OIDC) and Keycloak to centralize authorization - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -355,7 +382,7 @@ cd security-keycloak-authorization-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.5:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.8.6:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=security-keycloak-authorization-quickstart \
     -Dextensions='oidc,keycloak-authorization,resteasy-reactive-jackson' \
@@ -580,7 +607,7 @@ For more information, see the <a href="#keycloak-dev-mode">Running the applicati
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>keycloak.version</code> must be <code>23.0.0</code> or later and the <code>keycloak-keystore.jks</code> can be found in <a href="https://github.com/quarkusio/quarkus-quickstarts/blob/main/security-keycloak-authorization-quickstart/config/keycloak-keystore.jks">quarkus-quickstarts/security-keycloak-authorization-quickstart/config</a>.</p>
+<p>where <code>keycloak.version</code> must be <code>24.0.0</code> or later and the <code>keycloak-keystore.jks</code> can be found in <a href="https://github.com/quarkusio/quarkus-quickstarts/blob/main/security-keycloak-authorization-quickstart/config/keycloak-keystore.jks">quarkus-quickstarts/security-keycloak-authorization-quickstart/config</a>.</p>
 </div>
 <div class="paragraph">
 <p>Try to access your Keycloak server at <a href="https://localhost:8543">localhost:8543</a>.</p>
@@ -1135,7 +1162,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Adapters will make separate HTTP invocations to the Keycloak server to turn an access code into an access token. This config option defines how many connections to the Keycloak server should be pooled</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38527">QUARKUS_KEYCLOAK_CONNECTION_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38527" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47000">QUARKUS_KEYCLOAK_CONNECTION_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47000" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1155,7 +1182,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how policies are enforced.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38528">QUARKUS_KEYCLOAK_POLICY_ENFORCER_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38528" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47001">QUARKUS_KEYCLOAK_POLICY_ENFORCER_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47001" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1177,7 +1204,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Defines the limit of entries that should be kept in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38529">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATH_CACHE_MAX_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38529" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47002">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATH_CACHE_MAX_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47002" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1197,7 +1224,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Defines the time in milliseconds when the entry should be expired</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38530">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATH_CACHE_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38530" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47003">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATH_CACHE_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47003" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1217,7 +1244,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how the adapter should fetch the server for resources associated with paths in your application. If true, the policy enforcer is going to fetch resources on-demand accordingly with the path being requested</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38531">QUARKUS_KEYCLOAK_POLICY_ENFORCER_LAZY_LOAD_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38531" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47004">QUARKUS_KEYCLOAK_POLICY_ENFORCER_LAZY_LOAD_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47004" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1237,7 +1264,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how scopes should be mapped to HTTP methods. If set to true, the policy enforcer will use the HTTP method from the current request to check whether access should be granted</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38532">QUARKUS_KEYCLOAK_POLICY_ENFORCER_HTTP_METHOD_AS_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38532" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47005">QUARKUS_KEYCLOAK_POLICY_ENFORCER_HTTP_METHOD_AS_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47005" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1257,7 +1284,7 @@ For detailed insights into various configuration options, see the following docu
 <p>The name of a resource on the server that is to be associated with a given path</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38533">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38533" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47006">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47006" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1277,7 +1304,7 @@ For detailed insights into various configuration options, see the following docu
 <p>A URI relative to the application’s context path that should be protected by the policy enforcer</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38534">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38534" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47007">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47007" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1297,7 +1324,7 @@ For detailed insights into various configuration options, see the following docu
 <p>The name of the HTTP method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38535">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38535" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47008">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47008" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1317,7 +1344,7 @@ For detailed insights into various configuration options, see the following docu
 <p>An array of strings with the scopes associated with the method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38536">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38536" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47009">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47009" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1337,7 +1364,7 @@ For detailed insights into various configuration options, see the following docu
 <p>A string referencing the enforcement mode for the scopes associated with a method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38537">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38537" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47010">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47010" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1359,7 +1386,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how policies are enforced</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38538">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38538" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47011">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47011" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1378,7 +1405,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-13" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38539">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38539" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47012">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47012" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1392,7 +1419,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-14" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38540">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38540" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47013">QUARKUS_KEYCLOAK_POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47013" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1406,7 +1433,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-15" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38541">QUARKUS_KEYCLOAK_POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38541" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47014">QUARKUS_KEYCLOAK_POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47014" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1420,7 +1447,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-16" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38542">QUARKUS_KEYCLOAK_POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38542" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47015">QUARKUS_KEYCLOAK_POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47015" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1442,7 +1469,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Adapters will make separate HTTP invocations to the Keycloak server to turn an access code into an access token. This config option defines how many connections to the Keycloak server should be pooled</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38543">QUARKUS_KEYCLOAK__TENANT__CONNECTION_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38543" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47016">QUARKUS_KEYCLOAK__TENANT__CONNECTION_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47016" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1462,7 +1489,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how policies are enforced.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38544">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38544" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47017">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47017" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1484,7 +1511,7 @@ For detailed insights into various configuration options, see the following docu
 <p>The name of a resource on the server that is to be associated with a given path</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38545">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38545" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47018">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47018" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1504,7 +1531,7 @@ For detailed insights into various configuration options, see the following docu
 <p>A URI relative to the application’s context path that should be protected by the policy enforcer</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38546">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38546" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47019">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47019" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1524,7 +1551,7 @@ For detailed insights into various configuration options, see the following docu
 <p>The name of the HTTP method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38547">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38547" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47020">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__METHOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47020" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1544,7 +1571,7 @@ For detailed insights into various configuration options, see the following docu
 <p>An array of strings with the scopes associated with the method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38548">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38548" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47021">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47021" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1564,7 +1591,7 @@ For detailed insights into various configuration options, see the following docu
 <p>A string referencing the enforcement mode for the scopes associated with a method</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38549">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38549" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47022">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__METHODS__METHODS__SCOPES_ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47022" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1586,7 +1613,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how policies are enforced</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38550">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38550" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47023">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__ENFORCEMENT_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47023" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1605,7 +1632,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-25" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38551">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38551" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47024">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47024" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1619,7 +1646,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-26" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38552">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38552" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47025">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATHS__PATHS__CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47025" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1636,7 +1663,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Defines the limit of entries that should be kept in the cache</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38553">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATH_CACHE_MAX_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38553" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47026">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATH_CACHE_MAX_ENTRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47026" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1656,7 +1683,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Defines the time in milliseconds when the entry should be expired</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38554">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATH_CACHE_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38554" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47027">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_PATH_CACHE_LIFESPAN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47027" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1676,7 +1703,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how the adapter should fetch the server for resources associated with paths in your application. If true, the policy enforcer is going to fetch resources on-demand accordingly with the path being requested</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38555">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_LAZY_LOAD_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38555" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47028">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_LAZY_LOAD_PATHS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47028" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1693,7 +1720,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-30" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38556">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38556" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47029">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47029" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1707,7 +1734,7 @@ For detailed insights into various configuration options, see the following docu
 <div id="conf-non-collapsible-desc-31" class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38557">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38557" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47030">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_CLAIM_INFORMATION_POINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47030" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div></div></td>
@@ -1724,7 +1751,7 @@ For detailed insights into various configuration options, see the following docu
 <p>Specifies how scopes should be mapped to HTTP methods. If set to true, the policy enforcer will use the HTTP method from the current request to check whether access should be granted</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-38558">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_HTTP_METHOD_AS_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38558" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-47031">QUARKUS_KEYCLOAK__TENANT__POLICY_ENFORCER_HTTP_METHOD_AS_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-47031" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1960,6 +1987,10 @@ For detailed insights into various configuration options, see the following docu
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

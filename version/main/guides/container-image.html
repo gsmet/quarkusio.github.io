@@ -11,8 +11,33 @@
   <title>Container Images - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -669,7 +696,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <h2 id="integrating-with-systemd-notify"><a class="anchor" href="#integrating-with-systemd-notify"></a>Integrating with <code>systemd-notify</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are building a container image in order to deploy your Quarkus application as a Linux service with Podman and Systemd, you might want to consider including the <a href="https://quarkiverse.github.io/quarkiverse-docs/quarkus-systemd-notify/dev/index.html">Quarkus Systemd Notify Extension</a> as part of your application, with:</p>
+<p>If you are building a container image in order to deploy your Quarkus application as a Linux service with Podman and Systemd, you might want to consider including the <a href="https://docs.quarkiverse.io/quarkus-systemd-notify/dev/index.html">Quarkus Systemd Notify Extension</a> as part of your application, with:</p>
 </div>
 <div class="listingblock primary asciidoc-tabs-sync-cli">
 <div class="title">CLI</div>
@@ -716,7 +743,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-group"></a> <span class="property-path"><code>quarkus.container-image.group</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-group"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-group"><code>quarkus.container-image.group</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.group' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -724,7 +752,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The group the container image will be part of</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43412">QUARKUS_CONTAINER_IMAGE_GROUP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43412" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51846">QUARKUS_CONTAINER_IMAGE_GROUP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51846" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -736,7 +764,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-name"></a> <span class="property-path"><code>quarkus.container-image.name</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-name"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-name"><code>quarkus.container-image.name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -744,7 +773,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The name of the container image. If not set defaults to the application name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43413">QUARKUS_CONTAINER_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43413" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51847">QUARKUS_CONTAINER_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51847" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -756,7 +785,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-tag"></a> <span class="property-path"><code>quarkus.container-image.tag</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-tag"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-tag"><code>quarkus.container-image.tag</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.tag' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -764,7 +794,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The tag of the container image. If not set defaults to the application version</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43414">QUARKUS_CONTAINER_IMAGE_TAG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43414" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51848">QUARKUS_CONTAINER_IMAGE_TAG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51848" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -776,7 +806,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-additional-tags"></a> <span class="property-path"><code>quarkus.container-image.additional-tags</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-additional-tags"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-additional-tags"><code>quarkus.container-image.additional-tags</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.additional-tags' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -784,7 +815,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Additional tags of the container image.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43415">QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43415" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51849">QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51849" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -796,7 +827,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-labels-label-name"></a> <span class="property-path"><code>quarkus.container-image.labels."label-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-labels-label-name"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-labels-label-name"><code>quarkus.container-image.labels."label-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.labels."label-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -804,7 +836,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Custom labels to add to the generated image.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43416">QUARKUS_CONTAINER_IMAGE_LABELS__LABEL_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43416" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51850">QUARKUS_CONTAINER_IMAGE_LABELS__LABEL_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51850" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -816,7 +848,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-registry"></a> <span class="property-path"><code>quarkus.container-image.registry</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-registry"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-registry"><code>quarkus.container-image.registry</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.registry' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -824,7 +857,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The container registry to use</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43417">QUARKUS_CONTAINER_IMAGE_REGISTRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43417" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51851">QUARKUS_CONTAINER_IMAGE_REGISTRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51851" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -836,7 +869,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-image"></a> <span class="property-path"><code>quarkus.container-image.image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-image"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-image"><code>quarkus.container-image.image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -844,7 +878,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Represents the entire image string. If set, then <code>group</code>, <code>name</code>, <code>registry</code>, <code>tags</code>, <code>additionalTags</code> are ignored</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43418">QUARKUS_CONTAINER_IMAGE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43418" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51852">QUARKUS_CONTAINER_IMAGE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51852" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -856,7 +890,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-username"></a> <span class="property-path"><code>quarkus.container-image.username</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-username"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-username"><code>quarkus.container-image.username</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.username' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -864,7 +899,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The username to use to authenticate with the registry where the built image will be pushed</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43419">QUARKUS_CONTAINER_IMAGE_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43419" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51853">QUARKUS_CONTAINER_IMAGE_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51853" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -876,7 +911,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-password"></a> <span class="property-path"><code>quarkus.container-image.password</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-password"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-password"><code>quarkus.container-image.password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -884,7 +920,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The password to use to authenticate with the registry where the built image will be pushed</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43420">QUARKUS_CONTAINER_IMAGE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43420" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51854">QUARKUS_CONTAINER_IMAGE_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51854" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -896,7 +932,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-insecure"></a> <span class="property-path"><code>quarkus.container-image.insecure</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-insecure"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-insecure"><code>quarkus.container-image.insecure</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.insecure' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -904,7 +941,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Whether or not insecure registries are allowed</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43421">QUARKUS_CONTAINER_IMAGE_INSECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43421" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51855">QUARKUS_CONTAINER_IMAGE_INSECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51855" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -916,7 +953,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-build"></a> <span class="property-path"><code>quarkus.container-image.build</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-build"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-build"><code>quarkus.container-image.build</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.build' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -924,7 +962,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Whether or not a image build will be performed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43422">QUARKUS_CONTAINER_IMAGE_BUILD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43422" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51856">QUARKUS_CONTAINER_IMAGE_BUILD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51856" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -936,7 +974,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-push"></a> <span class="property-path"><code>quarkus.container-image.push</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-push"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-push"><code>quarkus.container-image.push</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.push' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -944,7 +983,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>Whether or not an image push will be performed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43423">QUARKUS_CONTAINER_IMAGE_PUSH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43423" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51857">QUARKUS_CONTAINER_IMAGE_PUSH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51857" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -956,7 +995,8 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-builder"></a> <span class="property-path"><code>quarkus.container-image.builder</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus-container-image-builder"></a> <span class="property-path"><a href="#quarkus-container-image_quarkus-container-image-builder"><code>quarkus.container-image.builder</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.container-image.builder' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -964,7 +1004,7 @@ If no registry is set (using <code>quarkus.container-image.registry</code>) then
 <p>The name of the container image extension to use (e.g. docker, podman, jib, s2i). The option will be used in case multiple extensions are present.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43424">QUARKUS_CONTAINER_IMAGE_BUILDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43424" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51858">QUARKUS_CONTAINER_IMAGE_BUILDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51858" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1028,7 +1068,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-jvm-image"></a> <span class="property-path"><code>quarkus.jib.base-jvm-image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-jvm-image"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-base-jvm-image"><code>quarkus.jib.base-jvm-image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.base-jvm-image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -1036,7 +1077,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The base image to be used when a container image is being produced for the jar build. When the application is built against Java 21 or higher, <code>registry.access.redhat.com/ubi8/openjdk-21-runtime:1.20</code> is used as the default. Otherwise <code>registry.access.redhat.com/ubi8/openjdk-17-runtime:1.20</code> is used as the default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43425">QUARKUS_JIB_BASE_JVM_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43425" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51859">QUARKUS_JIB_BASE_JVM_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51859" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1048,7 +1089,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-native-image"></a> <span class="property-path"><code>quarkus.jib.base-native-image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-native-image"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-base-native-image"><code>quarkus.jib.base-native-image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.base-native-image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -1056,7 +1098,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The base image to be used when a container image is being produced for the native binary build. The default is "quay.io/quarkus/quarkus-micro-image". You can also use "registry.access.redhat.com/ubi8/ubi-minimal" which is a bigger base image, but provide more built-in utilities such as the microdnf package manager.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43426">QUARKUS_JIB_BASE_NATIVE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43426" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51860">QUARKUS_JIB_BASE_NATIVE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51860" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1068,7 +1110,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-arguments"></a> <span class="property-path"><code>quarkus.jib.jvm-arguments</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-arguments"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-jvm-arguments"><code>quarkus.jib.jvm-arguments</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.jvm-arguments' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -1076,7 +1119,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The JVM arguments to pass to the JVM when starting the application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43427">QUARKUS_JIB_JVM_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43427" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51861">QUARKUS_JIB_JVM_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51861" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1088,7 +1131,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-additional-arguments"></a> <span class="property-path"><code>quarkus.jib.jvm-additional-arguments</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-additional-arguments"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-jvm-additional-arguments"><code>quarkus.jib.jvm-additional-arguments</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.jvm-additional-arguments' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -1096,7 +1140,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Additional JVM arguments to pass to the JVM when starting the application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43428">QUARKUS_JIB_JVM_ADDITIONAL_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43428" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51862">QUARKUS_JIB_JVM_ADDITIONAL_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51862" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1108,7 +1152,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-native-arguments"></a> <span class="property-path"><code>quarkus.jib.native-arguments</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-native-arguments"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-native-arguments"><code>quarkus.jib.native-arguments</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.native-arguments' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -1116,7 +1161,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Additional arguments to pass when starting the native application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43429">QUARKUS_JIB_NATIVE_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43429" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51863">QUARKUS_JIB_NATIVE_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51863" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1128,7 +1173,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-entrypoint"></a> <span class="property-path"><code>quarkus.jib.jvm-entrypoint</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-jvm-entrypoint"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-jvm-entrypoint"><code>quarkus.jib.jvm-entrypoint</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.jvm-entrypoint' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -1152,7 +1198,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43430">QUARKUS_JIB_JVM_ENTRYPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43430" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51864">QUARKUS_JIB_JVM_ENTRYPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51864" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1164,7 +1210,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-native-entrypoint"></a> <span class="property-path"><code>quarkus.jib.native-entrypoint</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-native-entrypoint"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-native-entrypoint"><code>quarkus.jib.native-entrypoint</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.native-entrypoint' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
@@ -1185,7 +1232,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43431">QUARKUS_JIB_NATIVE_ENTRYPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43431" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51865">QUARKUS_JIB_NATIVE_ENTRYPOINT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51865" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1197,7 +1244,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-environment-variables-environment-variable-name"></a> <span class="property-path"><code>quarkus.jib.environment-variables."environment-variable-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-environment-variables-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-environment-variables-environment-variable-name"><code>quarkus.jib.environment-variables."environment-variable-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.environment-variables."environment-variable-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
@@ -1205,7 +1253,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Environment variables to add to the container image</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43432">QUARKUS_JIB_ENVIRONMENT_VARIABLES__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43432" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51866">QUARKUS_JIB_ENVIRONMENT_VARIABLES__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51866" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1217,7 +1265,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-registry-username"></a> <span class="property-path"><code>quarkus.jib.base-registry-username</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-registry-username"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-base-registry-username"><code>quarkus.jib.base-registry-username</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.base-registry-username' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
 <div class="content">
@@ -1225,7 +1274,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The username to use to authenticate with the registry used to pull the base JVM image</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43433">QUARKUS_JIB_BASE_REGISTRY_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43433" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51867">QUARKUS_JIB_BASE_REGISTRY_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51867" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1237,7 +1286,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-registry-password"></a> <span class="property-path"><code>quarkus.jib.base-registry-password</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-registry-password"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-base-registry-password"><code>quarkus.jib.base-registry-password</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.base-registry-password' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
 <div class="content">
@@ -1245,7 +1295,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The password to use to authenticate with the registry used to pull the base JVM image</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43434">QUARKUS_JIB_BASE_REGISTRY_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43434" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51868">QUARKUS_JIB_BASE_REGISTRY_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51868" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1257,7 +1307,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-ports"></a> <span class="property-path"><code>quarkus.jib.ports</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-ports"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-ports"><code>quarkus.jib.ports</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.ports' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
 <div class="content">
@@ -1265,7 +1316,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The ports to expose</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43435">QUARKUS_JIB_PORTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43435" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51869">QUARKUS_JIB_PORTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51869" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1277,7 +1328,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-user"></a> <span class="property-path"><code>quarkus.jib.user</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-user"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-user"><code>quarkus.jib.user</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.user' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
 <div class="content">
@@ -1285,7 +1337,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The user to use in generated image</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43436">QUARKUS_JIB_USER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43436" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51870">QUARKUS_JIB_USER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51870" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1297,7 +1349,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-working-directory"></a> <span class="property-path"><code>quarkus.jib.working-directory</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-working-directory"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-working-directory"><code>quarkus.jib.working-directory</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.working-directory' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
 <div class="content">
@@ -1305,7 +1358,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The working directory to use in the generated image. The default value is chosen to work in accordance with the default base image.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43437">QUARKUS_JIB_WORKING_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43437" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51871">QUARKUS_JIB_WORKING_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51871" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1317,7 +1370,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-always-cache-base-image"></a> <span class="property-path"><code>quarkus.jib.always-cache-base-image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-always-cache-base-image"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-always-cache-base-image"><code>quarkus.jib.always-cache-base-image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.always-cache-base-image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
 <div class="content">
@@ -1325,7 +1379,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Controls the optimization which skips downloading base image layers that exist in a target registry. If the user does not set this property, then read as false. If <code>true</code>, base image layers are always pulled and cached. If <code>false</code>, base image layers will not be pulled/cached if they already exist on the target registry.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43438">QUARKUS_JIB_ALWAYS_CACHE_BASE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43438" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51872">QUARKUS_JIB_ALWAYS_CACHE_BASE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51872" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1337,7 +1391,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-platforms"></a> <span class="property-path"><code>quarkus.jib.platforms</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-platforms"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-platforms"><code>quarkus.jib.platforms</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.platforms' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
 <div class="content">
@@ -1361,7 +1416,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>If not specified, OS default is linux and architecture default is <code>amd64</code>. If more than one platform is configured, it is important to note that the base image has to be a Docker manifest or an OCI image index containing a version of each chosen platform. The feature does not work with native images, as cross-compilation is not supported. This configuration is based on an incubating feature of Jib. See <a href="https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#how-do-i-specify-a-platform-in-the-manifest-list-or-oci-index-of-a-base-image">Jib FAQ</a> for more information.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43439">QUARKUS_JIB_PLATFORMS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43439" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51873">QUARKUS_JIB_PLATFORMS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51873" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1373,7 +1428,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-image-digest-file"></a> <span class="property-path"><code>quarkus.jib.image-digest-file</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-image-digest-file"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-image-digest-file"><code>quarkus.jib.image-digest-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.image-digest-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
 <div class="content">
@@ -1381,7 +1437,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The path of a file in which the digest of the generated image will be written. If the path is relative, the base path is the output directory of the build tool.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43440">QUARKUS_JIB_IMAGE_DIGEST_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43440" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51874">QUARKUS_JIB_IMAGE_DIGEST_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51874" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1393,7 +1449,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-image-id-file"></a> <span class="property-path"><code>quarkus.jib.image-id-file</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-image-id-file"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-image-id-file"><code>quarkus.jib.image-id-file</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.image-id-file' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
 <div class="content">
@@ -1401,7 +1458,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The path of a file in which the id of the generated image will be written. If the path is relative, the base path is the output directory of the build tool.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43441">QUARKUS_JIB_IMAGE_ID_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43441" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51875">QUARKUS_JIB_IMAGE_ID_FILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51875" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1413,7 +1470,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-offline-mode"></a> <span class="property-path"><code>quarkus.jib.offline-mode</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-offline-mode"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-offline-mode"><code>quarkus.jib.offline-mode</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.offline-mode' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
 <div class="content">
@@ -1421,7 +1479,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Whether or not to operate offline.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43442">QUARKUS_JIB_OFFLINE_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43442" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51876">QUARKUS_JIB_OFFLINE_MODE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51876" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1433,7 +1491,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-docker-executable-name"></a> <span class="property-path"><code>quarkus.jib.docker-executable-name</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-docker-executable-name"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-docker-executable-name"><code>quarkus.jib.docker-executable-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.docker-executable-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
 <div class="content">
@@ -1441,7 +1500,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Name of binary used to execute the docker commands. This is only used by Jib when the container image is being built locally.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43443">QUARKUS_JIB_DOCKER_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43443" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51877">QUARKUS_JIB_DOCKER_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51877" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1453,7 +1512,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-docker-environment-environment-variable-name"></a> <span class="property-path"><code>quarkus.jib.docker-environment."environment-variable-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-docker-environment-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-docker-environment-environment-variable-name"><code>quarkus.jib.docker-environment."environment-variable-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.docker-environment."environment-variable-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
 <div class="content">
@@ -1461,7 +1521,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Sets environment variables used by the Docker executable. This is only used by Jib when the container image is being built locally.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43444">QUARKUS_JIB_DOCKER_ENVIRONMENT__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43444" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51878">QUARKUS_JIB_DOCKER_ENVIRONMENT__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51878" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1473,7 +1533,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-use-current-timestamp"></a> <span class="property-path"><code>quarkus.jib.use-current-timestamp</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-use-current-timestamp"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-use-current-timestamp"><code>quarkus.jib.use-current-timestamp</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.use-current-timestamp' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
@@ -1481,7 +1542,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Whether to set the creation time to the actual build time. Otherwise, the creation time will be set to the Unix epoch (00:00:00, January 1st, 1970 in UTC). See <a href="https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#why-is-my-image-created-48-years-ago">Jib FAQ</a> for more information</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43445">QUARKUS_JIB_USE_CURRENT_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43445" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51879">QUARKUS_JIB_USE_CURRENT_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51879" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1493,7 +1554,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-use-current-timestamp-file-modification"></a> <span class="property-path"><code>quarkus.jib.use-current-timestamp-file-modification</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-use-current-timestamp-file-modification"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-use-current-timestamp-file-modification"><code>quarkus.jib.use-current-timestamp-file-modification</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.use-current-timestamp-file-modification' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
@@ -1501,7 +1563,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Whether to set the modification time (last modified time) of the files put by Jib in the image to the actual build time. Otherwise, the modification time will be set to the Unix epoch (00:00:00, January 1st, 1970 in UTC). If the modification time is constant (flag is set to false so Unix epoch is used) across two consecutive builds, the docker layer sha256 digest will be different only if the actual files added by Jib to the docker layer were changed. More exactly, having 2 consecutive builds will generate different docker layers only if the actual content of the files within the docker layer was changed. If the current timestamp is used the sha256 digest of the docker layer will always be different even if the content of the files didn&#8217;t change.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43446">QUARKUS_JIB_USE_CURRENT_TIMESTAMP_FILE_MODIFICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43446" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51880">QUARKUS_JIB_USE_CURRENT_TIMESTAMP_FILE_MODIFICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51880" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1513,7 +1575,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-image-layers-cache"></a> <span class="property-path"><code>quarkus.jib.base-image-layers-cache</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-base-image-layers-cache"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-base-image-layers-cache"><code>quarkus.jib.base-image-layers-cache</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.base-image-layers-cache' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
@@ -1521,7 +1584,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The directory to use for caching base image layers. If not specified, the Jib default directory is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43447">QUARKUS_JIB_BASE_IMAGE_LAYERS_CACHE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43447" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51881">QUARKUS_JIB_BASE_IMAGE_LAYERS_CACHE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51881" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1533,7 +1596,8 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-application-layers-cache"></a> <span class="property-path"><code>quarkus.jib.application-layers-cache</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-jib_quarkus-jib-application-layers-cache"></a> <span class="property-path"><a href="#quarkus-container-image-jib_quarkus-jib-application-layers-cache"><code>quarkus.jib.application-layers-cache</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.jib.application-layers-cache' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
@@ -1541,7 +1605,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>The directory to use for caching application layers. If not specified, the Jib default directory is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43448">QUARKUS_JIB_APPLICATION_LAYERS_CACHE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43448" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51882">QUARKUS_JIB_APPLICATION_LAYERS_CACHE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51882" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1574,120 +1638,81 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class=" row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-dockerfile-jvm-path"></a> <span class="property-path"><code>quarkus.docker.dockerfile-jvm-path</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-dockerfile-jvm-path"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-dockerfile-jvm-path"><code>quarkus.docker.dockerfile-jvm-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.dockerfile-jvm-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-38" class="openblock description">
+<div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43449">QUARKUS_DOCKER_DOCKERFILE_JVM_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43449" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Path to the JVM Dockerfile. If set to an absolute path then the absolute path will be used, otherwise the path will be considered relative to the project root. If not set src/main/docker/Dockerfile.jvm will be used.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51883">QUARKUS_DOCKER_DOCKERFILE_JVM_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51883" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.jvm</code></p></td>
 </tr>
-<tr class=" row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-dockerfile-native-path"></a> <span class="property-path"><code>quarkus.docker.dockerfile-native-path</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-dockerfile-native-path"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-dockerfile-native-path"><code>quarkus.docker.dockerfile-native-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.dockerfile-native-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-39" class="openblock description">
+<div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43450">QUARKUS_DOCKER_DOCKERFILE_NATIVE_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43450" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Path to the native Dockerfile. If set to an absolute path then the absolute path will be used, otherwise the path will be considered relative to the project root. If not set src/main/docker/Dockerfile.native will be used.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51884">QUARKUS_DOCKER_DOCKERFILE_NATIVE_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51884" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.native</code></p></td>
 </tr>
-<tr class=" row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-build-args-arg-name"></a> <span class="property-path"><code>quarkus.docker.build-args."arg-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-build-args-arg-name"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-build-args-arg-name"><code>quarkus.docker.build-args."arg-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.build-args."arg-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-40" class="openblock description">
+<div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43451">QUARKUS_DOCKER_BUILD_ARGS__ARG_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43451" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Build args passed to docker via <code>--build-arg</code></p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51885">QUARKUS_DOCKER_BUILD_ARGS__ARG_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51885" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class=" row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-cache-from"></a> <span class="property-path"><code>quarkus.docker.cache-from</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-41" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43452">QUARKUS_DOCKER_CACHE_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43452" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-network"></a> <span class="property-path"><code>quarkus.docker.network</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-42" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43453">QUARKUS_DOCKER_NETWORK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43453" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-executable-name"></a> <span class="property-path"><code>quarkus.docker.executable-name</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-43" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43454">QUARKUS_DOCKER_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43454" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-additional-args"></a> <span class="property-path"><code>quarkus.docker.additional-args</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-44" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43455">QUARKUS_DOCKER_ADDITIONAL_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43455" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-container-image-docker_section_quarkus-docker-buildx"></a> <span class="section-name section-level0">Configuration for Docker Buildx options</span></p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
-<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
-</tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-platform"></a> <span class="property-path"><code>quarkus.docker.buildx.platform</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-cache-from"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-cache-from"><code>quarkus.docker.cache-from</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.cache-from' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Which platform(s) to target during the build. See <a href="https://docs.docker.com/engine/reference/commandline/buildx_build/#platform" class="bare">https://docs.docker.com/engine/reference/commandline/buildx_build/#platform</a></p>
+<p>Images to consider as cache sources. Values are passed to <code>docker build</code>/<code>podman build</code> via the <code>cache-from</code> option</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43456">QUARKUS_DOCKER_BUILDX_PLATFORM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43456" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51886">QUARKUS_DOCKER_CACHE_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51886" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1699,15 +1724,16 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-output"></a> <span class="property-path"><code>quarkus.docker.buildx.output</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-network"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-network"><code>quarkus.docker.network</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.network' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Sets the export action for the build result. See <a href="https://docs.docker.com/engine/reference/commandline/buildx_build/#output" class="bare">https://docs.docker.com/engine/reference/commandline/buildx_build/#output</a>. Note that any filesystem paths need to be absolute paths, not relative from where the command is executed from.</p>
+<p>The networking mode for the RUN instructions during build</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43457">QUARKUS_DOCKER_BUILDX_OUTPUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43457" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51887">QUARKUS_DOCKER_NETWORK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51887" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1719,7 +1745,97 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-progress"></a> <span class="property-path"><code>quarkus.docker.buildx.progress</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-executable-name"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-executable-name"><code>quarkus.docker.executable-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.executable-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Name of binary used to execute the docker/podman commands. This setting can override the global container runtime detection.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51888">QUARKUS_DOCKER_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51888" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-additional-args"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-additional-args"><code>quarkus.docker.additional-args</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.additional-args' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Additional arbitrary arguments passed to the executable when building the container image.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51889">QUARKUS_DOCKER_ADDITIONAL_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51889" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-container-image-docker_section_quarkus-docker-buildx"></a> <span class="section-name section-level0"><a href="#quarkus-container-image-docker_section_quarkus-docker-buildx">Configuration for Docker Buildx options</a></span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-platform"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-buildx-platform"><code>quarkus.docker.buildx.platform</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.buildx.platform' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Which platform(s) to target during the build. See <a href="https://docs.docker.com/engine/reference/commandline/buildx_build/#platform" class="bare">https://docs.docker.com/engine/reference/commandline/buildx_build/#platform</a></p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51890">QUARKUS_DOCKER_BUILDX_PLATFORM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51890" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-output"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-buildx-output"><code>quarkus.docker.buildx.output</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.buildx.output' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Sets the export action for the build result. See <a href="https://docs.docker.com/engine/reference/commandline/buildx_build/#output" class="bare">https://docs.docker.com/engine/reference/commandline/buildx_build/#output</a>. Note that any filesystem paths need to be absolute paths, not relative from where the command is executed from.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51891">QUARKUS_DOCKER_BUILDX_OUTPUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51891" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-docker_quarkus-docker-buildx-progress"></a> <span class="property-path"><a href="#quarkus-container-image-docker_quarkus-docker-buildx-progress"><code>quarkus.docker.buildx.progress</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.docker.buildx.progress' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
 <div class="content">
@@ -1727,7 +1843,7 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <p>Set type of progress output (<code>auto</code>, <code>plain</code>, <code>tty</code>). Use <code>plain</code> to show container output (default “<code>auto</code>”). See <a href="https://docs.docker.com/engine/reference/commandline/buildx_build/#progress" class="bare">https://docs.docker.com/engine/reference/commandline/buildx_build/#progress</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43458">QUARKUS_DOCKER_BUILDX_PROGRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43458" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51892">QUARKUS_DOCKER_BUILDX_PROGRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51892" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1760,115 +1876,81 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class=" row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-dockerfile-jvm-path"></a> <span class="property-path"><code>quarkus.podman.dockerfile-jvm-path</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-dockerfile-jvm-path"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-dockerfile-jvm-path"><code>quarkus.podman.dockerfile-jvm-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.dockerfile-jvm-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-48" class="openblock description">
+<div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43459">QUARKUS_PODMAN_DOCKERFILE_JVM_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43459" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Path to the JVM Dockerfile. If set to an absolute path then the absolute path will be used, otherwise the path will be considered relative to the project root. If not set src/main/docker/Dockerfile.jvm will be used.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51893">QUARKUS_PODMAN_DOCKERFILE_JVM_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51893" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.jvm</code></p></td>
 </tr>
-<tr class=" row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-dockerfile-native-path"></a> <span class="property-path"><code>quarkus.podman.dockerfile-native-path</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-dockerfile-native-path"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-dockerfile-native-path"><code>quarkus.podman.dockerfile-native-path</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.dockerfile-native-path' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-49" class="openblock description">
+<div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43460">QUARKUS_PODMAN_DOCKERFILE_NATIVE_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43460" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Path to the native Dockerfile. If set to an absolute path then the absolute path will be used, otherwise the path will be considered relative to the project root. If not set src/main/docker/Dockerfile.native will be used.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51894">QUARKUS_PODMAN_DOCKERFILE_NATIVE_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51894" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.native</code></p></td>
 </tr>
-<tr class=" row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-build-args-arg-name"></a> <span class="property-path"><code>quarkus.podman.build-args."arg-name"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-build-args-arg-name"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-build-args-arg-name"><code>quarkus.podman.build-args."arg-name"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.build-args."arg-name"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-non-collapsible-desc-50" class="openblock description">
+<div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43461">QUARKUS_PODMAN_BUILD_ARGS__ARG_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43461" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Build args passed to docker via <code>--build-arg</code></p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51895">QUARKUS_PODMAN_BUILD_ARGS__ARG_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51895" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class=" row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-cache-from"></a> <span class="property-path"><code>quarkus.podman.cache-from</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-51" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43462">QUARKUS_PODMAN_CACHE_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43462" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-network"></a> <span class="property-path"><code>quarkus.podman.network</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-52" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43463">QUARKUS_PODMAN_NETWORK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43463" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-executable-name"></a> <span class="property-path"><code>quarkus.podman.executable-name</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-53" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43464">QUARKUS_PODMAN_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43464" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class=" row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-additional-args"></a> <span class="property-path"><code>quarkus.podman.additional-args</code></span></p>
-</div>
-<div id="conf-non-collapsible-desc-54" class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43465">QUARKUS_PODMAN_ADDITIONAL_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43465" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-platform"></a> <span class="property-path"><code>quarkus.podman.platform</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-cache-from"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-cache-from"><code>quarkus.podman.cache-from</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.cache-from' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-55" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Which platform(s) to target during the build. See <a href="https://docs.podman.io/en/latest/markdown/podman-build.1.html#platform-os-arch-variant" class="bare">https://docs.podman.io/en/latest/markdown/podman-build.1.html#platform-os-arch-variant</a></p>
+<p>Images to consider as cache sources. Values are passed to <code>docker build</code>/<code>podman build</code> via the <code>cache-from</code> option</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43466">QUARKUS_PODMAN_PLATFORM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43466" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51896">QUARKUS_PODMAN_CACHE_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51896" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1877,6 +1959,111 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-network"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-network"><code>quarkus.podman.network</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.network' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The networking mode for the RUN instructions during build</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51897">QUARKUS_PODMAN_NETWORK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51897" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-executable-name"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-executable-name"><code>quarkus.podman.executable-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.executable-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-53" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Name of binary used to execute the docker/podman commands. This setting can override the global container runtime detection.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51898">QUARKUS_PODMAN_EXECUTABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51898" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-additional-args"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-additional-args"><code>quarkus.podman.additional-args</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.additional-args' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-54" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Additional arbitrary arguments passed to the executable when building the container image.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51899">QUARKUS_PODMAN_ADDITIONAL_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51899" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-platform"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-platform"><code>quarkus.podman.platform</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.platform' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-55" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Which platform(s) to target during the build. See <a href="https://docs.podman.io/en/latest/markdown/podman-build.1.html#platform-os-arch-variant" class="bare">https://docs.podman.io/en/latest/markdown/podman-build.1.html#platform-os-arch-variant</a></p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51900">QUARKUS_PODMAN_PLATFORM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51900" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-podman_quarkus-podman-tls-verify"></a> <span class="property-path"><a href="#quarkus-container-image-podman_quarkus-podman-tls-verify"><code>quarkus.podman.tls-verify</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.podman.tls-verify' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-56" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Require HTTPS and verify certificates when contacting registries</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51901">QUARKUS_PODMAN_TLS_VERIFY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51901" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1901,17 +2088,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-strategy"></a> <span class="property-path"><code>quarkus.openshift.build-strategy</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-strategy"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-build-strategy"><code>quarkus.openshift.build-strategy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.build-strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-56" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-57" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The build config strategy to use.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43467">QUARKUS_OPENSHIFT_BUILD_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43467" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51902">QUARKUS_OPENSHIFT_BUILD_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51902" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1923,17 +2111,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>binary</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-base-jvm-image"></a> <span class="property-path"><code>quarkus.openshift.base-jvm-image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-base-jvm-image"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-base-jvm-image"><code>quarkus.openshift.base-jvm-image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.base-jvm-image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-57" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-58" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The base image to be used when a container image is being produced for the jar build. The value of this property is used to create an ImageStream for the builder image used in the Openshift build. When it references images already available in the internal Openshift registry, the corresponding streams are used instead. When the application is built against Java 21 or higher, <code>registry.access.redhat.com/ubi8/openjdk-21:1.20</code> is used as the default. Otherwise <code>registry.access.redhat.com/ubi8/openjdk-17:1.20</code> is used as the default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43468">QUARKUS_OPENSHIFT_BASE_JVM_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43468" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51903">QUARKUS_OPENSHIFT_BASE_JVM_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51903" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1943,17 +2132,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-base-native-image"></a> <span class="property-path"><code>quarkus.openshift.base-native-image</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-base-native-image"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-base-native-image"><code>quarkus.openshift.base-native-image</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.base-native-image' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-58" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-59" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The base image to be used when a container image is being produced for the native binary build. The value of this property is used to create an ImageStream for the builder image used in the Openshift build. When it references images already available in the internal Openshift registry, the corresponding streams are used instead.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43469">QUARKUS_OPENSHIFT_BASE_NATIVE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43469" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51904">QUARKUS_OPENSHIFT_BASE_NATIVE_IMAGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51904" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1963,17 +2153,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>quay.io/quarkus/ubi-quarkus-native-binary-s2i:2.0</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jvm-dockerfile"></a> <span class="property-path"><code>quarkus.openshift.jvm-dockerfile</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jvm-dockerfile"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-jvm-dockerfile"><code>quarkus.openshift.jvm-dockerfile</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.jvm-dockerfile' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-59" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-60" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The default Dockerfile to use for jvm builds</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43470">QUARKUS_OPENSHIFT_JVM_DOCKERFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43470" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51905">QUARKUS_OPENSHIFT_JVM_DOCKERFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51905" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1983,17 +2174,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.jvm</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-dockerfile"></a> <span class="property-path"><code>quarkus.openshift.native-dockerfile</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-dockerfile"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-native-dockerfile"><code>quarkus.openshift.native-dockerfile</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.native-dockerfile' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-60" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-61" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The default Dockerfile to use for native builds</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43471">QUARKUS_OPENSHIFT_NATIVE_DOCKERFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43471" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51906">QUARKUS_OPENSHIFT_NATIVE_DOCKERFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51906" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2003,17 +2195,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>src/main/docker/Dockerfile.native</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jvm-arguments"></a> <span class="property-path"><code>quarkus.openshift.jvm-arguments</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jvm-arguments"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-jvm-arguments"><code>quarkus.openshift.jvm-arguments</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.jvm-arguments' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-61" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-62" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The JVM arguments to pass to the JVM when starting the application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43472">QUARKUS_OPENSHIFT_JVM_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43472" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51907">QUARKUS_OPENSHIFT_JVM_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51907" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2023,17 +2216,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-arguments"></a> <span class="property-path"><code>quarkus.openshift.native-arguments</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-arguments"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-native-arguments"><code>quarkus.openshift.native-arguments</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.native-arguments' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-62" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-63" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Additional arguments to pass when starting the native application</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43473">QUARKUS_OPENSHIFT_NATIVE_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43473" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51908">QUARKUS_OPENSHIFT_NATIVE_ARGUMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51908" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2043,17 +2237,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jar-directory"></a> <span class="property-path"><code>quarkus.openshift.jar-directory</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jar-directory"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-jar-directory"><code>quarkus.openshift.jar-directory</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.jar-directory' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-63" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-64" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The directory where the jar is added during the assemble phase. This is dependent on the S2I image and should be supplied if a non default image is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43474">QUARKUS_OPENSHIFT_JAR_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43474" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51909">QUARKUS_OPENSHIFT_JAR_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51909" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2063,17 +2258,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jar-file-name"></a> <span class="property-path"><code>quarkus.openshift.jar-file-name</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-jar-file-name"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-jar-file-name"><code>quarkus.openshift.jar-file-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.jar-file-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-64" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-65" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The resulting filename of the jar in the S2I image. This option may be used if the selected S2I image uses a fixed name for the jar.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43475">QUARKUS_OPENSHIFT_JAR_FILE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43475" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51910">QUARKUS_OPENSHIFT_JAR_FILE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51910" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2083,37 +2279,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-binary-directory"></a> <span class="property-path"><code>quarkus.openshift.native-binary-directory</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-binary-directory"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-native-binary-directory"><code>quarkus.openshift.native-binary-directory</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.native-binary-directory' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-65" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-66" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The directory where the native binary is added during the assemble phase. This is dependent on the S2I image and should be supplied if a non-default image is used.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43476">QUARKUS_OPENSHIFT_NATIVE_BINARY_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43476" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-binary-file-name"></a> <span class="property-path"><code>quarkus.openshift.native-binary-file-name</code></span></p>
-</div>
-<div id="conf-collapsible-desc-66" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>The resulting filename of the native binary in the S2I image. This option may be used if the selected S2I image uses a fixed name for the native binary.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-43477">QUARKUS_OPENSHIFT_NATIVE_BINARY_FILE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43477" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51911">QUARKUS_OPENSHIFT_NATIVE_BINARY_DIRECTORY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51911" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2125,35 +2302,58 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-timeout"></a> <span class="property-path"><code>quarkus.openshift.build-timeout</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-native-binary-file-name"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-native-binary-file-name"><code>quarkus.openshift.native-binary-file-name</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.native-binary-file-name' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-67" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>The build timeout.</p>
+<p>The resulting filename of the native binary in the S2I image. This option may be used if the selected S2I image uses a fixed name for the native binary.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43478">QUARKUS_OPENSHIFT_BUILD_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43478" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51912">QUARKUS_OPENSHIFT_NATIVE_BINARY_FILE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51912" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT5M</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-log-level"></a> <span class="property-path"><code>quarkus.openshift.build-log-level</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-timeout"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-build-timeout"><code>quarkus.openshift.build-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.build-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-68" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The build timeout.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-51913">QUARKUS_OPENSHIFT_BUILD_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51913" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-container-image-openshift_quarkus-openshift"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT5M</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-build-log-level"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-build-log-level"><code>quarkus.openshift.build-log-level</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.build-log-level' title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+<div id="conf-collapsible-desc-69" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The log level of OpenShift build log.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43479">QUARKUS_OPENSHIFT_BUILD_LOG_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43479" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51914">QUARKUS_OPENSHIFT_BUILD_LOG_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51914" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2165,17 +2365,18 @@ See <a href="config-reference#with-environment-variables">this</a> for more info
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>info</code></p></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
+<tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-image-push-secret"></a> <span class="property-path"><code>quarkus.openshift.image-push-secret</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image-openshift_quarkus-openshift-image-push-secret"></a> <span class="property-path"><a href="#quarkus-container-image-openshift_quarkus-openshift-image-push-secret"><code>quarkus.openshift.image-push-secret</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.openshift.image-push-secret' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
-<div id="conf-collapsible-desc-69" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-70" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>The image push secret to use for pushing to external registries. (see: <a href="https://cloud.redhat.com/blog/pushing-application-images-to-an-external-registry" class="bare">https://cloud.redhat.com/blog/pushing-application-images-to-an-external-registry</a>)</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-43480">QUARKUS_OPENSHIFT_IMAGE_PUSH_SECRET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43480" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-51915">QUARKUS_OPENSHIFT_IMAGE_PUSH_SECRET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51915" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2400,6 +2601,10 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

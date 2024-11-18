@@ -11,8 +11,33 @@
   <title>Reactive Messaging AMQP 1.0 Connector Reference Documentation - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" selected>3.13.3 - Latest</option>
+        <option value="latest" selected>3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -920,6 +947,24 @@ public AmqpClientOptions getNamedOptions() {
 </div>
 </div>
 <div class="sect1">
+<h2 id="tls-configuration"><a class="anchor" href="#tls-configuration"></a>TLS Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AMQP 1.0 Messaging extension integrates with the <a href="./tls-registry-reference">Quarkus TLS registry</a> to configure the Vert.x AMQP client.</p>
+</div>
+<div class="paragraph">
+<p>To configure the TLS for an AMQP 1.0 channel, you need to provide a named TLS configuration in the <code>application.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.tls.your-tls-config.trust-store.pem.certs=ca.crt,ca2.pem
+# ...
+mp.messaging.incoming.prices.tls-configuration-name=your-tls-config</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="health-reporting"><a class="anchor" href="#health-reporting"></a>Health reporting</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1044,13 +1089,18 @@ The connector sends the outbound record as Cloud Events if:</p>
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-smallrye-reactivemessaging-amqp_configuration"></a><a href="#quarkus-smallrye-reactivemessaging-amqp_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-messaging-amqp_section_quarkus-amqp-devservices"></a> <span class="section-name section-level0"><a href="#quarkus-messaging-amqp_section_quarkus-amqp-devservices">Dev Services</a></span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-enabled"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-enabled">quarkus.amqp.devservices.enabled</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-enabled"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-enabled"><code>quarkus.amqp.devservices.enabled</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1058,7 +1108,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>If Dev Services for AMQP has been explicitly enabled or disabled. Dev Services are generally enabled by default, unless there is an existing configuration present. For AMQP, Dev Services starts a broker unless <code>amqp-host</code> or <code>amqp-port</code> are set or if all the Reactive Messaging AMQP channel are configured with <code>host</code> or <code>port</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4294">QUARKUS_AMQP_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4294" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4229">QUARKUS_AMQP_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4229" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1070,7 +1120,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-port"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-port">quarkus.amqp.devservices.port</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-port"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-port"><code>quarkus.amqp.devservices.port</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -1081,7 +1131,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4295">QUARKUS_AMQP_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4295" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4230">QUARKUS_AMQP_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4230" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1093,7 +1143,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-image-name"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-image-name">quarkus.amqp.devservices.image-name</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-image-name"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-image-name"><code>quarkus.amqp.devservices.image-name</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -1104,7 +1154,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>Check the <a href="https://quay.io/repository/artemiscloud/activemq-artemis-broker">activemq-artemis-broker on Quay page</a> to find the available versions.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4296">QUARKUS_AMQP_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4296" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4231">QUARKUS_AMQP_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4231" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1116,7 +1166,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-extra-args"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-extra-args">quarkus.amqp.devservices.extra-args</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-extra-args"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-extra-args"><code>quarkus.amqp.devservices.extra-args</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1124,7 +1174,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>The value of the <code>AMQ_EXTRA_ARGS</code> environment variable to pass to the container. For ActiveMQ Artemis Broker &#8656; 1.0.21, set this property to <code>--no-autotune --mapped --no-fsync --relax-jolokia --http-host 0.0.0.0</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4297">QUARKUS_AMQP_DEVSERVICES_EXTRA_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4297" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4232">QUARKUS_AMQP_DEVSERVICES_EXTRA_ARGS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4232" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1136,7 +1186,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-shared"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-shared">quarkus.amqp.devservices.shared</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-shared"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-shared"><code>quarkus.amqp.devservices.shared</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -1150,7 +1200,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>Container sharing is only used in dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4298">QUARKUS_AMQP_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4298" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4233">QUARKUS_AMQP_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4233" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1162,7 +1212,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-service-name"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-service-name">quarkus.amqp.devservices.service-name</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-service-name"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-service-name"><code>quarkus.amqp.devservices.service-name</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -1173,7 +1223,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>This property is used when you need multiple shared AMQP brokers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4299">QUARKUS_AMQP_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4299" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4234">QUARKUS_AMQP_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4234" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1185,7 +1235,7 @@ The connector sends the outbound record as Cloud Events if:</p>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-container-env-environment-variable-name"></a><code><a href="#quarkus-smallrye-reactivemessaging-amqp_quarkus-amqp-devservices-container-env-environment-variable-name">quarkus.amqp.devservices.container-env."environment-variable-name"</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-messaging-amqp_quarkus-amqp-devservices-container-env-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-messaging-amqp_quarkus-amqp-devservices-container-env-environment-variable-name"><code>quarkus.amqp.devservices.container-env."environment-variable-name"</code></a></span></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -1193,14 +1243,14 @@ The connector sends the outbound record as Cloud Events if:</p>
 <p>Environment variables that are passed to the container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4300">QUARKUS_AMQP_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4300" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4235">QUARKUS_AMQP_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4235" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
@@ -1704,6 +1754,7 @@ So, when using such a conditional configuration, ensure the application works wi
 </ul>
 </li>
 <li><a href="#customizing-the-underlying-amqp-client">Customizing the underlying AMQP client</a></li>
+<li><a href="#tls-configuration">TLS Configuration</a></li>
 <li><a href="#health-reporting">Health reporting</a></li>
 <li><a href="#using-rabbitmq">Using RabbitMQ</a></li>
 <li><a href="#receiving-cloud-events">Receiving Cloud Events</a>
@@ -1872,6 +1923,10 @@ So, when using such a conditional configuration, ensure the application works wi
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,8 +11,33 @@
   <title>Scripting with Quarkus - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -261,7 +288,7 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS io.quarkus.platform:quarkus-bom:3.8.5@pom
+//DEPS io.quarkus.platform:quarkus-bom:3.8.6@pom
 //DEPS io.quarkus:quarkus-resteasy-reactive
 //JAVAC_OPTIONS -parameters
 //JAVA_OPTIONS -Djava.util.logging.manager=org.jboss.logmanager.LogManager
@@ -370,7 +397,7 @@ cd scripting</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//DEPS io.quarkus.platform:quarkus-bom:3.8.5@pom
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//DEPS io.quarkus.platform:quarkus-bom:3.8.6@pom
 //DEPS io.quarkus:quarkus-resteasy-reactive</code></pre>
 </div>
 </div>
@@ -382,7 +409,7 @@ cd scripting</code></pre>
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ jbang quarkusapp.java
 
 [jbang] Resolving dependencies...
-[jbang]     Resolving io.quarkus:quarkus-resteasy:3.8.5...Done
+[jbang]     Resolving io.quarkus:quarkus-resteasy:3.8.6...Done
 [jbang] Dependencies resolved
 [jbang] Building jar...
 [jbang] Post build with io.quarkus.launcher.JBangIntegration
@@ -485,7 +512,7 @@ __  ____  __  _____   ___  __ ____  ______
  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
  -/ /_/ / /_/ / __ |/ , _/ ,&lt; / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
-2023-03-22 09:48:39,891 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT on JVM (powered by Quarkus 3.8.5) started in 0.283s. Listening on: http://0.0.0.0:8080
+2023-03-22 09:48:39,891 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT on JVM (powered by Quarkus 3.8.6) started in 0.283s. Listening on: http://0.0.0.0:8080
 2023-03-22 09:48:39,904 INFO  [io.quarkus] (main) Profile prod activated.
 2023-03-22 09:48:39,904 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy-reactive, smallrye-context-propagation, vertx]</code></pre>
 </div>
@@ -598,7 +625,7 @@ static public class GreetingService {
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS io.quarkus.platform:quarkus-bom:3.8.5@pom
+//DEPS io.quarkus.platform:quarkus-bom:3.8.6@pom
 //DEPS io.quarkus:quarkus-resteasy-reactive
 
 import io.quarkus.runtime.Quarkus;
@@ -723,8 +750,8 @@ more traditional Quarkus debug port you can use <code>jbang --debug=5005 quarkus
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//DEPS io.quarkus:quarkus-smallrye-openapi:3.8.5
-//DEPS io.quarkus:quarkus-swagger-ui:3.8.5
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//DEPS io.quarkus:quarkus-smallrye-openapi:3.8.6
+//DEPS io.quarkus:quarkus-swagger-ui:3.8.6
 //Q:CONFIG quarkus.swagger-ui.always-include=true</code></pre>
 </div>
 </div>
@@ -768,7 +795,7 @@ __  ____  __  _____   ___  __ ____  ______
  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
  -/ /_/ / /_/ / __ |/ , _/ ,&lt; / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
-2023-03-22 09:37:57,471 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT native (powered by 3.8.5) started in 0.009s. Listening on: http://0.0.0.0:8080
+2023-03-22 09:37:57,471 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT native (powered by 3.8.6) started in 0.009s. Listening on: http://0.0.0.0:8080
 2023-03-22 09:37:57,472 INFO  [io.quarkus] (main) Profile prod activated.
 2023-03-22 09:37:57,472 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy-reactive, smallrye-context-propagation, vertx]</code></pre>
 </div>
@@ -783,7 +810,7 @@ __  ____  __  _____   ___  __ ____  ______
  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
  -/ /_/ / /_/ / __ |/ , _/ ,&lt; / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
-2023-03-22 09:38:45,450 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT native (powered by 3.8.5) started in 0.009s. Listening on: http://0.0.0.0:8080
+2023-03-22 09:38:45,450 INFO  [io.quarkus] (main) quarkus 999-SNAPSHOT native (powered by 3.8.6) started in 0.009s. Listening on: http://0.0.0.0:8080
 2023-03-22 09:38:45,450 INFO  [io.quarkus] (main) Profile prod activated.
 2023-03-22 09:38:45,450 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy-reactive, smallrye-context-propagation, vertx]</code></pre>
 </div>
@@ -891,6 +918,10 @@ __  ____  __  _____   ___  __ ____  ______
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,8 +11,33 @@
   <title>Qute Templating Engine - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
-  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="
+  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+      
+      https://assets.adobedtm.com
+      js.bizographics.com
+      https://www.redhat.com
+      https://static.redhat.com
+      https://app.requestly.io/
+      jsonip.com
+      https://ajax.googleapis.com
+      https://use.fontawesome.com
+      http://www.youtube.com
+      http://www.googleadservices.com
+      https://googleads.g.doubleclick.net
+      https://giscus.app
+      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
+      https://app.mailjet.com;
+
+  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
+  img-src 'self' * data:; 
+  media-src 'self'; 
+  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
+  base-uri 'none'; 
+  object-src 'none'; 
+  form-action 'none'; 
+  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -76,10 +101,12 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">REACTIVE</a></li>
-          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/continuum" class="">VERSATILITY</a></li>
           <li><a href="/standards" class="">STANDARDS</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          
         </ul>
       </li>
       <li class="dropdown">
@@ -162,7 +189,11 @@
         
         
         
-        <option value="latest" >3.13.3 - Latest</option>
+        <option value="latest" >3.16.3 - Latest</option>
+        
+        
+        
+        <option value="3.15" >3.15</option>
         
         
         
@@ -179,10 +210,6 @@
         
         
         <option value="2.13" >2.13</option>
-        
-        
-        
-        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -999,7 +1026,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-suffixes"></a> <span class="property-path"><code>quarkus.qute.suffixes</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-suffixes"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-suffixes"><code>quarkus.qute.suffixes</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.suffixes' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1010,7 +1038,7 @@ public class ReportGenerator {
 <p>By default, <code>engine.getTemplate("foo")</code> would result in several lookups: <code>foo</code>, <code>foo.html</code>, <code>foo.txt</code>, etc.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46365">QUARKUS_QUTE_SUFFIXES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46365" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54894">QUARKUS_QUTE_SUFFIXES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54894" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1022,7 +1050,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-content-types-file-suffix"></a> <span class="property-path"><code>quarkus.qute.content-types."file-suffix"</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-content-types-file-suffix"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-content-types-file-suffix"><code>quarkus.qute.content-types."file-suffix"</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.content-types."file-suffix"' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -1030,7 +1059,7 @@ public class ReportGenerator {
 <p>The additional map of suffixes to content types. This map is used when working with template variants. By default, the <code>java.net.URLConnection#getFileNameMap()</code> is used to determine the content type of a template file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46366">QUARKUS_QUTE_CONTENT_TYPES__FILE_SUFFIX_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46366" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54895">QUARKUS_QUTE_CONTENT_TYPES__FILE_SUFFIX_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54895" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1042,7 +1071,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-type-check-excludes"></a> <span class="property-path"><code>quarkus.qute.type-check-excludes</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-type-check-excludes"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-type-check-excludes"><code>quarkus.qute.type-check-excludes</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.type-check-excludes' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -1069,7 +1099,7 @@ public class ReportGenerator {
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46367">QUARKUS_QUTE_TYPE_CHECK_EXCLUDES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46367" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54896">QUARKUS_QUTE_TYPE_CHECK_EXCLUDES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54896" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1081,7 +1111,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-template-path-exclude"></a> <span class="property-path"><code>quarkus.qute.template-path-exclude</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-template-path-exclude"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-template-path-exclude"><code>quarkus.qute.template-path-exclude</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.template-path-exclude' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1095,19 +1126,20 @@ public class ReportGenerator {
 <p>By default, the hidden files are excluded. The name of a hidden file starts with a dot.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46368">QUARKUS_QUTE_TEMPLATE_PATH_EXCLUDE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46368" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54897">QUARKUS_QUTE_TEMPLATE_PATH_EXCLUDE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54897" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/util/regex/Pattern.html">Pattern</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">Pattern</a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>^\..<strong>|.</strong>\/\..*$</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-iteration-metadata-prefix"></a> <span class="property-path"><code>quarkus.qute.iteration-metadata-prefix</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-iteration-metadata-prefix"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-iteration-metadata-prefix"><code>quarkus.qute.iteration-metadata-prefix</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.iteration-metadata-prefix' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -1131,7 +1163,7 @@ public class ReportGenerator {
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46369">QUARKUS_QUTE_ITERATION_METADATA_PREFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46369" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54898">QUARKUS_QUTE_ITERATION_METADATA_PREFIX</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54898" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1143,7 +1175,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-escape-content-types"></a> <span class="property-path"><code>quarkus.qute.escape-content-types</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-escape-content-types"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-escape-content-types"><code>quarkus.qute.escape-content-types</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.escape-content-types' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -1151,7 +1184,7 @@ public class ReportGenerator {
 <p>The list of content types for which the <code>'</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code> and <code>&amp;</code> characters are escaped if a template variant is set.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46370">QUARKUS_QUTE_ESCAPE_CONTENT_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46370" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54899">QUARKUS_QUTE_ESCAPE_CONTENT_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54899" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1163,7 +1196,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-default-charset"></a> <span class="property-path"><code>quarkus.qute.default-charset</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-default-charset"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-default-charset"><code>quarkus.qute.default-charset</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.default-charset' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -1171,19 +1205,20 @@ public class ReportGenerator {
 <p>The default charset of the templates files.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46371">QUARKUS_QUTE_DEFAULT_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46371" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54900">QUARKUS_QUTE_DEFAULT_CHARSET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54900" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/nio/charset/Charset.html">Charset</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>UTF-8</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-dev-mode-no-restart-templates"></a> <span class="property-path"><code>quarkus.qute.dev-mode.no-restart-templates</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-dev-mode-no-restart-templates"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-dev-mode-no-restart-templates"><code>quarkus.qute.dev-mode.no-restart-templates</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.dev-mode.no-restart-templates' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -1197,19 +1232,20 @@ public class ReportGenerator {
 <p>The matched input is the template path that starts with a template root, and the <code>/</code> is used as a path separator. For example, <code>templates/foo.html</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46372">QUARKUS_QUTE_DEV_MODE_NO_RESTART_TEMPLATES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46372" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54901">QUARKUS_QUTE_DEV_MODE_NO_RESTART_TEMPLATES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54901" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/util/regex/Pattern.html">Pattern</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">Pattern</a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-test-mode-record-rendered-results"></a> <span class="property-path"><code>quarkus.qute.test-mode.record-rendered-results</code></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-qute_quarkus-qute-test-mode-record-rendered-results"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-test-mode-record-rendered-results"><code>quarkus.qute.test-mode.record-rendered-results</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.test-mode.record-rendered-results' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -1217,7 +1253,7 @@ public class ReportGenerator {
 <p>By default, the rendering results of injected and type-safe templates are recorded in the managed <code>RenderedResults</code> which is registered as a CDI bean.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46373">QUARKUS_QUTE_TEST_MODE_RECORD_RENDERED_RESULTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46373" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54902">QUARKUS_QUTE_TEST_MODE_RECORD_RENDERED_RESULTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54902" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1229,7 +1265,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-qute_quarkus-qute-property-not-found-strategy"></a> <span class="property-path"><code>quarkus.qute.property-not-found-strategy</code></span></p>
+<p><a id="quarkus-qute_quarkus-qute-property-not-found-strategy"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-property-not-found-strategy"><code>quarkus.qute.property-not-found-strategy</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.property-not-found-strategy' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -1243,7 +1280,7 @@ public class ReportGenerator {
 <p>By default, the <code>NOT_FOUND</code> constant is written to the output. However, in the development mode the <code>PropertyNotFoundStrategy#THROW_EXCEPTION</code> is used by default, i.e. when the strategy is not specified.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46374">QUARKUS_QUTE_PROPERTY_NOT_FOUND_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46374" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54903">QUARKUS_QUTE_PROPERTY_NOT_FOUND_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54903" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1257,7 +1294,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-qute_quarkus-qute-remove-standalone-lines"></a> <span class="property-path"><code>quarkus.qute.remove-standalone-lines</code></span></p>
+<p><a id="quarkus-qute_quarkus-qute-remove-standalone-lines"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-remove-standalone-lines"><code>quarkus.qute.remove-standalone-lines</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.remove-standalone-lines' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -1265,7 +1303,7 @@ public class ReportGenerator {
 <p>Specify whether the parser should remove standalone lines from the output. A standalone line is a line that contains at least one section tag, parameter declaration, or comment but no expression and no non-whitespace character.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46375">QUARKUS_QUTE_REMOVE_STANDALONE_LINES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46375" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54904">QUARKUS_QUTE_REMOVE_STANDALONE_LINES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54904" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1277,7 +1315,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-qute_quarkus-qute-strict-rendering"></a> <span class="property-path"><code>quarkus.qute.strict-rendering</code></span></p>
+<p><a id="quarkus-qute_quarkus-qute-strict-rendering"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-strict-rendering"><code>quarkus.qute.strict-rendering</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.strict-rendering' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -1288,7 +1327,7 @@ public class ReportGenerator {
 <p>Note that the <code>quarkus.qute.property-not-found-strategy</code> config property is completely ignored if strict rendering is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46376">QUARKUS_QUTE_STRICT_RENDERING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46376" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54905">QUARKUS_QUTE_STRICT_RENDERING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54905" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1300,7 +1339,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-qute_quarkus-qute-timeout"></a> <span class="property-path"><code>quarkus.qute.timeout</code></span></p>
+<p><a id="quarkus-qute_quarkus-qute-timeout"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-timeout"><code>quarkus.qute.timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -1308,7 +1348,7 @@ public class ReportGenerator {
 <p>The global rendering timeout in milliseconds. It is used if no <code>timeout</code> template instance attribute is set.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46377">QUARKUS_QUTE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46377" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54906">QUARKUS_QUTE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54906" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1320,7 +1360,8 @@ public class ReportGenerator {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-qute_quarkus-qute-use-async-timeout"></a> <span class="property-path"><code>quarkus.qute.use-async-timeout</code></span></p>
+<p><a id="quarkus-qute_quarkus-qute-use-async-timeout"></a> <span class="property-path"><a href="#quarkus-qute_quarkus-qute-use-async-timeout"><code>quarkus.qute.use-async-timeout</code></a></span>
+<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.qute.use-async-timeout' title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -1328,7 +1369,7 @@ public class ReportGenerator {
 <p>If set to <code>true</code> then the timeout should also be used for asynchronous rendering methods, such as <code>TemplateInstance#createUni()</code> and <code>TemplateInstance#renderAsync()</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46378">QUARKUS_QUTE_USE_ASYNC_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46378" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-54907">QUARKUS_QUTE_USE_ASYNC_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-54907" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1462,6 +1503,10 @@ public class ReportGenerator {
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
+          
+          
+          
+            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           
