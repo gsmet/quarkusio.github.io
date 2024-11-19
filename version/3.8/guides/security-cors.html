@@ -11,33 +11,8 @@
   <title>Cross-origin resource sharing - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,15 +162,14 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
         <option value="3.8" selected>3.8</option>
+        
+        
+        
         
         
         
@@ -269,7 +241,7 @@ It will also add headers configured with the following properties before forward
 <p>Origins allowed for CORS Comma separated list of valid URLs, e.g.: <a href="http://www.quarkus.io,http://localhost:3000" class="bare">http://www.quarkus.io,http://localhost:3000</a> In case an entry of the list is surrounded by forward slashes, it is interpreted as a regular expression.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46924">QUARKUS_HTTP_CORS_ORIGINS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46924" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38451">QUARKUS_HTTP_CORS_ORIGINS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38451" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -289,7 +261,7 @@ It will also add headers configured with the following properties before forward
 <p>HTTP methods allowed for CORS Comma separated list of valid methods. ex: GET,PUT,POST The filter allows any method if this is not set. default: returns any requested method as valid</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46925">QUARKUS_HTTP_CORS_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46925" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38452">QUARKUS_HTTP_CORS_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38452" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -309,7 +281,7 @@ It will also add headers configured with the following properties before forward
 <p>HTTP headers allowed for CORS Comma separated list of valid headers. ex: X-Custom,Content-Disposition The filter allows any header if this is not set. default: returns any requested header as valid</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46926">QUARKUS_HTTP_CORS_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46926" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38453">QUARKUS_HTTP_CORS_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38453" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -329,7 +301,7 @@ It will also add headers configured with the following properties before forward
 <p>HTTP headers exposed in CORS Comma separated list of valid headers. ex: X-Custom,Content-Disposition default: empty</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46927">QUARKUS_HTTP_CORS_EXPOSED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46927" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38454">QUARKUS_HTTP_CORS_EXPOSED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38454" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -349,7 +321,7 @@ It will also add headers configured with the following properties before forward
 <p>The <code>Access-Control-Max-Age</code> response header value indicating how long the results of a pre-flight request can be cached.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46928">QUARKUS_HTTP_CORS_ACCESS_CONTROL_MAX_AGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46928" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38455">QUARKUS_HTTP_CORS_ACCESS_CONTROL_MAX_AGE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38455" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -370,7 +342,7 @@ It will also add headers configured with the following properties before forward
 <p>The <code>Access-Control-Allow-Credentials</code> header is used to tell the browsers to expose the response to front-end JavaScript code when the request’s credentials mode Request.credentials is “include”. The value of this header will default to <code>true</code> if <code>quarkus.http.cors.origins</code> property is set and there is a match with the precise <code>Origin</code> header.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46929">QUARKUS_HTTP_CORS_ACCESS_CONTROL_ALLOW_CREDENTIALS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46929" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-38456">QUARKUS_HTTP_CORS_ACCESS_CONTROL_ALLOW_CREDENTIALS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-38456" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -619,10 +591,6 @@ It is not advisable to permit all origins in a production environment, as it can
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

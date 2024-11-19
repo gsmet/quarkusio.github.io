@@ -11,33 +11,8 @@
   <title>Using Keycloak Admin Client - 2.13 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,9 @@
         
         
         <option value="2.13" selected>2.13</option>
+        
+        
+        
         </select>
     </div>
   </div>
@@ -576,7 +548,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Set to true if Keycloak Admin Client injection is supported.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14567">QUARKUS_KEYCLOAK_ADMIN_CLIENT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14567" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14709">QUARKUS_KEYCLOAK_ADMIN_CLIENT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14709" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -596,7 +568,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Keycloak server URL, for example, <code><a href="https://host:port" class="bare">https://host:port</a></code>. If this property is not set then the Keycloak Admin Client injection will fail - use <code>org.keycloak.admin.client.KeycloakBuilder</code> to create it instead.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14568">QUARKUS_KEYCLOAK_ADMIN_CLIENT_SERVER_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14568" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14710">QUARKUS_KEYCLOAK_ADMIN_CLIENT_SERVER_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14710" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -616,7 +588,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Realm.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14569">QUARKUS_KEYCLOAK_ADMIN_CLIENT_REALM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14569" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14711">QUARKUS_KEYCLOAK_ADMIN_CLIENT_REALM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14711" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -636,7 +608,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Client id.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14570">QUARKUS_KEYCLOAK_ADMIN_CLIENT_CLIENT_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14570" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14712">QUARKUS_KEYCLOAK_ADMIN_CLIENT_CLIENT_ID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14712" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -656,7 +628,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Client secret. Required with a <code>client_credentials</code> grant type.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14571">QUARKUS_KEYCLOAK_ADMIN_CLIENT_CLIENT_SECRET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14571" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14713">QUARKUS_KEYCLOAK_ADMIN_CLIENT_CLIENT_SECRET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14713" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -676,7 +648,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Username. Required with a <code>password</code> grant type.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14572">QUARKUS_KEYCLOAK_ADMIN_CLIENT_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14572" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14714">QUARKUS_KEYCLOAK_ADMIN_CLIENT_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14714" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -696,7 +668,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>Password. Required with a <code>password</code> grant type.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14573">QUARKUS_KEYCLOAK_ADMIN_CLIENT_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14573" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14715">QUARKUS_KEYCLOAK_ADMIN_CLIENT_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14715" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -716,7 +688,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>OAuth 2.0 <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.3">Access Token Scope</a>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14574">QUARKUS_KEYCLOAK_ADMIN_CLIENT_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14574" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14716">QUARKUS_KEYCLOAK_ADMIN_CLIENT_SCOPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14716" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -736,7 +708,7 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
 <p>OAuth Grant Type.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-14575">QUARKUS_KEYCLOAK_ADMIN_CLIENT_GRANT_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14575" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-14717">QUARKUS_KEYCLOAK_ADMIN_CLIENT_GRANT_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-14717" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -860,10 +832,6 @@ Note that the <a href="security-openid-connect-client">OidcClient</a> can also b
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

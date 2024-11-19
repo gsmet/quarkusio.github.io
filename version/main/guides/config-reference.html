@@ -11,33 +11,8 @@
   <title>Configuration Reference Guide - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -891,7 +864,7 @@ single config property with the new profile name is the only requirement:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="profile-aware-files"><a class="anchor" href="#profile-aware-files"></a>4.4. Profile-aware files</h3>
+<h3 id="profile-aware-files"><a class="anchor" href="#profile-aware-files"></a>4.4. Profile aware files</h3>
 <div class="paragraph">
 <p>In this case, properties for a specific profile may reside in an <code>application-{profile}.properties</code> named file. The previous
 example may be expressed as:</p>
@@ -918,10 +891,10 @@ quarkus.http.test-port=9191</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In this style, the configuration names in the profile-aware file do not need to be prefixed with the profile name.</p>
+<p>In this style, the configuration names in the profile aware file do not need to be prefixed with the profile name.</p>
 </div>
 <div class="paragraph">
-<p>Properties in the profile-aware file have priority over profile-aware properties defined in the main file.</p>
+<p>Properties in the profile aware file have priority over profile aware properties defined in the main file.</p>
 </div>
 </td>
 </tr>
@@ -935,24 +908,13 @@ quarkus.http.test-port=9191</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Do not use profile-aware files to set <code>quarkus.profile</code> or <code>quarkus.test.profile</code>. This will not work because the
-profile is required in advance to load the profile-aware files.</p>
+<p>Do not use profile aware files to set <code>quarkus.profile</code> or <code>quarkus.test.profile</code>. This will not work because the
+profile is required in advance to load the profile aware files.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>An <code>application.properties</code> file must exist (even if empty) in the exact location of the profile-aware
-(<code>application-{profile}.properties</code>) file to be included in the configuration to ensure a consistent order when
-loading the files.</p>
+<p>A profile aware file is only loaded if the unprofiled <code>application.properties</code> is also available in the same location
+and the file extension matches between the files. This is required to keep a consistent loading order and pair all the
+resources together.</p>
 </div>
 </td>
 </tr>
@@ -1008,8 +970,8 @@ quarkus.http.ssl-port=8443</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Do not use Profile-aware files to set <code>quarkus.config.profile.parent</code>. This will not work because the profile is
-required in advance to load the profile-aware files.</p>
+<p>Do not use Profile aware files to set <code>quarkus.config.profile.parent</code>. This will not work because the profile is
+required in advance to load the profile aware files.</p>
 </div>
 </td>
 </tr>
@@ -1680,37 +1642,15 @@ public class MyBeanNoFailure {
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-core_quarkus-config-sources-system-only"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-sources-system-only"><code>quarkus.config.sources.system-only</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.sources.system-only' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-profile"></a> <span class="property-path"><code>quarkus.profile</code></span></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Set this to <code>true</code> to read configuration from system properties and environment variables only. This only applies to runtime.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-51838">QUARKUS_CONFIG_SOURCES_SYSTEM_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51838" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-profile"></a> <span class="property-path"><a href="#quarkus-core_quarkus-profile"><code>quarkus.profile</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.profile' title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>A comma separated list of profiles that will be active when Quarkus launches.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51839">QUARKUS_PROFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51839" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43378">QUARKUS_PROFILE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43378" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1720,18 +1660,17 @@ public class MyBeanNoFailure {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-config-profile-parent"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-profile-parent"><code>quarkus.config.profile.parent</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.profile.parent' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-config-profile-parent"></a> <span class="property-path"><code>quarkus.config.profile.parent</code></span></p>
 </div>
-<div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Accepts a single configuration profile name. If a configuration property cannot be found in the current active profile, the config performs the same lookup in the profile set by this configuration.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51840">QUARKUS_CONFIG_PROFILE_PARENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51840" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43379">QUARKUS_CONFIG_PROFILE_PARENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43379" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1741,39 +1680,37 @@ public class MyBeanNoFailure {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-config-locations"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-locations"><code>quarkus.config.locations</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.locations' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-config-locations"></a> <span class="property-path"><code>quarkus.config.locations</code></span></p>
 </div>
-<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Additional config locations to be loaded with the Config. The configuration support multiple locations separated by a comma and each must represent a valid <code>java.net.URI</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51841">QUARKUS_CONFIG_LOCATIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51841" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43380">QUARKUS_CONFIG_LOCATIONS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43380" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/URI.html">URI</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java/net/URI.html">URI</a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-config-mapping-validate-unknown"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-mapping-validate-unknown"><code>quarkus.config.mapping.validate-unknown</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.mapping.validate-unknown' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-config-mapping-validate-unknown"></a> <span class="property-path"><code>quarkus.config.mapping.validate-unknown</code></span></p>
 </div>
-<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Validates that a <code>@ConfigMapping</code> maps every available configuration name contained in the mapping prefix.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51842">QUARKUS_CONFIG_MAPPING_VALIDATE_UNKNOWN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51842" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43381">QUARKUS_CONFIG_MAPPING_VALIDATE_UNKNOWN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43381" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1783,19 +1720,18 @@ public class MyBeanNoFailure {
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-config-log-values"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-log-values"><code>quarkus.config.log.values</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.log.values' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-config-log-values"></a> <span class="property-path"><code>quarkus.config.log.values</code></span></p>
 </div>
-<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Enable logging of configuration values lookup in DEBUG log level. <br>
 The log of configuration values require the category set to <code>DEBUG</code> in the <code>io.smallrye.config</code> category: <code>quarkus.log.category."io.smallrye.config".level=DEBUG</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51843">QUARKUS_CONFIG_LOG_VALUES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51843" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43382">QUARKUS_CONFIG_LOG_VALUES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43382" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1805,51 +1741,18 @@ The log of configuration values require the category set to <code>DEBUG</code> i
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-config-build-time-mismatch-at-runtime"></a> <span class="property-path"><a href="#quarkus-core_quarkus-config-build-time-mismatch-at-runtime"><code>quarkus.config.build-time-mismatch-at-runtime</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.config.build-time-mismatch-at-runtime' title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>What should happen if the application is started with a different build time configuration than it was compiled against. This may be useful to prevent misconfiguration.</p>
-</div>
-<div class="paragraph">
-<p>If this is set to <code>warn</code> the application will warn at start up.</p>
-</div>
-<div class="paragraph">
-<p>If this is set to <code>fail</code> the application will fail at start up.</p>
-</div>
-<div class="paragraph">
-<p>Native tests leveraging`@io.quarkus.test.junit.TestProfile` are always run with <code>quarkus.configuration.build-time-mismatch-at-runtime = fail</code>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-51844">QUARKUS_CONFIG_BUILD_TIME_MISMATCH_AT_RUNTIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51844" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>warn</code>, <code>fail</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>warn</code></p></td>
-</tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-core_quarkus-uuid"></a> <span class="property-path"><a href="#quarkus-core_quarkus-uuid"><code>quarkus.uuid</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.uuid' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-core_quarkus-uuid"></a> <span class="property-path"><code>quarkus.uuid</code></span></p>
 </div>
-<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>A property that allows accessing a generated UUID. It generates that UUID at startup time. So it changes between two starts including in dev mode. <br>
 Access this generated UUID using expressions: <code>${quarkus.uuid}</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51845">QUARKUS_UUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51845" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43383">QUARKUS_UUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43383" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1888,7 +1791,7 @@ Access this generated UUID using expressions: <code>${quarkus.uuid}</code>.</p>
 <li><a href="#profile-in-the-property-name">4.1. Profile in the property name</a></li>
 <li><a href="#default-profiles">4.2. Default Profiles</a></li>
 <li><a href="#custom-profiles">4.3. Custom Profiles</a></li>
-<li><a href="#profile-aware-files">4.4. Profile-aware files</a></li>
+<li><a href="#profile-aware-files">4.4. Profile aware files</a></li>
 <li><a href="#parent-profile">4.5. Parent Profile</a></li>
 <li><a href="#multiple-profiles">4.6. Multiple Profiles</a></li>
 <li><a href="#default-runtime-profile">4.7. Default Runtime Profile</a></li>
@@ -2015,10 +1918,6 @@ Access this generated UUID using expressions: <code>${quarkus.uuid}</code>.</p>
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,33 +11,8 @@
   <title>Using Liquibase - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -613,7 +586,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log file. All included change log files in this file are scanned and add to the projects.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45999">QUARKUS_LIQUIBASE_CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45999" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37526">QUARKUS_LIQUIBASE_CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37526" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -633,7 +606,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Flag to enable / disable Liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46000">QUARKUS_LIQUIBASE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46000" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37527">QUARKUS_LIQUIBASE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37527" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -653,7 +626,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to execute Liquibase automatically when the application starts, <code>false</code> otherwise.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46001">QUARKUS_LIQUIBASE_MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46001" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37528">QUARKUS_LIQUIBASE_MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37528" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -673,7 +646,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to validate the applied changes against the available ones, <code>false</code> otherwise. It is only used if <code>migration-at-start</code> is <code>true</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46002">QUARKUS_LIQUIBASE_VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46002" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37529">QUARKUS_LIQUIBASE_VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37529" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -693,7 +666,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to execute Liquibase clean command automatically when the application starts, <code>false</code> otherwise.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46003">QUARKUS_LIQUIBASE_CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46003" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37530">QUARKUS_LIQUIBASE_CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37530" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -713,7 +686,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Comma-separated case-sensitive list of ChangeSet contexts to execute for liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46004">QUARKUS_LIQUIBASE_CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46004" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37531">QUARKUS_LIQUIBASE_CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37531" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -733,7 +706,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Comma-separated case-sensitive list of expressions defining labeled ChangeSet to execute for liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46005">QUARKUS_LIQUIBASE_LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46005" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37532">QUARKUS_LIQUIBASE_LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37532" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -753,7 +726,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log lock table name. Name of table to use for tracking concurrent Liquibase usage.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46006">QUARKUS_LIQUIBASE_DATABASE_CHANGE_LOG_LOCK_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46006" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37533">QUARKUS_LIQUIBASE_DATABASE_CHANGE_LOG_LOCK_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37533" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -773,7 +746,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log table name. Name of table to use for tracking change history.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46007">QUARKUS_LIQUIBASE_DATABASE_CHANGE_LOG_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46007" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37534">QUARKUS_LIQUIBASE_DATABASE_CHANGE_LOG_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37534" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -793,7 +766,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of Liquibase&#8217;s default catalog.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46008">QUARKUS_LIQUIBASE_DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46008" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37535">QUARKUS_LIQUIBASE_DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37535" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -813,7 +786,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of Liquibase&#8217;s default schema. Overwrites the default schema name (returned by the RDBMS) with a different database schema.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46009">QUARKUS_LIQUIBASE_DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46009" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37536">QUARKUS_LIQUIBASE_DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37536" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -833,7 +806,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the catalog with the liquibase tables.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46010">QUARKUS_LIQUIBASE_LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46010" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37537">QUARKUS_LIQUIBASE_LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37537" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -853,7 +826,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the schema with the liquibase tables.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46011">QUARKUS_LIQUIBASE_LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46011" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37538">QUARKUS_LIQUIBASE_LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37538" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -873,7 +846,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the tablespace where the -LOG and -LOCK tables will be created (if they do not exist yet).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46012">QUARKUS_LIQUIBASE_LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46012" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37539">QUARKUS_LIQUIBASE_LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37539" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -893,7 +866,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log file. All included change log files in this file are scanned and add to the projects.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46013">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46013" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37540">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CHANGE_LOG</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37540" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -913,7 +886,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Map of parameters that can be used inside Liquibase changeLog files.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46014">QUARKUS_LIQUIBASE_CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46014" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37541">QUARKUS_LIQUIBASE_CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37541" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -933,7 +906,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to execute Liquibase automatically when the application starts, <code>false</code> otherwise.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46015">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46015" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37542">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__MIGRATE_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37542" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -953,7 +926,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to validate the applied changes against the available ones, <code>false</code> otherwise. It is only used if <code>migration-at-start</code> is <code>true</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46016">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46016" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37543">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__VALIDATE_ON_MIGRATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37543" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -973,7 +946,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p><code>true</code> to execute Liquibase clean command automatically when the application starts, <code>false</code> otherwise.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46017">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46017" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37544">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CLEAN_AT_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37544" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -993,7 +966,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Comma-separated case-sensitive list of ChangeSet contexts to execute for liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46018">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46018" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37545">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CONTEXTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37545" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1013,7 +986,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Comma-separated case-sensitive list of expressions defining labeled ChangeSet to execute for liquibase.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46019">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46019" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37546">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LABELS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37546" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1033,7 +1006,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>Map of parameters that can be used inside Liquibase changeLog files.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46020">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46020" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37547">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__CHANGE_LOG_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37547" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1053,7 +1026,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log lock table name. Name of table to use for tracking concurrent Liquibase usage.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46021">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DATABASE_CHANGE_LOG_LOCK_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46021" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37548">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DATABASE_CHANGE_LOG_LOCK_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37548" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1073,7 +1046,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The liquibase change log table name. Name of table to use for tracking change history.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46022">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DATABASE_CHANGE_LOG_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46022" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37549">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DATABASE_CHANGE_LOG_TABLE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37549" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1093,7 +1066,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of Liquibase&#8217;s default catalog.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46023">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46023" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37550">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DEFAULT_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37550" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1113,7 +1086,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of Liquibase&#8217;s default schema. Overwrites the default schema name (returned by the RDBMS) with a different database schema.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46024">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46024" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37551">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__DEFAULT_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37551" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1133,7 +1106,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the catalog with the liquibase tables.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46025">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46025" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37552">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_CATALOG_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37552" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1153,7 +1126,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the schema with the liquibase tables.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46026">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46026" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37553">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_SCHEMA_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37553" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1173,7 +1146,7 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
 <p>The name of the tablespace where the -LOG and -LOCK tables will be created (if they do not exist yet).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-46027">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-46027" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-37554">QUARKUS_LIQUIBASE__NAMED_DATA_SOURCES__LIQUIBASE_TABLESPACE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-37554" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1351,10 +1324,6 @@ The <code>Job</code> performs initialization and the actual <code>Pod</code>, wi
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

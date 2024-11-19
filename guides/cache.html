@@ -11,33 +11,8 @@
   <title>Application Data Caching - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -247,7 +220,7 @@
 <p>JDK 17+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.9.9</p>
+<p>Apache Maven 3.9.8</p>
 </li>
 <li>
 <p>Optionally the <a href="cli-tooling">Quarkus CLI</a> if you want to use it</p>
@@ -334,7 +307,7 @@ cd cache-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.16.3:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.13.3:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=cache-quickstart \
     -Dextensions='cache,rest-jackson' \
@@ -1333,10 +1306,10 @@ properties in the <code>application.properties</code> file. By default, caches d
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime <input type="search" id="config-search-0" placeholder="FILTER CONFIGURATION" disabled></p>
+<div class="paragraph configuration-legend">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
 </div>
-<table class="tableblock frame-all grid-all stretch configuration-reference searchable configuration-reference-all-rows">
+<table class="tableblock frame-all grid-all stretch configuration-reference configuration-reference-all-rows">
 <colgroup>
 <col style="width: 80%;">
 <col style="width: 10%;">
@@ -1344,41 +1317,21 @@ properties in the <code>application.properties</code> file. By default, caches d
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache-cache-config_configuration"></a><a href="#quarkus-cache-cache-config_configuration">Configuration property</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-cache_quarkus-cache-type"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-type"><code>quarkus.cache.type</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-enabled"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-enabled">quarkus.cache.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
-<div class="content">
-<div class="paragraph">
-<p>Cache type.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-4292">QUARKUS_CACHE_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4292" title="Copy to clipboard" do-not-collapse="true"></button></p>
-</div>
-</div>
-</div>
-<div class="paragraph description-decoration">
-<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>caffeine</code></p></td>
-</tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-enabled"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-enabled"><code>quarkus.cache.enabled</code></a></span></p>
-</div>
-<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether or not the cache extension is enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4293">QUARKUS_CACHE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4293" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4356">QUARKUS_CACHE_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4356" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1389,21 +1342,21 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache_section_quarkus-cache-caffeine"></a> <span class="section-name section-level0"><a href="#quarkus-cache_section_quarkus-cache-caffeine">Default configuration applied to all Caffeine caches (lowest precedence)</a></span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-default-config-default-configuration-applied-to-all-caffeine-caches-lowest-precedence"></a><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-default-config-default-configuration-applied-to-all-caffeine-caches-lowest-precedence">Default configuration applied to all Caffeine caches (lowest precedence)</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-initial-capacity"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-initial-capacity"><code>quarkus.cache.caffeine.initial-capacity</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-initial-capacity"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-initial-capacity">quarkus.cache.caffeine.initial-capacity</a></code></p>
 </div>
-<div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Minimum total size for the internal data structures. Providing a large enough estimate at construction time avoids the need for expensive resizing operations later, but setting this value unnecessarily high wastes memory.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4294">QUARKUS_CACHE_CAFFEINE_INITIAL_CAPACITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4294" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4357">QUARKUS_CACHE_CAFFEINE_INITIAL_CAPACITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4357" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1413,17 +1366,17 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-maximum-size"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-maximum-size"><code>quarkus.cache.caffeine.maximum-size</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-maximum-size"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-maximum-size">quarkus.cache.caffeine.maximum-size</a></code></p>
 </div>
-<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Maximum number of entries the cache may contain. Note that the cache <strong>may evict an entry before this limit is exceeded or temporarily exceed the threshold while evicting</strong>. As the cache size grows close to the maximum, the cache evicts entries that are less likely to be used again. For example, the cache may evict an entry because it hasn&#8217;t been used recently or very often.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4295">QUARKUS_CACHE_CAFFEINE_MAXIMUM_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4295" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4358">QUARKUS_CACHE_CAFFEINE_MAXIMUM_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4358" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1433,57 +1386,59 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-expire-after-write"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-expire-after-write"><code>quarkus.cache.caffeine.expire-after-write</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-expire-after-write"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-expire-after-write">quarkus.cache.caffeine.expire-after-write</a></code></p>
 </div>
-<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry&#8217;s creation, or the most recent replacement of its value.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4296">QUARKUS_CACHE_CAFFEINE_EXPIRE_AFTER_WRITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4296" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4359">QUARKUS_CACHE_CAFFEINE_EXPIRE_AFTER_WRITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4359" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-quarkus-cache-cache-config"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-expire-after-access"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-expire-after-access"><code>quarkus.cache.caffeine.expire-after-access</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-expire-after-access"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-expire-after-access">quarkus.cache.caffeine.expire-after-access</a></code></p>
 </div>
-<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry&#8217;s creation, the most recent replacement of its value, or its last read.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4297">QUARKUS_CACHE_CAFFEINE_EXPIRE_AFTER_ACCESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4297" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4360">QUARKUS_CACHE_CAFFEINE_EXPIRE_AFTER_ACCESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4360" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-quarkus-cache-cache-config"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-metrics-enabled"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-metrics-enabled"><code>quarkus.cache.caffeine.metrics-enabled</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-metrics-enabled"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-metrics-enabled">quarkus.cache.caffeine.metrics-enabled</a></code></p>
 </div>
-<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether or not metrics are recorded if the application depends on the Micrometer extension. Setting this value to <code>true</code> will enable the accumulation of cache stats inside Caffeine.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4298">QUARKUS_CACHE_CAFFEINE_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4298" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4361">QUARKUS_CACHE_CAFFEINE_METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4361" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1493,17 +1448,22 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-caches-config-additional-configuration-applied-to-a-specific-caffeine-cache-highest-precedence"></a><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-caches-config-additional-configuration-applied-to-a-specific-caffeine-cache-highest-precedence">Additional configuration applied to a specific Caffeine cache (highest precedence)</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-cache-name-initial-capacity"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-cache-name-initial-capacity"><code>quarkus.cache.caffeine."cache-name".initial-capacity</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-initial-capacity"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-initial-capacity">quarkus.cache.caffeine."cache-name".initial-capacity</a></code></p>
 </div>
-<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Minimum total size for the internal data structures. Providing a large enough estimate at construction time avoids the need for expensive resizing operations later, but setting this value unnecessarily high wastes memory.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4299">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__INITIAL_CAPACITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4299" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4362">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__INITIAL_CAPACITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4362" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1513,17 +1473,17 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-cache-name-maximum-size"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-cache-name-maximum-size"><code>quarkus.cache.caffeine."cache-name".maximum-size</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-maximum-size"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-maximum-size">quarkus.cache.caffeine."cache-name".maximum-size</a></code></p>
 </div>
-<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Maximum number of entries the cache may contain. Note that the cache <strong>may evict an entry before this limit is exceeded or temporarily exceed the threshold while evicting</strong>. As the cache size grows close to the maximum, the cache evicts entries that are less likely to be used again. For example, the cache may evict an entry because it hasn&#8217;t been used recently or very often.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4300">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__MAXIMUM_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4300" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4363">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__MAXIMUM_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4363" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1533,57 +1493,59 @@ properties in the <code>application.properties</code> file. By default, caches d
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-cache-name-expire-after-write"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-cache-name-expire-after-write"><code>quarkus.cache.caffeine."cache-name".expire-after-write</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-expire-after-write"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-expire-after-write">quarkus.cache.caffeine."cache-name".expire-after-write</a></code></p>
 </div>
-<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry&#8217;s creation, or the most recent replacement of its value.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4301">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__EXPIRE_AFTER_WRITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4301" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4364">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__EXPIRE_AFTER_WRITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4364" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-quarkus-cache-cache-config"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc odd">
+<tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-cache-name-expire-after-access"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-cache-name-expire-after-access"><code>quarkus.cache.caffeine."cache-name".expire-after-access</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-expire-after-access"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-expire-after-access">quarkus.cache.caffeine."cache-name".expire-after-access</a></code></p>
 </div>
-<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry&#8217;s creation, the most recent replacement of its value, or its last read.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4302">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__EXPIRE_AFTER_ACCESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4302" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4365">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__EXPIRE_AFTER_ACCESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4365" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-cache_quarkus-cache"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-quarkus-cache-cache-config"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
-<tr class="row-collapsible row-collapsed row-with-desc">
+<tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-cache_quarkus-cache-caffeine-cache-name-metrics-enabled"></a> <span class="property-path"><a href="#quarkus-cache_quarkus-cache-caffeine-cache-name-metrics-enabled"><code>quarkus.cache.caffeine."cache-name".metrics-enabled</code></a></span></p>
+<p><a id="quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-metrics-enabled"></a><code><a href="#quarkus-cache-cache-config_quarkus-cache-caffeine-cache-name-metrics-enabled">quarkus.cache.caffeine."cache-name".metrics-enabled</a></code></p>
 </div>
-<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Whether or not metrics are recorded if the application depends on the Micrometer extension. Setting this value to <code>true</code> will enable the accumulation of cache stats inside Caffeine.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-4303">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4303" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-4366">QUARKUS_CACHE_CAFFEINE__CACHE_NAME__METRICS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-4366" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1595,7 +1557,7 @@ properties in the <code>application.properties</code> file. By default, caches d
 </tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-cache_quarkus-cache" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-cache-cache-config" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -2304,10 +2266,6 @@ More details about the <code>@RegisterForReflection</code> annotation can be fou
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

@@ -11,33 +11,8 @@
   <title>Quarkus Extension Metadata - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,9 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
         </select>
     </div>
   </div>
@@ -353,12 +325,11 @@ metadata:
   - "quarkus.rest."
   built-with-quarkus-core: "3.8.5" <i class="conum" data-value="2"></i><b>(2)</b>
   requires-quarkus-core: "[3.8,)" <i class="conum" data-value="3"></i><b>(3)</b>
-  minimum-java-version: "17" <i class="conum" data-value="4"></i><b>(4)</b>
-  capabilities: <i class="conum" data-value="5"></i><b>(5)</b>
+  capabilities: <i class="conum" data-value="4"></i><b>(4)</b>
     provides:
     - "io.quarkus.rest"
     - "io.quarkus.resteasy.reactive"
-  extension-dependencies: <i class="conum" data-value="6"></i><b>(6)</b>
+  extension-dependencies: <i class="conum" data-value="5"></i><b>(5)</b>
   - "io.quarkus:quarkus-rest-common"
   - "io.quarkus:quarkus-mutiny"
   - "io.quarkus:quarkus-smallrye-context-propagation"
@@ -368,8 +339,8 @@ metadata:
   - "io.quarkus:quarkus-vertx-http"
   - "io.quarkus:quarkus-core"
   - "io.quarkus:quarkus-jsonp"
-scm-url: "https://github.com/quarkusio/quarkus" <i class="conum" data-value="7"></i><b>(7)</b>
-sponsor: A Sponsoring Organisation <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+  scm-url: "https://github.com/quarkusio/quarkus" <i class="conum" data-value="6"></i><b>(6)</b>
+  sponsor: A Sponsoring Organisation <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -388,22 +359,18 @@ sponsor: A Sponsoring Organisation <i class="conum" data-value="8"></i><b>(8)</b
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The minimum Java version required for this extension to run. Will be generated based on the <code>maven.compiler.release</code> used in the build.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td><a href="https://quarkus.io/guides/capabilities">Capabilities</a> this extension provides</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>Direct dependencies on other extensions</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>The source code repository of this extension. Optional, and will often be set automatically by using the <code>&lt;scm&gt;</code> information in the pom. In GitHub Actions builds, it will be inferred from the CI environment. For other GitHub repositories, it can be controlled by setting a <code>GITHUB_REPOSITORY</code> environment variable.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>The sponsor(s) of this extension. Optional, and will sometimes be determined automatically from commit history.</td>
 </tr>
 </table>
@@ -551,9 +518,6 @@ The following properties may appear in this file:</p>
         <li class="guide"><a href="/guides/writing-native-applications-tips">Tips for writing native applications</a></li>
       
         
-        <li class="howto"><a href="/guides/extension-writing-dev-service">Writing a Dev Service</a></li>
-      
-        
         <li class="guide"><a href="/guides/writing-extensions">Writing Your Own Extension</a></li>
       </ul>
     </div>
@@ -629,10 +593,6 @@ The following properties may appear in this file:</p>
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

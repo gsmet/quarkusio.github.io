@@ -11,33 +11,8 @@
   <title>Consuming a gRPC Service - 3.8 - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -504,7 +477,7 @@ public class StreamingEndpoint {
 <p>Use new Vert.x gRPC client support. By default, we still use previous Java gRPC support.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45394">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USE_QUARKUS_GRPC_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45394" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36921">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USE_QUARKUS_GRPC_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36921" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -524,7 +497,7 @@ public class StreamingEndpoint {
 <p>Explicitly enable use of XDS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45395">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45395" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36922">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36922" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -544,7 +517,7 @@ public class StreamingEndpoint {
 <p>Use secure credentials.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45396">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45396" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36923">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_SECURE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36923" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -564,7 +537,7 @@ public class StreamingEndpoint {
 <p>Optional explicit target.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45397">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45397" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36924">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__XDS_TARGET</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36924" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -584,7 +557,7 @@ public class StreamingEndpoint {
 <p>Explicitly enable use of in-process.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45398">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45398" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36925">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36925" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -604,7 +577,7 @@ public class StreamingEndpoint {
 <p>Set in-process name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45399">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45399" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36926">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IN_PROCESS_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36926" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -624,7 +597,7 @@ public class StreamingEndpoint {
 <p>Number of threads on a delayed gRPC ClientCall</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45400">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_THREADS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45400" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36927">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_THREADS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36927" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -644,7 +617,7 @@ public class StreamingEndpoint {
 <p>Deadline in milliseconds of delayed gRPC call</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45401">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45401" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36928">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36928" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -664,7 +637,7 @@ public class StreamingEndpoint {
 <p>Number of retries on a gRPC ClientCall</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45402">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_RETRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45402" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36929">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_RETRIES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36929" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -684,7 +657,7 @@ public class StreamingEndpoint {
 <p>Initial delay in seconds on refresh check</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45403">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45403" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36930">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_DELAY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36930" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -704,7 +677,7 @@ public class StreamingEndpoint {
 <p>Refresh period in seconds</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45404">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45404" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36931">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__STORK_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36931" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -724,7 +697,7 @@ public class StreamingEndpoint {
 <p>The gRPC service port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45405">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45405" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36932">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36932" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -744,7 +717,7 @@ public class StreamingEndpoint {
 <p>The gRPC service test port.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45406">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TEST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45406" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36933">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__TEST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36933" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -764,7 +737,7 @@ public class StreamingEndpoint {
 <p>The host name / IP on which the service is exposed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45407">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45407" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36934">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36934" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -784,7 +757,7 @@ public class StreamingEndpoint {
 <p>The classpath path or file path to a server certificate or certificate chain in PEM format.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45408">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_CERTIFICATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45408" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36935">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_CERTIFICATE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36935" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -804,7 +777,7 @@ public class StreamingEndpoint {
 <p>The classpath path or file path to the corresponding certificate private key file in PEM format.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45409">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45409" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36936">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36936" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -824,7 +797,7 @@ public class StreamingEndpoint {
 <p>An optional trust store which holds the certificate information of the certificates to trust The trust store can be either on classpath or in an external file.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45410">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_TRUST_STORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45410" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36937">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__SSL_TRUST_STORE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36937" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -844,7 +817,7 @@ public class StreamingEndpoint {
 <p>Use a name resolver. Defaults to dns. If set to "stork", host will be treated as SmallRye Stork service name</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45411">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NAME_RESOLVER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45411" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36938">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NAME_RESOLVER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36938" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -864,7 +837,7 @@ public class StreamingEndpoint {
 <p>Whether <code>plain-text</code> should be used instead of <code>TLS</code>. Enabled by default, except if TLS/SSL is configured. In this case, <code>plain-text</code> is disabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45412">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PLAIN_TEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45412" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36939">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PLAIN_TEXT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36939" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -884,7 +857,7 @@ public class StreamingEndpoint {
 <p>The duration after which a keep alive ping is sent.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45413">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45413" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36940">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36940" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -905,7 +878,7 @@ public class StreamingEndpoint {
 <p>The flow control window in bytes. Default is 1MiB.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45414">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__FLOW_CONTROL_WINDOW</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45414" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36941">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__FLOW_CONTROL_WINDOW</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36941" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -925,7 +898,7 @@ public class StreamingEndpoint {
 <p>The duration without ongoing RPCs before going to idle mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45415">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45415" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36942">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__IDLE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36942" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -946,7 +919,7 @@ public class StreamingEndpoint {
 <p>The amount of time the sender of a keep alive ping waits for an acknowledgement.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45416">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45416" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36943">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36943" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -967,7 +940,7 @@ public class StreamingEndpoint {
 <p>Whether keep-alive will be performed when there are no outstanding RPC on a connection.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45417">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_WITHOUT_CALLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45417" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36944">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__KEEP_ALIVE_WITHOUT_CALLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36944" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -987,7 +960,7 @@ public class StreamingEndpoint {
 <p>The max number of hedged attempts.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45418">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_HEDGED_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45418" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36945">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_HEDGED_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36945" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1007,7 +980,7 @@ public class StreamingEndpoint {
 <p>The max number of retry attempts. Retry must be explicitly enabled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45419">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_RETRY_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45419" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36946">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_RETRY_ATTEMPTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36946" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1027,7 +1000,7 @@ public class StreamingEndpoint {
 <p>The maximum number of channel trace events to keep in the tracer for each channel or sub-channel.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45420">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_TRACE_EVENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45420" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36947">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_TRACE_EVENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36947" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1047,7 +1020,7 @@ public class StreamingEndpoint {
 <p>The maximum message size allowed for a single gRPC frame (in bytes). Default is 4 MiB.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45421">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45421" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36948">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36948" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1067,7 +1040,7 @@ public class StreamingEndpoint {
 <p>The maximum size of metadata allowed to be received (in bytes). Default is 8192B.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45422">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_METADATA_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45422" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36949">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__MAX_INBOUND_METADATA_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36949" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1087,7 +1060,7 @@ public class StreamingEndpoint {
 <p>The negotiation type for the HTTP/2 connection. Accepted values are: <code>TLS</code>, <code>PLAINTEXT_UPGRADE</code>, <code>PLAINTEXT</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45423">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NEGOTIATION_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45423" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36950">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__NEGOTIATION_TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36950" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1107,7 +1080,7 @@ public class StreamingEndpoint {
 <p>Overrides the authority used with TLS and HTTP virtual hosting.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45424">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__OVERRIDE_AUTHORITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45424" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36951">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__OVERRIDE_AUTHORITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36951" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1127,7 +1100,7 @@ public class StreamingEndpoint {
 <p>The per RPC buffer limit in bytes used for retry.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45425">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PER_RPC_BUFFER_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45425" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36952">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__PER_RPC_BUFFER_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36952" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1147,7 +1120,7 @@ public class StreamingEndpoint {
 <p>Whether retry is enabled. Note that retry is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45426">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45426" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36953">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36953" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1167,7 +1140,7 @@ public class StreamingEndpoint {
 <p>The retry buffer size in bytes.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45427">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45427" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36954">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__RETRY_BUFFER_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36954" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1187,7 +1160,7 @@ public class StreamingEndpoint {
 <p>Use a custom user-agent.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45428">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USER_AGENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45428" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36955">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__USER_AGENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36955" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1207,7 +1180,7 @@ public class StreamingEndpoint {
 <p>Use a custom load balancing policy. Accepted values are: <code>pick_first</code>, <code>round_robin</code>, <code>grpclb</code>. This value is ignored if name-resolver is set to 'stork'.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45429">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__LOAD_BALANCING_POLICY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45429" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36956">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__LOAD_BALANCING_POLICY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36956" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1227,7 +1200,7 @@ public class StreamingEndpoint {
 <p>The compression to use for each call. The accepted values are <code>gzip</code> and <code>identity</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45430">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45430" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36957">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36957" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1247,7 +1220,7 @@ public class StreamingEndpoint {
 <p>The deadline used for each call.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45431">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45431" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36958">QUARKUS_GRPC_CLIENTS__CLIENT_NAME__DEADLINE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36958" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1713,7 +1686,7 @@ You can configure the gRPC extension&#8217;s dev mode behavior using the followi
 <p>Start gRPC server in dev mode even if no gRPC services are implemented. By default set to <code>true</code> to ease incremental development of new services using dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-45432">QUARKUS_GRPC_DEV_MODE_FORCE_SERVER_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-45432" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-36959">QUARKUS_GRPC_DEV_MODE_FORCE_SERVER_START</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-36959" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1921,10 +1894,6 @@ Only the Mutiny client can be <em>mocked</em>, channels, and other stubs cannot 
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

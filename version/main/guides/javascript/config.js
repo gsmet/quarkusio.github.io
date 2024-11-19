@@ -120,8 +120,7 @@ function findText(row, search){
         var elementText = n.nodeValue;
         if(elementText == undefined)
             continue;
-        if((elementText.toLowerCase().indexOf(search) != -1
-            || elementText.toLowerCase().indexOf(search.replace(" ", "-")) != -1)
+        if(elementText.toLowerCase().indexOf(search) != -1
             // check that it's not decoration
             && acceptTextForSearch(n)){
             iter.detach();
@@ -199,15 +198,11 @@ function search(input){
 function applySearch(table, search, autoExpand){
     // clear highlights
     clearHighlights(table);
-    var lastExtensionHeader = null;
-    var lastConfigRootHeader = null;
     var lastSectionHeader = null;
     var idx = 0;
     for (var row of table.querySelectorAll("table.configuration-reference > tbody > tr")) {
-        var isExtensionNameRow = row.querySelectorAll("th span.extension-name").length > 0;
-        var isConfigRootNameRow = row.querySelectorAll("th span.configroot-name").length > 0;
-        var isSectionNameRow = row.querySelectorAll("th span.section-name").length > 0;
-        if(!isExtensionNameRow && !isConfigRootNameRow && !isSectionNameRow){
+        var heads = row.querySelectorAll("table.configuration-reference > tbody > tr > th");
+        if(!heads || heads.length == 0){
             // mark even rows
             if(++idx % 2){
                 row.classList.add("odd");
@@ -226,17 +221,7 @@ function applySearch(table, search, autoExpand){
                 && !row.classList.contains("row-collapsed"))
                 row.click();
         }else{
-            if(isExtensionNameRow){
-                // keep the column header with no highlight, but start hidden
-                lastExtensionHeader = row;
-                lastConfigRootHeader = null;
-                lastSectionHeader = null;
-                row.style.display = "none";
-            } else if(isConfigRootNameRow){
-                lastConfigRootHeader = row;
-                lastSectionHeader = null;
-                row.style.display = "none";
-            } else if(isSectionNameRow){
+            if(heads && heads.length > 0){
                 // keep the column header with no highlight, but start hidden
                 lastSectionHeader = row;
                 row.style.display = "none";
@@ -246,16 +231,6 @@ function applySearch(table, search, autoExpand){
                 if(autoExpand && row.classList.contains("row-collapsed"))
                     row.click();
                 highlight(row, search);
-                if(lastExtensionHeader){
-                    lastExtensionHeader.style.removeProperty("display");
-                    // avoid showing it more than once
-                    lastExtensionHeader = null;
-                }
-                if(lastConfigRootHeader){
-                    lastConfigRootHeader.style.removeProperty("display");
-                    // avoid showing it more than once
-                    lastConfigRootHeader = null;
-                }
                 if(lastSectionHeader){
                     lastSectionHeader.style.removeProperty("display");
                     // avoid showing it more than once

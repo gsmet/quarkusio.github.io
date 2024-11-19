@@ -11,33 +11,8 @@
   <title>Dev Services for Infinispan - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
@@ -202,6 +171,9 @@
         
         
         <option value="3.2" >3.2</option>
+        
+        
+        
         
         
         
@@ -241,13 +213,13 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_configuration"></a><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_configuration">Configuration property</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-enabled"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-enabled"><code>quarkus.infinispan-client.devservices.enabled</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-enabled"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-enabled">quarkus.infinispan-client.devservices.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -258,7 +230,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode and when Docker is running.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6555">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6555" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6783">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6783" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -270,7 +242,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-create-default-client"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-create-default-client"><code>quarkus.infinispan-client.devservices.create-default-client</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-create-default-client"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-create-default-client">quarkus.infinispan-client.devservices.create-default-client</a></code></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -278,7 +250,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>When the configuration is empty, an Infinispan default client is automatically created to connect to the running dev service. However, there are scenarios where creating this client is unnecessary, yet we still need to spin up an Infinispan Server. In such cases, this property serves to determine whether the client should be created by default or not by the extension.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6556">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CREATE_DEFAULT_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6556" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6784">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CREATE_DEFAULT_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6784" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -290,7 +262,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-port"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-port"><code>quarkus.infinispan-client.devservices.port</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-port"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-port">quarkus.infinispan-client.devservices.port</a></code></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -301,7 +273,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>If not defined, the port will be chosen randomly.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6557">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6557" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6785">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6785" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -313,7 +285,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-shared"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-shared"><code>quarkus.infinispan-client.devservices.shared</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-shared"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-shared">quarkus.infinispan-client.devservices.shared</a></code></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -327,7 +299,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>Container sharing is only used in dev mode.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6558">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6558" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6786">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6786" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -339,7 +311,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-service-name"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-service-name"><code>quarkus.infinispan-client.devservices.service-name</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-service-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-service-name">quarkus.infinispan-client.devservices.service-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -350,7 +322,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>This property is used when you need multiple shared Infinispan servers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6559">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6559" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6787">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6787" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -362,7 +334,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-image-name"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-image-name"><code>quarkus.infinispan-client.devservices.image-name</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-image-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-image-name">quarkus.infinispan-client.devservices.image-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -370,7 +342,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>The image to use. Note that only official Infinispan images are supported.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6560">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6560" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6788">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6788" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -382,7 +354,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-artifacts"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-artifacts"><code>quarkus.infinispan-client.devservices.artifacts</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-artifacts"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-artifacts">quarkus.infinispan-client.devservices.artifacts</a></code></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -396,7 +368,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>If an invalid value is passed, the Infinispan server will throw an error when trying to start.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6561">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_ARTIFACTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6561" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6789">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_ARTIFACTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6789" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -408,7 +380,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-site"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-site"><code>quarkus.infinispan-client.devservices.site</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-site"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-site">quarkus.infinispan-client.devservices.site</a></code></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -416,7 +388,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>Add a site name to start the Infinispan Server Container with Cross Site Replication enabled (ex. lon). Cross Site Replication is the capability to connect two separate Infinispan Server Clusters that might run in different Data Centers, and configure backup caches to copy the data across the clusters with active-active or active-passive replication. See more about Cross Site Replication in the Infinispan Documentation <a href="https://infinispan.org/docs/stable/titles/xsite/xsite.html" class="bare">https://infinispan.org/docs/stable/titles/xsite/xsite.html</a> Configure <code>mcast-port</code> to avoid forming a cluster with any other running Infinispan Server container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6562">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6562" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6790">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_SITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6790" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -428,7 +400,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-mcast-port"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-mcast-port"><code>quarkus.infinispan-client.devservices.mcast-port</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-mcast-port"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-mcast-port">quarkus.infinispan-client.devservices.mcast-port</a></code></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -436,7 +408,7 @@ Quarkus will automatically start an Infinispan container when running tests or d
 <p>If you are running an Infinispan Server already in docker, if the containers use the same mcastPort they will form a cluster. Set a different mcastPort to create a separate cluster in Docker (e. 46656). A common use case in a local Docker development mode, is the need of having two different Infinispan Clusters with Cross Site Replication enabled. see <a href="https://github.com/infinispan/infinispan-simple-tutorials/blob/main/infinispan-remote/cross-site-replication/docker-compose/" class="bare">https://github.com/infinispan/infinispan-simple-tutorials/blob/main/infinispan-remote/cross-site-replication/docker-compose/</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6563">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_MCAST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6563" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6791">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_MCAST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6791" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -448,35 +420,276 @@ Quarkus will automatically start an Infinispan container when running tests or d
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-container-env-environment-variable-name"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-container-env-environment-variable-name"><code>quarkus.infinispan-client.devservices.container-env."environment-variable-name"</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-config-files"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-config-files">quarkus.infinispan-client.devservices.config-files</a></code></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
-<p>Environment variables that are passed to the container.</p>
+<p>Infinispan Server configuration chunks to be passed to the container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6564">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6564" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6792">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CONFIG_FILES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6792" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Map&lt;String,String&gt;</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-config-files"></a> <span class="property-path"><a href="#quarkus-infinispan-client_quarkus-infinispan-client-devservices_quarkus-infinispan-client-devservices-config-files"><code>quarkus.infinispan-client.devservices.config-files</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-container-env-environment-variable-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-devservices-container-env-environment-variable-name">quarkus.infinispan-client.devservices.container-env."environment-variable-name"</a></code></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Environment variables that are passed to the container.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6793">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6793" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-enabled"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-enabled">quarkus.infinispan-client."named-infinispan-clients".devservices.enabled</a></code></p>
+</div>
+<div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If DevServices has been explicitly enabled or disabled. DevServices is generally enabled by default, unless there is an existing configuration present.</p>
+</div>
+<div class="paragraph">
+<p>When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode and when Docker is running.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6794">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6794" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-create-default-client"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-create-default-client">quarkus.infinispan-client."named-infinispan-clients".devservices.create-default-client</a></code></p>
+</div>
+<div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>When the configuration is empty, an Infinispan default client is automatically created to connect to the running dev service. However, there are scenarios where creating this client is unnecessary, yet we still need to spin up an Infinispan Server. In such cases, this property serves to determine whether the client should be created by default or not by the extension.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6795">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_CREATE_DEFAULT_CLIENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6795" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-port"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-port">quarkus.infinispan-client."named-infinispan-clients".devservices.port</a></code></p>
+</div>
+<div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Optional fixed port the dev service will listen to.</p>
+</div>
+<div class="paragraph">
+<p>If not defined, the port will be chosen randomly.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6796">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6796" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-shared"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-shared">quarkus.infinispan-client."named-infinispan-clients".devservices.shared</a></code></p>
+</div>
+<div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Indicates if the Infinispan server managed by Quarkus Dev Services is shared. When shared, Quarkus looks for running containers using label-based service discovery. If a matching container is found, it is used, and so a second one is not started. Otherwise, Dev Services for Infinispan starts a new container.</p>
+</div>
+<div class="paragraph">
+<p>The discovery uses the <code>quarkus-dev-service-infinispan</code> label. The value is configured using the <code>service-name</code> property.</p>
+</div>
+<div class="paragraph">
+<p>Container sharing is only used in dev mode.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6797">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_SHARED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6797" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-service-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-service-name">quarkus.infinispan-client."named-infinispan-clients".devservices.service-name</a></code></p>
+</div>
+<div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The value of the <code>quarkus-dev-service-infinispan</code> label attached to the started container. This property is used when <code>shared</code> is set to <code>true</code>. In this case, before starting a container, Dev Services for Infinispan looks for a container with the <code>quarkus-dev-service-infinispan</code> label set to the configured value. If found, it will use this container instead of starting a new one. Otherwise, it starts a new container with the <code>quarkus-dev-service-infinispan</code> label set to the specified value.</p>
+</div>
+<div class="paragraph">
+<p>This property is used when you need multiple shared Infinispan servers.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6798">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_SERVICE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6798" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>infinispan</code></p></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-image-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-image-name">quarkus.infinispan-client."named-infinispan-clients".devservices.image-name</a></code></p>
+</div>
+<div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>The image to use. Note that only official Infinispan images are supported.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6799">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_IMAGE_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6799" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-artifacts"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-artifacts">quarkus.infinispan-client."named-infinispan-clients".devservices.artifacts</a></code></p>
+</div>
+<div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>List of the artifacts to automatically download and add to the Infinispan server libraries.</p>
+</div>
+<div class="paragraph">
+<p>For example a Maven coordinate (org.postgresql:postgresql:42.3.1) or a dependency location url.</p>
+</div>
+<div class="paragraph">
+<p>If an invalid value is passed, the Infinispan server will throw an error when trying to start.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6800">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_ARTIFACTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6800" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-site"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-site">quarkus.infinispan-client."named-infinispan-clients".devservices.site</a></code></p>
+</div>
+<div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Add a site name to start the Infinispan Server Container with Cross Site Replication enabled (ex. lon). Cross Site Replication is the capability to connect two separate Infinispan Server Clusters that might run in different Data Centers, and configure backup caches to copy the data across the clusters with active-active or active-passive replication. See more about Cross Site Replication in the Infinispan Documentation <a href="https://infinispan.org/docs/stable/titles/xsite/xsite.html" class="bare">https://infinispan.org/docs/stable/titles/xsite/xsite.html</a> Configure <code>mcast-port</code> to avoid forming a cluster with any other running Infinispan Server container.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6801">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_SITE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6801" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-mcast-port"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-mcast-port">quarkus.infinispan-client."named-infinispan-clients".devservices.mcast-port</a></code></p>
+</div>
+<div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>If you are running an Infinispan Server already in docker, if the containers use the same mcastPort they will form a cluster. Set a different mcastPort to create a separate cluster in Docker (e. 46656). A common use case in a local Docker development mode, is the need of having two different Infinispan Clusters with Cross Site Replication enabled. see <a href="https://github.com/infinispan/infinispan-simple-tutorials/blob/main/infinispan-remote/cross-site-replication/docker-compose/" class="bare">https://github.com/infinispan/infinispan-simple-tutorials/blob/main/infinispan-remote/cross-site-replication/docker-compose/</a></p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6802">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_MCAST_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6802" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc odd">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-container-env-environment-variable-name"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-container-env-environment-variable-name">quarkus.infinispan-client."named-infinispan-clients".devservices.container-env."environment-variable-name"</a></code></p>
+</div>
+<div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
+<div class="content">
+<div class="paragraph">
+<p>Environment variables that are passed to the container.</p>
+</div>
+<div class="paragraph">
+<p>Environment variable: <code id="env-var-6803">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_CONTAINER_ENV__ENVIRONMENT_VARIABLE_NAME_</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6803" title="Copy to clipboard" do-not-collapse="true"></button></p>
+</div>
+</div>
+</div>
+<div class="paragraph description-decoration">
+<p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr class="row-collapsible row-collapsed row-with-desc">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-config-files"></a><code><a href="#quarkus-infinispan-client-config-group-infinispan-client-build-time-config-dev-service-configuration_quarkus-infinispan-client-named-infinispan-clients-devservices-config-files">quarkus.infinispan-client."named-infinispan-clients".devservices.config-files</a></code></p>
+</div>
+<div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
 <div class="content">
 <div class="paragraph">
 <p>Infinispan Server configuration chunks to be passed to the container.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6565">QUARKUS_INFINISPAN_CLIENT_DEVSERVICES_CONFIG_FILES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6565" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-6804">QUARKUS_INFINISPAN_CLIENT__NAMED_INFINISPAN_CLIENTS__DEVSERVICES_CONFIG_FILES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6804" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -673,7 +886,7 @@ and in the Infinispan Cross Site Replication
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Infinispan Client extension supports connecting to more than one Infinispan Cluster with
-the named connections. If you need to spin an additional Dev Service for a connection name, configure
+the named connections. If you need to spin an additional dev service for a connection name, configure
 at least on property in the application properties:</p>
 </div>
 <div class="listingblock">
@@ -1001,10 +1214,6 @@ You can disable the sharing with <code>quarkus.infinispan-client.devservices.sha
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

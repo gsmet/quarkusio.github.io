@@ -11,33 +11,8 @@
   <title>Centralized log management (Graylog, Logstash, Fluentd) - main - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" >3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" >3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -587,81 +560,6 @@ networks:
 </div>
 </div>
 <div class="sect1">
-<h2 id="logstash_ecs"><a class="anchor" href="#logstash_ecs"></a>GELF alternative: Send logs to Logstash in the ECS (Elastic Common Schema) format</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can also send your logs to Logstash using a TCP input in the <a href="https://www.elastic.co/guide/en/ecs-logging/overview/current/intro.html">ECS</a> format.
-To achieve this we will use the <code>quarkus-logging-json</code> extension to format the logs in JSON format and the socket handler to send them to Logstash.</p>
-</div>
-<div class="paragraph">
-<p>For this you can use the same <code>docker-compose.yml</code> file as above but with a different Logstash pipeline configuration.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">input {
-  tcp {
-    port =&gt; 4560
-    coded =&gt; json
-  }
-}
-
-filter {
-  if ![span][id] and [mdc][spanId] {
-    mutate { rename =&gt; { "[mdc][spanId]" =&gt; "[span][id]" } }
-  }
-  if ![trace][id] and [mdc][traceId] {
-    mutate { rename =&gt; {"[mdc][traceId]" =&gt; "[trace][id]"} }
-  }
-}
-
-output {
-  stdout {}
-  elasticsearch {
-    hosts =&gt; ["http://elasticsearch:9200"]
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then configure your application to log in JSON format instead of GELF</p>
-</div>
-<div class="listingblock primary asciidoc-tabs-target-sync-cli asciidoc-tabs-target-sync-maven">
-<div class="title">pom.xml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-    &lt;artifactId&gt;quarkus-logging-json&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock secondary asciidoc-tabs-target-sync-gradle">
-<div class="title">build.gradle</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation("io.quarkus:quarkus-logging-json")</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and specify the host and port of your Logstash endpoint. To be ECS compliant, specify the log format.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># to keep the logs in the usual format in the console
-quarkus.log.console.json=false
-
-quarkus.log.socket.enable=true
-quarkus.log.socket.json=true
-quarkus.log.socket.endpoint=localhost:4560
-
-# to have the exception serialized into a single text element
-quarkus.log.socket.json.exception-output-type=formatted
-
-# specify the format of the produced JSON log
-quarkus.log.socket.json.log-format=ECS</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="send-logs-to-fluentd-efk"><a class="anchor" href="#send-logs-to-fluentd-efk"></a>Send logs to Fluentd (EFK)</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -938,8 +836,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-enabled"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-enabled"><code>quarkus.log.handler.gelf.enabled</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.enabled' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-enabled"></a> <span class="property-path"><code>quarkus.log.handler.gelf.enabled</code></span></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -947,7 +844,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Determine whether to enable the GELF logging handler</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51813">QUARKUS_LOG_HANDLER_GELF_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51813" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43353">QUARKUS_LOG_HANDLER_GELF_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43353" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -959,8 +856,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-host"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-host"><code>quarkus.log.handler.gelf.host</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.host' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-host"></a> <span class="property-path"><code>quarkus.log.handler.gelf.host</code></span></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -968,7 +864,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Hostname/IP-Address of the Logstash/Graylog Host By default it uses UDP, prepend tcp: to the hostname to switch to TCP, example: "tcp:localhost"</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51814">QUARKUS_LOG_HANDLER_GELF_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51814" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43354">QUARKUS_LOG_HANDLER_GELF_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43354" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -980,8 +876,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-port"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-port"><code>quarkus.log.handler.gelf.port</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.port' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-port"></a> <span class="property-path"><code>quarkus.log.handler.gelf.port</code></span></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -989,7 +884,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>The port</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51815">QUARKUS_LOG_HANDLER_GELF_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51815" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43355">QUARKUS_LOG_HANDLER_GELF_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43355" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1001,8 +896,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-version"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-version"><code>quarkus.log.handler.gelf.version</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.version' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-version"></a> <span class="property-path"><code>quarkus.log.handler.gelf.version</code></span></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1010,7 +904,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>GELF version: 1.0 or 1.1</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51816">QUARKUS_LOG_HANDLER_GELF_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51816" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43356">QUARKUS_LOG_HANDLER_GELF_VERSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43356" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1022,8 +916,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-extract-stack-trace"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-extract-stack-trace"><code>quarkus.log.handler.gelf.extract-stack-trace</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.extract-stack-trace' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-extract-stack-trace"></a> <span class="property-path"><code>quarkus.log.handler.gelf.extract-stack-trace</code></span></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -1031,7 +924,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Whether to post Stack-Trace to StackTrace field.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51817">QUARKUS_LOG_HANDLER_GELF_EXTRACT_STACK_TRACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51817" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43357">QUARKUS_LOG_HANDLER_GELF_EXTRACT_STACK_TRACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43357" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1043,8 +936,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-stack-trace-throwable-reference"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-stack-trace-throwable-reference"><code>quarkus.log.handler.gelf.stack-trace-throwable-reference</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.stack-trace-throwable-reference' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-stack-trace-throwable-reference"></a> <span class="property-path"><code>quarkus.log.handler.gelf.stack-trace-throwable-reference</code></span></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -1052,7 +944,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Only used when <code>extractStackTrace</code> is <code>true</code>. A value of 0 will extract the whole stack trace. Any positive value will walk the cause chain: 1 corresponds with exception.getCause(), 2 with exception.getCause().getCause(), &#8230;&#8203; Negative throwable reference walk the exception chain from the root cause side: -1 will extract the root cause, -2 the exception wrapping the root cause, &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51818">QUARKUS_LOG_HANDLER_GELF_STACK_TRACE_THROWABLE_REFERENCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51818" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43358">QUARKUS_LOG_HANDLER_GELF_STACK_TRACE_THROWABLE_REFERENCE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43358" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1064,8 +956,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-filter-stack-trace"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-filter-stack-trace"><code>quarkus.log.handler.gelf.filter-stack-trace</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.filter-stack-trace' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-filter-stack-trace"></a> <span class="property-path"><code>quarkus.log.handler.gelf.filter-stack-trace</code></span></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -1073,7 +964,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Whether to perform Stack-Trace filtering</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51819">QUARKUS_LOG_HANDLER_GELF_FILTER_STACK_TRACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51819" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43359">QUARKUS_LOG_HANDLER_GELF_FILTER_STACK_TRACE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43359" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1085,8 +976,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-timestamp-pattern"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-timestamp-pattern"><code>quarkus.log.handler.gelf.timestamp-pattern</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.timestamp-pattern' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-timestamp-pattern"></a> <span class="property-path"><code>quarkus.log.handler.gelf.timestamp-pattern</code></span></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -1094,7 +984,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Java date pattern, see <code>java.text.SimpleDateFormat</code></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51820">QUARKUS_LOG_HANDLER_GELF_TIMESTAMP_PATTERN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51820" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43360">QUARKUS_LOG_HANDLER_GELF_TIMESTAMP_PATTERN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43360" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1106,8 +996,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-level"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-level"><code>quarkus.log.handler.gelf.level</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.level' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-level"></a> <span class="property-path"><code>quarkus.log.handler.gelf.level</code></span></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -1115,7 +1004,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>The logging-gelf log level.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51821">QUARKUS_LOG_HANDLER_GELF_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51821" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43361">QUARKUS_LOG_HANDLER_GELF_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43361" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1127,8 +1016,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-facility"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-facility"><code>quarkus.log.handler.gelf.facility</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.facility' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-facility"></a> <span class="property-path"><code>quarkus.log.handler.gelf.facility</code></span></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -1136,7 +1024,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Name of the facility.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51822">QUARKUS_LOG_HANDLER_GELF_FACILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51822" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43362">QUARKUS_LOG_HANDLER_GELF_FACILITY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43362" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1147,14 +1035,13 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>jboss-logmanager</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-logging-gelf_section_quarkus-log-handler-gelf-additional-field"></a> <span class="section-name section-level0"><a href="#quarkus-logging-gelf_section_quarkus-log-handler-gelf-additional-field">Post additional fields</a></span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-logging-gelf_section_quarkus-log-handler-gelf-additional-field"></a> <span class="section-name section-level0">Post additional fields</span></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-value"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-value"><code>quarkus.log.handler.gelf.additional-field."field-name".value</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.additional-field."field-name".value' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-value"></a> <span class="property-path"><code>quarkus.log.handler.gelf.additional-field."field-name".value</code></span></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -1162,7 +1049,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Additional field value.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51823">QUARKUS_LOG_HANDLER_GELF_ADDITIONAL_FIELD__FIELD_NAME__VALUE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51823" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43363">QUARKUS_LOG_HANDLER_GELF_ADDITIONAL_FIELD__FIELD_NAME__VALUE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43363" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1174,8 +1061,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-type"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-type"><code>quarkus.log.handler.gelf.additional-field."field-name".type</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.additional-field."field-name".type' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-additional-field-field-name-type"></a> <span class="property-path"><code>quarkus.log.handler.gelf.additional-field."field-name".type</code></span></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -1183,7 +1069,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Additional field type specification. Supported types: String, long, Long, double, Double and discover. Discover is the default if not specified, it discovers field type based on parseability.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51824">QUARKUS_LOG_HANDLER_GELF_ADDITIONAL_FIELD__FIELD_NAME__TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51824" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43364">QUARKUS_LOG_HANDLER_GELF_ADDITIONAL_FIELD__FIELD_NAME__TYPE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43364" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1195,8 +1081,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-full-mdc"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-include-full-mdc"><code>quarkus.log.handler.gelf.include-full-mdc</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.include-full-mdc' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-full-mdc"></a> <span class="property-path"><code>quarkus.log.handler.gelf.include-full-mdc</code></span></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -1204,7 +1089,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Whether to include all fields from the MDC.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51825">QUARKUS_LOG_HANDLER_GELF_INCLUDE_FULL_MDC</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51825" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43365">QUARKUS_LOG_HANDLER_GELF_INCLUDE_FULL_MDC</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43365" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1216,8 +1101,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-mdc-fields"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-mdc-fields"><code>quarkus.log.handler.gelf.mdc-fields</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.mdc-fields' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-mdc-fields"></a> <span class="property-path"><code>quarkus.log.handler.gelf.mdc-fields</code></span></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -1225,7 +1109,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Send additional fields whose values are obtained from MDC. Name of the Fields are comma-separated. Example: mdcFields=Application,Version,SomeOtherFieldName</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51826">QUARKUS_LOG_HANDLER_GELF_MDC_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51826" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43366">QUARKUS_LOG_HANDLER_GELF_MDC_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43366" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1237,8 +1121,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-fields"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-fields"><code>quarkus.log.handler.gelf.dynamic-mdc-fields</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.dynamic-mdc-fields' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-fields"></a> <span class="property-path"><code>quarkus.log.handler.gelf.dynamic-mdc-fields</code></span></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -1246,7 +1129,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Dynamic MDC Fields allows you to extract MDC values based on one or more regular expressions. Multiple regexes are comma-separated. The name of the MDC entry is used as GELF field name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51827">QUARKUS_LOG_HANDLER_GELF_DYNAMIC_MDC_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51827" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43367">QUARKUS_LOG_HANDLER_GELF_DYNAMIC_MDC_FIELDS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43367" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1258,8 +1141,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-field-types"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-field-types"><code>quarkus.log.handler.gelf.dynamic-mdc-field-types</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.dynamic-mdc-field-types' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-dynamic-mdc-field-types"></a> <span class="property-path"><code>quarkus.log.handler.gelf.dynamic-mdc-field-types</code></span></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -1267,7 +1149,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Pattern-based type specification for additional and MDC fields. Key-value pairs are comma-separated. Example: my_field.*=String,business\..*\.field=double</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51828">QUARKUS_LOG_HANDLER_GELF_DYNAMIC_MDC_FIELD_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51828" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43368">QUARKUS_LOG_HANDLER_GELF_DYNAMIC_MDC_FIELD_TYPES</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43368" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1279,8 +1161,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-maximum-message-size"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-maximum-message-size"><code>quarkus.log.handler.gelf.maximum-message-size</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.maximum-message-size' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-maximum-message-size"></a> <span class="property-path"><code>quarkus.log.handler.gelf.maximum-message-size</code></span></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -1288,7 +1169,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Maximum message size (in bytes). If the message size is exceeded, the appender will submit the message in multiple chunks.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51829">QUARKUS_LOG_HANDLER_GELF_MAXIMUM_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51829" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43369">QUARKUS_LOG_HANDLER_GELF_MAXIMUM_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43369" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1300,8 +1181,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-log-message-parameters"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-include-log-message-parameters"><code>quarkus.log.handler.gelf.include-log-message-parameters</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.include-log-message-parameters' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-log-message-parameters"></a> <span class="property-path"><code>quarkus.log.handler.gelf.include-log-message-parameters</code></span></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -1309,7 +1189,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Include message parameters from the log event</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51830">QUARKUS_LOG_HANDLER_GELF_INCLUDE_LOG_MESSAGE_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51830" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43370">QUARKUS_LOG_HANDLER_GELF_INCLUDE_LOG_MESSAGE_PARAMETERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43370" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1321,8 +1201,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-location"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-include-location"><code>quarkus.log.handler.gelf.include-location</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.include-location' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-include-location"></a> <span class="property-path"><code>quarkus.log.handler.gelf.include-location</code></span></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -1330,7 +1209,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Include source code location</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51831">QUARKUS_LOG_HANDLER_GELF_INCLUDE_LOCATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51831" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43371">QUARKUS_LOG_HANDLER_GELF_INCLUDE_LOCATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43371" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1342,8 +1221,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-origin-host"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-origin-host"><code>quarkus.log.handler.gelf.origin-host</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.origin-host' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-origin-host"></a> <span class="property-path"><code>quarkus.log.handler.gelf.origin-host</code></span></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
@@ -1351,7 +1229,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Origin hostname</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51832">QUARKUS_LOG_HANDLER_GELF_ORIGIN_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51832" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43372">QUARKUS_LOG_HANDLER_GELF_ORIGIN_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43372" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1363,8 +1241,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-skip-hostname-resolution"></a> <span class="property-path"><a href="#quarkus-logging-gelf_quarkus-log-handler-gelf-skip-hostname-resolution"><code>quarkus.log.handler.gelf.skip-hostname-resolution</code></a></span>
-<button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-text='quarkus.log.handler.gelf.skip-hostname-resolution' title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p><a id="quarkus-logging-gelf_quarkus-log-handler-gelf-skip-hostname-resolution"></a> <span class="property-path"><code>quarkus.log.handler.gelf.skip-hostname-resolution</code></span></p>
 </div>
 <div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
@@ -1372,7 +1249,7 @@ or you can configure your Elasticsearch index to store those fields as text or k
 <p>Bypass hostname resolution. If you didn&#8217;t set the <code>originHost</code> property, and resolution is disabled, the value “unknown” will be used as hostname</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-51833">QUARKUS_LOG_HANDLER_GELF_SKIP_HOSTNAME_RESOLUTION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-51833" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-43373">QUARKUS_LOG_HANDLER_GELF_SKIP_HOSTNAME_RESOLUTION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-43373" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1397,7 +1274,6 @@ you can access its documentation here: <a href="https://logging.paluch.biz/" cla
 <li><a href="#example-application">Example application</a></li>
 <li><a href="#send-logs-to-graylog">Send logs to Graylog</a></li>
 <li><a href="#send-logs-to-logstash-the-elastic-stack-elk">Send logs to Logstash / the Elastic Stack (ELK)</a></li>
-<li><a href="#logstash_ecs">GELF alternative: Send logs to Logstash in the ECS (Elastic Common Schema) format</a></li>
 <li><a href="#send-logs-to-fluentd-efk">Send logs to Fluentd (EFK)</a></li>
 <li><a href="#gelf-alternative-use-syslog">GELF alternative: use Syslog</a></li>
 <li><a href="#elasticsearch-indexing-consideration">Elasticsearch indexing consideration</a></li>
@@ -1413,9 +1289,6 @@ you can access its documentation here: <a href="https://logging.paluch.biz/" cla
       
         
         <li class="reference"><a href="/version/main/guides/logging">Logging configuration</a></li>
-      
-        
-        <li class="guide"><a href="/version/main/guides/opentelemetry-logging">Using OpenTelemetry Logging</a></li>
       
         
         <li class="tutorial"><a href="/version/main/guides/telemetry-micrometer-tutorial">Collect metrics using Micrometer</a></li>
@@ -1523,10 +1396,6 @@ you can access its documentation here: <a href="https://logging.paluch.biz/" cla
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

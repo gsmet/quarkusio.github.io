@@ -11,33 +11,8 @@
   <title>WebSockets Next extension reference guide - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,10 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
-        <option value="3.15" >3.15</option>
         
         
         
@@ -461,7 +433,7 @@ By default, the <code>@Singleton</code> scope is used.
 However, developers can specify alternative scopes to fit their specific requirements.</p>
 </div>
 <div class="paragraph">
-<p><code>@Singleton</code> and <code>@ApplicationScoped</code> endpoints are shared across all WebSocket connections.
+<p><code>@Singleton</code> and <code>@ApplicationScoped</code> endpoints are shared accross all WebSocket connections.
 Therefore, implementations should be either stateless or thread-safe.</p>
 </div>
 <div class="listingblock">
@@ -913,15 +885,15 @@ The method that declares a most-specific supertype of the actual exception is se
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>@io.quarkus.websockets.next.OnError</code> annotation can be also used to declare a global error handler, i.e. a method that is not declared on a WebSocket endpoint. Such a method may not accept <code>@PathParam</code> parameters. Error handlers declared on an endpoint take precedence over the global error handlers.
+The <code>@io.quarkus.websockets.next.OnError</code> annotation can be also used to declare a global error handler, i.e. a method that is not declared on a WebSocket endpoint. Such a method may not accept <code>@PathParam</code> paremeters. Error handlers declared on an endpoint take precedence over the global error handlers.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>When an error occurs but no error handler can handle the failure, Quarkus uses the strategy specified by <code>quarkus.websockets-next.server.unhandled-failure-strategy</code>.
-For server endpoints, the error message is logged and the connection is closed by default.
-For client endpoints, the error message is logged by default.</p>
+By default, the connection is closed.
+Alternatively, an error message can be logged or no operation performed.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1230,53 +1202,7 @@ For example, <code>OpenConnections#findByEndpointId(String)</code> makes it easy
 </div>
 </div>
 <div class="sect3">
-<h4 id="user-data"><a class="anchor" href="#user-data"></a>6.3.2. User data</h4>
-<div class="paragraph">
-<p>It is also possible to associate arbitrary user data with a specific connection.
-The <code>io.quarkus.websockets.next.UserData</code> object obtained by the <code>WebSocketConnection#userData()</code> method represents mutable user data associated with a connection.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.websockets.next.WebSocketConnection;
-import io.quarkus.websockets.next.UserData.TypedKey;
-
-@WebSocket(path = "/endpoint/{username}")
-class MyEndpoint {
-
-  @Inject
-  CoolService service;
-
-  @OnOpen
-  void open(WebSocketConnection connection) {
-     connection.userData().put(TypedKey.forBoolean("isCool"), service.isCool(connection.pathParam("username"))); <i class="conum" data-value="1"></i><b>(1)</b>
-  }
-
-  @OnTextMessage
-  String process(String message) {
-     if (connection.userData().get(TypedKey.forBoolean("isCool"))) { <i class="conum" data-value="2"></i><b>(2)</b>
-        return "Cool message processed!";
-     } else {
-        return "Message processed!";
-     }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>CoolService#isCool()</code> returns <code>Boolean</code> that is associated with the current connection.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>TypedKey.forBoolean("isCool")</code> is the key used to obtain the data stored when the connection was created.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="server-cdi-events"><a class="anchor" href="#server-cdi-events"></a>6.3.3. CDI events</h4>
+<h4 id="server-cdi-events"><a class="anchor" href="#server-cdi-events"></a>6.3.2. CDI events</h4>
 <div class="paragraph">
 <p>Quarkus fires a CDI event of type <code>io.quarkus.websockets.next.WebSocketConnection</code> with qualifier <code>@io.quarkus.websockets.next.Open</code> asynchronously when a new connection is opened.
 Moreover, a CDI event of type <code>WebSocketConnection</code> with qualifier <code>@io.quarkus.websockets.next.Closed</code> is fired asynchronously when a connection is closed.</p>
@@ -1515,54 +1441,6 @@ You can choose WebSocket endpoints to which the <code>HttpUpgradeCheck</code> is
 <p>As a direct consequence of the fact this extension reuses the <em>main</em> HTTP server, all the relevant server configurations apply. See Refer to the <a href="http-reference#ssl">HTTP guide</a> for more details.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="hibernate-multitenancy"><a class="anchor" href="#hibernate-multitenancy"></a>6.8. Hibernate multitenancy</h3>
-<div class="paragraph">
-<p>The <code>RoutingContext</code> is not available after the HTTP upgrade. However, it is possible to inject the <code>WebSocketConnection</code> and access the headers of the initial HTTP request.</p>
-</div>
-<div class="paragraph">
-<p>If a custom <code>TenantResolver</code> is used and you would like to combine REST/HTTP and WebSockets, the code may look like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RequestScoped
-@PersistenceUnitExtension
-public class CustomTenantResolver implements TenantResolver {
-
-    @Inject
-    RoutingContext context;
-    @Inject
-    WebSocketConnection connection;
-
-    @Override
-    public String getDefaultTenantId() {
-        return "public";
-    }
-
-    @Override
-    public String resolveTenantId() {
-        String schema;
-        try {
-            //Handle WebSocket
-            schema = connection.handshakeRequest().header("schema");
-        } catch ( ContextNotActiveException e) {
-            // Handle REST/HTTP
-            schema = context.request().getHeader( "schema" );
-        }
-
-        if ( schema == null || schema.equalsIgnoreCase( "public" ) ) {
-            return "public";
-        }
-
-        return schema;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For more information on Hibernate multitenancy, refer to the <a href="https://quarkus.io/guides/hibernate-orm#multitenancy">hibernate documentation</a>.</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1601,7 +1479,7 @@ public class ClientEndpoint {
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Singleton
 public class MyBean {
 
-    @ConfigProperty(name = "endpoint.uri")
+    @ConfigProperty(name = "enpoint.uri")
     URI myUri;
 
     @Inject
@@ -1798,53 +1676,7 @@ For example, <code>OpenClientConnections#findByClientId(String)</code> makes it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="user-data-2"><a class="anchor" href="#user-data-2"></a>7.2.2. User data</h4>
-<div class="paragraph">
-<p>It is also possible to associate arbitrary user data with a specific connection.
-The <code>io.quarkus.websockets.next.UserData</code> object obtained by the <code>WebSocketClientConnection#userData()</code> method represents mutable user data associated with a connection.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.websockets.next.WebSocketClientConnection;
-import io.quarkus.websockets.next.UserData.TypedKey;
-
-@WebSocketClient(path = "/endpoint/{username}")
-class MyEndpoint {
-
-  @Inject
-  CoolService service;
-
-  @OnOpen
-  void open(WebSocketClientConnection connection) {
-     connection.userData().put(TypedKey.forBoolean("isCool"), service.isCool(connection.pathParam("username"))); <i class="conum" data-value="1"></i><b>(1)</b>
-  }
-
-  @OnTextMessage
-  String process(String message) {
-     if (connection.userData().get(TypedKey.forBoolean("isCool"))) { <i class="conum" data-value="2"></i><b>(2)</b>
-        return "Cool message processed!";
-     } else {
-        return "Message processed!";
-     }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>CoolService#isCool()</code> returns <code>Boolean</code> that is associated with the current connection.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>TypedKey.forBoolean("isCool")</code> is the key used to obtain the data stored when the connection was created.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="client-cdi-events"><a class="anchor" href="#client-cdi-events"></a>7.2.3. CDI events</h4>
+<h4 id="client-cdi-events"><a class="anchor" href="#client-cdi-events"></a>7.2.2. CDI events</h4>
 <div class="paragraph">
 <p>Quarkus fires a CDI event of type <code>io.quarkus.websockets.next.WebSocketClientConnection</code> with qualifier <code>@io.quarkus.websockets.next.Open</code> asynchronously when a new connection is opened.
 Moreover, a CDI event of type <code>WebSocketClientConnection</code> with qualifier <code>@io.quarkus.websockets.next.Closed</code> is fired asynchronously when a connection is closed.</p>
@@ -1969,13 +1801,13 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-websockets-next_configuration"></a><a href="#quarkus-websockets-next_configuration">Configuration property</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-offer-per-message-compression"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-offer-per-message-compression"><code>quarkus.websockets-next.client.offer-per-message-compression</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-offer-per-message-compression"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-offer-per-message-compression">quarkus.websockets-next.client.offer-per-message-compression</a></code></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1986,7 +1818,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>See also <a href="https://datatracker.ietf.org/doc/html/rfc7692">RFC 7692</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8679">QUARKUS_WEBSOCKETS_NEXT_CLIENT_OFFER_PER_MESSAGE_COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8679" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8821">QUARKUS_WEBSOCKETS_NEXT_CLIENT_OFFER_PER_MESSAGE_COMPRESSION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8821" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1998,7 +1830,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-compression-level"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-compression-level"><code>quarkus.websockets-next.client.compression-level</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-compression-level"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-compression-level">quarkus.websockets-next.client.compression-level</a></code></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -2006,7 +1838,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The compression level must be a value between 0 and 9. The default value is <code>io.vertx.core.http.HttpClientOptions#DEFAULT_WEBSOCKET_COMPRESSION_LEVEL</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8680">QUARKUS_WEBSOCKETS_NEXT_CLIENT_COMPRESSION_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8680" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8822">QUARKUS_WEBSOCKETS_NEXT_CLIENT_COMPRESSION_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8822" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2018,7 +1850,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-max-message-size"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-max-message-size"><code>quarkus.websockets-next.client.max-message-size</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-max-message-size"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-max-message-size">quarkus.websockets-next.client.max-message-size</a></code></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -2026,7 +1858,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The maximum size of a message in bytes. The default values is <code>io.vertx.core.http.HttpClientOptions#DEFAULT_MAX_WEBSOCKET_MESSAGE_SIZE</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8681">QUARKUS_WEBSOCKETS_NEXT_CLIENT_MAX_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8681" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8823">QUARKUS_WEBSOCKETS_NEXT_CLIENT_MAX_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8823" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2038,7 +1870,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-auto-ping-interval"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-auto-ping-interval"><code>quarkus.websockets-next.client.auto-ping-interval</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-auto-ping-interval"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-auto-ping-interval">quarkus.websockets-next.client.auto-ping-interval</a></code></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -2049,19 +1881,20 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>Ping messages are not sent automatically by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8682">QUARKUS_WEBSOCKETS_NEXT_CLIENT_AUTO_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8682" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8824">QUARKUS_WEBSOCKETS_NEXT_CLIENT_AUTO_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8824" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-websockets-next_quarkus-websockets-next"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-unhandled-failure-strategy"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-unhandled-failure-strategy"><code>quarkus.websockets-next.client.unhandled-failure-strategy</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-unhandled-failure-strategy"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-unhandled-failure-strategy">quarkus.websockets-next.client.unhandled-failure-strategy</a></code></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -2069,13 +1902,10 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The strategy used when an error occurs but no error handler can handle the failure.</p>
 </div>
 <div class="paragraph">
-<p>By default, the error message is logged when an unhandled failure occurs.</p>
+<p>By default, the connection is closed when an unhandled failure occurs.</p>
 </div>
 <div class="paragraph">
-<p>Note that clients should not close the WebSocket connection arbitrarily. See also RFC-6455 <a href="https://datatracker.ietf.org/doc/html/rfc6455#section-7.3">section 7.3</a>.</p>
-</div>
-<div class="paragraph">
-<p>Environment variable: <code id="env-var-8683">QUARKUS_WEBSOCKETS_NEXT_CLIENT_UNHANDLED_FAILURE_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8683" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8825">QUARKUS_WEBSOCKETS_NEXT_CLIENT_UNHANDLED_FAILURE_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8825" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2083,13 +1913,13 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><span class="asciidoc-tooltip-wrapper"><code>log-and-close</code><span class="asciidoc-tooltip">Log the error message and close the connection.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>close</code><span class="asciidoc-tooltip">Close the connection silently.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>log</code><span class="asciidoc-tooltip">Log the error message.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>noop</code><span class="asciidoc-tooltip">No operation.</span></span></p>
+<p><code>close</code>, <code>log</code>, <code>noop</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="asciidoc-tooltip-wrapper"><code>log</code><span class="asciidoc-tooltip">Log the error message.</span></span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>close</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-tls-configuration-name"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-tls-configuration-name"><code>quarkus.websockets-next.client.tls-configuration-name</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-tls-configuration-name"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-tls-configuration-name">quarkus.websockets-next.client.tls-configuration-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -2103,7 +1933,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The default TLS configuration is <strong>not</strong> used by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8684">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8684" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8826">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8826" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2115,7 +1945,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-enabled"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-enabled"><code>quarkus.websockets-next.client.traffic-logging.enabled</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-enabled"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-enabled">quarkus.websockets-next.client.traffic-logging.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -2123,7 +1953,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>If set to true then binary/text messages received/sent are logged if the <code>DEBUG</code> level is enabled for the logger <code>io.quarkus.websockets.next.traffic</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8685">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TRAFFIC_LOGGING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8685" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8827">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TRAFFIC_LOGGING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8827" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2135,7 +1965,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-text-payload-limit"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-text-payload-limit"><code>quarkus.websockets-next.client.traffic-logging.text-payload-limit</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-text-payload-limit"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-client-traffic-logging-text-payload-limit">quarkus.websockets-next.client.traffic-logging.text-payload-limit</a></code></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -2143,7 +1973,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The number of characters of a text message which will be logged if traffic logging is enabled. The payload of a binary message is never logged.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8686">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TRAFFIC_LOGGING_TEXT_PAYLOAD_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8686" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8828">QUARKUS_WEBSOCKETS_NEXT_CLIENT_TRAFFIC_LOGGING_TEXT_PAYLOAD_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8828" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2155,7 +1985,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-supported-subprotocols"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-supported-subprotocols"><code>quarkus.websockets-next.server.supported-subprotocols</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-supported-subprotocols"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-supported-subprotocols">quarkus.websockets-next.server.supported-subprotocols</a></code></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -2163,7 +1993,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>See <a href="https://datatracker.ietf.org/doc/html/rfc6455#page-12">The WebSocket Protocol</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8687">QUARKUS_WEBSOCKETS_NEXT_SERVER_SUPPORTED_SUBPROTOCOLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8687" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8829">QUARKUS_WEBSOCKETS_NEXT_SERVER_SUPPORTED_SUBPROTOCOLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8829" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2175,7 +2005,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-per-message-compression-supported"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-per-message-compression-supported"><code>quarkus.websockets-next.server.per-message-compression-supported</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-per-message-compression-supported"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-per-message-compression-supported">quarkus.websockets-next.server.per-message-compression-supported</a></code></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -2186,7 +2016,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>See also <a href="https://datatracker.ietf.org/doc/html/rfc7692">RFC 7692</a></p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8688">QUARKUS_WEBSOCKETS_NEXT_SERVER_PER_MESSAGE_COMPRESSION_SUPPORTED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8688" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8830">QUARKUS_WEBSOCKETS_NEXT_SERVER_PER_MESSAGE_COMPRESSION_SUPPORTED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8830" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2198,7 +2028,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-compression-level"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-compression-level"><code>quarkus.websockets-next.server.compression-level</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-compression-level"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-compression-level">quarkus.websockets-next.server.compression-level</a></code></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -2206,7 +2036,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The compression level must be a value between 0 and 9. The default value is <code>io.vertx.core.http.HttpServerOptions#DEFAULT_WEBSOCKET_COMPRESSION_LEVEL</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8689">QUARKUS_WEBSOCKETS_NEXT_SERVER_COMPRESSION_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8689" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8831">QUARKUS_WEBSOCKETS_NEXT_SERVER_COMPRESSION_LEVEL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8831" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2218,7 +2048,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-max-message-size"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-max-message-size"><code>quarkus.websockets-next.server.max-message-size</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-max-message-size"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-max-message-size">quarkus.websockets-next.server.max-message-size</a></code></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -2226,7 +2056,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The maximum size of a message in bytes. The default values is <code>io.vertx.core.http.HttpServerOptions#DEFAULT_MAX_WEBSOCKET_MESSAGE_SIZE</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8690">QUARKUS_WEBSOCKETS_NEXT_SERVER_MAX_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8690" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8832">QUARKUS_WEBSOCKETS_NEXT_SERVER_MAX_MESSAGE_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8832" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2238,7 +2068,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-auto-ping-interval"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-auto-ping-interval"><code>quarkus.websockets-next.server.auto-ping-interval</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-auto-ping-interval"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-auto-ping-interval">quarkus.websockets-next.server.auto-ping-interval</a></code></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -2249,19 +2079,20 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>Ping messages are not sent automatically by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8691">QUARKUS_WEBSOCKETS_NEXT_SERVER_AUTO_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8691" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8833">QUARKUS_WEBSOCKETS_NEXT_SERVER_AUTO_PING_INTERVAL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8833" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-websockets-next_quarkus-websockets-next"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-unhandled-failure-strategy"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-unhandled-failure-strategy"><code>quarkus.websockets-next.server.unhandled-failure-strategy</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-unhandled-failure-strategy"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-unhandled-failure-strategy">quarkus.websockets-next.server.unhandled-failure-strategy</a></code></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -2269,10 +2100,10 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The strategy used when an error occurs but no error handler can handle the failure.</p>
 </div>
 <div class="paragraph">
-<p>By default, the error message is logged and the connection is closed when an unhandled failure occurs.</p>
+<p>By default, the connection is closed when an unhandled failure occurs.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8692">QUARKUS_WEBSOCKETS_NEXT_SERVER_UNHANDLED_FAILURE_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8692" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8834">QUARKUS_WEBSOCKETS_NEXT_SERVER_UNHANDLED_FAILURE_STRATEGY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8834" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2280,13 +2111,13 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><span class="asciidoc-tooltip-wrapper"><code>log-and-close</code><span class="asciidoc-tooltip">Log the error message and close the connection.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>close</code><span class="asciidoc-tooltip">Close the connection silently.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>log</code><span class="asciidoc-tooltip">Log the error message.</span></span>, <span class="asciidoc-tooltip-wrapper"><code>noop</code><span class="asciidoc-tooltip">No operation.</span></span></p>
+<p><code>close</code>, <code>log</code>, <code>noop</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="asciidoc-tooltip-wrapper"><code>log-and-close</code><span class="asciidoc-tooltip">Log the error message and close the connection.</span></span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>close</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-security-auth-failure-redirect-url"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-security-auth-failure-redirect-url"><code>quarkus.websockets-next.server.security.auth-failure-redirect-url</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-security-auth-failure-redirect-url"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-security-auth-failure-redirect-url">quarkus.websockets-next.server.security.auth-failure-redirect-url</a></code></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -2294,7 +2125,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>Quarkus redirects HTTP handshake request to this URL if an HTTP upgrade is rejected due to the authorization failure. This configuration property takes effect when you secure endpoint with a standard security annotation. For example, the HTTP upgrade is secured if an endpoint class is annotated with the <code>@RolesAllowed</code> annotation.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8693">QUARKUS_WEBSOCKETS_NEXT_SERVER_SECURITY_AUTH_FAILURE_REDIRECT_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8693" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8835">QUARKUS_WEBSOCKETS_NEXT_SERVER_SECURITY_AUTH_FAILURE_REDIRECT_URL</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8835" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2306,7 +2137,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-dev-mode-connection-messages-limit"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-dev-mode-connection-messages-limit"><code>quarkus.websockets-next.server.dev-mode.connection-messages-limit</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-dev-mode-connection-messages-limit"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-dev-mode-connection-messages-limit">quarkus.websockets-next.server.dev-mode.connection-messages-limit</a></code></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -2314,7 +2145,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The limit of messages kept for a Dev UI connection. If less than zero then no messages are stored and sent to the Dev UI view.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8694">QUARKUS_WEBSOCKETS_NEXT_SERVER_DEV_MODE_CONNECTION_MESSAGES_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8694" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8836">QUARKUS_WEBSOCKETS_NEXT_SERVER_DEV_MODE_CONNECTION_MESSAGES_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8836" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2326,7 +2157,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-enabled"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-enabled"><code>quarkus.websockets-next.server.traffic-logging.enabled</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-enabled"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-enabled">quarkus.websockets-next.server.traffic-logging.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -2334,7 +2165,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>If set to true then binary/text messages received/sent are logged if the <code>DEBUG</code> level is enabled for the logger <code>io.quarkus.websockets.next.traffic</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8695">QUARKUS_WEBSOCKETS_NEXT_SERVER_TRAFFIC_LOGGING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8695" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8837">QUARKUS_WEBSOCKETS_NEXT_SERVER_TRAFFIC_LOGGING_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8837" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2346,7 +2177,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-text-payload-limit"></a> <span class="property-path"><a href="#quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-text-payload-limit"><code>quarkus.websockets-next.server.traffic-logging.text-payload-limit</code></a></span></p>
+<p><a id="quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-text-payload-limit"></a><code><a href="#quarkus-websockets-next_quarkus-websockets-next-server-traffic-logging-text-payload-limit">quarkus.websockets-next.server.traffic-logging.text-payload-limit</a></code></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -2354,7 +2185,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 <p>The number of characters of a text message which will be logged if traffic logging is enabled. The payload of a binary message is never logged.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-8696">QUARKUS_WEBSOCKETS_NEXT_SERVER_TRAFFIC_LOGGING_TEXT_PAYLOAD_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8696" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-8838">QUARKUS_WEBSOCKETS_NEXT_SERVER_TRAFFIC_LOGGING_TEXT_PAYLOAD_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-8838" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2366,7 +2197,7 @@ quarkus.log.category."io.quarkus.websockets.next.traffic".level=DEBUG <i class="
 </tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-websockets-next_quarkus-websockets-next" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-websockets-next" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -2440,7 +2271,6 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <li><a href="#secure-http-upgrade">6.5. Secure HTTP upgrade</a></li>
 <li><a href="#inspect-andor-reject-http-upgrade">6.6. Inspect and/or reject HTTP upgrade</a></li>
 <li><a href="#tls">6.7. TLS</a></li>
-<li><a href="#hibernate-multitenancy">6.8. Hibernate multitenancy</a></li>
 </ul>
 </li>
 <li><a href="#client-api">7. Client API</a>
@@ -2563,10 +2393,6 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

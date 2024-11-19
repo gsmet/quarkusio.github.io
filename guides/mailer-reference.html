@@ -11,33 +11,8 @@
   <title>Mailer Reference Guide - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -318,9 +291,9 @@ The two APIs are equivalent feature-wise. Actually the <code>Mailer</code> imple
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Imperative API:
-mailer.send(Mail.withText("to@acme.org", "A simple email from quarkus", "This is my body.").setFrom("from@acme.org"));
+mailer.send(Mail.withText("to@acme.org", "A simple email from quarkus", "This is my body."));
 // Reactive API:
-Uni&lt;Void&gt; stage = reactiveMailer.send(Mail.withText("to@acme.org", "A reactive email from quarkus", "This is my body.").setFrom("from@acme.org"));</code></pre>
+Uni&lt;Void&gt; stage = reactiveMailer.send(Mail.withText("to@acme.org", "A reactive email from quarkus", "This is my body."));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -331,14 +304,14 @@ Uni&lt;Void&gt; stage = reactiveMailer.send(Mail.withText("to@acme.org", "A reac
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GET
 @Path("/imperative")
 public void sendASimpleEmail() {
-    mailer.send(Mail.withText("to@acme.org", "A simple email from quarkus", "This is my body").setFrom("from@acme.org"));
+    mailer.send(Mail.withText("to@acme.org", "A simple email from quarkus", "This is my body"));
 }
 
 @GET
 @Path("/reactive")
 public Uni&lt;Void&gt; sendASimpleEmailAsync() {
     return reactiveMailer.send(
-            Mail.withText("to@acme.org", "A reactive email from quarkus", "This is my body").setFrom("from@acme.org"));
+            Mail.withText("to@acme.org", "A reactive email from quarkus", "This is my body"));
 }</code></pre>
 </div>
 </div>
@@ -352,22 +325,6 @@ public Uni&lt;Void&gt; sendASimpleEmailAsync() {
 You can create new <code>io.quarkus.mailer.Mail</code> instances from the constructor or from the <code>Mail.withText</code> and
 <code>Mail.withHtml</code> helper methods.
 The <code>Mail</code> instance lets you add recipients (to, cc, or bcc), set the subject, headers, sender (from) address&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Most of these properties are optional, but the sender address is required. It can either be set on an individual <code>Mail</code> instances using</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">.setFrom("from@acme.org");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or a global default can be configured, using</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.mailer.from=from@acme.org</code></pre>
-</div>
 </div>
 <div class="paragraph">
 <p>You can also send several <code>Mail</code> objects in one call:</p>
@@ -740,7 +697,7 @@ the only way to get the new value would be to restart the application.</p>
 </td>
 <td class="content">
 Do use Vault, you need the <a href="https://github.com/quarkiverse/quarkus-vault">Quarkus Vault</a> extension.
-More details about this extension and its configuration can be found in the <a href="https://docs.quarkiverse.io/quarkus-vault/dev/index.html">extension documentation</a>.
+More details about this extension and its configuration can be found in the <a href="https://quarkiverse.github.io/quarkiverse-docs/quarkus-vault/dev/index.html">extension documentation</a>.
 </td>
 </tr>
 </table>
@@ -1216,35 +1173,6 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="office-365"><a class="anchor" href="#office-365"></a>Office 365</h3>
-<div class="sect3">
-<h4 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Enable SMTP Access to your Office 365 mailbox, you can do it from the administration console (see <a href="https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/authenticated-client-smtp-submission">this guide</a> for more information)</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.mailer.from=NAME&lt;YOUREMAIL@YOURDOMAIN.COM&gt;
-quarkus.mailer.host=smtp.office365.com
-quarkus.mailer.port=587
-quarkus.mailer.username=YOUREMAIL@YOURDOMAIN.COM
-quarkus.mailer.password=YOURPASSWORD
-quarkus.mailer.auth-methods=LOGIN
-quarkus.mailer.login=REQUIRED
-
-quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server</code></pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1261,13 +1189,13 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-mailer_configuration"></a><a href="#quarkus-mailer_configuration">Configuration property</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-mailer_quarkus-mailer-cache-attachments"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-cache-attachments"><code>quarkus.mailer.cache-attachments</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-mailer_quarkus-mailer-cache-attachments"></a><code><a href="#quarkus-mailer_quarkus-mailer-cache-attachments">quarkus.mailer.cache-attachments</a></code></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1275,7 +1203,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Caches data from attachment&#8217;s Stream to a temporary file. It tries to delete it after sending email.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6832">QUARKUS_MAILER_CACHE_ATTACHMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6832" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7070">QUARKUS_MAILER_CACHE_ATTACHMENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7070" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1287,7 +1215,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-from"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-from"><code>quarkus.mailer.from</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-from"></a><code><a href="#quarkus-mailer_quarkus-mailer-from">quarkus.mailer.from</a></code></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -1295,7 +1223,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the default <code>from</code> attribute when not specified in the <code>io.quarkus.mailer.Mail</code> instance. It&#8217;s the sender email address.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6833">QUARKUS_MAILER_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6833" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7071">QUARKUS_MAILER_FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7071" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1307,7 +1235,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mock"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mock"><code>quarkus.mailer.mock</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mock"></a><code><a href="#quarkus-mailer_quarkus-mailer-mock">quarkus.mailer.mock</a></code></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -1318,7 +1246,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6834">QUARKUS_MAILER_MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6834" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7072">QUARKUS_MAILER_MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7072" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1330,7 +1258,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-bounce-address"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-bounce-address"><code>quarkus.mailer.bounce-address</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-bounce-address"></a><code><a href="#quarkus-mailer_quarkus-mailer-bounce-address">quarkus.mailer.bounce-address</a></code></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1338,7 +1266,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the default bounce email address. A bounced email, or bounce, is an email message that gets rejected by a mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6835">QUARKUS_MAILER_BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6835" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7073">QUARKUS_MAILER_BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7073" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1350,7 +1278,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-host"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-host"><code>quarkus.mailer.host</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-host"></a><code><a href="#quarkus-mailer_quarkus-mailer-host">quarkus.mailer.host</a></code></p>
 </div>
 <div id="conf-collapsible-desc-5" class="openblock description description-collapsed">
 <div class="content">
@@ -1358,7 +1286,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the SMTP host name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6836">QUARKUS_MAILER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6836" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7074">QUARKUS_MAILER_HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7074" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1370,7 +1298,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-port"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-port"><code>quarkus.mailer.port</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-port"></a><code><a href="#quarkus-mailer_quarkus-mailer-port">quarkus.mailer.port</a></code></p>
 </div>
 <div id="conf-collapsible-desc-6" class="openblock description description-collapsed">
 <div class="content">
@@ -1381,7 +1309,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Note that the port 465 may be used by SMTP servers, however, IANA has reassigned a new service to this port, and it should no longer be used for SMTP communications.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6837">QUARKUS_MAILER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6837" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7075">QUARKUS_MAILER_PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7075" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1393,7 +1321,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-username"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-username"><code>quarkus.mailer.username</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-username"></a><code><a href="#quarkus-mailer_quarkus-mailer-username">quarkus.mailer.username</a></code></p>
 </div>
 <div id="conf-collapsible-desc-7" class="openblock description description-collapsed">
 <div class="content">
@@ -1401,7 +1329,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the username to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6838">QUARKUS_MAILER_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6838" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7076">QUARKUS_MAILER_USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7076" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1413,7 +1341,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-password"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-password"><code>quarkus.mailer.password</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-password"></a><code><a href="#quarkus-mailer_quarkus-mailer-password">quarkus.mailer.password</a></code></p>
 </div>
 <div id="conf-collapsible-desc-8" class="openblock description description-collapsed">
 <div class="content">
@@ -1421,7 +1349,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the password to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6839">QUARKUS_MAILER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6839" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7077">QUARKUS_MAILER_PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7077" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1433,7 +1361,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-tls-configuration-name"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-tls-configuration-name"><code>quarkus.mailer.tls-configuration-name</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-tls-configuration-name"></a><code><a href="#quarkus-mailer_quarkus-mailer-tls-configuration-name">quarkus.mailer.tls-configuration-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-9" class="openblock description description-collapsed">
 <div class="content">
@@ -1450,7 +1378,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The default TLS configuration is <strong>not</strong> used by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6840">QUARKUS_MAILER_TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6840" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7078">QUARKUS_MAILER_TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7078" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1462,7 +1390,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-tls"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-tls"><code>quarkus.mailer.tls</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-tls"></a><code><a href="#quarkus-mailer_quarkus-mailer-tls">quarkus.mailer.tls</a></code></p>
 </div>
 <div id="conf-collapsible-desc-10" class="openblock description description-collapsed">
 <div class="content">
@@ -1473,7 +1401,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>SMTP allows establishing connection with or without TLS. When establishing a connection with TLS, the connection is secured and encrypted. When establishing a connection without TLS, it can be secured and encrypted later using the STARTTLS command. In this case, the connection is initially unsecured and unencrypted. To configure this case, set this property to <code>false</code> and <code>start-tls</code> to <code>REQUIRED</code> Note that if a TLS configuration is set, TLS is enabled automatically. So, setting this property to <code>false</code> is required to not establish a connection with TLS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6841">QUARKUS_MAILER_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6841" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7079">QUARKUS_MAILER_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7079" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1485,7 +1413,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-max-pool-size"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-max-pool-size"><code>quarkus.mailer.max-pool-size</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-max-pool-size"></a><code><a href="#quarkus-mailer_quarkus-mailer-max-pool-size">quarkus.mailer.max-pool-size</a></code></p>
 </div>
 <div id="conf-collapsible-desc-11" class="openblock description description-collapsed">
 <div class="content">
@@ -1493,7 +1421,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the max number of open connections to the mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6842">QUARKUS_MAILER_MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6842" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7080">QUARKUS_MAILER_MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7080" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1505,7 +1433,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-own-host-name"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-own-host-name"><code>quarkus.mailer.own-host-name</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-own-host-name"></a><code><a href="#quarkus-mailer_quarkus-mailer-own-host-name">quarkus.mailer.own-host-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-12" class="openblock description description-collapsed">
 <div class="content">
@@ -1513,7 +1441,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the hostname to be used for HELO/EHLO and the Message-ID.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6843">QUARKUS_MAILER_OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6843" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7081">QUARKUS_MAILER_OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7081" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1525,7 +1453,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-keep-alive"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-keep-alive"><code>quarkus.mailer.keep-alive</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-keep-alive"></a><code><a href="#quarkus-mailer_quarkus-mailer-keep-alive">quarkus.mailer.keep-alive</a></code></p>
 </div>
 <div id="conf-collapsible-desc-13" class="openblock description description-collapsed">
 <div class="content">
@@ -1533,7 +1461,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets if connection pool is enabled. If the connection pooling is disabled, the max number of sockets is enforced nevertheless.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6844">QUARKUS_MAILER_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6844" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7082">QUARKUS_MAILER_KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7082" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1545,7 +1473,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-disable-esmtp"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-disable-esmtp"><code>quarkus.mailer.disable-esmtp</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-disable-esmtp"></a><code><a href="#quarkus-mailer_quarkus-mailer-disable-esmtp">quarkus.mailer.disable-esmtp</a></code></p>
 </div>
 <div id="conf-collapsible-desc-14" class="openblock description description-collapsed">
 <div class="content">
@@ -1556,7 +1484,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The RFC-1869 states that clients should always attempt <code>EHLO</code> as first command to determine if ESMTP is supported, if this returns an error code, <code>HELO</code> is tried to use the <em>regular</em> SMTP command.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6845">QUARKUS_MAILER_DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6845" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7083">QUARKUS_MAILER_DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7083" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1568,7 +1496,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-start-tls"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-start-tls"><code>quarkus.mailer.start-tls</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-start-tls"></a><code><a href="#quarkus-mailer_quarkus-mailer-start-tls">quarkus.mailer.start-tls</a></code></p>
 </div>
 <div id="conf-collapsible-desc-15" class="openblock description description-collapsed">
 <div class="content">
@@ -1576,7 +1504,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the TLS security mode for the connection. Either <code>DISABLED</code>, <code>OPTIONAL</code> or <code>REQUIRED</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6846">QUARKUS_MAILER_START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6846" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7084">QUARKUS_MAILER_START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7084" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1588,7 +1516,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-enabled"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-enabled"><code>quarkus.mailer.dkim.enabled</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-enabled"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-enabled">quarkus.mailer.dkim.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-16" class="openblock description description-collapsed">
 <div class="content">
@@ -1596,7 +1524,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Enables DKIM signing.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6847">QUARKUS_MAILER_DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6847" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7085">QUARKUS_MAILER_DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7085" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1608,7 +1536,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-private-key"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-private-key"><code>quarkus.mailer.dkim.private-key</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-private-key"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-private-key">quarkus.mailer.dkim.private-key</a></code></p>
 </div>
 <div id="conf-collapsible-desc-17" class="openblock description description-collapsed">
 <div class="content">
@@ -1616,7 +1544,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the PKCS#8 format private key used to sign the email.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6848">QUARKUS_MAILER_DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6848" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7086">QUARKUS_MAILER_DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7086" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1628,7 +1556,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-private-key-path"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-private-key-path"><code>quarkus.mailer.dkim.private-key-path</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-private-key-path"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-private-key-path">quarkus.mailer.dkim.private-key-path</a></code></p>
 </div>
 <div id="conf-collapsible-desc-18" class="openblock description description-collapsed">
 <div class="content">
@@ -1636,7 +1564,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the PKCS#8 format private key file path.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6849">QUARKUS_MAILER_DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6849" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7087">QUARKUS_MAILER_DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7087" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1648,7 +1576,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-auid"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-auid"><code>quarkus.mailer.dkim.auid</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-auid"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-auid">quarkus.mailer.dkim.auid</a></code></p>
 </div>
 <div id="conf-collapsible-desc-19" class="openblock description description-collapsed">
 <div class="content">
@@ -1656,7 +1584,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the Agent or User Identifier (AUID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6850">QUARKUS_MAILER_DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6850" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7088">QUARKUS_MAILER_DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7088" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1668,7 +1596,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-selector"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-selector"><code>quarkus.mailer.dkim.selector</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-selector"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-selector">quarkus.mailer.dkim.selector</a></code></p>
 </div>
 <div id="conf-collapsible-desc-20" class="openblock description description-collapsed">
 <div class="content">
@@ -1676,7 +1604,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the selector used to query the public key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6851">QUARKUS_MAILER_DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6851" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7089">QUARKUS_MAILER_DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7089" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1688,7 +1616,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-sdid"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-sdid"><code>quarkus.mailer.dkim.sdid</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-sdid"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-sdid">quarkus.mailer.dkim.sdid</a></code></p>
 </div>
 <div id="conf-collapsible-desc-21" class="openblock description description-collapsed">
 <div class="content">
@@ -1696,7 +1624,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the Signing Domain Identifier (SDID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6852">QUARKUS_MAILER_DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6852" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7090">QUARKUS_MAILER_DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7090" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1708,7 +1636,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-header-canon-algo"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-header-canon-algo"><code>quarkus.mailer.dkim.header-canon-algo</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-header-canon-algo"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-header-canon-algo">quarkus.mailer.dkim.header-canon-algo</a></code></p>
 </div>
 <div id="conf-collapsible-desc-22" class="openblock description description-collapsed">
 <div class="content">
@@ -1716,7 +1644,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the canonicalization algorithm for signed headers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6853">QUARKUS_MAILER_DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6853" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7091">QUARKUS_MAILER_DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7091" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1730,7 +1658,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-body-canon-algo"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-body-canon-algo"><code>quarkus.mailer.dkim.body-canon-algo</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-body-canon-algo"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-body-canon-algo">quarkus.mailer.dkim.body-canon-algo</a></code></p>
 </div>
 <div id="conf-collapsible-desc-23" class="openblock description description-collapsed">
 <div class="content">
@@ -1738,7 +1666,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the canonicalization algorithm for mail body.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6854">QUARKUS_MAILER_DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6854" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7092">QUARKUS_MAILER_DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7092" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1752,7 +1680,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-body-limit"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-body-limit"><code>quarkus.mailer.dkim.body-limit</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-body-limit"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-body-limit">quarkus.mailer.dkim.body-limit</a></code></p>
 </div>
 <div id="conf-collapsible-desc-24" class="openblock description description-collapsed">
 <div class="content">
@@ -1760,7 +1688,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the body limit to sign. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6855">QUARKUS_MAILER_DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6855" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7093">QUARKUS_MAILER_DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7093" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1772,7 +1700,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-signature-timestamp"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-signature-timestamp"><code>quarkus.mailer.dkim.signature-timestamp</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-signature-timestamp"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-signature-timestamp">quarkus.mailer.dkim.signature-timestamp</a></code></p>
 </div>
 <div id="conf-collapsible-desc-25" class="openblock description description-collapsed">
 <div class="content">
@@ -1780,7 +1708,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures to enable or disable signature sign timestamp.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6856">QUARKUS_MAILER_DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6856" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7094">QUARKUS_MAILER_DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7094" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1792,7 +1720,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-expire-time"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-expire-time"><code>quarkus.mailer.dkim.expire-time</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-expire-time"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-expire-time">quarkus.mailer.dkim.expire-time</a></code></p>
 </div>
 <div id="conf-collapsible-desc-26" class="openblock description description-collapsed">
 <div class="content">
@@ -1800,7 +1728,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the expire time in seconds when the signature sign will be expired. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6857">QUARKUS_MAILER_DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6857" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7095">QUARKUS_MAILER_DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7095" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1812,7 +1740,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-dkim-signed-headers"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-dkim-signed-headers"><code>quarkus.mailer.dkim.signed-headers</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-dkim-signed-headers"></a><code><a href="#quarkus-mailer_quarkus-mailer-dkim-signed-headers">quarkus.mailer.dkim.signed-headers</a></code></p>
 </div>
 <div id="conf-collapsible-desc-27" class="openblock description description-collapsed">
 <div class="content">
@@ -1820,7 +1748,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the signed headers in DKIM, separated by commas. The order in the list matters.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6858">QUARKUS_MAILER_DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6858" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7096">QUARKUS_MAILER_DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7096" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1832,7 +1760,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-login"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-login"><code>quarkus.mailer.login</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-login"></a><code><a href="#quarkus-mailer_quarkus-mailer-login">quarkus.mailer.login</a></code></p>
 </div>
 <div id="conf-collapsible-desc-28" class="openblock description description-collapsed">
 <div class="content">
@@ -1856,7 +1784,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6859">QUARKUS_MAILER_LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6859" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7097">QUARKUS_MAILER_LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7097" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1868,7 +1796,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-auth-methods"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-auth-methods"><code>quarkus.mailer.auth-methods</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-auth-methods"></a><code><a href="#quarkus-mailer_quarkus-mailer-auth-methods">quarkus.mailer.auth-methods</a></code></p>
 </div>
 <div id="conf-collapsible-desc-29" class="openblock description description-collapsed">
 <div class="content">
@@ -1879,7 +1807,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The list is given as a space separated list, such as <code>DIGEST-MD5 CRAM-SHA256 CRAM-SHA1 CRAM-MD5 PLAIN LOGIN</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6860">QUARKUS_MAILER_AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6860" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7098">QUARKUS_MAILER_AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7098" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1891,7 +1819,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-multi-part-only"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-multi-part-only"><code>quarkus.mailer.multi-part-only</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-multi-part-only"></a><code><a href="#quarkus-mailer_quarkus-mailer-multi-part-only">quarkus.mailer.multi-part-only</a></code></p>
 </div>
 <div id="conf-collapsible-desc-30" class="openblock description description-collapsed">
 <div class="content">
@@ -1899,7 +1827,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Whether the mail should always been sent as multipart even if they don&#8217;t have attachments. When sets to true, the mail message will be encoded as multipart even for simple mails without attachments.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6861">QUARKUS_MAILER_MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6861" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7099">QUARKUS_MAILER_MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7099" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1911,7 +1839,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-allow-rcpt-errors"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-allow-rcpt-errors"><code>quarkus.mailer.allow-rcpt-errors</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-allow-rcpt-errors"></a><code><a href="#quarkus-mailer_quarkus-mailer-allow-rcpt-errors">quarkus.mailer.allow-rcpt-errors</a></code></p>
 </div>
 <div id="conf-collapsible-desc-31" class="openblock description description-collapsed">
 <div class="content">
@@ -1919,7 +1847,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets if sending allows recipients errors. If set to true, the mail will be sent to the recipients that the server accepted, if any.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6862">QUARKUS_MAILER_ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6862" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7100">QUARKUS_MAILER_ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7100" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1931,7 +1859,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-pipelining"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-pipelining"><code>quarkus.mailer.pipelining</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-pipelining"></a><code><a href="#quarkus-mailer_quarkus-mailer-pipelining">quarkus.mailer.pipelining</a></code></p>
 </div>
 <div id="conf-collapsible-desc-32" class="openblock description description-collapsed">
 <div class="content">
@@ -1939,7 +1867,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Enables or disables the pipelining capability if the SMTP server supports it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6863">QUARKUS_MAILER_PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6863" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7101">QUARKUS_MAILER_PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7101" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1951,7 +1879,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-pool-cleaner-period"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-pool-cleaner-period"><code>quarkus.mailer.pool-cleaner-period</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-pool-cleaner-period"></a><code><a href="#quarkus-mailer_quarkus-mailer-pool-cleaner-period">quarkus.mailer.pool-cleaner-period</a></code></p>
 </div>
 <div id="conf-collapsible-desc-33" class="openblock description description-collapsed">
 <div class="content">
@@ -1959,19 +1887,20 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the connection pool cleaner period. Zero disables expiration checks and connections will remain in the pool until they are closed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6864">QUARKUS_MAILER_POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6864" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7102">QUARKUS_MAILER_POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7102" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-mailer_quarkus-mailer"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT1S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-keep-alive-timeout"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-keep-alive-timeout"><code>quarkus.mailer.keep-alive-timeout</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-keep-alive-timeout"></a><code><a href="#quarkus-mailer_quarkus-mailer-keep-alive-timeout">quarkus.mailer.keep-alive-timeout</a></code></p>
 </div>
 <div id="conf-collapsible-desc-34" class="openblock description description-collapsed">
 <div class="content">
@@ -1979,19 +1908,20 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Set the keep alive timeout for the SMTP connection. This value determines how long a connection remains unused in the pool before being evicted and closed. A timeout of 0 means there is no timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6865">QUARKUS_MAILER_KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6865" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7103">QUARKUS_MAILER_KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7103" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-mailer_quarkus-mailer"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT300S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-ntlm-workstation"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-ntlm-workstation"><code>quarkus.mailer.ntlm.workstation</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-ntlm-workstation"></a><code><a href="#quarkus-mailer_quarkus-mailer-ntlm-workstation">quarkus.mailer.ntlm.workstation</a></code></p>
 </div>
 <div id="conf-collapsible-desc-35" class="openblock description description-collapsed">
 <div class="content">
@@ -1999,7 +1929,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the workstation used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6866">QUARKUS_MAILER_NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6866" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7104">QUARKUS_MAILER_NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7104" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2011,7 +1941,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-ntlm-domain"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-ntlm-domain"><code>quarkus.mailer.ntlm.domain</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-ntlm-domain"></a><code><a href="#quarkus-mailer_quarkus-mailer-ntlm-domain">quarkus.mailer.ntlm.domain</a></code></p>
 </div>
 <div id="conf-collapsible-desc-36" class="openblock description description-collapsed">
 <div class="content">
@@ -2019,7 +1949,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the domain used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6867">QUARKUS_MAILER_NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6867" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7105">QUARKUS_MAILER_NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7105" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2031,7 +1961,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-approved-recipients"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-approved-recipients"><code>quarkus.mailer.approved-recipients</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-approved-recipients"></a><code><a href="#quarkus-mailer_quarkus-mailer-approved-recipients">quarkus.mailer.approved-recipients</a></code></p>
 </div>
 <div id="conf-collapsible-desc-37" class="openblock description description-collapsed">
 <div class="content">
@@ -2042,19 +1972,19 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Approved recipients are compiled to a <code>Pattern</code> and must be a valid regular expression. The created <code>Pattern</code> is case-insensitive as emails are case insensitive. Provided patterns are trimmed before being compiled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6868">QUARKUS_MAILER_APPROVED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6868" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7106">QUARKUS_MAILER_APPROVED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7106" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">Pattern</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">Pattern</a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-log-rejected-recipients"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-log-rejected-recipients"><code>quarkus.mailer.log-rejected-recipients</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-log-rejected-recipients"></a><code><a href="#quarkus-mailer_quarkus-mailer-log-rejected-recipients">quarkus.mailer.log-rejected-recipients</a></code></p>
 </div>
 <div id="conf-collapsible-desc-38" class="openblock description description-collapsed">
 <div class="content">
@@ -2065,7 +1995,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>If false, the rejected recipients will be logged at the DEBUG level.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6869">QUARKUS_MAILER_LOG_REJECTED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6869" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7107">QUARKUS_MAILER_LOG_REJECTED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7107" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2076,13 +2006,13 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-mailer_section_quarkus-mailer"></a> <span class="section-name section-level0"><a href="#quarkus-mailer_section_quarkus-mailer">Additional named mailers</a></span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-mailer_quarkus-mailer-named-mailers-additional-named-mailers"></a><a href="#quarkus-mailer_quarkus-mailer-named-mailers-additional-named-mailers">Additional named mailers</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-from"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-from"><code>quarkus.mailer."mailer-name".from</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-from"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-from">quarkus.mailer."mailer-name".from</a></code></p>
 </div>
 <div id="conf-collapsible-desc-39" class="openblock description description-collapsed">
 <div class="content">
@@ -2090,7 +2020,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the default <code>from</code> attribute when not specified in the <code>io.quarkus.mailer.Mail</code> instance. It&#8217;s the sender email address.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6870">QUARKUS_MAILER__MAILER_NAME__FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6870" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7108">QUARKUS_MAILER__MAILER_NAME__FROM</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7108" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2102,7 +2032,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-mock"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-mock"><code>quarkus.mailer."mailer-name".mock</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-mock"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-mock">quarkus.mailer."mailer-name".mock</a></code></p>
 </div>
 <div id="conf-collapsible-desc-40" class="openblock description description-collapsed">
 <div class="content">
@@ -2113,7 +2043,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Disabled by default on PROD, enabled by default on DEV and TEST modes.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6871">QUARKUS_MAILER__MAILER_NAME__MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6871" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7109">QUARKUS_MAILER__MAILER_NAME__MOCK</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7109" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2125,7 +2055,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-bounce-address"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-bounce-address"><code>quarkus.mailer."mailer-name".bounce-address</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-bounce-address"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-bounce-address">quarkus.mailer."mailer-name".bounce-address</a></code></p>
 </div>
 <div id="conf-collapsible-desc-41" class="openblock description description-collapsed">
 <div class="content">
@@ -2133,7 +2063,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the default bounce email address. A bounced email, or bounce, is an email message that gets rejected by a mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6872">QUARKUS_MAILER__MAILER_NAME__BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6872" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7110">QUARKUS_MAILER__MAILER_NAME__BOUNCE_ADDRESS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7110" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2145,7 +2075,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-host"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-host"><code>quarkus.mailer."mailer-name".host</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-host"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-host">quarkus.mailer."mailer-name".host</a></code></p>
 </div>
 <div id="conf-collapsible-desc-42" class="openblock description description-collapsed">
 <div class="content">
@@ -2153,7 +2083,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the SMTP host name.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6873">QUARKUS_MAILER__MAILER_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6873" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7111">QUARKUS_MAILER__MAILER_NAME__HOST</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7111" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2165,7 +2095,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-port"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-port"><code>quarkus.mailer."mailer-name".port</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-port"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-port">quarkus.mailer."mailer-name".port</a></code></p>
 </div>
 <div id="conf-collapsible-desc-43" class="openblock description description-collapsed">
 <div class="content">
@@ -2176,7 +2106,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Note that the port 465 may be used by SMTP servers, however, IANA has reassigned a new service to this port, and it should no longer be used for SMTP communications.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6874">QUARKUS_MAILER__MAILER_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6874" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7112">QUARKUS_MAILER__MAILER_NAME__PORT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7112" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2188,7 +2118,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-username"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-username"><code>quarkus.mailer."mailer-name".username</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-username"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-username">quarkus.mailer."mailer-name".username</a></code></p>
 </div>
 <div id="conf-collapsible-desc-44" class="openblock description description-collapsed">
 <div class="content">
@@ -2196,7 +2126,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the username to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6875">QUARKUS_MAILER__MAILER_NAME__USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6875" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7113">QUARKUS_MAILER__MAILER_NAME__USERNAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7113" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2208,7 +2138,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-password"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-password"><code>quarkus.mailer."mailer-name".password</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-password"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-password">quarkus.mailer."mailer-name".password</a></code></p>
 </div>
 <div id="conf-collapsible-desc-45" class="openblock description description-collapsed">
 <div class="content">
@@ -2216,7 +2146,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the password to connect to the SMTP server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6876">QUARKUS_MAILER__MAILER_NAME__PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6876" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7114">QUARKUS_MAILER__MAILER_NAME__PASSWORD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7114" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2228,7 +2158,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-tls-configuration-name"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-tls-configuration-name"><code>quarkus.mailer."mailer-name".tls-configuration-name</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-tls-configuration-name"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-tls-configuration-name">quarkus.mailer."mailer-name".tls-configuration-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-46" class="openblock description description-collapsed">
 <div class="content">
@@ -2245,7 +2175,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The default TLS configuration is <strong>not</strong> used by default.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6877">QUARKUS_MAILER__MAILER_NAME__TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6877" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7115">QUARKUS_MAILER__MAILER_NAME__TLS_CONFIGURATION_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7115" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2257,7 +2187,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-tls"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-tls"><code>quarkus.mailer."mailer-name".tls</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-tls"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-tls">quarkus.mailer."mailer-name".tls</a></code></p>
 </div>
 <div id="conf-collapsible-desc-47" class="openblock description description-collapsed">
 <div class="content">
@@ -2268,7 +2198,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>SMTP allows establishing connection with or without TLS. When establishing a connection with TLS, the connection is secured and encrypted. When establishing a connection without TLS, it can be secured and encrypted later using the STARTTLS command. In this case, the connection is initially unsecured and unencrypted. To configure this case, set this property to <code>false</code> and <code>start-tls</code> to <code>REQUIRED</code> Note that if a TLS configuration is set, TLS is enabled automatically. So, setting this property to <code>false</code> is required to not establish a connection with TLS.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6878">QUARKUS_MAILER__MAILER_NAME__TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6878" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7116">QUARKUS_MAILER__MAILER_NAME__TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7116" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2280,7 +2210,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-max-pool-size"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-max-pool-size"><code>quarkus.mailer."mailer-name".max-pool-size</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-max-pool-size"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-max-pool-size">quarkus.mailer."mailer-name".max-pool-size</a></code></p>
 </div>
 <div id="conf-collapsible-desc-48" class="openblock description description-collapsed">
 <div class="content">
@@ -2288,7 +2218,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the max number of open connections to the mail server.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6879">QUARKUS_MAILER__MAILER_NAME__MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6879" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7117">QUARKUS_MAILER__MAILER_NAME__MAX_POOL_SIZE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7117" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2300,7 +2230,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-own-host-name"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-own-host-name"><code>quarkus.mailer."mailer-name".own-host-name</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-own-host-name"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-own-host-name">quarkus.mailer."mailer-name".own-host-name</a></code></p>
 </div>
 <div id="conf-collapsible-desc-49" class="openblock description description-collapsed">
 <div class="content">
@@ -2308,7 +2238,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the hostname to be used for HELO/EHLO and the Message-ID.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6880">QUARKUS_MAILER__MAILER_NAME__OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6880" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7118">QUARKUS_MAILER__MAILER_NAME__OWN_HOST_NAME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7118" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2320,7 +2250,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-keep-alive"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-keep-alive"><code>quarkus.mailer."mailer-name".keep-alive</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-keep-alive"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-keep-alive">quarkus.mailer."mailer-name".keep-alive</a></code></p>
 </div>
 <div id="conf-collapsible-desc-50" class="openblock description description-collapsed">
 <div class="content">
@@ -2328,7 +2258,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets if connection pool is enabled. If the connection pooling is disabled, the max number of sockets is enforced nevertheless.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6881">QUARKUS_MAILER__MAILER_NAME__KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6881" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7119">QUARKUS_MAILER__MAILER_NAME__KEEP_ALIVE</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7119" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2340,7 +2270,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-disable-esmtp"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-disable-esmtp"><code>quarkus.mailer."mailer-name".disable-esmtp</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-disable-esmtp"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-disable-esmtp">quarkus.mailer."mailer-name".disable-esmtp</a></code></p>
 </div>
 <div id="conf-collapsible-desc-51" class="openblock description description-collapsed">
 <div class="content">
@@ -2351,7 +2281,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The RFC-1869 states that clients should always attempt <code>EHLO</code> as first command to determine if ESMTP is supported, if this returns an error code, <code>HELO</code> is tried to use the <em>regular</em> SMTP command.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6882">QUARKUS_MAILER__MAILER_NAME__DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6882" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7120">QUARKUS_MAILER__MAILER_NAME__DISABLE_ESMTP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7120" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2363,7 +2293,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-start-tls"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-start-tls"><code>quarkus.mailer."mailer-name".start-tls</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-start-tls"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-start-tls">quarkus.mailer."mailer-name".start-tls</a></code></p>
 </div>
 <div id="conf-collapsible-desc-52" class="openblock description description-collapsed">
 <div class="content">
@@ -2371,7 +2301,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the TLS security mode for the connection. Either <code>DISABLED</code>, <code>OPTIONAL</code> or <code>REQUIRED</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6883">QUARKUS_MAILER__MAILER_NAME__START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6883" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7121">QUARKUS_MAILER__MAILER_NAME__START_TLS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7121" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2383,7 +2313,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-enabled"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-enabled"><code>quarkus.mailer."mailer-name".dkim.enabled</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-enabled"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-enabled">quarkus.mailer."mailer-name".dkim.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-53" class="openblock description description-collapsed">
 <div class="content">
@@ -2391,7 +2321,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Enables DKIM signing.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6884">QUARKUS_MAILER__MAILER_NAME__DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6884" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7122">QUARKUS_MAILER__MAILER_NAME__DKIM_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7122" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2403,7 +2333,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key"><code>quarkus.mailer."mailer-name".dkim.private-key</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key">quarkus.mailer."mailer-name".dkim.private-key</a></code></p>
 </div>
 <div id="conf-collapsible-desc-54" class="openblock description description-collapsed">
 <div class="content">
@@ -2411,7 +2341,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the PKCS#8 format private key used to sign the email.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6885">QUARKUS_MAILER__MAILER_NAME__DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6885" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7123">QUARKUS_MAILER__MAILER_NAME__DKIM_PRIVATE_KEY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7123" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2423,7 +2353,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key-path"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key-path"><code>quarkus.mailer."mailer-name".dkim.private-key-path</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key-path"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-private-key-path">quarkus.mailer."mailer-name".dkim.private-key-path</a></code></p>
 </div>
 <div id="conf-collapsible-desc-55" class="openblock description description-collapsed">
 <div class="content">
@@ -2431,7 +2361,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the PKCS#8 format private key file path.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6886">QUARKUS_MAILER__MAILER_NAME__DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6886" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7124">QUARKUS_MAILER__MAILER_NAME__DKIM_PRIVATE_KEY_PATH</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7124" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2443,7 +2373,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-auid"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-auid"><code>quarkus.mailer."mailer-name".dkim.auid</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-auid"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-auid">quarkus.mailer."mailer-name".dkim.auid</a></code></p>
 </div>
 <div id="conf-collapsible-desc-56" class="openblock description description-collapsed">
 <div class="content">
@@ -2451,7 +2381,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the Agent or User Identifier (AUID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6887">QUARKUS_MAILER__MAILER_NAME__DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6887" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7125">QUARKUS_MAILER__MAILER_NAME__DKIM_AUID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7125" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2463,7 +2393,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-selector"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-selector"><code>quarkus.mailer."mailer-name".dkim.selector</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-selector"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-selector">quarkus.mailer."mailer-name".dkim.selector</a></code></p>
 </div>
 <div id="conf-collapsible-desc-57" class="openblock description description-collapsed">
 <div class="content">
@@ -2471,7 +2401,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the selector used to query the public key.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6888">QUARKUS_MAILER__MAILER_NAME__DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6888" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7126">QUARKUS_MAILER__MAILER_NAME__DKIM_SELECTOR</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7126" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2483,7 +2413,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-sdid"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-sdid"><code>quarkus.mailer."mailer-name".dkim.sdid</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-sdid"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-sdid">quarkus.mailer."mailer-name".dkim.sdid</a></code></p>
 </div>
 <div id="conf-collapsible-desc-58" class="openblock description description-collapsed">
 <div class="content">
@@ -2491,7 +2421,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the Signing Domain Identifier (SDID).</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6889">QUARKUS_MAILER__MAILER_NAME__DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6889" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7127">QUARKUS_MAILER__MAILER_NAME__DKIM_SDID</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7127" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2503,7 +2433,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-header-canon-algo"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-header-canon-algo"><code>quarkus.mailer."mailer-name".dkim.header-canon-algo</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-header-canon-algo"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-header-canon-algo">quarkus.mailer."mailer-name".dkim.header-canon-algo</a></code></p>
 </div>
 <div id="conf-collapsible-desc-59" class="openblock description description-collapsed">
 <div class="content">
@@ -2511,7 +2441,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the canonicalization algorithm for signed headers.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6890">QUARKUS_MAILER__MAILER_NAME__DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6890" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7128">QUARKUS_MAILER__MAILER_NAME__DKIM_HEADER_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7128" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2525,7 +2455,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-canon-algo"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-canon-algo"><code>quarkus.mailer."mailer-name".dkim.body-canon-algo</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-canon-algo"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-canon-algo">quarkus.mailer."mailer-name".dkim.body-canon-algo</a></code></p>
 </div>
 <div id="conf-collapsible-desc-60" class="openblock description description-collapsed">
 <div class="content">
@@ -2533,7 +2463,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the canonicalization algorithm for mail body.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6891">QUARKUS_MAILER__MAILER_NAME__DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6891" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7129">QUARKUS_MAILER__MAILER_NAME__DKIM_BODY_CANON_ALGO</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7129" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2547,7 +2477,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-limit"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-limit"><code>quarkus.mailer."mailer-name".dkim.body-limit</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-limit"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-body-limit">quarkus.mailer."mailer-name".dkim.body-limit</a></code></p>
 </div>
 <div id="conf-collapsible-desc-61" class="openblock description description-collapsed">
 <div class="content">
@@ -2555,7 +2485,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the body limit to sign. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6892">QUARKUS_MAILER__MAILER_NAME__DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6892" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7130">QUARKUS_MAILER__MAILER_NAME__DKIM_BODY_LIMIT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7130" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2567,7 +2497,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-signature-timestamp"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-signature-timestamp"><code>quarkus.mailer."mailer-name".dkim.signature-timestamp</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-signature-timestamp"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-signature-timestamp">quarkus.mailer."mailer-name".dkim.signature-timestamp</a></code></p>
 </div>
 <div id="conf-collapsible-desc-62" class="openblock description description-collapsed">
 <div class="content">
@@ -2575,7 +2505,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures to enable or disable signature sign timestamp.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6893">QUARKUS_MAILER__MAILER_NAME__DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6893" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7131">QUARKUS_MAILER__MAILER_NAME__DKIM_SIGNATURE_TIMESTAMP</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7131" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2587,7 +2517,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-expire-time"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-expire-time"><code>quarkus.mailer."mailer-name".dkim.expire-time</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-expire-time"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-expire-time">quarkus.mailer."mailer-name".dkim.expire-time</a></code></p>
 </div>
 <div id="conf-collapsible-desc-63" class="openblock description description-collapsed">
 <div class="content">
@@ -2595,7 +2525,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the expire time in seconds when the signature sign will be expired. Must be greater than zero.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6894">QUARKUS_MAILER__MAILER_NAME__DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6894" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7132">QUARKUS_MAILER__MAILER_NAME__DKIM_EXPIRE_TIME</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7132" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2607,7 +2537,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-signed-headers"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-signed-headers"><code>quarkus.mailer."mailer-name".dkim.signed-headers</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-dkim-signed-headers"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-dkim-signed-headers">quarkus.mailer."mailer-name".dkim.signed-headers</a></code></p>
 </div>
 <div id="conf-collapsible-desc-64" class="openblock description description-collapsed">
 <div class="content">
@@ -2615,7 +2545,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Configures the signed headers in DKIM, separated by commas. The order in the list matters.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6895">QUARKUS_MAILER__MAILER_NAME__DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6895" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7133">QUARKUS_MAILER__MAILER_NAME__DKIM_SIGNED_HEADERS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7133" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2627,7 +2557,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-login"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-login"><code>quarkus.mailer."mailer-name".login</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-login"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-login">quarkus.mailer."mailer-name".login</a></code></p>
 </div>
 <div id="conf-collapsible-desc-65" class="openblock description description-collapsed">
 <div class="content">
@@ -2651,7 +2581,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </ul>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6896">QUARKUS_MAILER__MAILER_NAME__LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6896" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7134">QUARKUS_MAILER__MAILER_NAME__LOGIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7134" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2663,7 +2593,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-auth-methods"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-auth-methods"><code>quarkus.mailer."mailer-name".auth-methods</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-auth-methods"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-auth-methods">quarkus.mailer."mailer-name".auth-methods</a></code></p>
 </div>
 <div id="conf-collapsible-desc-66" class="openblock description description-collapsed">
 <div class="content">
@@ -2674,7 +2604,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>The list is given as a space separated list, such as <code>DIGEST-MD5 CRAM-SHA256 CRAM-SHA1 CRAM-MD5 PLAIN LOGIN</code>.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6897">QUARKUS_MAILER__MAILER_NAME__AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6897" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7135">QUARKUS_MAILER__MAILER_NAME__AUTH_METHODS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7135" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2686,7 +2616,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-multi-part-only"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-multi-part-only"><code>quarkus.mailer."mailer-name".multi-part-only</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-multi-part-only"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-multi-part-only">quarkus.mailer."mailer-name".multi-part-only</a></code></p>
 </div>
 <div id="conf-collapsible-desc-67" class="openblock description description-collapsed">
 <div class="content">
@@ -2694,7 +2624,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Whether the mail should always been sent as multipart even if they don&#8217;t have attachments. When sets to true, the mail message will be encoded as multipart even for simple mails without attachments.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6898">QUARKUS_MAILER__MAILER_NAME__MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6898" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7136">QUARKUS_MAILER__MAILER_NAME__MULTI_PART_ONLY</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7136" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2706,7 +2636,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-allow-rcpt-errors"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-allow-rcpt-errors"><code>quarkus.mailer."mailer-name".allow-rcpt-errors</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-allow-rcpt-errors"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-allow-rcpt-errors">quarkus.mailer."mailer-name".allow-rcpt-errors</a></code></p>
 </div>
 <div id="conf-collapsible-desc-68" class="openblock description description-collapsed">
 <div class="content">
@@ -2714,7 +2644,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets if sending allows recipients errors. If set to true, the mail will be sent to the recipients that the server accepted, if any.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6899">QUARKUS_MAILER__MAILER_NAME__ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6899" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7137">QUARKUS_MAILER__MAILER_NAME__ALLOW_RCPT_ERRORS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7137" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2726,7 +2656,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-pipelining"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-pipelining"><code>quarkus.mailer."mailer-name".pipelining</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-pipelining"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-pipelining">quarkus.mailer."mailer-name".pipelining</a></code></p>
 </div>
 <div id="conf-collapsible-desc-69" class="openblock description description-collapsed">
 <div class="content">
@@ -2734,7 +2664,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Enables or disables the pipelining capability if the SMTP server supports it.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6900">QUARKUS_MAILER__MAILER_NAME__PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6900" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7138">QUARKUS_MAILER__MAILER_NAME__PIPELINING</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7138" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2746,7 +2676,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-pool-cleaner-period"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-pool-cleaner-period"><code>quarkus.mailer."mailer-name".pool-cleaner-period</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-pool-cleaner-period"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-pool-cleaner-period">quarkus.mailer."mailer-name".pool-cleaner-period</a></code></p>
 </div>
 <div id="conf-collapsible-desc-70" class="openblock description description-collapsed">
 <div class="content">
@@ -2754,19 +2684,20 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the connection pool cleaner period. Zero disables expiration checks and connections will remain in the pool until they are closed.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6901">QUARKUS_MAILER__MAILER_NAME__POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6901" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7139">QUARKUS_MAILER__MAILER_NAME__POOL_CLEANER_PERIOD</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7139" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-mailer_quarkus-mailer"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT1S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-keep-alive-timeout"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-keep-alive-timeout"><code>quarkus.mailer."mailer-name".keep-alive-timeout</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-keep-alive-timeout"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-keep-alive-timeout">quarkus.mailer."mailer-name".keep-alive-timeout</a></code></p>
 </div>
 <div id="conf-collapsible-desc-71" class="openblock description description-collapsed">
 <div class="content">
@@ -2774,19 +2705,20 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Set the keep alive timeout for the SMTP connection. This value determines how long a connection remains unused in the pool before being evicted and closed. A timeout of 0 means there is no timeout.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6902">QUARKUS_MAILER__MAILER_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6902" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7140">QUARKUS_MAILER__MAILER_NAME__KEEP_ALIVE_TIMEOUT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7140" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a> <a href="#duration-note-anchor-quarkus-mailer_quarkus-mailer"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor-{summaryTableId}"><span class="icon"><i class="fa fa-question-circle" title="More information about the Duration format"></i></span></a></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT300S</code></p></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-ntlm-workstation"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-ntlm-workstation"><code>quarkus.mailer."mailer-name".ntlm.workstation</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-ntlm-workstation"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-ntlm-workstation">quarkus.mailer."mailer-name".ntlm.workstation</a></code></p>
 </div>
 <div id="conf-collapsible-desc-72" class="openblock description description-collapsed">
 <div class="content">
@@ -2794,7 +2726,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the workstation used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6903">QUARKUS_MAILER__MAILER_NAME__NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6903" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7141">QUARKUS_MAILER__MAILER_NAME__NTLM_WORKSTATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7141" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2806,7 +2738,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-ntlm-domain"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-ntlm-domain"><code>quarkus.mailer."mailer-name".ntlm.domain</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-ntlm-domain"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-ntlm-domain">quarkus.mailer."mailer-name".ntlm.domain</a></code></p>
 </div>
 <div id="conf-collapsible-desc-73" class="openblock description description-collapsed">
 <div class="content">
@@ -2814,7 +2746,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Sets the domain used on NTLM authentication.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6904">QUARKUS_MAILER__MAILER_NAME__NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6904" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7142">QUARKUS_MAILER__MAILER_NAME__NTLM_DOMAIN</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7142" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2826,7 +2758,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-approved-recipients"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-approved-recipients"><code>quarkus.mailer."mailer-name".approved-recipients</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-approved-recipients"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-approved-recipients">quarkus.mailer."mailer-name".approved-recipients</a></code></p>
 </div>
 <div id="conf-collapsible-desc-74" class="openblock description description-collapsed">
 <div class="content">
@@ -2837,19 +2769,19 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>Approved recipients are compiled to a <code>Pattern</code> and must be a valid regular expression. The created <code>Pattern</code> is case-insensitive as emails are case insensitive. Provided patterns are trimmed before being compiled.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6905">QUARKUS_MAILER__MAILER_NAME__APPROVED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6905" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7143">QUARKUS_MAILER__MAILER_NAME__APPROVED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7143" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
 <div class="paragraph description-decoration">
 <p><i class="fa fa-chevron-down"></i><span>Show more</span></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">Pattern</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">Pattern</a></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc row-hidden odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-log-rejected-recipients"></a> <span class="property-path"><a href="#quarkus-mailer_quarkus-mailer-mailer-name-log-rejected-recipients"><code>quarkus.mailer."mailer-name".log-rejected-recipients</code></a></span></p>
+<p><a id="quarkus-mailer_quarkus-mailer-mailer-name-log-rejected-recipients"></a><code><a href="#quarkus-mailer_quarkus-mailer-mailer-name-log-rejected-recipients">quarkus.mailer."mailer-name".log-rejected-recipients</a></code></p>
 </div>
 <div id="conf-collapsible-desc-75" class="openblock description description-collapsed">
 <div class="content">
@@ -2860,7 +2792,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 <p>If false, the rejected recipients will be logged at the DEBUG level.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-6906">QUARKUS_MAILER__MAILER_NAME__LOG_REJECTED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-6906" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7144">QUARKUS_MAILER__MAILER_NAME__LOG_REJECTED_RECIPIENTS</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7144" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -2872,7 +2804,7 @@ quarkus.mailer.mock=false # In dev mode, prevent from using the mock SMTP server
 </tr>
 </tbody>
 </table>
-<div id="duration-note-anchor-quarkus-mailer_quarkus-mailer" class="admonitionblock note">
+<div id="duration-note-anchor-quarkus-mailer" class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -2943,7 +2875,6 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <li><a href="#aws-ses-simple-email-service">AWS SES - Simple Email Service</a></li>
 <li><a href="#mailjet">MailJet</a></li>
 <li><a href="#sendgrid">Sendgrid</a></li>
-<li><a href="#office-365">Office 365</a></li>
 </ul>
 </li>
 <li><a href="#configuration-reference">Mailer Configuration Reference</a></li>
@@ -3040,10 +2971,6 @@ See the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           

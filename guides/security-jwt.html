@@ -11,33 +11,8 @@
   <title>Using JWT RBAC - Quarkus</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="
-  connect-src 'self' https://dpm.demdex.net https://adobedc.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io https://smetrics.redhat.com; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval'
-      
-      https://assets.adobedtm.com
-      js.bizographics.com
-      https://www.redhat.com
-      https://static.redhat.com
-      https://app.requestly.io/
-      jsonip.com
-      https://ajax.googleapis.com
-      https://use.fontawesome.com
-      http://www.youtube.com
-      http://www.googleadservices.com
-      https://googleads.g.doubleclick.net
-      https://giscus.app
-      https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/
-      https://app.mailjet.com;
-
-  style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; 
-  img-src 'self' * data:; 
-  media-src 'self'; 
-  frame-src https://redhat.demdex.net https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; 
-  base-uri 'none'; 
-  object-src 'none'; 
-  form-action 'none'; 
-  font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src https://dpm.demdex.net https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ https://search.quarkus.io; script-src 'self' 'unsafe-eval'  'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' 'sha256-+5qDxnbsqhFKZIIfofMhmVgNChsVrKoHUdaQ2EMs9aU=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self'
+  https://route-default-test-mscherer-matamo.apps.ospo-osci.z3b1.p1.openshiftapps.com/ * data:; media-src 'self'; frame-src  https://www.youtube.com https://embed.restream.io https://app.mailjet.com http://xy0p2.mjt.lu https://mj.quarkus.io https://giscus.app; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
@@ -101,12 +76,10 @@
         <ul class="submenu">
           <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
           <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
-          <li><a href="/continuum" class="">VERSATILITY</a></li>
-          <li><a href="/standards" class="">STANDARDS</a></li>
-          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
-          <li><a href="/performance" class="">PERFORMANCE</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
           <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
-          
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -189,11 +162,7 @@
         
         
         
-        <option value="latest" selected>3.16.3 - Latest</option>
-        
-        
-        
-        <option value="3.15" >3.15</option>
+        <option value="latest" selected>3.13.3 - Latest</option>
         
         
         
@@ -210,6 +179,10 @@
         
         
         <option value="2.13" >2.13</option>
+        
+        
+        
+        <option value="2.7" >2.7</option>
         </select>
     </div>
   </div>
@@ -264,7 +237,7 @@ For more information, see <a href="security-oidc-code-flow-authentication">OIDC 
 <p>JDK 17+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.9.9</p>
+<p>Apache Maven 3.9.8</p>
 </li>
 <li>
 <p>Optionally the <a href="cli-tooling">Quarkus CLI</a> if you want to use it</p>
@@ -321,7 +294,7 @@ cd security-jwt-quickstart</code></pre>
 <div class="title">Maven</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.16.3:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:3.13.3:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=security-jwt-quickstart \
     -Dextensions='rest-jackson,smallrye-jwt,smallrye-jwt-build' \
@@ -406,7 +379,10 @@ implementation("io.quarkus:quarkus-smallrye-jwt-build")</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.security.jwt;
 
+import java.security.Principal;
+
 import jakarta.annotation.security.PermitAll;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.InternalServerErrorException;
@@ -424,7 +400,7 @@ public class TokenSecuredResource {
     @Inject
     JsonWebToken jwt; <i class="conum" data-value="1"></i><b>(1)</b>
 
-    @GET
+    @GET()
     @Path("permit-all")
     @PermitAll <i class="conum" data-value="2"></i><b>(2)</b>
     @Produces(MediaType.TEXT_PLAIN)
@@ -441,7 +417,7 @@ public class TokenSecuredResource {
         } else {
             name = ctx.getUserPrincipal().getName(); <i class="conum" data-value="6"></i><b>(6)</b>
         }
-        return String.format("hello %s,"
+        return String.format("hello + %s,"
             + " isHttps: %s,"
             + " authScheme: %s,"
             + " hasJWT: %s",
@@ -536,7 +512,7 @@ Listening for transport dt_socket at address: 5005
 <div class="title">curl command for /secured/permit-all</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl http://127.0.0.1:8080/secured/permit-all; echo
-hello anonymous, isHttps: false, authScheme: null, hasJWT: false</code></pre>
+hello + anonymous, isHttps: false, authScheme: null, hasJWT: false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -572,6 +548,7 @@ and the response is consistent with that:</p>
 
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.InternalServerErrorException;
@@ -584,6 +561,7 @@ import jakarta.ws.rs.core.SecurityContext;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 @Path("/secured")
+@RequestScoped
 public class TokenSecuredResource {
 
     @Inject
@@ -614,7 +592,7 @@ public class TokenSecuredResource {
         } else {
             name = ctx.getUserPrincipal().getName();
         }
-        return String.format("hello %s,"
+        return String.format("hello + %s,"
             + " isHttps: %s,"
             + " authScheme: %s,"
             + " hasJWT: %s",
@@ -900,7 +878,7 @@ First part - JWT headers, second part - JWT claims, third part - JWT signature.<
 <div class="title">curl Command for /secured/roles-allowed With JWT</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl -H "Authorization: Bearer eyJraWQ..." http://127.0.0.1:8080/secured/roles-allowed; echo
-hello jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthdate: 2001-07-13</code></pre>
+hello + jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthdate: 2001-07-13</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -961,14 +939,14 @@ import org.eclipse.microprofile.jwt.Claims;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 @Path("/secured")
-@RequestScoped <i class="conum" data-value="1"></i><b>(1)</b>
+@RequestScoped
 public class TokenSecuredResource {
 
     @Inject
-    JsonWebToken jwt; <i class="conum" data-value="2"></i><b>(2)</b>
+    JsonWebToken jwt; <i class="conum" data-value="1"></i><b>(1)</b>
     @Inject
     @Claim(standard = Claims.birthdate)
-    String birthdate; <i class="conum" data-value="3"></i><b>(3)</b>
+    String birthdate; <i class="conum" data-value="2"></i><b>(2)</b>
 
     @GET
     @Path("permit-all")
@@ -991,7 +969,7 @@ public class TokenSecuredResource {
     @RolesAllowed("Admin")
     @Produces(MediaType.TEXT_PLAIN)
     public String helloRolesAllowedAdmin(@Context SecurityContext ctx) {
-        return getResponseString(ctx) + ", birthdate: " + birthdate; <i class="conum" data-value="4"></i><b>(4)</b>
+        return getResponseString(ctx) + ", birthdate: " + birthdate; <i class="conum" data-value="3"></i><b>(3)</b>
     }
 
     private String getResponseString(SecurityContext ctx) {
@@ -1003,7 +981,7 @@ public class TokenSecuredResource {
         } else {
             name = ctx.getUserPrincipal().getName();
         }
-        return String.format("hello %s,"
+        return String.format("hello + %s,"
             + " isHttps: %s,"
             + " authScheme: %s,"
             + " hasJWT: %s",
@@ -1020,18 +998,14 @@ public class TokenSecuredResource {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>RequestScoped</code> scope is required to support an injection of the <code>birthday</code> claim as <code>String</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Here we inject the JsonWebToken.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Here we inject the <code>birthday</code> claim as <code>String</code> - this is why the <code>@RequestScoped</code> scope is now required.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>Here we use the injected <code>birthday</code> claim to build the final reply.</td>
 </tr>
 </table>
@@ -1047,7 +1021,7 @@ public class TokenSecuredResource {
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl -H "Authorization: Bearer eyJraWQ..." http://127.0.0.1:8080/secured/roles-allowed-admin; echo
-hello jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthdate: 2001-07-13</code></pre>
+hello + jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthdate: 2001-07-13</code></pre>
 </div>
 </div>
 </div>
@@ -1081,7 +1055,7 @@ hello jdoe@quarkus.io, isHttps: false, authScheme: Bearer, hasJWT: true, birthda
 <div class="title">Runner jar Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ java -jar target/quarkus-app/quarkus-run.jar
-2019-03-28 14:27:48,839 INFO  [io.quarkus] (main) Quarkus 3.16.3 started in 0.796s. Listening on: http://[::]:8080
+2019-03-28 14:27:48,839 INFO  [io.quarkus] (main) Quarkus 3.13.3 started in 0.796s. Listening on: http://[::]:8080
 2019-03-28 14:27:48,841 INFO  [io.quarkus] (main) Installed features: [cdi, rest, rest-jackson, security, smallrye-jwt]</code></pre>
 </div>
 </div>
@@ -1384,7 +1358,7 @@ public class TestJWTCallerPrincipalFactory extends JWTCallerPrincipalFactory {
 <div class="sect2">
 <h3 id="token-propagation"><a class="anchor" href="#token-propagation"></a>Token Propagation</h3>
 <div class="paragraph">
-<p>Please see the <a href="security-openid-connect-client-reference#token-propagation-rest">Token Propagation</a> section about the Bearer access token propagation to the downstream services.</p>
+<p>Please see the <a href="security-openid-connect-client-reference#token-propagation">Token Propagation</a> section about the Bearer access token propagation to the downstream services.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1656,13 +1630,13 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 </colgroup>
 <tbody>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><span class="header-title">Configuration property</span></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-smallrye-jwt_configuration"></a><a href="#quarkus-smallrye-jwt_configuration">Configuration property</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-enabled"></a> <span class="property-path"><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-enabled"><code>quarkus.smallrye-jwt.enabled</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-enabled"></a><code><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-enabled">quarkus.smallrye-jwt.enabled</a></code></p>
 </div>
 <div id="conf-collapsible-desc-1" class="openblock description description-collapsed">
 <div class="content">
@@ -1670,7 +1644,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>The MP-JWT configuration object</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7830">QUARKUS_SMALLRYE_JWT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7830" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7973">QUARKUS_SMALLRYE_JWT_ENABLED</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7973" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1682,7 +1656,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-rsa-sig-provider"></a> <span class="property-path"><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-rsa-sig-provider"><code>quarkus.smallrye-jwt.rsa-sig-provider</code></a></span></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-rsa-sig-provider"></a><code><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-rsa-sig-provider">quarkus.smallrye-jwt.rsa-sig-provider</a></code></p>
 </div>
 <div id="conf-collapsible-desc-2" class="openblock description description-collapsed">
 <div class="content">
@@ -1690,7 +1664,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>The name of the <code>java.security.Provider</code> that supports SHA256withRSA signatures</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7831">QUARKUS_SMALLRYE_JWT_RSA_SIG_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7831" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7974">QUARKUS_SMALLRYE_JWT_RSA_SIG_PROVIDER</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7974" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1702,7 +1676,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc odd">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-blocking-authentication"></a> <span class="property-path"><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-blocking-authentication"><code>quarkus.smallrye-jwt.blocking-authentication</code></a></span></p>
+<p><a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-blocking-authentication"></a><code><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-blocking-authentication">quarkus.smallrye-jwt.blocking-authentication</a></code></p>
 </div>
 <div id="conf-collapsible-desc-3" class="openblock description description-collapsed">
 <div class="content">
@@ -1710,7 +1684,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>Enable this property if fetching the remote keys can be a time-consuming operation. Do not enable it if you use the local keys.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7832">QUARKUS_SMALLRYE_JWT_BLOCKING_AUTHENTICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7832" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7975">QUARKUS_SMALLRYE_JWT_BLOCKING_AUTHENTICATION</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7975" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1722,7 +1696,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 </tr>
 <tr class="row-collapsible row-collapsed row-with-desc">
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-silent"></a> <span class="property-path"><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-silent"><code>quarkus.smallrye-jwt.silent</code></a></span></p>
+<p><a id="quarkus-smallrye-jwt_quarkus-smallrye-jwt-silent"></a><code><a href="#quarkus-smallrye-jwt_quarkus-smallrye-jwt-silent">quarkus.smallrye-jwt.silent</a></code></p>
 </div>
 <div id="conf-collapsible-desc-4" class="openblock description description-collapsed">
 <div class="content">
@@ -1730,7 +1704,7 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <p>Always create HTTP 401 challenge, even for requests containing no authentication credentials. JWT authentication mechanism will return HTTP 401 when an authentication challenge is required. However if it is used alongside one of the interactive authentication mechanisms then returning HTTP 401 to the users accessing the application from a browser may not be desired. If you prefer you can request that JWT authentication mechanism does not create a challenge in such cases by setting this property to 'true'.</p>
 </div>
 <div class="paragraph">
-<p>Environment variable: <code id="env-var-7833">QUARKUS_SMALLRYE_JWT_SILENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7833" title="Copy to clipboard" do-not-collapse="true"></button></p>
+<p>Environment variable: <code id="env-var-7976">QUARKUS_SMALLRYE_JWT_SILENT</code><button class="btn-copy fa fa-clipboard inline-btn-copy" data-clipboard-action="copy" data-clipboard-target="#env-var-7976" title="Copy to clipboard" do-not-collapse="true"></button></p>
 </div>
 </div>
 </div>
@@ -1772,17 +1746,12 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.jwt.verify.publickey.algorithm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>RS256</code></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of signature algorithms. Set it to <code>ES256</code> to support the Elliptic Curve signature algorithm.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signature algorithm. Set it to <code>ES256</code> to support the Elliptic Curve signature algorithm.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.jwt.decrypt.key.location</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Config property allows for an external or internal location of Private Decryption Key to be specified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.jwt.decrypt.key.algorithm</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>RSA-OAEP</code>,<code>RSA-OAEP-256</code></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of decryption algorithms. Set it to <code>RSA-OAEP-256</code> to support RSA-OAEP with SHA-256 only.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.jwt.verify.issuer</code></p></td>
@@ -1836,11 +1805,6 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>smallrye.jwt.verify.secretkey</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Secret key supplied as a string.</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>smallrye.jwt.verify.key.location</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>NONE</code></p></td>
@@ -2176,9 +2140,6 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
         <li class="reference"><a href="/guides/security-openid-connect-client-reference">OpenID Connect (OIDC) and OAuth2 client and filters</a></li>
       
         
-        <li class="reference"><a href="/guides/security-openid-connect-client-registration">OpenID Connect (OIDC) and OAuth2 dynamic client registration</a></li>
-      
-        
         <li class="concepts"><a href="/guides/security-oidc-bearer-token-authentication">OpenID Connect (OIDC) Bearer token authentication</a></li>
       
         
@@ -2201,6 +2162,9 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
       
         
         <li class="concepts"><a href="/guides/security-architecture">Quarkus Security architecture</a></li>
+      
+        
+        <li class="concepts"><a href="/guides/security-overview">Quarkus Security overview</a></li>
       </ul>
     </div>
     </div>
@@ -2275,10 +2239,6 @@ quarkus.index-dependency.smallrye-jwt.artifact-id=smallrye-jwt</code></pre>
           
           
             <li><a href="https://x.com/quarkusio" target="_blank">X</a></li>
-          
-          
-          
-            <li><a href="https://bsky.app/profile/quarkus.io" target="_blank">Bluesky</a></li>
           
           
           
