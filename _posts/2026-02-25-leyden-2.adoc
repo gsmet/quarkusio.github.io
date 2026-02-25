@@ -55,7 +55,7 @@ All in all, it is an excellent option for certain use cases, but it is not a sil
 Project Leyden addresses the same fundamental problem as GraalVM native image, but takes a different approach:
 
 - It is still "pure" Java, it is part of OpenJDK: your application runs on the JVM, with full access to Java features and libraries, without special configuration.
-- During a training phase, it records application behavior and gathers information such as loaded and linked classes, and method profiling data.
+- During a training phase, it records application behavior and gathers information such as loaded and linked classes, and in more recent versions also starts recording some JIT output - increasing scope and optimisation potentials in each JVM version.
 - This information is stored in an AOT cache file.
 - At startup, you configure the JVM with this AOT cache file.
 - Because the application still runs on the JVM, you continue to benefit from the JIT compiler, your preferred garbage collector, and all other JVM optimizations, preserving the high throughput typically associated with the JVM.
