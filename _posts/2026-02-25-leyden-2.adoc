@@ -41,7 +41,7 @@ It made a huge impact on the Java ecosystem and was a game changer for Java appl
 But this comes with some drawbacks:
 
 - Not all Java features and libraries are supported out of the box as they are on OpenJDK.
-- It relies on a closed-world assumption and removes most runtime dynamism (at least in its current form - work on the GraalVM side could change this in the future). This was not an issue for Quarkus as it makes the same assumption.
+- It relies on a closed-world assumption and removes most runtime dynamism (at least in its current form - work on the GraalVM side could change this in the future). Note: This was and is not an issue for Quarkus as it makes the same assumption; it can be problematic for third-party libraries.
 - It introduces specific constraints, the most common being the need to provide explicit reflection configuration. These requirements add effort during development and testing, although they are minimized for Quarkus supported extensions.
 - Compilation time is long, which impacts both the developer experience and CI resource usage.
 - Debugging native executables is hard. It has improved, but it is still a lot harder than debugging in the JVM as it requires the use of GDB and the presence of debug symbols in the build.
