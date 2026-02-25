@@ -45,7 +45,6 @@ But this comes with some drawbacks:
 - It introduces specific constraints, the most common being the need to provide explicit reflection configuration. These requirements add effort during development and testing, although they are minimized for Quarkus supported extensions.
 - Compilation time is long, which impacts both the developer experience and CI resource usage.
 - Debugging native executables is hard. It has improved, but it is still a lot harder than debugging in the JVM as it requires the use of GDB and the presence of debug symbols in the build.
-- The Open Source version comes with performance limitations that affect throughput.
 - And since everything is AOT-compiled, there is no JIT compiler to optimize code at runtime, which can lead to suboptimal peak performance in some cases.
 
 All in all, it is an excellent option for certain use cases, but it is not a silver bullet for every Java application.
