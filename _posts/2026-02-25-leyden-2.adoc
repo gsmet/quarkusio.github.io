@@ -78,7 +78,7 @@ That said, Project Leyden is not magic either. In its current form:
 - You still need to ship a JVM with your application.
 - You also need to ship the AOT cache, which means container images will be significantly larger than with native executables.
 
-Our take is that Project Leyden offers an excellent balance between performance and compatibility, at a very reasonable cost,
+Our take is that Project Leyden offers a compelling balance between performance and compatibility, at a very reasonable cost,
 and could become part of the default deployment workflow for many Java applications.
 
 === Project Leyden status
