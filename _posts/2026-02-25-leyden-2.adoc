@@ -68,18 +68,16 @@ It reduces warmup time by providing the JVM with profiling information, and will
 .How Leyden works
 image::leyden.png[How Leyden works]
 
-Although reducing memory footprint is not yet a primary goal of Leyden, it may occur as a side effect.
-For example, if JAR files no longer need to remain open for class loading, some memory may be saved.
-
 That said, Project Leyden is not magic either. In its current form:
 
-1- Startup and warmup time improvements are significant, but not as substantial as with GraalVM/Mandrel native image.
+- Startup and warmup time improvements are significant, but not as substantial as with GraalVM/Mandrel native image.
 - You must train your application and generate the AOT cache. In practice, this is not difficult, and in Quarkus, we have made it as seamless as possible.
 - You still need to ship a JVM with your application.
 - You also need to ship the AOT cache, which means container images will be significantly larger than with native executables.
+- You don't get any memory footprint benefit yet: in most cases, it's comparable to a regular JVM.
 
 Our take is that Project Leyden offers a compelling balance between performance and compatibility, at a very reasonable cost,
-and could become part of the default deployment workflow for many Java applications.
+and could become part of the default deployment workflow for many Java applications running on the JVM.
 
 === Project Leyden status
 
@@ -231,7 +229,9 @@ The container image sizes were measured using our default images, which are base
 
 [NOTE]
 ====
-These numbers were obtained with a full recording of all classes that are loaded at startup.
+These numbers were obtained using a full recording of all classes loaded during startup.
+They were measured on our laptops rather than in an isolated lab environment.
+We plan to run a more comprehensive set of benchmarks in our lab soon.
 
 Your results may vary for several reasons:
 
@@ -242,16 +242,23 @@ In any case, if you see unexpected results, we're very interested in your feedba
 Please reach out to us, and we'll guide you on how to gather useful profiling information.
 ====
 
+[TIP]
+====
+RSS is for Resident Set Size memory usage.
+====
+
 ==== Small REST application
 
-[cols="2,2,1,2,1", options="header"]
+[cols="2,2,1,2,1,2,1", options="header"]
 |===
-|  | Startup time | Diff | Container image size | Diff
+|  | Startup time | Diff | Container image size | Diff | RSS | Diff
 
 | *Default fast-jar*
 >m| 370 ms
 >m| Reference
 >m| 456 MB
+>m| Reference
+>m| 122 MB
 >m| Reference
 
 | *Project Leyden and aot-jar*
@@ -259,12 +266,16 @@ Please reach out to us, and we'll guide you on how to gather useful profiling in
 >m| -78%
 >m| 495 MB
 >m| +9%
+>m| 103 MB
+>m| -16%
 
 | *Mandrel native executable*
 >m| 17 ms
 >m| -95%
 >m| 155 MB
 >m| -66%
+>m| 37 MB
+>m| -70%
 |===
 
 The AOT cache file is `39 MB` in size,
@@ -272,14 +283,16 @@ the minimum you can expect for a Quarkus REST application.
 
 ==== Large REST CRUD application
 
-[cols="2,2,1,2,1", options="header"]
+[cols="2,2,1,2,1,2,1", options="header"]
 |===
-|  | Startup time | Diff | Container image size | Diff
+|  | Startup time | Diff | Container image size | Diff | RSS | Diff
 
 | *Default fast-jar*
 >m| 3,189 ms
 >m| Reference
 >m| 517 MB
+>m| Reference
+>m| 580 MB
 >m| Reference
 
 | *Project Leyden and aot-jar*
@@ -287,12 +300,16 @@ the minimum you can expect for a Quarkus REST application.
 >m| -71%
 >m| 715 MB
 >m| +38%
+>m| 580 MB
+>m| 0%
 
 | *Mandrel native executable*
 >m| 242 ms
 >m| -92%
 >m| 244 MB
 >m| -53%
+>m| 210 MB
+>m| -64%
 |===
 
 The AOT cache file is `198 MB`, not surprising, given that the application contains 9,000 `.java` files.
@@ -446,17 +463,88 @@ The cache size grows as your application becomes larger.
 
 On the other hand, going native significantly reduces the container image size, since you no longer need to include the full JVM.
 
+=== Memory footprint
+
+++++
+<div class="chart-container">
+  <canvas id="rss-graph"></canvas>
+</div>
+<script>
+const rss = document.getElementById('rss-graph');
+new Chart(rss, {
+     type: 'bar',
+     data: {
+     labels: ['Small REST app', 'Large REST CRUD app'],
+     datasets: [
+     {
+          label: 'Default',
+          data: [122, 580],
+          backgroundColor: 'rgba(54, 162, 235, 0.7)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+     },
+     {
+          label: 'Project Leyden',
+          data: [103, 580],
+          backgroundColor: 'rgba(255, 206, 86, 0.7)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1
+     },
+     {
+          label: 'Native',
+          data: [37, 210],
+          backgroundColor: 'rgba(75, 192, 192, 0.7)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+     }
+     ]
+     },
+     options: {
+     responsive: true,
+     plugins: {
+     title: {
+          display: true,
+          text: 'RSS comparison'
+     },
+     legend: {
+          position: 'top',
+     }
+     },
+     scales: {
+     y: {
+          beginAtZero: true,
+          title: {
+          display: true,
+          text: 'RSS (MB)'
+          }
+     }
+     }
+     }
+});
+</script>
+++++
+
+In terms of RSS, Project Leyden does not significantly change the picture,
+while native executables offer a substantially lower memory footprint.
+
+Reducing memory usage has not been a primary goal of Project Leyden so far,
+though this may evolve in the future.
+
 === Throughput
 
-At this point, you might be thinking: "Why not just go native for everything?"
+At this point, you might be thinking: "Why not just go native for everything?".
 For all the reasons <<graalvm,we've outlined>>, use native when it makes sense. Also because throughput will suffer.
 
 We haven't collected throughput numbers ourselves, as we don't have the proper setup,
 but some of our colleagues are running tests in an isolated environment.
 One thing is clear: native executables result in lower throughput.
 
-This is where Project Leyden really shines: you get much faster startup times while retaining all the benefits of running on the JVM.
-That said, native executables may still be perfectly suitable for your use case, for example, in serverless scenarios.
+This is where Project Leyden really shines: you get significantly faster startup times compared to a regular JVM,
+while still retaining all the benefits of running on the JVM.
+
+That said, in the current state of things, native executables still start faster and remain unmatched in certain areas,
+such as container image size and memory footprint.
+Depending on your use case, for example, in serverless environments, they may be a better fit.
 
 == What's next for Leyden in Quarkus?
 
@@ -483,10 +571,12 @@ After a month of experimenting and working on the integration of Project Leyden 
 And we are very happy we were able to integrate it into Quarkus 3.32 so that you can play with it already.
 
 Project Leyden is being continuously improved and is likely to figure prominently in the future of the Java platform; as part of our quest in Quarkus to provide the best
-development platform, with the help of the OpenJDK team at IBM we are actively monitoring the progress made upstream (in the `premain` branch of https://github.com/openjdk/leyden/tree/premain[`git@github.com:openjdk/leyden.git`])
+development platform, with the help of the OpenJDK team at IBM, we are actively monitoring the progress made upstream (in the `premain` branch of https://github.com/openjdk/leyden/tree/premain[`git@github.com:openjdk/leyden.git`])
 and plan to continue shaping the Quarkus + Leyden experience accordingly.
 
-With the advent of our AOT support, Quarkus now provides three modes of execution of the target artifact: plain JVM, AOT with Leyden and Native. Which one is best, depends on the use case. As always, weighing the pros and cons of each is necessary.
+With the advent of our AOT support, Quarkus now provides three modes of execution of the target artifact: plain JVM, AOT with Leyden and Native.
+Which one is best, depends on the use case.
+As always, weighing the pros and cons of each is necessary.
 
 == Come Join Us
 
