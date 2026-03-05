@@ -558,7 +558,6 @@ There are several areas where we expect things to improve:
 
 On the Quarkus side, we are also working on:
 
-* Adding Gradle support for generating the AOT cache from integration tests (currently only Maven is supported).
 * Testing and validating on additional platforms, including Windows.
 
 As Project Leyden matures, we will continue to integrate new features into Quarkus.
